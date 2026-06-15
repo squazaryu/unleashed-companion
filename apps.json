@@ -1,0 +1,35 @@
+{
+  "name": "Unleashed Companion",
+  "identifier": "com.tumoflip.unleashed-source",
+  "sourceURL": "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/apps.json",
+  "iconURL": "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/icon.png",
+  "apps": [
+    {
+      "name": "Unleashed",
+      "bundleIdentifier": "com.tumoflip.unleashedcompanion",
+      "developerName": "tumoflip",
+      "subtitle": "Flipper Zero BLE companion",
+      "localizedDescription": "Native companion for Flipper Zero on tumoflip/Unleashed firmware. Files & folder upload, screen mirror + remote, Sub-GHz TX and NFC/RFID emulate via the companion .fap, Sber relay failsafe (HA -> Sber cloud), Marauder log analysis, and an all-the-plugins auto-updater.",
+      "iconURL": "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/icon.png",
+      "tintColor": "F36E12",
+      "category": "utilities",
+      "screenshotURLs": [],
+      "version": "0.9.0",
+      "versionDate": "2026-06-15",
+      "versionDescription": "First Feather-distributed build. App Updates tab (all-the-plugins), protected apps, install history, installed-apps viewer, versioned app name.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.0/UnleashedCompanion-unsigned.ipa",
+      "size": 2354172,
+      "minOSVersion": "17.0",
+      "versions": [
+        {
+          "version": "0.9.0",
+          "date": "2026-06-15",
+          "localizedDescription": "First Feather-distributed build.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.0/UnleashedCompanion-unsigned.ipa",
+          "size": 2354172,
+          "minOSVersion": "17.0"
+        }
+      ]
+    }
+  ]
+}
