@@ -14,13 +14,21 @@
       "tintColor": "F36E12",
       "category": "utilities",
       "screenshotURLs": [],
-      "version": "0.9.0",
+      "version": "0.9.1",
       "versionDate": "2026-06-15",
-      "versionDescription": "First Feather-distributed build. App Updates tab (all-the-plugins), protected apps, install history, installed-apps viewer, versioned app name.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.0/UnleashedCompanion-unsigned.ipa",
-      "size": 2354172,
+      "versionDescription": "Installed apps: sort by 'recently installed' to find the last-added app. Timestamp via storage RPC.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.1/UnleashedCompanion-unsigned.ipa",
+      "size": 2371127,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "0.9.1",
+          "date": "2026-06-15",
+          "localizedDescription": "Installed apps: sort by 'recently installed' to find the last-added app. Timestamp via storage RPC.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.1/UnleashedCompanion-unsigned.ipa",
+          "size": 2371127,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "0.9.0",
           "date": "2026-06-15",
