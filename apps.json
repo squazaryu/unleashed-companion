@@ -14,13 +14,21 @@
       "tintColor": "F36E12",
       "category": "utilities",
       "screenshotURLs": [],
-      "version": "0.9.3",
+      "version": "0.9.4",
       "versionDate": "2026-06-15",
-      "versionDescription": "Installed apps: sort by Name/Size (Flipper FS has no per-file mtime, so no install-date sort). Use Updates history for install records.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.3/UnleashedCompanion-unsigned.ipa",
-      "size": 2362948,
+      "versionDescription": "Fix: Device tab stop-scan button now actually stops the scan (state reset).",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.4/UnleashedCompanion-unsigned.ipa",
+      "size": 2363060,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "0.9.4",
+          "date": "2026-06-15",
+          "localizedDescription": "Fix: Device tab stop-scan button now actually stops the scan (state reset).",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.4/UnleashedCompanion-unsigned.ipa",
+          "size": 2363060,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "0.9.3",
           "date": "2026-06-15",
