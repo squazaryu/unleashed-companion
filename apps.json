@@ -14,13 +14,21 @@
       "tintColor": "F36E12",
       "category": "utilities",
       "screenshotURLs": [],
-      "version": "0.9.13",
+      "version": "0.9.14",
       "versionDate": "2026-06-16",
-      "versionDescription": "Install verify: re-check md5 after a short delay (handles slow SD flush) and, on real mismatch, report device-vs-source file size so truncation vs corruption is clear. Diagnostic step toward the remaining md5-mismatch on installs.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.13/UnleashedCompanion-unsigned.ipa",
-      "size": 2431084,
+      "versionDescription": "Kill the multi-minute install hang: a write-stall watchdog detects a wedged BLE link in 8s (Flipper stops acking mid-upload) and forces a reconnect instead of waiting out the 300s RPC timeout; the write queue is flushed so retries aren't poisoned by a stuck in-flight chunk.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.14/UnleashedCompanion-unsigned.ipa",
+      "size": 2432429,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "0.9.14",
+          "date": "2026-06-16",
+          "localizedDescription": "Kill the multi-minute install hang: a write-stall watchdog detects a wedged BLE link in 8s (Flipper stops acking mid-upload) and forces a reconnect instead of waiting out the 300s RPC timeout; the write queue is flushed so retries aren't poisoned by a stuck in-flight chunk.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.14/UnleashedCompanion-unsigned.ipa",
+          "size": 2432429,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "0.9.13",
           "date": "2026-06-16",
