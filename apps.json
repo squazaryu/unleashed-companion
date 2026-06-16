@@ -14,13 +14,21 @@
       "tintColor": "F36E12",
       "category": "utilities",
       "screenshotURLs": [],
-      "version": "0.9.6",
+      "version": "0.9.7",
       "versionDate": "2026-06-16",
-      "versionDescription": "Protected apps moved to their own screen (lock.shield row in Updates). Unprotect is now a deliberate left-swipe instead of a one-tap minus, so apps can't be unprotected by accident.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.6/UnleashedCompanion-unsigned.ipa",
-      "size": 2370552,
+      "versionDescription": "Device info screen (model, firmware, region, radio stack, battery + full property dump) like the official app. Auto-sync: installed-apps list refreshes itself after any install/update/upload/delete.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.7/UnleashedCompanion-unsigned.ipa",
+      "size": 2402202,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "0.9.7",
+          "date": "2026-06-16",
+          "localizedDescription": "Device info screen (model, firmware, region, radio stack, battery + full property dump) like the official app. Auto-sync: installed-apps list refreshes itself after any install/update/upload/delete.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.7/UnleashedCompanion-unsigned.ipa",
+          "size": 2402202,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "0.9.6",
           "date": "2026-06-16",
