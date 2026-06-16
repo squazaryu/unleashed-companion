@@ -14,13 +14,21 @@
       "tintColor": "F36E12",
       "category": "utilities",
       "screenshotURLs": [],
-      "version": "0.9.15",
+      "version": "0.9.16",
       "versionDate": "2026-06-16",
-      "versionDescription": "Implement Flipper's BLE serial flow control (the thing the official app does and we didn't): honor the flow-control characteristic credit (1024B RPC buffer, refilled on buffer-empty notify), write .withoutResponse in <=486B chunks gated by canSendWriteWithoutResponse. This is the real fix for file installs over BLE \u2014 no more overrun/wedge/md5-mismatch.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.15/UnleashedCompanion-unsigned.ipa",
-      "size": 2433489,
+      "versionDescription": "Fix tab bar (dock) rendering crooked/truncated on first paint: removed the custom UITabBarAppearance font that broke layout metrics until a re-layout. Back to native rendering; Bridge tab renamed Relay so every label fits at the default size.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.16/UnleashedCompanion-unsigned.ipa",
+      "size": 2431178,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "0.9.16",
+          "date": "2026-06-16",
+          "localizedDescription": "Fix tab bar (dock) rendering crooked/truncated on first paint: removed the custom UITabBarAppearance font that broke layout metrics until a re-layout. Back to native rendering; Bridge tab renamed Relay so every label fits at the default size.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.16/UnleashedCompanion-unsigned.ipa",
+          "size": 2431178,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "0.9.15",
           "date": "2026-06-16",
