@@ -14,13 +14,21 @@
       "tintColor": "F36E12",
       "category": "utilities",
       "screenshotURLs": [],
-      "version": "0.9.10",
+      "version": "0.9.11",
       "versionDate": "2026-06-16",
-      "versionDescription": "Select menu in Updates is now a full-width tappable row (whole cell responds, not just the text) with a chevron affordance.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.10/UnleashedCompanion-unsigned.ipa",
-      "size": 2424662,
+      "versionDescription": "BLE: reattach to a Flipper the system still holds (it stops advertising while connected) instead of a scan that finds nothing \u2014 fixes 'rescan doesn't see Flipper until I toggle its BLE'. Reattach on foreground + remember last device. Sber relay: clear 'set device_id' message instead of cryptic 405 when device_id is empty; trust-OK log lines no longer shown as errors. Tab labels no longer truncate (Screen).",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.11/UnleashedCompanion-unsigned.ipa",
+      "size": 2431349,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "0.9.11",
+          "date": "2026-06-16",
+          "localizedDescription": "BLE: reattach to a Flipper the system still holds (it stops advertising while connected) instead of a scan that finds nothing \u2014 fixes 'rescan doesn't see Flipper until I toggle its BLE'. Reattach on foreground + remember last device. Sber relay: clear 'set device_id' message instead of cryptic 405 when device_id is empty; trust-OK log lines no longer shown as errors. Tab labels no longer truncate (Screen).",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.11/UnleashedCompanion-unsigned.ipa",
+          "size": 2431349,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "0.9.10",
           "date": "2026-06-16",
