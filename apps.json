@@ -14,13 +14,21 @@
       "tintColor": "F36E12",
       "category": "utilities",
       "screenshotURLs": [],
-      "version": "0.9.18",
+      "version": "0.9.19",
       "versionDate": "2026-06-16",
-      "versionDescription": "AI Radar over the network: iOS now pulls usage from the Mac AI Radar Bridge app and writes usage.txt to the Flipper itself (Mac \u2192 phone \u2192 Flipper). Set the bridge URL on the AI Radar screen; empty still reads usage.txt straight off the Flipper.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.18/UnleashedCompanion-unsigned.ipa",
-      "size": 2467592,
+      "versionDescription": "Flipper-triggered AI Radar: long-press OK on the Flipper's AI Dashboard sends ai_dashboard/refresh over the App Bridge; the phone fetches usage from the Mac and streams it back to the Flipper (Flipper\u2192phone\u2192Mac\u2192phone\u2192Flipper), no manual phone tap. Claude 'stale' marker when its OAuth token is expired so a cached 100% isn't shown as current.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.19/UnleashedCompanion-unsigned.ipa",
+      "size": 2474945,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "0.9.19",
+          "date": "2026-06-16",
+          "localizedDescription": "Flipper-triggered AI Radar: long-press OK on the Flipper's AI Dashboard sends ai_dashboard/refresh over the App Bridge; the phone fetches usage from the Mac and streams it back to the Flipper (Flipper\u2192phone\u2192Mac\u2192phone\u2192Flipper), no manual phone tap. Claude 'stale' marker when its OAuth token is expired so a cached 100% isn't shown as current.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.19/UnleashedCompanion-unsigned.ipa",
+          "size": 2474945,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "0.9.18",
           "date": "2026-06-16",
