@@ -14,13 +14,21 @@
       "tintColor": "F36E12",
       "category": "utilities",
       "screenshotURLs": [],
-      "version": "0.9.20",
+      "version": "0.9.21",
       "versionDate": "2026-06-16",
-      "versionDescription": "AI Radar refresh works backgrounded/locked \u2014 same bluetooth-central path as Sber Relay (my earlier 'foreground only' note was wrong). Added a background-task assertion so the fetch + BLE write-back finishes when woken by the Flipper's event. Needs the phone on the same network as the Mac.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.20/UnleashedCompanion-unsigned.ipa",
-      "size": 2475329,
+      "versionDescription": "Settings screen (gear, top-left of Device): theme System/Light/Dark and 4 app icons (Orange/Mono/Green/Purple). Tab bar fix: opaque appearance on standard+scrollEdge so labels stop rendering shifted on first paint. BLE state restoration + connect watchdog: reclaim a Flipper still showing 'connected' after an app relaunch instead of leaving it half-open and unconnectable.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.21/UnleashedCompanion-unsigned.ipa",
+      "size": 3929064,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "0.9.21",
+          "date": "2026-06-16",
+          "localizedDescription": "Settings screen (gear, top-left of Device): theme System/Light/Dark and 4 app icons (Orange/Mono/Green/Purple). Tab bar fix: opaque appearance on standard+scrollEdge so labels stop rendering shifted on first paint. BLE state restoration + connect watchdog: reclaim a Flipper still showing 'connected' after an app relaunch instead of leaving it half-open and unconnectable.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.21/UnleashedCompanion-unsigned.ipa",
+          "size": 3929064,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "0.9.20",
           "date": "2026-06-16",
