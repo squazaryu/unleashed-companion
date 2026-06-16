@@ -14,13 +14,21 @@
       "tintColor": "F36E12",
       "category": "utilities",
       "screenshotURLs": [],
-      "version": "0.9.12",
+      "version": "0.9.13",
       "versionDate": "2026-06-16",
-      "versionDescription": "Fix file installs over BLE: writes are now confirmation-driven (send next chunk only after the Flipper acks the previous) instead of blasting frames, which was overrunning the link and dropping it mid-upload ('not connected'). Progress now tracks real acks. Screen tab renamed View so it fits.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.12/UnleashedCompanion-unsigned.ipa",
-      "size": 2434500,
+      "versionDescription": "Install verify: re-check md5 after a short delay (handles slow SD flush) and, on real mismatch, report device-vs-source file size so truncation vs corruption is clear. Diagnostic step toward the remaining md5-mismatch on installs.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.13/UnleashedCompanion-unsigned.ipa",
+      "size": 2431084,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "0.9.13",
+          "date": "2026-06-16",
+          "localizedDescription": "Install verify: re-check md5 after a short delay (handles slow SD flush) and, on real mismatch, report device-vs-source file size so truncation vs corruption is clear. Diagnostic step toward the remaining md5-mismatch on installs.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.13/UnleashedCompanion-unsigned.ipa",
+          "size": 2431084,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "0.9.12",
           "date": "2026-06-16",
