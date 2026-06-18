@@ -14,13 +14,21 @@
       "tintColor": "F36E12",
       "category": "utilities",
       "screenshotURLs": [],
-      "version": "0.9.32",
+      "version": "0.9.33",
       "versionDate": "2026-06-18",
-      "versionDescription": "AI Radar auto-discovery: the Mac bridge now advertises over Bonjour and the iPhone finds it automatically (by .local host, survives the Mac's DHCP IP changes) \u2014 leave the bridge URL empty. Explains why the URL kept changing: it was the Mac's LAN IP.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.32/UnleashedCompanion-unsigned.ipa",
-      "size": 2156990,
+      "versionDescription": "Phase 6 finish: first-run onboarding (pairing \u2192 App Bridge \u2192 Sber \u2192 AI Radar \u2192 backup/remotes; re-openable from Settings). Added a unit-test target for the wire protocols (App Bridge frame, AI Radar parser, RPC varint) \u2014 run from Xcode; verified the logic passes. PSA offload landed Mac-side earlier.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.33/UnleashedCompanion-unsigned.ipa",
+      "size": 3216325,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "0.9.33",
+          "date": "2026-06-18",
+          "localizedDescription": "Phase 6 finish: first-run onboarding (pairing \u2192 App Bridge \u2192 Sber \u2192 AI Radar \u2192 backup/remotes; re-openable from Settings). Added a unit-test target for the wire protocols (App Bridge frame, AI Radar parser, RPC varint) \u2014 run from Xcode; verified the logic passes. PSA offload landed Mac-side earlier.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.33/UnleashedCompanion-unsigned.ipa",
+          "size": 3216325,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "0.9.32",
           "date": "2026-06-18",
