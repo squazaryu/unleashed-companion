@@ -14,13 +14,21 @@
       "tintColor": "F36E12",
       "category": "utilities",
       "screenshotURLs": [],
-      "version": "0.9.33",
+      "version": "0.9.34",
       "versionDate": "2026-06-18",
-      "versionDescription": "Phase 6 finish: first-run onboarding (pairing \u2192 App Bridge \u2192 Sber \u2192 AI Radar \u2192 backup/remotes; re-openable from Settings). Added a unit-test target for the wire protocols (App Bridge frame, AI Radar parser, RPC varint) \u2014 run from Xcode; verified the logic passes. PSA offload landed Mac-side earlier.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.33/UnleashedCompanion-unsigned.ipa",
-      "size": 3216325,
+      "versionDescription": "Icons reworked: 4 DISTINCT designs (Device/Radar/Key/Bolt), not just recolors. Each ships light, dark and tinted appearance variants so iOS 26 applies Liquid Glass adapted to the system light/dark theme. Settings labels updated to the motif names.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.34/UnleashedCompanion-unsigned.ipa",
+      "size": 3219529,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "0.9.34",
+          "date": "2026-06-18",
+          "localizedDescription": "Icons reworked: 4 DISTINCT designs (Device/Radar/Key/Bolt), not just recolors. Each ships light, dark and tinted appearance variants so iOS 26 applies Liquid Glass adapted to the system light/dark theme. Settings labels updated to the motif names.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.34/UnleashedCompanion-unsigned.ipa",
+          "size": 3219529,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "0.9.33",
           "date": "2026-06-18",
