@@ -14,13 +14,21 @@
       "tintColor": "F36E12",
       "category": "utilities",
       "screenshotURLs": [],
-      "version": "0.9.31",
+      "version": "0.9.32",
       "versionDate": "2026-06-18",
-      "versionDescription": "Phase 5: Live Activity for plugin install \u2014 lock-screen + Dynamic Island progress while a pack installs (new WidgetKit extension + shared framework, no App Group). NSSupportsLiveActivities enabled.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.31/UnleashedCompanion-unsigned.ipa",
-      "size": 2147302,
+      "versionDescription": "AI Radar auto-discovery: the Mac bridge now advertises over Bonjour and the iPhone finds it automatically (by .local host, survives the Mac's DHCP IP changes) \u2014 leave the bridge URL empty. Explains why the URL kept changing: it was the Mac's LAN IP.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.32/UnleashedCompanion-unsigned.ipa",
+      "size": 2156990,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "0.9.32",
+          "date": "2026-06-18",
+          "localizedDescription": "AI Radar auto-discovery: the Mac bridge now advertises over Bonjour and the iPhone finds it automatically (by .local host, survives the Mac's DHCP IP changes) \u2014 leave the bridge URL empty. Explains why the URL kept changing: it was the Mac's LAN IP.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.32/UnleashedCompanion-unsigned.ipa",
+          "size": 2156990,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "0.9.31",
           "date": "2026-06-18",
