@@ -14,13 +14,21 @@
       "tintColor": "F36E12",
       "category": "utilities",
       "screenshotURLs": [],
-      "version": "0.9.27",
+      "version": "0.9.28",
       "versionDate": "2026-06-18",
-      "versionDescription": "Phase 1: clean macOS junk (._*/.DS_Store/service dirs) from the SD over BLE (Files \u2192 upload menu); screenshot the screen mirror and share it (View \u2192 camera). Device info already shows firmware.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.27/UnleashedCompanion-unsigned.ipa",
-      "size": 2019103,
+      "versionDescription": "Phase 2: Siri/Shortcuts \u2014 toggle/on/off the Sber relay by voice via the cloud (works without the Flipper). Background check for new all-the-plugins releases with a local notification when a new pack drops.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.28/UnleashedCompanion-unsigned.ipa",
+      "size": 2042951,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "0.9.28",
+          "date": "2026-06-18",
+          "localizedDescription": "Phase 2: Siri/Shortcuts \u2014 toggle/on/off the Sber relay by voice via the cloud (works without the Flipper). Background check for new all-the-plugins releases with a local notification when a new pack drops.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.28/UnleashedCompanion-unsigned.ipa",
+          "size": 2042951,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "0.9.27",
           "date": "2026-06-18",
