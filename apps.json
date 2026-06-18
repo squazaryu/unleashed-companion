@@ -14,13 +14,21 @@
       "tintColor": "F36E12",
       "category": "utilities",
       "screenshotURLs": [],
-      "version": "0.9.30",
+      "version": "0.9.31",
       "versionDate": "2026-06-18",
-      "versionDescription": "Phase 4: Remotes \u2014 favorite saved .sub files (Files \u2192 long-press \u2192 Add to Remotes) and fire them with big one-tap buttons from Device \u2192 Remotes. BadUSB/text editing already covered by the file editor (long-press \u2192 Edit text).",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.30/UnleashedCompanion-unsigned.ipa",
-      "size": 2109453,
+      "versionDescription": "Phase 5: Live Activity for plugin install \u2014 lock-screen + Dynamic Island progress while a pack installs (new WidgetKit extension + shared framework, no App Group). NSSupportsLiveActivities enabled.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.31/UnleashedCompanion-unsigned.ipa",
+      "size": 2147302,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "0.9.31",
+          "date": "2026-06-18",
+          "localizedDescription": "Phase 5: Live Activity for plugin install \u2014 lock-screen + Dynamic Island progress while a pack installs (new WidgetKit extension + shared framework, no App Group). NSSupportsLiveActivities enabled.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.31/UnleashedCompanion-unsigned.ipa",
+          "size": 2147302,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "0.9.30",
           "date": "2026-06-18",
