@@ -14,13 +14,21 @@
       "tintColor": "F36E12",
       "category": "utilities",
       "screenshotURLs": [],
-      "version": "0.9.36",
+      "version": "0.9.37",
       "versionDate": "2026-06-19",
-      "versionDescription": "Refined Dolphin icon: redesigned silhouette (long rostrum, hooked dorsal, flukes, eye, pectoral) rendered at 4x + downsampled for glass-smooth anti-aliased edges \u2014 no more low-poly look. Light/dark/tinted variants.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.36/UnleashedCompanion-unsigned.ipa",
-      "size": 3391184,
+      "versionDescription": "Claude Buddy over App Bridge: new BuddyRelay polls the Mac (AI Radar Bridge /buddy queue) and forwards Claude Code notifications to the Flipper companion as pager/notify frames \u2014 coexists with the iPhone BLE link. Toggle in Settings \u2192 Claude Buddy. (Mac side: AIRadarBridge /buddy endpoint.)",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.37/UnleashedCompanion-unsigned.ipa",
+      "size": 3403549,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "0.9.37",
+          "date": "2026-06-19",
+          "localizedDescription": "Claude Buddy over App Bridge: new BuddyRelay polls the Mac (AI Radar Bridge /buddy queue) and forwards Claude Code notifications to the Flipper companion as pager/notify frames \u2014 coexists with the iPhone BLE link. Toggle in Settings \u2192 Claude Buddy. (Mac side: AIRadarBridge /buddy endpoint.)",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.37/UnleashedCompanion-unsigned.ipa",
+          "size": 3403549,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "0.9.36",
           "date": "2026-06-19",
