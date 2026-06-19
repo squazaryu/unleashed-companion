@@ -14,13 +14,21 @@
       "tintColor": "F36E12",
       "category": "utilities",
       "screenshotURLs": [],
-      "version": "0.9.42",
+      "version": "0.9.43",
       "versionDate": "2026-06-20",
-      "versionDescription": "App Bridge v2 (FAB2) support: the app now probes runtime/capabilities on connect and auto-upgrades to FAB2 framing (16-byte header, request ids, 160-byte chunking) when the firmware supports it, falling back to FAB1 otherwise. Fully backward compatible \u2014 no change on current 87.12 firmware; auto-switches once you flash an App Bridge v2 build. Decoder accepts both FAB1 and FAB2.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.42/UnleashedCompanion-unsigned.ipa",
-      "size": 3419749,
+      "versionDescription": "Show negotiated App Bridge version in Settings (v1/FAB1 vs v2/FAB2) so it's visible in-app instead of only in OSLog. Settings -> bottom: 'App Bridge: v1 (FAB1)' on current firmware, turns green 'v2 (FAB2)' once you connect to an App Bridge v2 firmware.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.43/UnleashedCompanion-unsigned.ipa",
+      "size": 3423245,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "0.9.43",
+          "date": "2026-06-20",
+          "localizedDescription": "Show negotiated App Bridge version in Settings (v1/FAB1 vs v2/FAB2) so it's visible in-app instead of only in OSLog. Settings -> bottom: 'App Bridge: v1 (FAB1)' on current firmware, turns green 'v2 (FAB2)' once you connect to an App Bridge v2 firmware.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.43/UnleashedCompanion-unsigned.ipa",
+          "size": 3423245,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "0.9.42",
           "date": "2026-06-20",
