@@ -14,13 +14,21 @@
       "tintColor": "F36E12",
       "category": "utilities",
       "screenshotURLs": [],
-      "version": "0.9.40",
+      "version": "0.9.41",
       "versionDate": "2026-06-19",
-      "versionDescription": "Fix periodic BLE disconnects in Claude Buddy passthrough: Buddy now writes raw to the serial char (credit-free), matching the plugin host-bridge. The old credit-gated path stalled (the Buddy .fap doesn't feed the RPC flow-control buffer) and tripped the stall-watchdog into forced reconnects. Note: while Buddy passthrough is ON, RPC is paused by design, so the Device tab won't show Flipper info until you turn it off.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.40/UnleashedCompanion-unsigned.ipa",
-      "size": 3411490,
+      "versionDescription": "Claude Buddy passthrough is now self-arming and safe to leave ON. It pauses RPC (Device/Files/View) ONLY while the Claude Buddy app is actually the live serial peer on the Flipper (detected from its JSON stream); otherwise RPC works normally and nothing is written to the link. Fixes: no Device Info / screen / files + periodic disconnects that happened when the toggle was left on without the Buddy app open. App Bridge (AI Radar, Relay) is unaffected either way.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.41/UnleashedCompanion-unsigned.ipa",
+      "size": 3414086,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "0.9.41",
+          "date": "2026-06-19",
+          "localizedDescription": "Claude Buddy passthrough is now self-arming and safe to leave ON. It pauses RPC (Device/Files/View) ONLY while the Claude Buddy app is actually the live serial peer on the Flipper (detected from its JSON stream); otherwise RPC works normally and nothing is written to the link. Fixes: no Device Info / screen / files + periodic disconnects that happened when the toggle was left on without the Buddy app open. App Bridge (AI Radar, Relay) is unaffected either way.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.41/UnleashedCompanion-unsigned.ipa",
+          "size": 3414086,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "0.9.40",
           "date": "2026-06-19",
