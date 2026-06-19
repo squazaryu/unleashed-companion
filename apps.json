@@ -14,13 +14,21 @@
       "tintColor": "F36E12",
       "category": "utilities",
       "screenshotURLs": [],
-      "version": "0.9.39",
+      "version": "0.9.40",
       "versionDate": "2026-06-19",
-      "versionDescription": "Fix Claude Buddy passthrough corruption: while the Buddy app owns the Flipper serial channel, RPC is now hard-disabled (no writes, no parsing) so background features can't interleave protobuf with Buddy JSON. That interleaving was what showed up as Cyrillic glyphs instead of the command and crashed the .fap (furi_check). Buttons + notifications now run clean.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.39/UnleashedCompanion-unsigned.ipa",
-      "size": 3408426,
+      "versionDescription": "Fix periodic BLE disconnects in Claude Buddy passthrough: Buddy now writes raw to the serial char (credit-free), matching the plugin host-bridge. The old credit-gated path stalled (the Buddy .fap doesn't feed the RPC flow-control buffer) and tripped the stall-watchdog into forced reconnects. Note: while Buddy passthrough is ON, RPC is paused by design, so the Device tab won't show Flipper info until you turn it off.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.40/UnleashedCompanion-unsigned.ipa",
+      "size": 3411490,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "0.9.40",
+          "date": "2026-06-19",
+          "localizedDescription": "Fix periodic BLE disconnects in Claude Buddy passthrough: Buddy now writes raw to the serial char (credit-free), matching the plugin host-bridge. The old credit-gated path stalled (the Buddy .fap doesn't feed the RPC flow-control buffer) and tripped the stall-watchdog into forced reconnects. Note: while Buddy passthrough is ON, RPC is paused by design, so the Device tab won't show Flipper info until you turn it off.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.40/UnleashedCompanion-unsigned.ipa",
+          "size": 3411490,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "0.9.39",
           "date": "2026-06-19",
