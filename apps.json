@@ -14,13 +14,21 @@
       "tintColor": "F36E12",
       "category": "utilities",
       "screenshotURLs": [],
-      "version": "0.9.48",
+      "version": "0.9.49",
       "versionDate": "2026-06-20",
-      "versionDescription": "Relay state + reliability: shows the relay's current On/Off state via the HA REST API (add a long-lived token + entity id under Home Assistant \u2192 'Show on/off state'); state refreshes after each command. Fixes the 'doesn't work the first time' issue \u2014 HA webhook calls now retry once with a longer timeout on a cold mDNS/DNS resolve.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.48/UnleashedCompanion-unsigned.ipa",
-      "size": 3546613,
+      "versionDescription": "ESP32 Marauder firmware updater (WiFi \u2192 ESP32 Firmware): checks github.com/justcallmekoko/ESP32Marauder for new releases, detects your installed boards from the esp_flasher *_manual folders, and on update downloads the matching per-board app image and writes a NEW manual folder on the SD (reusing the version-independent bootloader/partitions/boot_app0) \u2014 then flash it from the Flipper's esp_flasher app.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.49/UnleashedCompanion-unsigned.ipa",
+      "size": 3598468,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "0.9.49",
+          "date": "2026-06-20",
+          "localizedDescription": "ESP32 Marauder firmware updater (WiFi \u2192 ESP32 Firmware): checks github.com/justcallmekoko/ESP32Marauder for new releases, detects your installed boards from the esp_flasher *_manual folders, and on update downloads the matching per-board app image and writes a NEW manual folder on the SD (reusing the version-independent bootloader/partitions/boot_app0) \u2014 then flash it from the Flipper's esp_flasher app.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.49/UnleashedCompanion-unsigned.ipa",
+          "size": 3598468,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "0.9.48",
           "date": "2026-06-20",
