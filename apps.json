@@ -14,13 +14,21 @@
       "tintColor": "F36E12",
       "category": "utilities",
       "screenshotURLs": [],
-      "version": "0.9.57",
+      "version": "1.0.0",
       "versionDate": "2026-06-20",
-      "versionDescription": "Relay tab decluttered: the main screen is now just the On/Off/Toggle control + current state pill (and a compact bridge/route line). Everything else \u2014 Executor enable + route, Home Assistant URL/state token, Sber account, Activity log, and the Developer raw-frame tool \u2014 moved into a 'Relay Settings' screen behind the gear icon.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.57/UnleashedCompanion-unsigned.ipa",
-      "size": 3686067,
+      "versionDescription": "Unleashed 1.0.0 \ud83c\udf89 \u2014 premium card-based UI across Home (with live Flipper battery), Relay (control + status, settings/logs tucked away), AI Radar, WiFi/Marauder (structured pcap: networks \u2192 clients \u2192 vendors), and ESP32 firmware. App Bridge v2 (FAB2) auto-negotiation, Files long-press move, daily GitHub update notifications (plugins + ESP32 firmware), and Claude Buddy live status + \u2318D voice over the relay. Device Info restyled to cards.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.0.0/UnleashedCompanion-unsigned.ipa",
+      "size": 3689518,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.0.0",
+          "date": "2026-06-20",
+          "localizedDescription": "Unleashed 1.0.0 \ud83c\udf89 \u2014 premium card-based UI across Home (with live Flipper battery), Relay (control + status, settings/logs tucked away), AI Radar, WiFi/Marauder (structured pcap: networks \u2192 clients \u2192 vendors), and ESP32 firmware. App Bridge v2 (FAB2) auto-negotiation, Files long-press move, daily GitHub update notifications (plugins + ESP32 firmware), and Claude Buddy live status + \u2318D voice over the relay. Device Info restyled to cards.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.0.0/UnleashedCompanion-unsigned.ipa",
+          "size": 3689518,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "0.9.57",
           "date": "2026-06-20",
