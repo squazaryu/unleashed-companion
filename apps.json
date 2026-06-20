@@ -14,13 +14,21 @@
       "tintColor": "F36E12",
       "category": "utilities",
       "screenshotURLs": [],
-      "version": "0.9.55",
+      "version": "0.9.56",
       "versionDate": "2026-06-20",
-      "versionDescription": "Notifications: fix the permission prompt never appearing (an old guard flag suppressed it on upgraded installs) \u2014 the app now requests on launch whenever the status is undecided, and Settings has a Notifications row showing On/Off with an Enable button (or a deep link to iOS Settings if denied). Also: Claude Buddy now shows live thinking/Running/Done on the Flipper \u2014 derived from the active session transcript by the Mac relay daemon, independent of plugin hooks (which weren't firing).",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.55/UnleashedCompanion-unsigned.ipa",
-      "size": 3687255,
+      "versionDescription": "Relay state: optimistic update \u2014 the On/Off/Toggle pill now flips instantly on command, then reconciles with HA. (Pair with HA reading a state source that actually reflects on/off \u2014 see notes.)",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.56/UnleashedCompanion-unsigned.ipa",
+      "size": 3687874,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "0.9.56",
+          "date": "2026-06-20",
+          "localizedDescription": "Relay state: optimistic update \u2014 the On/Off/Toggle pill now flips instantly on command, then reconciles with HA. (Pair with HA reading a state source that actually reflects on/off \u2014 see notes.)",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.56/UnleashedCompanion-unsigned.ipa",
+          "size": 3687874,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "0.9.55",
           "date": "2026-06-20",
