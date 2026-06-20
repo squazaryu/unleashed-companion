@@ -14,13 +14,21 @@
       "tintColor": "F36E12",
       "category": "utilities",
       "screenshotURLs": [],
-      "version": "0.9.50",
+      "version": "0.9.51",
       "versionDate": "2026-06-20",
-      "versionDescription": "ESP32 updater integrity fix: verify the downloaded firmware size against GitHub and md5-verify the on-SD app image after writing, retry once, and never leave a truncated image (which bricked the flash \u2192 'Resetting Board' errors). The 1.7MB write needs the app foregrounded; failures now report bytes-landed clearly instead of silently writing a partial file.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.50/UnleashedCompanion-unsigned.ipa",
-      "size": 3605204,
+      "versionDescription": "WiFi: structured Marauder data. New 802.11 pcap parser (radiotap-aware) pulls saved sniff captures from the Flipper over BLE and shows Networks \u2192 the clients connected to each (with MAC vendor from OUI), plus unassociated clients; text scan logs still parse APs + Evil Portal creds (now with vendor). ESP32 Firmware moved from WiFi to a Home tile.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.51/UnleashedCompanion-unsigned.ipa",
+      "size": 3632308,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "0.9.51",
+          "date": "2026-06-20",
+          "localizedDescription": "WiFi: structured Marauder data. New 802.11 pcap parser (radiotap-aware) pulls saved sniff captures from the Flipper over BLE and shows Networks \u2192 the clients connected to each (with MAC vendor from OUI), plus unassociated clients; text scan logs still parse APs + Evil Portal creds (now with vendor). ESP32 Firmware moved from WiFi to a Home tile.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.51/UnleashedCompanion-unsigned.ipa",
+          "size": 3632308,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "0.9.50",
           "date": "2026-06-20",
