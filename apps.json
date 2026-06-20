@@ -14,13 +14,21 @@
       "tintColor": "F36E12",
       "category": "utilities",
       "screenshotURLs": [],
-      "version": "0.9.53",
+      "version": "0.9.54",
       "versionDate": "2026-06-20",
-      "versionDescription": "Background update notifications: the daily GitHub watcher now tracks BOTH all-the-plugins AND ESP32Marauder firmware releases, posting a local iOS notification when either has a new version (no push/APNs needed \u2014 works with a personal dev cert). ~6h background refresh; first observation per repo is a silent baseline.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.53/UnleashedCompanion-unsigned.ipa",
-      "size": 3670918,
+      "versionDescription": "Relay state diagnosis: the HA state read now retries once on a cold mDNS/DNS timeout (same fix as commands) and surfaces WHY it's Unknown \u2014 '401 bad token', '404 entity not found', timeout, or 'add token+entity' \u2014 instead of silently staying Unknown. Shown under the state pill in Relay \u2192 Quick control.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.54/UnleashedCompanion-unsigned.ipa",
+      "size": 3675965,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "0.9.54",
+          "date": "2026-06-20",
+          "localizedDescription": "Relay state diagnosis: the HA state read now retries once on a cold mDNS/DNS timeout (same fix as commands) and surfaces WHY it's Unknown \u2014 '401 bad token', '404 entity not found', timeout, or 'add token+entity' \u2014 instead of silently staying Unknown. Shown under the state pill in Relay \u2192 Quick control.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.54/UnleashedCompanion-unsigned.ipa",
+          "size": 3675965,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "0.9.53",
           "date": "2026-06-20",
