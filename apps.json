@@ -14,13 +14,21 @@
       "tintColor": "F36E12",
       "category": "utilities",
       "screenshotURLs": [],
-      "version": "0.9.49",
+      "version": "0.9.50",
       "versionDate": "2026-06-20",
-      "versionDescription": "ESP32 Marauder firmware updater (WiFi \u2192 ESP32 Firmware): checks github.com/justcallmekoko/ESP32Marauder for new releases, detects your installed boards from the esp_flasher *_manual folders, and on update downloads the matching per-board app image and writes a NEW manual folder on the SD (reusing the version-independent bootloader/partitions/boot_app0) \u2014 then flash it from the Flipper's esp_flasher app.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.49/UnleashedCompanion-unsigned.ipa",
-      "size": 3598468,
+      "versionDescription": "ESP32 updater integrity fix: verify the downloaded firmware size against GitHub and md5-verify the on-SD app image after writing, retry once, and never leave a truncated image (which bricked the flash \u2192 'Resetting Board' errors). The 1.7MB write needs the app foregrounded; failures now report bytes-landed clearly instead of silently writing a partial file.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.50/UnleashedCompanion-unsigned.ipa",
+      "size": 3605204,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "0.9.50",
+          "date": "2026-06-20",
+          "localizedDescription": "ESP32 updater integrity fix: verify the downloaded firmware size against GitHub and md5-verify the on-SD app image after writing, retry once, and never leave a truncated image (which bricked the flash \u2192 'Resetting Board' errors). The 1.7MB write needs the app foregrounded; failures now report bytes-landed clearly instead of silently writing a partial file.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.50/UnleashedCompanion-unsigned.ipa",
+          "size": 3605204,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "0.9.49",
           "date": "2026-06-20",
