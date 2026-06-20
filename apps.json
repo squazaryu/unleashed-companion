@@ -14,13 +14,21 @@
       "tintColor": "F36E12",
       "category": "utilities",
       "screenshotURLs": [],
-      "version": "0.9.52",
+      "version": "0.9.53",
       "versionDate": "2026-06-20",
-      "versionDescription": "WiFi: pick a log file manually. The toolbar now has a file browser (folder icon) that opens an SD file picker starting at Marauder's save folder (/ext/apps_data/marauder) \u2014 navigate anywhere and tap any file (.pcap/.log/.csv/.txt or other) to analyze it. The refresh icon still auto-scans the known folders.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.52/UnleashedCompanion-unsigned.ipa",
-      "size": 3668446,
+      "versionDescription": "Background update notifications: the daily GitHub watcher now tracks BOTH all-the-plugins AND ESP32Marauder firmware releases, posting a local iOS notification when either has a new version (no push/APNs needed \u2014 works with a personal dev cert). ~6h background refresh; first observation per repo is a silent baseline.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.53/UnleashedCompanion-unsigned.ipa",
+      "size": 3670918,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "0.9.53",
+          "date": "2026-06-20",
+          "localizedDescription": "Background update notifications: the daily GitHub watcher now tracks BOTH all-the-plugins AND ESP32Marauder firmware releases, posting a local iOS notification when either has a new version (no push/APNs needed \u2014 works with a personal dev cert). ~6h background refresh; first observation per repo is a silent baseline.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.53/UnleashedCompanion-unsigned.ipa",
+          "size": 3670918,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "0.9.52",
           "date": "2026-06-20",
