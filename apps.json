@@ -14,13 +14,21 @@
       "tintColor": "F36E12",
       "category": "utilities",
       "screenshotURLs": [],
-      "version": "0.9.56",
+      "version": "0.9.57",
       "versionDate": "2026-06-20",
-      "versionDescription": "Relay state: optimistic update \u2014 the On/Off/Toggle pill now flips instantly on command, then reconciles with HA. (Pair with HA reading a state source that actually reflects on/off \u2014 see notes.)",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.56/UnleashedCompanion-unsigned.ipa",
-      "size": 3687874,
+      "versionDescription": "Relay tab decluttered: the main screen is now just the On/Off/Toggle control + current state pill (and a compact bridge/route line). Everything else \u2014 Executor enable + route, Home Assistant URL/state token, Sber account, Activity log, and the Developer raw-frame tool \u2014 moved into a 'Relay Settings' screen behind the gear icon.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.57/UnleashedCompanion-unsigned.ipa",
+      "size": 3686067,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "0.9.57",
+          "date": "2026-06-20",
+          "localizedDescription": "Relay tab decluttered: the main screen is now just the On/Off/Toggle control + current state pill (and a compact bridge/route line). Everything else \u2014 Executor enable + route, Home Assistant URL/state token, Sber account, Activity log, and the Developer raw-frame tool \u2014 moved into a 'Relay Settings' screen behind the gear icon.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.57/UnleashedCompanion-unsigned.ipa",
+          "size": 3686067,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "0.9.56",
           "date": "2026-06-20",
