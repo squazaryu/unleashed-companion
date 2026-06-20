@@ -14,13 +14,21 @@
       "tintColor": "F36E12",
       "category": "utilities",
       "screenshotURLs": [],
-      "version": "0.9.54",
+      "version": "0.9.55",
       "versionDate": "2026-06-20",
-      "versionDescription": "Relay state diagnosis: the HA state read now retries once on a cold mDNS/DNS timeout (same fix as commands) and surfaces WHY it's Unknown \u2014 '401 bad token', '404 entity not found', timeout, or 'add token+entity' \u2014 instead of silently staying Unknown. Shown under the state pill in Relay \u2192 Quick control.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.54/UnleashedCompanion-unsigned.ipa",
-      "size": 3675965,
+      "versionDescription": "Notifications: fix the permission prompt never appearing (an old guard flag suppressed it on upgraded installs) \u2014 the app now requests on launch whenever the status is undecided, and Settings has a Notifications row showing On/Off with an Enable button (or a deep link to iOS Settings if denied). Also: Claude Buddy now shows live thinking/Running/Done on the Flipper \u2014 derived from the active session transcript by the Mac relay daemon, independent of plugin hooks (which weren't firing).",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.55/UnleashedCompanion-unsigned.ipa",
+      "size": 3687255,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "0.9.55",
+          "date": "2026-06-20",
+          "localizedDescription": "Notifications: fix the permission prompt never appearing (an old guard flag suppressed it on upgraded installs) \u2014 the app now requests on launch whenever the status is undecided, and Settings has a Notifications row showing On/Off with an Enable button (or a deep link to iOS Settings if denied). Also: Claude Buddy now shows live thinking/Running/Done on the Flipper \u2014 derived from the active session transcript by the Mac relay daemon, independent of plugin hooks (which weren't firing).",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.55/UnleashedCompanion-unsigned.ipa",
+          "size": 3687255,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "0.9.54",
           "date": "2026-06-20",
