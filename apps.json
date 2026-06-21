@@ -14,13 +14,21 @@
       "tintColor": "F36E12",
       "category": "utilities",
       "screenshotURLs": [],
-      "version": "1.1.5",
+      "version": "1.1.6",
       "versionDate": "2026-06-21",
-      "versionDescription": "Fix package installer cleanup: recursively remove staging and rollback directories after commit or recovery. Keeps installed files and dual-slot transaction state intact.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.5/UnleashedCompanion-unsigned.ipa",
-      "size": 3868504,
+      "versionDescription": "1.1.6 \u2014 ESP32 firmware updater fix. Board-image name parsing is now robust: it strips the version, an optional build date (e.g. 20260617), and the 0x10000 flash offset to get a clean board key, so boards like esp32-c5 (esp32c5devkitc1) match their GitHub release asset again \u2014 fixes the 'No \u2026 image in v1.12.2' download error. Each board now also shows Installed vs Latest version explicitly with an Update/Latest badge.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.6/UnleashedCompanion-unsigned.ipa",
+      "size": 3872545,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.1.6",
+          "date": "2026-06-21",
+          "localizedDescription": "1.1.6 \u2014 ESP32 firmware updater fix. Board-image name parsing is now robust: it strips the version, an optional build date (e.g. 20260617), and the 0x10000 flash offset to get a clean board key, so boards like esp32-c5 (esp32c5devkitc1) match their GitHub release asset again \u2014 fixes the 'No \u2026 image in v1.12.2' download error. Each board now also shows Installed vs Latest version explicitly with an Update/Latest badge.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.6/UnleashedCompanion-unsigned.ipa",
+          "size": 3872545,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.1.5",
           "date": "2026-06-21",
