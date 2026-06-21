@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.1.6",
-      "versionDate": "2026-06-21",
-      "versionDescription": "1.1.6 \u2014 ESP32 firmware updater fix. Board-image name parsing is now robust: it strips the version, an optional build date (e.g. 20260617), and the 0x10000 flash offset to get a clean board key, so boards like esp32-c5 (esp32c5devkitc1) match their GitHub release asset again \u2014 fixes the 'No \u2026 image in v1.12.2' download error. Each board now also shows Installed vs Latest version explicitly with an Update/Latest badge.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.6/UnleashedCompanion-unsigned.ipa",
-      "size": 3872545,
+      "version": "1.1.7",
+      "versionDate": "2026-06-22",
+      "versionDescription": "1.1.7 \u2014 Firmware packages: Up to date / Update available status. The screen now shows, per group (Base/ARF/Module One/Protocol Packs) and overall, whether your installed packages match the latest release \u2014 compared by content hash against the on-device install ledger, mirroring the ESP32 updater. Works from the manifest alone (no package zip needed); groups read 'Not installed' until a real install runs.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.7/UnleashedCompanion-unsigned.ipa",
+      "size": 3885100,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.1.7",
+          "date": "2026-06-22",
+          "localizedDescription": "1.1.7 \u2014 Firmware packages: Up to date / Update available status. The screen now shows, per group (Base/ARF/Module One/Protocol Packs) and overall, whether your installed packages match the latest release \u2014 compared by content hash against the on-device install ledger, mirroring the ESP32 updater. Works from the manifest alone (no package zip needed); groups read 'Not installed' until a real install runs.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.7/UnleashedCompanion-unsigned.ipa",
+          "size": 3885100,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.1.6",
           "date": "2026-06-21",
