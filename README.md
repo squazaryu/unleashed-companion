@@ -6,7 +6,7 @@
 
 **A native iOS companion for Flipper Zero** — files, screen mirror, Sub-GHz/NFC, a Sber smart-relay failsafe, Marauder log analysis, ESP32 firmware flashing, and live Claude Code status on your Flipper.
 
-![version](https://img.shields.io/badge/version-1.0.0-F36E12)
+![version](https://img.shields.io/badge/version-1.1.1-F36E12)
 ![platform](https://img.shields.io/badge/iOS-17%2B-black?logo=apple)
 ![SwiftUI](https://img.shields.io/badge/SwiftUI-5.9-orange?logo=swift)
 ![transport](https://img.shields.io/badge/transport-BLE-blue?logo=bluetooth)
@@ -58,6 +58,10 @@ https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/apps.json
 
 ### 🔔 Quality of life
 - App Bridge **v2 (FAB2)** negotiated automatically, with v1 fallback.
+- Correlated FAB2 requests with strict frame validation, ordered chunk
+  reassembly, typed firmware errors, and timeout/disconnect cleanup.
+- Transactional tumoflip SD package updates with manifest validation, staging,
+  on-device hash checks, reversible cleanup, recovery, and rollback.
 - **all-the-plugins** auto-updater and ~daily background notifications for new plugin packs and ESP32 firmware (local only, no account).
 - Card-based UI, 5 app icons, light/dark themes, Live Activity for install progress.
 
