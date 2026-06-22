@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.1.9",
+      "version": "1.1.10",
       "versionDate": "2026-06-22",
-      "versionDescription": "1.1.9 \u2014 Firmware packages: 'Verify on device' (issue #9). New button hashes the actual .fap/.fal files on the Flipper (deviceMD5) and compares them to the install record, so the badges reflect the real SD contents \u2014 catching files deleted, corrupted, or changed outside the app, which the ledger snapshot alone can't see. On-demand (slower than the snapshot check); files installed outside the app still show 'Not installed' until a real install records them. 79 tests green.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.9/UnleashedCompanion-unsigned.ipa",
-      "size": 3908376,
+      "versionDescription": "1.1.10 \u2014 Firmware packages: each group is now expandable. Tap the chevron on Base / ARF / Module One / Protocol Packs to reveal the exact files it installs (name + size) \u2014 so you can see what's in each group before installing. Verified against the live release (v0.2.2). 79 tests green.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.10/UnleashedCompanion-unsigned.ipa",
+      "size": 3917555,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.1.10",
+          "date": "2026-06-22",
+          "localizedDescription": "1.1.10 \u2014 Firmware packages: each group is now expandable. Tap the chevron on Base / ARF / Module One / Protocol Packs to reveal the exact files it installs (name + size) \u2014 so you can see what's in each group before installing. Verified against the live release (v0.2.2). 79 tests green.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.10/UnleashedCompanion-unsigned.ipa",
+          "size": 3917555,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.1.9",
           "date": "2026-06-22",
