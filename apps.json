@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.1.12",
+      "version": "1.1.13",
       "versionDate": "2026-06-23",
-      "versionDescription": "1.1.12 \u2014 Marauder log discovery fixed. The app was only listing the TOP of /ext/apps_data/marauder, but Marauder writes captures into subfolders (pcaps/, logs/, dumps/) \u2014 so it found nothing. findLogs now recurses one level into each root (incl. evil_portal), lists every .pcap/.log/.txt/.csv (skipping empties), sorts by size, and shows each file's subfolder. Also: the scanall text log format ('\u2026 <BSSID> ESSID: <name> <hh> <hh>') now parses the SSID correctly. Verified on-device (real captures are DLT-105 802.11). 81 tests green.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.12/UnleashedCompanion-unsigned.ipa",
-      "size": 3939269,
+      "versionDescription": "1.1.13 \u2014 Marauder: filter + aggregated infographics. The file list now has a Useful/Captures/Scans/Portal filter (hides info/help/update/status noise by default). New 'Analyze all' parses and MERGES every file in the current filter into one Overview: totals (networks \u00b7 clients \u00b7 creds \u00b7 EAPOL), a networks-per-channel bar chart, and a top-vendors chart (Swift Charts) \u2014 networks deduped by BSSID, clients by MAC (packets summed), credentials deduped. Each file row shows its subfolder. 83 tests green.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.13/UnleashedCompanion-unsigned.ipa",
+      "size": 3991890,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.1.13",
+          "date": "2026-06-23",
+          "localizedDescription": "1.1.13 \u2014 Marauder: filter + aggregated infographics. The file list now has a Useful/Captures/Scans/Portal filter (hides info/help/update/status noise by default). New 'Analyze all' parses and MERGES every file in the current filter into one Overview: totals (networks \u00b7 clients \u00b7 creds \u00b7 EAPOL), a networks-per-channel bar chart, and a top-vendors chart (Swift Charts) \u2014 networks deduped by BSSID, clients by MAC (packets summed), credentials deduped. Each file row shows its subfolder. 83 tests green.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.13/UnleashedCompanion-unsigned.ipa",
+          "size": 3991890,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.1.12",
           "date": "2026-06-23",
