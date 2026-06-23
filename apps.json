@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.1.16",
+      "version": "1.1.17",
       "versionDate": "2026-06-23",
-      "versionDescription": "1.1.16 \u2014 Firmware packages: fewer 'command timed out' failures. The Flipper 'rename' op is copy+remove on the SD, so a large package file (~300 KB) over a loaded BLE link could exceed the default 30 s RPC ceiling and abort the whole install; storage move/delete now get 90 s. When a Bluetooth command does time out, the error is actionable ('reboot the Flipper, reconnect, retry \u2014 files were rolled back and are safe') instead of a bare 'Command timed out'. Verified the v0.2.8 package archive is intact (41 files, API 87.15). 83 tests green.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.16/UnleashedCompanion-unsigned.ipa",
-      "size": 4007863,
+      "versionDescription": "1.1.17 \u2014 Firmware packages: real-time per-file install progress. Instead of a static 'Installing 0/41', the install row now shows the actual file being processed ('Preparing protocol_vag.fal' while staging, then 'Installing arf_keeloq.fap' while activating) with a determinate progress bar and a live percentage that advances across both phases (staging + activation). Built on the installer's existing per-op journal \u2014 no change to the transaction/rollback safety. 83 tests green.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.17/UnleashedCompanion-unsigned.ipa",
+      "size": 4009359,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.1.17",
+          "date": "2026-06-23",
+          "localizedDescription": "1.1.17 \u2014 Firmware packages: real-time per-file install progress. Instead of a static 'Installing 0/41', the install row now shows the actual file being processed ('Preparing protocol_vag.fal' while staging, then 'Installing arf_keeloq.fap' while activating) with a determinate progress bar and a live percentage that advances across both phases (staging + activation). Built on the installer's existing per-op journal \u2014 no change to the transaction/rollback safety. 83 tests green.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.17/UnleashedCompanion-unsigned.ipa",
+          "size": 4009359,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.1.16",
           "date": "2026-06-23",
