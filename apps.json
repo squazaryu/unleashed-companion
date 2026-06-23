@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.1.13",
+      "version": "1.1.14",
       "versionDate": "2026-06-23",
-      "versionDescription": "1.1.13 \u2014 Marauder: filter + aggregated infographics. The file list now has a Useful/Captures/Scans/Portal filter (hides info/help/update/status noise by default). New 'Analyze all' parses and MERGES every file in the current filter into one Overview: totals (networks \u00b7 clients \u00b7 creds \u00b7 EAPOL), a networks-per-channel bar chart, and a top-vendors chart (Swift Charts) \u2014 networks deduped by BSSID, clients by MAC (packets summed), credentials deduped. Each file row shows its subfolder. 83 tests green.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.13/UnleashedCompanion-unsigned.ipa",
-      "size": 3991890,
+      "versionDescription": "1.1.14 \u2014 Marauder overview is now automatic. On connect (and on refresh) the app discovers every scan/sniff/portal log and aggregates them into the infographic with no button press. It's incremental: tiny text logs are read first so the networks/channels/vendors overview appears almost instantly, then .pcap captures stream in and enrich it live (clients, handshakes). The 'Analyze all' button stays as a manual re-run after you change the filter; aggregation cancels cleanly if you leave the screen. 83 tests green.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.14/UnleashedCompanion-unsigned.ipa",
+      "size": 3996885,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.1.14",
+          "date": "2026-06-23",
+          "localizedDescription": "1.1.14 \u2014 Marauder overview is now automatic. On connect (and on refresh) the app discovers every scan/sniff/portal log and aggregates them into the infographic with no button press. It's incremental: tiny text logs are read first so the networks/channels/vendors overview appears almost instantly, then .pcap captures stream in and enrich it live (clients, handshakes). The 'Analyze all' button stays as a manual re-run after you change the filter; aggregation cancels cleanly if you leave the screen. 83 tests green.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.14/UnleashedCompanion-unsigned.ipa",
+          "size": 3996885,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.1.13",
           "date": "2026-06-23",
