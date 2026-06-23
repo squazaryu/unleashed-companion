@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.1.17",
+      "version": "1.1.18",
       "versionDate": "2026-06-23",
-      "versionDescription": "1.1.17 \u2014 Firmware packages: real-time per-file install progress. Instead of a static 'Installing 0/41', the install row now shows the actual file being processed ('Preparing protocol_vag.fal' while staging, then 'Installing arf_keeloq.fap' while activating) with a determinate progress bar and a live percentage that advances across both phases (staging + activation). Built on the installer's existing per-op journal \u2014 no change to the transaction/rollback safety. 83 tests green.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.17/UnleashedCompanion-unsigned.ipa",
-      "size": 4009359,
+      "versionDescription": "1.1.18 \u2014 Firmware packages install now drives the Live Activity too. The lock-screen banner and Dynamic Island (already used for plugin installs) now also appear when installing FW packages, showing the live per-file progress ('Preparing \u2026' / 'Installing \u2026') with a progress bar \u2014 so you can watch a long BLE install from the lock screen without keeping the app foreground. Ends cleanly on success, dismisses immediately on failure. 83 tests green.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.18/UnleashedCompanion-unsigned.ipa",
+      "size": 4010217,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.1.18",
+          "date": "2026-06-23",
+          "localizedDescription": "1.1.18 \u2014 Firmware packages install now drives the Live Activity too. The lock-screen banner and Dynamic Island (already used for plugin installs) now also appear when installing FW packages, showing the live per-file progress ('Preparing \u2026' / 'Installing \u2026') with a progress bar \u2014 so you can watch a long BLE install from the lock screen without keeping the app foreground. Ends cleanly on success, dismisses immediately on failure. 83 tests green.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.18/UnleashedCompanion-unsigned.ipa",
+          "size": 4010217,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.1.17",
           "date": "2026-06-23",
