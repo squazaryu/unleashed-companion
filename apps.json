@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.1.15",
+      "version": "1.1.16",
       "versionDate": "2026-06-23",
-      "versionDescription": "1.1.15 \u2014 Firmware packages: install robustness + cleaner status. The installer now keeps the screen awake (isIdleTimerDisabled) and holds a background-task assertion for the whole BLE install/recovery, so locking the phone or briefly backgrounding the app no longer tears down the link mid-transaction (the cause of the 'rollback could not restore' error). A caution under the Install button and in the progress row reminds you not to lock the phone, and the \u27f3 button now also runs crash-recovery, not just a re-check. Per-group status no longer wraps awkwardly \u2014 title / 'N files \u00b7 size' / status each on their own line. 83 tests green.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.15/UnleashedCompanion-unsigned.ipa",
-      "size": 4007195,
+      "versionDescription": "1.1.16 \u2014 Firmware packages: fewer 'command timed out' failures. The Flipper 'rename' op is copy+remove on the SD, so a large package file (~300 KB) over a loaded BLE link could exceed the default 30 s RPC ceiling and abort the whole install; storage move/delete now get 90 s. When a Bluetooth command does time out, the error is actionable ('reboot the Flipper, reconnect, retry \u2014 files were rolled back and are safe') instead of a bare 'Command timed out'. Verified the v0.2.8 package archive is intact (41 files, API 87.15). 83 tests green.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.16/UnleashedCompanion-unsigned.ipa",
+      "size": 4007863,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.1.16",
+          "date": "2026-06-23",
+          "localizedDescription": "1.1.16 \u2014 Firmware packages: fewer 'command timed out' failures. The Flipper 'rename' op is copy+remove on the SD, so a large package file (~300 KB) over a loaded BLE link could exceed the default 30 s RPC ceiling and abort the whole install; storage move/delete now get 90 s. When a Bluetooth command does time out, the error is actionable ('reboot the Flipper, reconnect, retry \u2014 files were rolled back and are safe') instead of a bare 'Command timed out'. Verified the v0.2.8 package archive is intact (41 files, API 87.15). 83 tests green.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.16/UnleashedCompanion-unsigned.ipa",
+          "size": 4007863,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.1.15",
           "date": "2026-06-23",
