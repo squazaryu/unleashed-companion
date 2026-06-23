@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.1.11",
-      "versionDate": "2026-06-22",
-      "versionDescription": "1.1.11 \u2014 Marauder log import is now diagnostic instead of silently blank. It detects the file format (classic pcap + its link-type/DLT, pcapng, or text), shows file size + parsed counts, and when nothing is found explains the likely cause \u2014 most commonly that the WiFi dev board saved the .pcap to its OWN microSD (not the Flipper SD the app reads), plus pcapng-not-yet-supported and empty/non-802.11 files. 80 tests green.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.11/UnleashedCompanion-unsigned.ipa",
-      "size": 3925281,
+      "version": "1.1.12",
+      "versionDate": "2026-06-23",
+      "versionDescription": "1.1.12 \u2014 Marauder log discovery fixed. The app was only listing the TOP of /ext/apps_data/marauder, but Marauder writes captures into subfolders (pcaps/, logs/, dumps/) \u2014 so it found nothing. findLogs now recurses one level into each root (incl. evil_portal), lists every .pcap/.log/.txt/.csv (skipping empties), sorts by size, and shows each file's subfolder. Also: the scanall text log format ('\u2026 <BSSID> ESSID: <name> <hh> <hh>') now parses the SSID correctly. Verified on-device (real captures are DLT-105 802.11). 81 tests green.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.12/UnleashedCompanion-unsigned.ipa",
+      "size": 3939269,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.1.12",
+          "date": "2026-06-23",
+          "localizedDescription": "1.1.12 \u2014 Marauder log discovery fixed. The app was only listing the TOP of /ext/apps_data/marauder, but Marauder writes captures into subfolders (pcaps/, logs/, dumps/) \u2014 so it found nothing. findLogs now recurses one level into each root (incl. evil_portal), lists every .pcap/.log/.txt/.csv (skipping empties), sorts by size, and shows each file's subfolder. Also: the scanall text log format ('\u2026 <BSSID> ESSID: <name> <hh> <hh>') now parses the SSID correctly. Verified on-device (real captures are DLT-105 802.11). 81 tests green.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.12/UnleashedCompanion-unsigned.ipa",
+          "size": 3939269,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.1.11",
           "date": "2026-06-22",
