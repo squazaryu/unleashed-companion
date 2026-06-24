@@ -46,13 +46,13 @@ https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/apps.json
   <img src="screenshots/settings.png" width="200" alt="Settings — themes & app icons">
 </p>
 
-<sub>Onboarding · Home dashboard · Relay control · Settings (themes + 5 app icons). Home/Relay are shown without a Flipper paired — the live-data screens (device info, files, screen mirror, WiFi/Marauder, AI Radar, Claude Buddy) look best on a connected device.</sub>
+<sub>Onboarding · Home dashboard · Relay control · Settings (themes + app-icon styles). Home/Relay are shown without a Flipper paired — the live-data screens (device info, files, screen mirror, WiFi/Marauder, AI Radar, Claude Buddy) look best on a connected device.</sub>
 
 ## Features
 
 ### 📱 Device & files
 - Connect over Bluetooth LE — no cable, no USB.
-- Browse the SD card, upload files and whole folders, long-press to move.
+- Browse the SD card, **create folders**, upload files and whole folders, long-press to move; one-tap macOS-junk cleanup (`._*`, `.DS_Store`).
 - **Screen mirror** with live remote control (D-pad / OK / Back).
 - Full **Device Info** (hardware, firmware, radio stack, battery) at a glance.
 
@@ -61,9 +61,10 @@ https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/apps.json
 - Remotes list for your everyday captures.
 
 ### 📶 WiFi / Marauder analysis
-- Import a Marauder `.pcap` and get a structured view: **networks → clients → vendors** (OUI-resolved), not a raw dump.
-- Surfaces **Evil Portal** captured credentials from sniff logs.
-- File picker to browse the SD and pick any capture.
+- **Auto-aggregates every** Marauder scan, sniff and Evil Portal log on the SD into one **Overview** — networks → clients → vendors (OUI-resolved), with channel-distribution and top-vendor charts.
+- Surfaces **Evil Portal** captured credentials.
+- Compact filter (Useful / Captures / Scans / Portal / All) with the statistics pinned at the top; the (often hundreds-strong) file list is collapsed below — tap any single capture to inspect it on its own.
+- Parses classic `.pcap` (802.11 / radiotap) and Marauder text logs; finds them in the real `pcaps/` · `logs/` · `dumps/` subfolders automatically.
 
 ### 🔌 ESP32 Marauder firmware
 - Checks ESP32Marauder releases, detects your board from the esp_flasher layout, downloads the matching image and stages a flash folder — with size guard + MD5 verify.
@@ -80,7 +81,9 @@ https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/apps.json
 
 ### 🔔 Quality of life
 - **all-the-plugins** auto-updater and ~daily background notifications for new plugin packs and ESP32 firmware (local only, no account).
-- Card-based UI, 5 app icons, light/dark themes, Live Activity for install progress.
+- **Live Activity** for installs (plugin packs *and* firmware packages) — live per-file progress on the lock screen and Dynamic Island, with a screen-awake guard so a long BLE install isn't interrupted.
+- **Home-screen widgets** — Quick Actions (deep-link to Files / Screen / Relay / WiFi) and Relay controls. *(Live-data widgets — battery, AI Radar, relay state — need an App-Group-capable signer such as SideStore/AltStore; under Feather only the deep-link widgets are shown.)*
+- Card-based UI; **4 app-icon styles** — Light, Dark, Liquid Glass, Liquid Glass · Dark — plus an **Auto** icon that follows the system appearance; light/dark themes.
 
 ## App Bridge (FAB1 / FAB2)
 
