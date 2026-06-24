@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.1.20",
+      "version": "1.1.21",
       "versionDate": "2026-06-24",
-      "versionDescription": "1.1.20 \u2014 New app icons. Replaced the icon set with the new 3D Flipper-remote artwork: the primary icon is now Auto (orange in light mode, dark matte in dark mode), and Settings \u2192 App icon offers four fixed styles \u2014 Orange, Dark \u00b7 Matte, Glass, and Dark \u00b7 Glossy. Pick one in Settings; the primary follows the system appearance. No functional changes.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.20/UnleashedCompanion-unsigned.ipa",
-      "size": 18361814,
+      "versionDescription": "1.1.21 \u2014 New icons, folder creation, widget fix. (1) App icons: new full-bleed artwork (no border under iOS's mask) \u2014 primary follows the system (light/dark), plus Settings \u2192 App icon styles: Light, Dark, Liquid Glass, Liquid Glass \u00b7 Dark. (2) Files: 'New folder\u2026' in the toolbar menu \u2014 create folders on the SD (e.g. an Archive to tidy Module One installs). (3) Widgets: app + widget now resolve the real App Group from the provisioning profile so home-screen widgets get live data even when a sideload signer rewrites the group id; Settings \u2192 About shows a 'Widgets: shared \u2713 / unavailable' indicator. 83 tests green.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.21/UnleashedCompanion-unsigned.ipa",
+      "size": 21448977,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.1.21",
+          "date": "2026-06-24",
+          "localizedDescription": "1.1.21 \u2014 New icons, folder creation, widget fix. (1) App icons: new full-bleed artwork (no border under iOS's mask) \u2014 primary follows the system (light/dark), plus Settings \u2192 App icon styles: Light, Dark, Liquid Glass, Liquid Glass \u00b7 Dark. (2) Files: 'New folder\u2026' in the toolbar menu \u2014 create folders on the SD (e.g. an Archive to tidy Module One installs). (3) Widgets: app + widget now resolve the real App Group from the provisioning profile so home-screen widgets get live data even when a sideload signer rewrites the group id; Settings \u2192 About shows a 'Widgets: shared \u2713 / unavailable' indicator. 83 tests green.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.21/UnleashedCompanion-unsigned.ipa",
+          "size": 21448977,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.1.20",
           "date": "2026-06-24",
