@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.1.22",
+      "version": "1.1.23",
       "versionDate": "2026-06-24",
-      "versionDescription": "1.1.22 \u2014 Widget App Group fix (build-side). The unsigned IPA now ad-hoc-embeds the com.apple.security.application-groups entitlement into both the app and the widget extension, so a re-signer (Feather/AltStore/Sideloadly) reads it from the existing signature and carries the App Group into its own signature \u2014 previously there was nothing for it to carry, so widgets had no shared container ('Widgets: unavailable'). Combined with the runtime group resolution from 1.1.21, the home-screen widgets should now get live data. Check Settings \u2192 About: 'Widgets: shared \u2713'. No app-code changes.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.22/UnleashedCompanion-unsigned.ipa",
-      "size": 21491886,
+      "versionDescription": "1.1.23 \u2014 New full-bleed app icons + WiFi tab redesign. (1) Icons: replaced with the new edge-to-edge artwork (Light/Dark/Liquid Glass/Liquid Glass\u00b7Dark) \u2014 no border, device naturally framed. (2) WiFi/Marauder: the aggregated statistics now sit at the TOP, right under a compact filter + single Analyze button; the long file list (200+ entries) is collapsed at the bottom, so you no longer scroll past every file to reach the overview. 83 tests green.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.23/UnleashedCompanion-unsigned.ipa",
+      "size": 24576213,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.1.23",
+          "date": "2026-06-24",
+          "localizedDescription": "1.1.23 \u2014 New full-bleed app icons + WiFi tab redesign. (1) Icons: replaced with the new edge-to-edge artwork (Light/Dark/Liquid Glass/Liquid Glass\u00b7Dark) \u2014 no border, device naturally framed. (2) WiFi/Marauder: the aggregated statistics now sit at the TOP, right under a compact filter + single Analyze button; the long file list (200+ entries) is collapsed at the bottom, so you no longer scroll past every file to reach the overview. 83 tests green.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.23/UnleashedCompanion-unsigned.ipa",
+          "size": 24576213,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.1.22",
           "date": "2026-06-24",
