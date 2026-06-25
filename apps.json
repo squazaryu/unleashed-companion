@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.1.27",
+      "version": "1.1.28",
       "versionDate": "2026-06-25",
-      "versionDescription": "1.1.27 \u2014 Headless relay widget + Files navigation polish. The Relay widget's On/Off/Toggle buttons now use an interactive App Intent (openAppWhenRun=false): tapping them flips the Sber relay in the background WITHOUT opening the app (previously the deep-link opened the app every time). Files: cleaner breadcrumb (Home + Back buttons + path), a folder/file count header, an explicit inset-grouped style and an empty-folder hint. 83 tests green.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.27/UnleashedCompanion-unsigned.ipa",
-      "size": 24604593,
+      "versionDescription": "1.1.28 \u2014 Fix relay widget (revert to working deep-link). The headless App Intent from 1.1.27 didn't work: an interactive widget Button(intent:) runs in the widget-extension process, which under Feather has no access to the relay credentials (Sber token in the app Keychain, device_id in app UserDefaults \u2014 no shared App Group), so taps did nothing. Restored the deep-link buttons: tapping On/Off/Toggle opens the app and flips the relay via the real RelayExecutor (HA\u2192Sber failover). A truly headless widget toggle would require an App-Group/shared-Keychain-capable signer (SideStore/AltStore). 83 tests green.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.28/UnleashedCompanion-unsigned.ipa",
+      "size": 24594876,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.1.28",
+          "date": "2026-06-25",
+          "localizedDescription": "1.1.28 \u2014 Fix relay widget (revert to working deep-link). The headless App Intent from 1.1.27 didn't work: an interactive widget Button(intent:) runs in the widget-extension process, which under Feather has no access to the relay credentials (Sber token in the app Keychain, device_id in app UserDefaults \u2014 no shared App Group), so taps did nothing. Restored the deep-link buttons: tapping On/Off/Toggle opens the app and flips the relay via the real RelayExecutor (HA\u2192Sber failover). A truly headless widget toggle would require an App-Group/shared-Keychain-capable signer (SideStore/AltStore). 83 tests green.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.28/UnleashedCompanion-unsigned.ipa",
+          "size": 24594876,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.1.27",
           "date": "2026-06-25",
