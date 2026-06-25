@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.1.26",
+      "version": "1.1.27",
       "versionDate": "2026-06-25",
-      "versionDescription": "1.1.26 \u2014 WiFi analysis is manual + scoped. Entering the WiFi tab no longer rebuilds anything \u2014 it just lists files and shows the cached overview. Building/rebuilding happens only when you tap Analyze (or \u21bb). New Scope control \u2014 Latest / 5 / 20 / All \u2014 lets you analyze just the newest captures instead of all 200+ (newest is by Marauder's filename index, since the Flipper FS has no real file dates). The button shows the scoped file count and turns into 'Rebuild' once an overview exists; a hint appears when the filter/scope changed so you know to rebuild. 83 tests green.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.26/UnleashedCompanion-unsigned.ipa",
-      "size": 24580051,
+      "versionDescription": "1.1.27 \u2014 Headless relay widget + Files navigation polish. The Relay widget's On/Off/Toggle buttons now use an interactive App Intent (openAppWhenRun=false): tapping them flips the Sber relay in the background WITHOUT opening the app (previously the deep-link opened the app every time). Files: cleaner breadcrumb (Home + Back buttons + path), a folder/file count header, an explicit inset-grouped style and an empty-folder hint. 83 tests green.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.27/UnleashedCompanion-unsigned.ipa",
+      "size": 24604593,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.1.27",
+          "date": "2026-06-25",
+          "localizedDescription": "1.1.27 \u2014 Headless relay widget + Files navigation polish. The Relay widget's On/Off/Toggle buttons now use an interactive App Intent (openAppWhenRun=false): tapping them flips the Sber relay in the background WITHOUT opening the app (previously the deep-link opened the app every time). Files: cleaner breadcrumb (Home + Back buttons + path), a folder/file count header, an explicit inset-grouped style and an empty-folder hint. 83 tests green.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.27/UnleashedCompanion-unsigned.ipa",
+          "size": 24604593,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.1.26",
           "date": "2026-06-25",
