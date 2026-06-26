@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.1.31",
+      "version": "1.1.32",
       "versionDate": "2026-06-26",
-      "versionDescription": "WiFi Mapper AP location estimates. The Marauder WiFi Mapper screen now groups repeated observations by BSSID, estimates approximate AP locations from RSSI-weighted scan points, shows confidence/radius markers on the map, and adds Seen/APs/Both map layers. GPS no-fix points remain filtered out. 90 tests green.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.31/UnleashedCompanion-unsigned.ipa",
-      "size": 24767180,
+      "versionDescription": "ESP32 firmware archive. The ESP32 screen now keeps the newest staged Marauder firmware visible, moves outdated *_manual folders into /ext/apps_data/esp_flasher/_archive, and exposes archive/restore/delete controls so old versions like 1.12.1/1.12.2 do not clutter the active flashing list. 92 tests green.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.32/UnleashedCompanion-unsigned.ipa",
+      "size": 24792572,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.1.32",
+          "date": "2026-06-26",
+          "localizedDescription": "ESP32 firmware archive. The ESP32 screen now keeps the newest staged Marauder firmware visible, moves outdated *_manual folders into /ext/apps_data/esp_flasher/_archive, and exposes archive/restore/delete controls so old versions like 1.12.1/1.12.2 do not clutter the active flashing list. 92 tests green.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.32/UnleashedCompanion-unsigned.ipa",
+          "size": 24792572,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.1.31",
           "date": "2026-06-26",
