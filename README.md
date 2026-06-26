@@ -6,7 +6,7 @@
 
 **A native iOS companion for Flipper Zero** — files, screen mirror, Sub-GHz/NFC, a Sber smart-relay failsafe, Marauder log analysis, ESP32 firmware flashing, and live Claude Code status on your Flipper.
 
-![version](https://img.shields.io/badge/version-1.1.31-F36E12)
+![version](https://img.shields.io/badge/version-1.1.32-F36E12)
 ![platform](https://img.shields.io/badge/iOS-17%2B-black?logo=apple)
 ![SwiftUI](https://img.shields.io/badge/SwiftUI-5.9-orange?logo=swift)
 ![transport](https://img.shields.io/badge/transport-BLE-blue?logo=bluetooth)
@@ -69,6 +69,7 @@ https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/apps.json
 
 ### 🔌 ESP32 Marauder firmware
 - Checks ESP32Marauder releases, detects your board from the esp_flasher layout, downloads the matching image and stages a flash folder — with size guard + MD5 verify.
+- Archives outdated staged flash folders into `/ext/apps_data/esp_flasher/_archive` so old Marauder builds do not clutter the normal flashing list; archived folders can be restored or deleted from the ESP32 screen.
 
 ### 🛰️ Sber relay failsafe
 - Toggle a Sber smart relay straight from the Flipper via App Bridge events.
