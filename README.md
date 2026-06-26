@@ -6,7 +6,7 @@
 
 **A native iOS companion for Flipper Zero** — files, screen mirror, Sub-GHz/NFC, a Sber smart-relay failsafe, Marauder log analysis, ESP32 firmware flashing, and live Claude Code status on your Flipper.
 
-![version](https://img.shields.io/badge/version-1.1.28-F36E12)
+![version](https://img.shields.io/badge/version-1.1.29-F36E12)
 ![platform](https://img.shields.io/badge/iOS-17%2B-black?logo=apple)
 ![SwiftUI](https://img.shields.io/badge/SwiftUI-5.9-orange?logo=swift)
 ![transport](https://img.shields.io/badge/transport-BLE-blue?logo=bluetooth)
@@ -62,6 +62,7 @@ https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/apps.json
 
 ### 📶 WiFi / Marauder analysis
 - **Auto-aggregates every** Marauder scan, sniff and Evil Portal log on the SD into one **Overview** — networks → clients → vendors (OUI-resolved), with channel-distribution and top-vendor charts.
+- Opens tumoflip **WiFi Mapper** GeoJSON exports from `/ext/apps_data/wifi_mapper/exports` on an interactive map, with clean/raw support, RSSI filtering, and a network list.
 - Surfaces **Evil Portal** captured credentials.
 - Compact filter (Useful / Captures / Scans / Portal / All) with the statistics pinned at the top; the (often hundreds-strong) file list is collapsed below — tap any single capture to inspect it on its own.
 - Parses classic `.pcap` (802.11 / radiotap) and Marauder text logs; finds them in the real `pcaps/` · `logs/` · `dumps/` subfolders automatically.
