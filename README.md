@@ -4,12 +4,12 @@
 
 # Unleashed
 
-**A native iOS companion for Flipper Zero** — files, screen mirror, Sub-GHz/NFC, a Sber smart-relay failsafe, Marauder log analysis, ESP32 firmware flashing, and live Claude Code status on your Flipper.
+**A native iOS companion for Flipper Zero** — BLE/USB SD file access, screen mirror, Sub-GHz/NFC, a Sber smart-relay failsafe, Marauder log analysis, ESP32 firmware flashing, and live Claude Code status on your Flipper.
 
-![version](https://img.shields.io/badge/version-1.1.33-F36E12)
+![version](https://img.shields.io/badge/version-1.1.34-F36E12)
 ![platform](https://img.shields.io/badge/iOS-17%2B-black?logo=apple)
 ![SwiftUI](https://img.shields.io/badge/SwiftUI-5.9-orange?logo=swift)
-![transport](https://img.shields.io/badge/transport-BLE-blue?logo=bluetooth)
+![transport](https://img.shields.io/badge/transport-BLE%20%2B%20USB%20SD-blue?logo=bluetooth)
 ![install](https://img.shields.io/badge/install-Feather%2FAltStore-7B68EE)
 
 </div>
@@ -51,8 +51,8 @@ https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/apps.json
 ## Features
 
 ### 📱 Device & files
-- Connect over Bluetooth LE — no cable, no USB.
-- Browse the SD card, **create folders**, upload files and whole folders, multi-select and move items in bulk; one-tap macOS-junk cleanup (`._*`, `.DS_Store`).
+- Connect over Bluetooth LE for live control, App Bridge, screen mirror and RPC actions.
+- Browse the SD card over **BLE or USB SD Mode**, **create folders**, upload files and whole folders, multi-select and move items in bulk; one-tap macOS-junk cleanup (`._*`, `.DS_Store`).
 - **Screen mirror** with live remote control (D-pad / OK / Back).
 - Full **Device Info** (hardware, firmware, radio stack, battery) at a glance.
 
@@ -68,7 +68,7 @@ https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/apps.json
 - Parses classic `.pcap` (802.11 / radiotap) and Marauder text logs; finds them in the real `pcaps/` · `logs/` · `dumps/` subfolders automatically.
 
 ### 🔌 ESP32 Marauder firmware
-- Checks ESP32Marauder releases, detects your board from the esp_flasher layout, downloads the matching image and stages a flash folder — with size guard + MD5 verify.
+- Checks ESP32Marauder releases, detects your board from the esp_flasher layout, downloads the matching image and stages a flash folder over BLE or USB SD — with size guard + MD5 verify.
 - Archives outdated staged flash folders into `/ext/apps_data/esp_flasher/_archive` so old Marauder builds do not clutter the normal flashing list; archived folders can be restored or deleted from the ESP32 screen.
 - Shows a per-board-key firmware version manager, so C5/WROOM modules keep separate versioned folders and an older build can be restored before flashing from the Flipper.
 
@@ -97,7 +97,7 @@ Most integrations talk to a small BLE service in the [tumoflip](https://github.c
 
 ## Firmware packages (atomic updater)
 
-**Updates → Firmware packages** installs the Base / ARF / Module One / Protocol Pack files from the latest [tumoflip](https://github.com/squazaryu/tumoflip) release onto the Flipper SD as one **crash-consistent transaction**:
+**Updates → Firmware packages** installs the Base / ARF / Module One / Protocol Pack files from the latest [tumoflip](https://github.com/squazaryu/tumoflip) release onto the Flipper SD over BLE or USB SD Mode as one **crash-consistent transaction**:
 
 - the release manifest (schema v2) is validated and every target path is sanitised;
 - each file is staged, SHA-256-checked on download and MD5-verified on the device before any live path is touched;

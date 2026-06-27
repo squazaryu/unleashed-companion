@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.1.33",
-      "versionDate": "2026-06-26",
-      "versionDescription": "Files bulk move/delete and ESP32 version manager. Files now supports Select mode with multi-select bulk moves and bulk delete. ESP32 Firmware groups staged Marauder builds by board key, shows active and archived versions, and lets older builds be restored before flashing. C5/WROOM modules keep separate versioned folders. 92 tests green.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.33/UnleashedCompanion-unsigned.ipa",
-      "size": 24850425,
+      "version": "1.1.34",
+      "versionDate": "2026-06-27",
+      "versionDescription": "BLE/USB SD file channel support. Files, plugin updates, tumoflip firmware packages, and ESP32 firmware staging now show whether they use BLE or USB SD Mode; large file/package writes can use the iPhone Files-mounted Flipper SD while live control remains on BLE.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.34/UnleashedCompanion-unsigned.ipa",
+      "size": 24925915,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.1.34",
+          "date": "2026-06-27",
+          "localizedDescription": "BLE/USB SD file channel support. Files, plugin updates, tumoflip firmware packages, and ESP32 firmware staging now show whether they use BLE or USB SD Mode; large file/package writes can use the iPhone Files-mounted Flipper SD while live control remains on BLE.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.34/UnleashedCompanion-unsigned.ipa",
+          "size": 24925915,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.1.33",
           "date": "2026-06-26",
