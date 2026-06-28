@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.1.36",
+      "version": "1.1.37",
       "versionDate": "2026-06-28",
-      "versionDescription": "1.1.36 \u2014 USB SD polish. (1) Mid-session disconnect: a USB file op that fails because the cable was pulled / USB SD Mode closed now drops to BLE and shows a 'USB SD disconnected \u2014 Reconnect' banner instead of raw errors. (2) Chunked write progress: USB writes stream in 256 KB chunks with real progress (then an atomic swap), so large files no longer freeze the bar. (3) Tests: new USBStorageTests cover path mapping + traversal guard, chunked write/read/MD5 round-trip, list/move/delete, and reachability. 98 tests green.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.36/UnleashedCompanion-unsigned.ipa",
-      "size": 24950050,
+      "versionDescription": "1.1.37 \u2014 Keep bridge alive in background. New Settings \u2192 Connection toggle (on by default) holds the Bluetooth link open while the app is backgrounded, so the Flipper can trigger the Sber relay (and other App Bridge actions) without you opening the app. Under the hood: a timeout-less standing CoreBluetooth connect that iOS preserves across suspension and app relaunch, plus unbounded auto-reconnect, so the Flipper reconnects automatically the moment it's back in range. Note: this can't survive force-quitting the app from the App Switcher \u2014 that's an iOS limit.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.37/UnleashedCompanion-unsigned.ipa",
+      "size": 24951691,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.1.37",
+          "date": "2026-06-28",
+          "localizedDescription": "1.1.37 \u2014 Keep bridge alive in background. New Settings \u2192 Connection toggle (on by default) holds the Bluetooth link open while the app is backgrounded, so the Flipper can trigger the Sber relay (and other App Bridge actions) without you opening the app. Under the hood: a timeout-less standing CoreBluetooth connect that iOS preserves across suspension and app relaunch, plus unbounded auto-reconnect, so the Flipper reconnects automatically the moment it's back in range. Note: this can't survive force-quitting the app from the App Switcher \u2014 that's an iOS limit.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.37/UnleashedCompanion-unsigned.ipa",
+          "size": 24951691,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.1.36",
           "date": "2026-06-28",
