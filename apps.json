@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.1.35",
-      "versionDate": "2026-06-27",
-      "versionDescription": "Fix USB SD channel selection on iOS. The Files screen now exposes USB SD directly, remembers the selected SD card folder with an iOS bookmark, retries USB channel restore on foreground, and falls back to the Files picker when iOS requires fresh permission. BLE remains the live-control channel.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.35/UnleashedCompanion-unsigned.ipa",
-      "size": 24939174,
+      "version": "1.1.36",
+      "versionDate": "2026-06-28",
+      "versionDescription": "1.1.36 \u2014 USB SD polish. (1) Mid-session disconnect: a USB file op that fails because the cable was pulled / USB SD Mode closed now drops to BLE and shows a 'USB SD disconnected \u2014 Reconnect' banner instead of raw errors. (2) Chunked write progress: USB writes stream in 256 KB chunks with real progress (then an atomic swap), so large files no longer freeze the bar. (3) Tests: new USBStorageTests cover path mapping + traversal guard, chunked write/read/MD5 round-trip, list/move/delete, and reachability. 98 tests green.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.36/UnleashedCompanion-unsigned.ipa",
+      "size": 24950050,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.1.36",
+          "date": "2026-06-28",
+          "localizedDescription": "1.1.36 \u2014 USB SD polish. (1) Mid-session disconnect: a USB file op that fails because the cable was pulled / USB SD Mode closed now drops to BLE and shows a 'USB SD disconnected \u2014 Reconnect' banner instead of raw errors. (2) Chunked write progress: USB writes stream in 256 KB chunks with real progress (then an atomic swap), so large files no longer freeze the bar. (3) Tests: new USBStorageTests cover path mapping + traversal guard, chunked write/read/MD5 round-trip, list/move/delete, and reachability. 98 tests green.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.36/UnleashedCompanion-unsigned.ipa",
+          "size": 24950050,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.1.35",
           "date": "2026-06-27",
