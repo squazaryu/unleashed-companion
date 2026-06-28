@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.2.2",
-      "versionDate": "2026-06-28",
-      "versionDescription": "1.2.2 \u2014 Signature verification for all-the-plugins, like Firmware packages. Every install was already md5-verified per file on the device; now after an install you get a clear summary card (N installed & verified / M failed), and the failed apps stay listed for a one-tap reinstall. New 'Verify on device' button re-hashes the whole pack on the Flipper against the expected md5 and flags anything missing or corrupted for reinstall \u2014 so you can confirm nothing silently failed to install. Fast over USB SD, slower over BLE (one md5 per file).",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.2.2/UnleashedCompanion-unsigned.ipa",
-      "size": 25011226,
+      "version": "1.2.3",
+      "versionDate": "2026-06-29",
+      "versionDescription": "1.2.3 \u2014 All-the-plugins Module One routing and protected app review. The plugin updater now installs Module One-related apps into their canonical /ext/apps/Module One folders instead of duplicating them in GPIO/Sub-GHz/Infrared/iButton. Protected tumoflip apps are shown separately, routed rows display their destination, the plugin baseline cache was reset for the new routing model, and transfers report activity to tumoflip firmware 089-033 when supported.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.2.3/UnleashedCompanion-unsigned.ipa",
+      "size": 25048992,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.2.3",
+          "date": "2026-06-29",
+          "localizedDescription": "1.2.3 \u2014 All-the-plugins Module One routing and protected app review. The plugin updater now installs Module One-related apps into their canonical /ext/apps/Module One folders instead of duplicating them in GPIO/Sub-GHz/Infrared/iButton. Protected tumoflip apps are shown separately, routed rows display their destination, the plugin baseline cache was reset for the new routing model, and transfers report activity to tumoflip firmware 089-033 when supported.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.2.3/UnleashedCompanion-unsigned.ipa",
+          "size": 25048992,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.2.2",
           "date": "2026-06-28",
