@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.2.1",
+      "version": "1.2.2",
       "versionDate": "2026-06-28",
-      "versionDescription": "1.2.1 \u2014 Fix BLE keep-alive getting stuck in Connecting (#10). Keep-alive previously suppressed the connect timeout entirely, so a link that connected (or was restored by iOS) but never reached app-level ready could sit in Connecting forever while the Flipper held the link and stopped advertising \u2014 the only recovery was toggling Bluetooth on the Flipper. Added a separate ready watchdog that runs for every connection attempt, including keep-alive: if the serial characteristics aren't discovered within the timeout, it clears stale GATT state and forces a clean reconnect. Keep-alive's standing background reconnect is unchanged once a healthy connection is reached. autoConnect no longer early-returns forever on a stale Connecting state.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.2.1/UnleashedCompanion-unsigned.ipa",
-      "size": 24998584,
+      "versionDescription": "1.2.2 \u2014 Signature verification for all-the-plugins, like Firmware packages. Every install was already md5-verified per file on the device; now after an install you get a clear summary card (N installed & verified / M failed), and the failed apps stay listed for a one-tap reinstall. New 'Verify on device' button re-hashes the whole pack on the Flipper against the expected md5 and flags anything missing or corrupted for reinstall \u2014 so you can confirm nothing silently failed to install. Fast over USB SD, slower over BLE (one md5 per file).",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.2.2/UnleashedCompanion-unsigned.ipa",
+      "size": 25011226,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.2.2",
+          "date": "2026-06-28",
+          "localizedDescription": "1.2.2 \u2014 Signature verification for all-the-plugins, like Firmware packages. Every install was already md5-verified per file on the device; now after an install you get a clear summary card (N installed & verified / M failed), and the failed apps stay listed for a one-tap reinstall. New 'Verify on device' button re-hashes the whole pack on the Flipper against the expected md5 and flags anything missing or corrupted for reinstall \u2014 so you can confirm nothing silently failed to install. Fast over USB SD, slower over BLE (one md5 per file).",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.2.2/UnleashedCompanion-unsigned.ipa",
+          "size": 25011226,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.2.1",
           "date": "2026-06-28",
