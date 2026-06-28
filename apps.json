@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.2.0",
+      "version": "1.2.1",
       "versionDate": "2026-06-28",
-      "versionDescription": "1.2.0 \u2014 Reworked Home & navigation. Home is now organised into three collapsible sections \u2014 Info (Info \u00b7 Apps \u00b7 Files), Tools (AI Radar \u00b7 WiFi \u00b7 Relay \u00b7 ESP32) and Revision (Updates \u00b7 Backup \u00b7 Remotes) \u2014 so the full Files, Relay and WiFi screens live on Home and open with a single back button. The bottom tab bar is slimmed to Home \u00b7 Screen \u00b7 Settings (the gear moved off Home into the tab bar). New Customize Home screen (the sliders button, top-left of Home): drag to reorder tiles within a section, move a tile to another section or hide it from its menu, re-add hidden tiles, and Reset to default \u2014 your layout and each section's collapsed state are saved. Deep links (Files / Relay / WiFi) now open as a push on Home.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.2.0/UnleashedCompanion-unsigned.ipa",
-      "size": 24993980,
+      "versionDescription": "1.2.1 \u2014 Fix BLE keep-alive getting stuck in Connecting (#10). Keep-alive previously suppressed the connect timeout entirely, so a link that connected (or was restored by iOS) but never reached app-level ready could sit in Connecting forever while the Flipper held the link and stopped advertising \u2014 the only recovery was toggling Bluetooth on the Flipper. Added a separate ready watchdog that runs for every connection attempt, including keep-alive: if the serial characteristics aren't discovered within the timeout, it clears stale GATT state and forces a clean reconnect. Keep-alive's standing background reconnect is unchanged once a healthy connection is reached. autoConnect no longer early-returns forever on a stale Connecting state.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.2.1/UnleashedCompanion-unsigned.ipa",
+      "size": 24998584,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.2.1",
+          "date": "2026-06-28",
+          "localizedDescription": "1.2.1 \u2014 Fix BLE keep-alive getting stuck in Connecting (#10). Keep-alive previously suppressed the connect timeout entirely, so a link that connected (or was restored by iOS) but never reached app-level ready could sit in Connecting forever while the Flipper held the link and stopped advertising \u2014 the only recovery was toggling Bluetooth on the Flipper. Added a separate ready watchdog that runs for every connection attempt, including keep-alive: if the serial characteristics aren't discovered within the timeout, it clears stale GATT state and forces a clean reconnect. Keep-alive's standing background reconnect is unchanged once a healthy connection is reached. autoConnect no longer early-returns forever on a stale Connecting state.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.2.1/UnleashedCompanion-unsigned.ipa",
+          "size": 24998584,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.2.0",
           "date": "2026-06-28",
