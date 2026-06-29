@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.2.5",
-      "versionDate": "2026-06-29",
-      "versionDescription": "1.2.5 \u2014 Routing map cleanup. Removed three inert Module One routing entries (infrared, ibutton, wifi_mapper) that all-the-plugins never ships \u2014 infrared/ibutton are core firmware apps and wifi_mapper is a protected tumoflip custom, so those entries never fired. No functional change to installs; this just keeps the map honest with the new routing-drift CI.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.2.5/UnleashedCompanion-unsigned.ipa",
-      "size": 25085453,
+      "version": "1.2.6",
+      "versionDate": "2026-06-30",
+      "versionDescription": "1.2.6 \u2014 Firmware packages loading feedback. Entering Firmware packages (or tapping refresh) now shows a spinner immediately. Previously, when a Flipper was connected the screen ran a silent device-recovery step before fetching the release, so it looked frozen with no loading indication and refresh appeared to do nothing. The load now sets the checking state up front (spinner + status text), the toolbar shows a progress spinner while busy, and entry/refresh share one reload path.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.2.6/UnleashedCompanion-unsigned.ipa",
+      "size": 25086314,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.2.6",
+          "date": "2026-06-30",
+          "localizedDescription": "1.2.6 \u2014 Firmware packages loading feedback. Entering Firmware packages (or tapping refresh) now shows a spinner immediately. Previously, when a Flipper was connected the screen ran a silent device-recovery step before fetching the release, so it looked frozen with no loading indication and refresh appeared to do nothing. The load now sets the checking state up front (spinner + status text), the toolbar shows a progress spinner while busy, and entry/refresh share one reload path.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.2.6/UnleashedCompanion-unsigned.ipa",
+          "size": 25086314,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.2.5",
           "date": "2026-06-29",
