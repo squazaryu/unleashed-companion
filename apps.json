@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.3.2",
+      "version": "1.3.3",
       "versionDate": "2026-07-02",
-      "versionDescription": "1.3.2 \u2014 Live WiFi scan mode (#6). New 'Live Scan' screen (toolbar button on the WiFi/Marauder tab) shows access points and clients updating in real time, streamed from the Flipper's WiFi Mapper app over BLE App Bridge \u2014 separate from the existing offline pcap/log analysis, which is untouched. Requires the WiFi Mapper firmware app to have its opt-in live relay armed (hold Down on the Flipper) and App Bridge v2. Reuses the same parsing and network/client list UI as the offline flow, now shared between both screens.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.3.2/UnleashedCompanion-unsigned.ipa",
-      "size": 25209145,
+      "versionDescription": "1.3.3 \u2014 Fix large-file BLE installs (e.g. ESP32 Flasher, ~7MB) failing right after the progress bar reaches the end. The RPC layer used a single fixed 300s ceiling for the ENTIRE chunked write, timed from the start \u2014 a large file could legitimately take longer than that to transmit + let the Flipper flush to SD, even while healthy, so the whole write was killed and retried from scratch (repeating the same failure). The timeout is now a 60s STALL threshold that resets on every chunk actually acknowledged (and again while waiting for the final write confirmation) instead of measuring total elapsed time \u2014 a multi-minute transfer that keeps making progress never trips it, while a genuinely dead link is still caught within ~60s of going quiet. Single-frame RPC calls (the vast majority) are unaffected \u2014 this only changes behavior for the one multi-chunk streaming path (file writes).",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.3.3/UnleashedCompanion-unsigned.ipa",
+      "size": 25210498,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.3.3",
+          "date": "2026-07-02",
+          "localizedDescription": "1.3.3 \u2014 Fix large-file BLE installs (e.g. ESP32 Flasher, ~7MB) failing right after the progress bar reaches the end. The RPC layer used a single fixed 300s ceiling for the ENTIRE chunked write, timed from the start \u2014 a large file could legitimately take longer than that to transmit + let the Flipper flush to SD, even while healthy, so the whole write was killed and retried from scratch (repeating the same failure). The timeout is now a 60s STALL threshold that resets on every chunk actually acknowledged (and again while waiting for the final write confirmation) instead of measuring total elapsed time \u2014 a multi-minute transfer that keeps making progress never trips it, while a genuinely dead link is still caught within ~60s of going quiet. Single-frame RPC calls (the vast majority) are unaffected \u2014 this only changes behavior for the one multi-chunk streaming path (file writes).",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.3.3/UnleashedCompanion-unsigned.ipa",
+          "size": 25210498,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.3.2",
           "date": "2026-07-02",
