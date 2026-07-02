@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.3.0",
-      "versionDate": "2026-07-01",
-      "versionDescription": "1.3.0 \u2014 App Updates: one unified hub instead of two split screens. Firmware packages (tumoflip) and Community apps (all-the-plugins) are now two equal-weight rows in a single 'Sources' card, each collapsing its backend (a 4-group firmware dashboard, or a 50-300 file plugin diff) into one verdict badge. A single combined header line states the overall status ('Everything is up to date' / 'Updates available for firmware and community apps' / 'Needs your attention'). A 'Needs attention' card appears only when something genuinely needs a look (first sync, protected-app review, a failed verify) \u2014 gone otherwise. The buried 'Firmware packages' link is gone from More; there is no longer a path to firmware updates that doesn't go through the same Sources list as plugins. Firmware packages' detail screen was also rebuilt from a plain List onto the app's card design system, matching the rest of the app. Bottom install bar stays a single bar even when both sources have pending installs, with each transaction honestly labeled (firmware groups install atomically; plugin files install individually).",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.3.0/UnleashedCompanion-unsigned.ipa",
-      "size": 25135569,
+      "version": "1.3.1",
+      "versionDate": "2026-07-02",
+      "versionDescription": "1.3.1 \u2014 Firmware packages: stable/dev channel routing (#14). The updater now reads the connected Flipper's identity (firmware_version + firmware_origin_fork) and routes to the matching tumoflip package release: a t-dev-\u2026 build gets dev packages, a stable tmwhflpprarf\u2026 build gets stable packages. A new Package channel card on the Firmware packages screen shows the installed version, origin fork, detected vs selected channel, target package + API, commit, and a dirty-build warning. Unknown or non-tumoflip firmware never silently installs a dev package \u2014 it defaults to stable with an explicit warning; manual Stable/Dev override requires a confirmation dialog. Install still fails closed on any target/API/version/origin mismatch. 8 routing unit tests added (dev/stable/unknown/non-tumoflip/missing-identity/manual override).",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.3.1/UnleashedCompanion-unsigned.ipa",
+      "size": 25178646,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.3.1",
+          "date": "2026-07-02",
+          "localizedDescription": "1.3.1 \u2014 Firmware packages: stable/dev channel routing (#14). The updater now reads the connected Flipper's identity (firmware_version + firmware_origin_fork) and routes to the matching tumoflip package release: a t-dev-\u2026 build gets dev packages, a stable tmwhflpprarf\u2026 build gets stable packages. A new Package channel card on the Firmware packages screen shows the installed version, origin fork, detected vs selected channel, target package + API, commit, and a dirty-build warning. Unknown or non-tumoflip firmware never silently installs a dev package \u2014 it defaults to stable with an explicit warning; manual Stable/Dev override requires a confirmation dialog. Install still fails closed on any target/API/version/origin mismatch. 8 routing unit tests added (dev/stable/unknown/non-tumoflip/missing-identity/manual override).",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.3.1/UnleashedCompanion-unsigned.ipa",
+          "size": 25178646,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.3.0",
           "date": "2026-07-01",
