@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.3.4",
+      "version": "1.3.5",
       "versionDate": "2026-07-03",
-      "versionDescription": "1.3.4 \u2014 Fix a transfer-speed regression from 1.3.3's stall-timeout fix. The per-chunk progress touch was going through a Swift actor, adding a real (if small) scheduling hop on every one of the thousands of chunks a large file is split into \u2014 measurable across a multi-MB write. Replaced with a plain lock-guarded class (same pattern used elsewhere in this codebase), which is synchronous and adds no suspension point on the hot per-chunk path. Stall-detection behavior is unchanged.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.3.4/UnleashedCompanion-unsigned.ipa",
-      "size": 25210483,
+      "versionDescription": "1.3.5 - Fix Live WiFi scan App Bridge event decoding. FAB2 unsolicited wifi_mapper/live_line events with request id 0 now reach Live Scan; request/response frames still require nonzero ids. 110 tests green.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.3.5/UnleashedCompanion-unsigned.ipa",
+      "size": 25211123,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.3.5",
+          "date": "2026-07-03",
+          "localizedDescription": "1.3.5 - Fix Live WiFi scan App Bridge event decoding. FAB2 unsolicited wifi_mapper/live_line events with request id 0 now reach Live Scan; request/response frames still require nonzero ids. 110 tests green.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.3.5/UnleashedCompanion-unsigned.ipa",
+          "size": 25211123,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.3.4",
           "date": "2026-07-03",
