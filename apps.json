@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.3.5",
-      "versionDate": "2026-07-03",
-      "versionDescription": "1.3.5 \u2014 Fix a crash (SIGTRAP / array index out of bounds) confirmed from on-device crash logs from builds 1.3.2 and 1.3.3 \u2014 pre-dates and is unrelated to the recent write-timeout work. Community apps' changed-list Toggle was bound via ForEach($updater.updates), a positional array-index Binding; the moment that array is mutated (an install completes and removes installed items, or a Protect action, or a fresh check() reassigns it) while the screen is still 'warm' one level back in the navigation stack, SwiftUI could resolve a Toggle's Binding against a now out-of-bounds index and trap. Replaced with an id-based lookup Binding that looks up the row by its stable identity instead of a positional index, so a row whose item has already been removed just becomes a no-op instead of crashing. Swept the rest of the app for the same ForEach($array) pattern \u2014 this was the only instance.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.3.5/UnleashedCompanion-unsigned.ipa",
-      "size": 25211624,
+      "version": "1.3.6",
+      "versionDate": "2026-07-04",
+      "versionDescription": "Minimal interface pass: secondary/diagnostic detail across the app (Relay activity/dev tools, firmware package metadata, WiFi Mapper lists, Marauder network lists, device raw properties, ESP32 version manager) now tucked behind collapsible sections \u2014 auto-expanded only when something needs attention. Primary status/controls stay visible on first glance.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.3.6/UnleashedCompanion-unsigned.ipa",
+      "size": 25213538,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.3.6",
+          "date": "2026-07-04",
+          "localizedDescription": "Minimal interface pass: secondary/diagnostic detail across the app (Relay activity/dev tools, firmware package metadata, WiFi Mapper lists, Marauder network lists, device raw properties, ESP32 version manager) now tucked behind collapsible sections \u2014 auto-expanded only when something needs attention. Primary status/controls stay visible on first glance.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.3.6/UnleashedCompanion-unsigned.ipa",
+          "size": 25213538,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.3.5",
           "date": "2026-07-03",
