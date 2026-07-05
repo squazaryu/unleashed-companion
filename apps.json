@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.4.0",
-      "versionDate": "2026-07-04",
-      "versionDescription": "Add App Store: browse, search, and install apps from the official Flipper Application Catalog directly from a new App Store tab. Featured/Recent sort, category filters, name search, screenshots/description/changelog, and one-tap install straight to the SD (path-sanitized, hash-verified download, MD5-verified write).",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.4.0/UnleashedCompanion-unsigned.ipa",
-      "size": 25360454,
+      "version": "1.4.1",
+      "versionDate": "2026-07-05",
+      "versionDescription": "Rename App Store to Apps Market. Fix icons/screenshots being invisible in dark mode \u2014 they're monochrome 1-bit bitmaps (matching the Flipper's own screen), now rendered as templates that adapt automatically: black on light theme, white on dark theme.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.4.1/UnleashedCompanion-unsigned.ipa",
+      "size": 25363884,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.4.1",
+          "date": "2026-07-05",
+          "localizedDescription": "Rename App Store to Apps Market. Fix icons/screenshots being invisible in dark mode \u2014 they're monochrome 1-bit bitmaps (matching the Flipper's own screen), now rendered as templates that adapt automatically: black on light theme, white on dark theme.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.4.1/UnleashedCompanion-unsigned.ipa",
+          "size": 25363884,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.4.0",
           "date": "2026-07-04",
