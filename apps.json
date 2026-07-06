@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.4.3",
-      "versionDate": "2026-07-05",
-      "versionDescription": "Show per-app file size in the Community apps (all-the-plugins) update list, next to each row's NEW/UPD badge \u2014 matches Firmware packages, which already shows per-file size once a group is expanded.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.4.3/UnleashedCompanion-unsigned.ipa",
-      "size": 25372379,
+      "version": "1.5.0",
+      "versionDate": "2026-07-06",
+      "versionDescription": "Add a Release picker to Community apps (all-the-plugins): pin to any exact GitHub release instead of always trusting Auto/latest \u2014 fixes missing same-day follow-up builds (tag suffixed p2, p3, ...) that Auto hadn't reflected yet, and lets you deliberately roll back.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.5.0/UnleashedCompanion-unsigned.ipa",
+      "size": 25407490,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.5.0",
+          "date": "2026-07-06",
+          "localizedDescription": "Add a Release picker to Community apps (all-the-plugins): pin to any exact GitHub release instead of always trusting Auto/latest \u2014 fixes missing same-day follow-up builds (tag suffixed p2, p3, ...) that Auto hadn't reflected yet, and lets you deliberately roll back.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.5.0/UnleashedCompanion-unsigned.ipa",
+          "size": 25407490,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.4.3",
           "date": "2026-07-05",
