@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.5.0",
+      "version": "1.5.1",
       "versionDate": "2026-07-06",
-      "versionDescription": "Add a Release picker to Community apps (all-the-plugins): pin to any exact GitHub release instead of always trusting Auto/latest \u2014 fixes missing same-day follow-up builds (tag suffixed p2, p3, ...) that Auto hadn't reflected yet, and lets you deliberately roll back.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.5.0/UnleashedCompanion-unsigned.ipa",
-      "size": 25407490,
+      "versionDescription": "Runtime diagnostics (issue #15): parse the compact FAB2 Runtime contract (feat=pkg,radio,trace,twin), add status/trace/twin async requests, a read-only diagnostics card in Device Info (firmware/commit/dirty, API/target, SD/package state, bridge session/owner, radio state, recent trace ring, live battery % where advertised), and stop sending removed transfer-activity commands against firmware that no longer supports them.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.5.1/UnleashedCompanion-unsigned.ipa",
+      "size": 25446940,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.5.1",
+          "date": "2026-07-06",
+          "localizedDescription": "Runtime diagnostics (issue #15): parse the compact FAB2 Runtime contract (feat=pkg,radio,trace,twin), add status/trace/twin async requests, a read-only diagnostics card in Device Info (firmware/commit/dirty, API/target, SD/package state, bridge session/owner, radio state, recent trace ring, live battery % where advertised), and stop sending removed transfer-activity commands against firmware that no longer supports them.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.5.1/UnleashedCompanion-unsigned.ipa",
+          "size": 25446940,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.5.0",
           "date": "2026-07-06",
