@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.5.2",
-      "versionDate": "2026-07-06",
-      "versionDescription": "Give AppBridgeError and RuntimeDiagnosticsError proper LocalizedError messages \u2014 errors surfaced in the new Runtime diagnostics card (disconnect mid-request, timeout, firmware badcmd/chunk/owner tokens) now show a readable sentence instead of Foundation's generic NSError fallback text.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.5.2/UnleashedCompanion-unsigned.ipa",
-      "size": 25448368,
+      "version": "1.5.3",
+      "versionDate": "2026-07-07",
+      "versionDescription": "Fix: Tumoflip BLE transfer-activity indicator could miss the whole install if it started during the brief ready\u2192FAB2-negotiated window (issue #18)",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.5.3/UnleashedCompanion-unsigned.ipa",
+      "size": 25448384,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.5.3",
+          "date": "2026-07-07",
+          "localizedDescription": "Fix: Tumoflip BLE transfer-activity indicator could miss the whole install if it started during the brief ready\u2192FAB2-negotiated window (issue #18)",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.5.3/UnleashedCompanion-unsigned.ipa",
+          "size": 25448384,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.5.2",
           "date": "2026-07-06",
