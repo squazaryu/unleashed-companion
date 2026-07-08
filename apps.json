@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.5.5",
+      "version": "1.5.6",
       "versionDate": "2026-07-08",
-      "versionDescription": "ESP32 firmware download now shows live progress \u2014 percent and downloaded/total bytes in the status line and progress bar (streamed instead of fetched in one shot)",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.5.5/UnleashedCompanion-unsigned.ipa",
-      "size": 25457489,
+      "versionDescription": "ESP32 update now shows a live '45% \u00b7 2.1 MB / 4.6 MB' caption directly under the progress bar during BOTH the WiFi download and the on-device write (the write phase previously showed only the total size)",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.5.6/UnleashedCompanion-unsigned.ipa",
+      "size": 25458533,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.5.6",
+          "date": "2026-07-08",
+          "localizedDescription": "ESP32 update now shows a live '45% \u00b7 2.1 MB / 4.6 MB' caption directly under the progress bar during BOTH the WiFi download and the on-device write (the write phase previously showed only the total size)",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.5.6/UnleashedCompanion-unsigned.ipa",
+          "size": 25458533,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.5.5",
           "date": "2026-07-08",
