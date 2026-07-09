@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.5.7",
+      "version": "1.5.8",
       "versionDate": "2026-07-09",
-      "versionDescription": "New Media Remote screen (Home \u2192 Media): reads the system now-playing (Spotify/Apple Music/any app) and can relay artist+title to a Flipper media_remote FAP over App Bridge, with transport controls. MVP + on-device MediaRemote availability probe.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.5.7/UnleashedCompanion-unsigned.ipa",
-      "size": 25512241,
+      "versionDescription": "Marauder networks: drop the misleading expand arrow on APs with no clients (a WiFi scan has AP-only data), and show each network's signal (RSSI) + channel inline",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.5.8/UnleashedCompanion-unsigned.ipa",
+      "size": 25519330,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.5.8",
+          "date": "2026-07-09",
+          "localizedDescription": "Marauder networks: drop the misleading expand arrow on APs with no clients (a WiFi scan has AP-only data), and show each network's signal (RSSI) + channel inline",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.5.8/UnleashedCompanion-unsigned.ipa",
+          "size": 25519330,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.5.7",
           "date": "2026-07-09",
