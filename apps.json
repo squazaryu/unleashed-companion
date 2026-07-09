@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.5.6",
-      "versionDate": "2026-07-08",
-      "versionDescription": "ESP32 update now shows a live '45% \u00b7 2.1 MB / 4.6 MB' caption directly under the progress bar during BOTH the WiFi download and the on-device write (the write phase previously showed only the total size)",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.5.6/UnleashedCompanion-unsigned.ipa",
-      "size": 25458533,
+      "version": "1.5.7",
+      "versionDate": "2026-07-09",
+      "versionDescription": "New Media Remote screen (Home \u2192 Media): reads the system now-playing (Spotify/Apple Music/any app) and can relay artist+title to a Flipper media_remote FAP over App Bridge, with transport controls. MVP + on-device MediaRemote availability probe.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.5.7/UnleashedCompanion-unsigned.ipa",
+      "size": 25512241,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.5.7",
+          "date": "2026-07-09",
+          "localizedDescription": "New Media Remote screen (Home \u2192 Media): reads the system now-playing (Spotify/Apple Music/any app) and can relay artist+title to a Flipper media_remote FAP over App Bridge, with transport controls. MVP + on-device MediaRemote availability probe.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.5.7/UnleashedCompanion-unsigned.ipa",
+          "size": 25512241,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.5.6",
           "date": "2026-07-08",
