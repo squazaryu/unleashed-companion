@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.6.0",
+      "version": "1.6.1",
       "versionDate": "2026-07-09",
-      "versionDescription": "Live WiFi map using the iPhone's GPS: a new WiFi \u2192 Live map (iPhone GPS) screen tags each scan reading relayed from the Flipper with your phone's location and triangulates AP positions in real time (no ESP32 GPS needed). Also: parse Wardrive-format lines (correct SSIDs instead of MAC fragments) and show network encryption.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.0/UnleashedCompanion-unsigned.ipa",
-      "size": 25586605,
+      "versionDescription": "All The Plugins now groups the update list by install category (the /ext/apps/<category>/ folder each app lands in) with a per-category select/deselect header \u2014 so you can skip a whole category like Games in one tap before installing",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.1/UnleashedCompanion-unsigned.ipa",
+      "size": 25597601,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.6.1",
+          "date": "2026-07-09",
+          "localizedDescription": "All The Plugins now groups the update list by install category (the /ext/apps/<category>/ folder each app lands in) with a per-category select/deselect header \u2014 so you can skip a whole category like Games in one tap before installing",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.1/UnleashedCompanion-unsigned.ipa",
+          "size": 25597601,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.6.0",
           "date": "2026-07-09",
