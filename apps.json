@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.6.9",
+      "version": "1.6.10",
       "versionDate": "2026-07-11",
-      "versionDescription": "Add TumoCard OS NFC smoke for two-AID routing, isolated applet state, safe restore, and USB-to-NFC handoff validation.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.9/UnleashedCompanion-unsigned.ipa",
-      "size": 24421720,
+      "versionDescription": "Fix TumoCard NFC smoke by keeping every iPhone SELECT within the CoreNFC AID allowlist; firmware fail-closed coverage remains in the macOS CCID smoke.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.10/UnleashedCompanion-unsigned.ipa",
+      "size": 24422314,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.6.10",
+          "date": "2026-07-11",
+          "localizedDescription": "Fix TumoCard NFC smoke by keeping every iPhone SELECT within the CoreNFC AID allowlist; firmware fail-closed coverage remains in the macOS CCID smoke.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.10/UnleashedCompanion-unsigned.ipa",
+          "size": 24422314,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.6.9",
           "date": "2026-07-11",
