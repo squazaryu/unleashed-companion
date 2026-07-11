@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.6.3",
-      "versionDate": "2026-07-09",
-      "versionDescription": "FW packages: per-file selection. Each package group is now a tri-state category checkbox (select/deselect all) that expands to a toggle per file, so you can install a firmware package minus specific files. Install stays atomic over whatever's selected; deselecting a file just leaves it out of the transaction.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.3/UnleashedCompanion-unsigned.ipa",
-      "size": 25611311,
+      "version": "1.6.4",
+      "versionDate": "2026-07-11",
+      "versionDescription": "FAP API compatibility guard. Community apps and FW Packages now validate FAP/FAL metadata against the connected Flipper before installation, separate and disable incompatible entries, keep bulk selection on compatible apps only, show full API diagnostics, and require a fresh BLE identity when installing binaries through USB SD Mode.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.4/UnleashedCompanion-unsigned.ipa",
+      "size": 25688890,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.6.4",
+          "date": "2026-07-11",
+          "localizedDescription": "FAP API compatibility guard. Community apps and FW Packages now validate FAP/FAL metadata against the connected Flipper before installation, separate and disable incompatible entries, keep bulk selection on compatible apps only, show full API diagnostics, and require a fresh BLE identity when installing binaries through USB SD Mode.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.4/UnleashedCompanion-unsigned.ipa",
+          "size": 25688890,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.6.3",
           "date": "2026-07-09",
