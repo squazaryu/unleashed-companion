@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.6.6",
+      "version": "1.6.7",
       "versionDate": "2026-07-11",
-      "versionDescription": "Protected-app hardening for Claude Buddy. The Community Apps and official catalog installers now protect the Tumoflip Claude Buddy build from replacement, and catalog FAP downloads are validated against the connected firmware API and hardware target before any write.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.6/UnleashedCompanion-unsigned.ipa",
-      "size": 25737868,
+      "versionDescription": "Issue #19: block installing FAP/FAL binaries built for a different firmware API. Full check-time catalog classification (incl. unselected + protected), separate collapsed Incompatible section with disabled toggles + exact reasons (e.g. 'API 87.15 \u00b7 requires firmware API 87; connected firmware API 88'), selection policy that can't select blocked entries, fresh BLE identity required for FAP compat even in USB SD Mode, fail-closed before any write.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.7/UnleashedCompanion-unsigned.ipa",
+      "size": 25737867,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.6.7",
+          "date": "2026-07-11",
+          "localizedDescription": "Issue #19: block installing FAP/FAL binaries built for a different firmware API. Full check-time catalog classification (incl. unselected + protected), separate collapsed Incompatible section with disabled toggles + exact reasons (e.g. 'API 87.15 \u00b7 requires firmware API 87; connected firmware API 88'), selection policy that can't select blocked entries, fresh BLE identity required for FAP compat even in USB SD Mode, fail-closed before any write.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.7/UnleashedCompanion-unsigned.ipa",
+          "size": 25737867,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.6.6",
           "date": "2026-07-11",
