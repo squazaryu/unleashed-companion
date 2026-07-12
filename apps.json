@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.6.11",
+      "version": "1.6.12",
       "versionDate": "2026-07-12",
-      "versionDescription": "Relay: auto-discover Home Assistant over Bonjour (_home-assistant._tcp) \u2014 leave the HA URL empty and the relay finds HA on your network and survives DHCP IP changes; pinned URLs still honored (issue #2).",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.11/UnleashedCompanion-unsigned.ipa",
-      "size": 24432052,
+      "versionDescription": "App Bridge Console (Settings \u2192 Diagnostics): a unified FAB2 diagnostic panel that drives both app_bridge_terminal (hello/ping/status/help/echo/emit/release with an auto-tracked session sid) and ble_gatt_lab (ping/status/echo), with a live tx/rx/event frame log (issues #16 + #17).",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.12/UnleashedCompanion-unsigned.ipa",
+      "size": 24465707,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.6.12",
+          "date": "2026-07-12",
+          "localizedDescription": "App Bridge Console (Settings \u2192 Diagnostics): a unified FAB2 diagnostic panel that drives both app_bridge_terminal (hello/ping/status/help/echo/emit/release with an auto-tracked session sid) and ble_gatt_lab (ping/status/echo), with a live tx/rx/event frame log (issues #16 + #17).",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.12/UnleashedCompanion-unsigned.ipa",
+          "size": 24465707,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.6.11",
           "date": "2026-07-12",
