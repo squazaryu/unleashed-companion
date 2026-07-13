@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.6.14",
+      "version": "1.6.15",
       "versionDate": "2026-07-13",
-      "versionDescription": "Fix TumoFabric shared-state handoff, live two-way sync, and session recovery.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.14/UnleashedCompanion-unsigned.ipa",
-      "size": 24519723,
+      "versionDescription": "Automatically attach the open TumoFabric Counter screen to sessions started on Flipper, without creating idle sessions.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.15/UnleashedCompanion-unsigned.ipa",
+      "size": 24523067,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.6.15",
+          "date": "2026-07-13",
+          "localizedDescription": "Automatically attach the open TumoFabric Counter screen to sessions started on Flipper, without creating idle sessions.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.15/UnleashedCompanion-unsigned.ipa",
+          "size": 24523067,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.6.14",
           "date": "2026-07-13",
