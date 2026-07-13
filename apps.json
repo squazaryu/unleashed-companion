@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.6.13",
+      "version": "1.6.14",
       "versionDate": "2026-07-13",
-      "versionDescription": "TumoFabric Counter (Settings \u2192 Diagnostics): bounded FAB2 sessions with monotonic sequence IDs, duplicate replay suppression, BLE reconnect resume, explicit cancellation, and visible trust/data boundaries. Requires t-dev-089-037-029 or newer.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.13/UnleashedCompanion-unsigned.ipa",
-      "size": 24513188,
+      "versionDescription": "Fix TumoFabric shared-state handoff, live two-way sync, and session recovery.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.14/UnleashedCompanion-unsigned.ipa",
+      "size": 24519723,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.6.14",
+          "date": "2026-07-13",
+          "localizedDescription": "Fix TumoFabric shared-state handoff, live two-way sync, and session recovery.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.14/UnleashedCompanion-unsigned.ipa",
+          "size": 24519723,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.6.13",
           "date": "2026-07-13",
