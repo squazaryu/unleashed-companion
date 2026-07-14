@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.6.17",
+      "version": "1.6.18",
       "versionDate": "2026-07-14",
-      "versionDescription": "Add the TumoNet Gateway client with Inbox/Radio delivery, same-ID retry for dedupe checks, and expanded protection for Tumoflip FAPs.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.17/UnleashedCompanion-unsigned.ipa",
-      "size": 24575459,
+      "versionDescription": "Adds the TumoSurvey network explorer dashboard with automatic survey sessions, live network and security insights, channel analytics, iPhone-GPS mapping, saved maps, and shareable reports.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.18/UnleashedCompanion-unsigned.ipa",
+      "size": 24631664,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.6.18",
+          "date": "2026-07-14",
+          "localizedDescription": "Adds the TumoSurvey network explorer dashboard with automatic survey sessions, live network and security insights, channel analytics, iPhone-GPS mapping, saved maps, and shareable reports.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.18/UnleashedCompanion-unsigned.ipa",
+          "size": 24631664,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.6.17",
           "date": "2026-07-14",
