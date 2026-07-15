@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.6.20",
-      "versionDate": "2026-07-14",
-      "versionDescription": "Fix Apps Market install (HTTP 404 on every app): the catalog build-asset URL now uses the version's _id instead of the build's _id \u2014 the wrong id 404'd for every app. Fix All-The-Plugins card overlap/z-fight during a BLE install: skip compatibility re-validation while installing, so mid-install reconnects no longer thrash the category list layout.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.20/UnleashedCompanion-unsigned.ipa",
-      "size": 24723524,
+      "version": "1.6.21",
+      "versionDate": "2026-07-15",
+      "versionDescription": "TumoSpectrum 2.0 capture-set reports, timing inference charts, and strict schema-2 validation.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.21/UnleashedCompanion-unsigned.ipa",
+      "size": 24769136,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.6.21",
+          "date": "2026-07-15",
+          "localizedDescription": "TumoSpectrum 2.0 capture-set reports, timing inference charts, and strict schema-2 validation.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.21/UnleashedCompanion-unsigned.ipa",
+          "size": 24769136,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.6.20",
           "date": "2026-07-14",
