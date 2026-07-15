@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
       ],
-      "version": "1.6.22",
+      "version": "1.6.23",
       "versionDate": "2026-07-15",
-      "versionDescription": "TumoSpectrum Phase B: bounded bit-field map, counter/checksum candidates and practical capture-set visualization.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.22/UnleashedCompanion-unsigned.ipa",
-      "size": 24807484,
+      "versionDescription": "Add a Stop button to All-The-Plugins and FW package installs. Plugins: stops at the next file boundary \u2014 the app being written finishes its verified write and stays whole, the rest keep their current version (files whose write was interrupted are reported, not hidden). FW packages: stops via the transactional installer and rolls back to the previous version, so a partial package set is never left behind.",
+      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.23/UnleashedCompanion-unsigned.ipa",
+      "size": 24822586,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.6.23",
+          "date": "2026-07-15",
+          "localizedDescription": "Add a Stop button to All-The-Plugins and FW package installs. Plugins: stops at the next file boundary \u2014 the app being written finishes its verified write and stays whole, the rest keep their current version (files whose write was interrupted are reported, not hidden). FW packages: stops via the transactional installer and rolls back to the previous version, so a partial package set is never left behind.",
+          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.23/UnleashedCompanion-unsigned.ipa",
+          "size": 24822586,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.6.22",
           "date": "2026-07-15",
