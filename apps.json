@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/TumoCompanion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/TumoCompanion/main/screenshots/onboarding.png"
       ],
-      "version": "1.6.26",
-      "versionDate": "2026-07-15",
-      "versionDescription": "Fix firmware package state metadata after successful installs and keep package selection bound to the connected Tumoflip release.",
-      "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.6.26/UnleashedCompanion-unsigned.ipa",
-      "size": 24852710,
+      "version": "1.6.27",
+      "versionDate": "2026-07-16",
+      "versionDescription": "Rebrand the app as TumoCompanion and publish the complete Swift source. Add Dolphin Gallery with collections, random or sequential order, original or custom duration, and BLE profile sync for t-dev-089-038-008. Preserve the existing bundle identity and App Group for in-place updates.",
+      "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.6.27/TumoCompanion-unsigned.ipa",
+      "size": 24929362,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.6.27",
+          "date": "2026-07-16",
+          "localizedDescription": "Rebrand the app as TumoCompanion and publish the complete Swift source. Add Dolphin Gallery with collections, random or sequential order, original or custom duration, and BLE profile sync for t-dev-089-038-008. Preserve the existing bundle identity and App Group for in-place updates.",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.6.27/TumoCompanion-unsigned.ipa",
+          "size": 24929362,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.6.26",
           "date": "2026-07-15",
