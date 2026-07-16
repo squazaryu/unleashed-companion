@@ -36,6 +36,7 @@
 		3AE3A3C058B65ACBC7B6B3A4 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 89D1A875D2EC8E243C24C7DA /* ZIPFoundation */; };
 		3B8F9FDDE4E195CFAB92B2A1 /* InstallActivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DFAFD2A63623B73457A3B2 /* InstallActivityController.swift */; };
 		3E084727311DC9FAEC499A99 /* DolphinProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40FDF9AC257DE97849E36E9 /* DolphinProfileService.swift */; };
+		D01F1A400000000000000001 /* DolphinPackService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01F1A400000000000000002 /* DolphinPackService.swift */; };
 		3E13B3B8C91DE3972B8B88AE /* MarauderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D1067254AC076FCC557F87 /* MarauderView.swift */; };
 		3E3E586D830439E2A9A3C8F9 /* CompanionBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299EFF336F47935AE03E9500 /* CompanionBridge.swift */; };
 		3F042FA8BCF01CBAD8377161 /* DolphinGalleryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2223CB55367C869D06A5001D /* DolphinGalleryModel.swift */; };
@@ -125,6 +126,7 @@
 		E37D4C1411C566C54C6EED88 /* PluginUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F2C64ACDABA1AEFFB7CCD8 /* PluginUpdater.swift */; };
 		E43809C683427E97F667E269 /* SwiftProtobuf in Frameworks */ = {isa = PBXBuildFile; productRef = 96AC5A38B6EE177D6E846BDB /* SwiftProtobuf */; };
 		E79C6619468C7F98B5CC5723 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6DB8FBDDFA1BA4791D40EADD /* Assets.xcassets */; };
+		D01F1A400000000000000003 /* DolphinPacks in Resources */ = {isa = PBXBuildFile; fileRef = D01F1A400000000000000004 /* DolphinPacks */; };
 		EAC0D7A0739C0B6EF7565475 /* ProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0711A5F791B6D248100D3EBD /* ProtocolTests.swift */; };
 		EAEEC9F6B54EE144CBB3E418 /* TumoflipUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2841D785BA1CA7A7A15B8B /* TumoflipUpdater.swift */; };
 		EF29087E95CB46A7D220142A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824EE059E5BDBC0F8B7419E8 /* SettingsView.swift */; };
@@ -204,6 +206,7 @@
 		1E6D8B0369156C577A846FC0 /* ScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenView.swift; sourceTree = "<group>"; };
 		1EA9037CE5911F4E4DF8951C /* InstallActivityAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallActivityAttributes.swift; sourceTree = "<group>"; };
 		2223CB55367C869D06A5001D /* DolphinGalleryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DolphinGalleryModel.swift; sourceTree = "<group>"; };
+		D01F1A400000000000000002 /* DolphinPackService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DolphinPackService.swift; sourceTree = "<group>"; };
 		2485BA585EAEAF510AE43475 /* system.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = system.pb.swift; sourceTree = "<group>"; };
 		24DE2B5AF5B3FA4C77EEF6AB /* SberLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SberLoginView.swift; sourceTree = "<group>"; };
 		263FF028D83D9F5E4C56E6CF /* UpdatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatesView.swift; sourceTree = "<group>"; };
@@ -246,6 +249,7 @@
 		67C0B0C4BD832B6A0C849C3A /* FlipperRPC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipperRPC.swift; sourceTree = "<group>"; };
 		6AE48B57CC481A536DB9AB49 /* SharedStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedStore.swift; sourceTree = "<group>"; };
 		6DB8FBDDFA1BA4791D40EADD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D01F1A400000000000000004 /* DolphinPacks */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DolphinPacks; sourceTree = "<group>"; };
 		6E38D7DF4DD5D32376A5F7CC /* TumoSpectrumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TumoSpectrumViewModel.swift; sourceTree = "<group>"; };
 		6EFC5D9580C2A7DD169D763E /* CatalogAppDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogAppDetailView.swift; sourceTree = "<group>"; };
 		7084FC33B12DC1EB57FB72EB /* TumoSpectrumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TumoSpectrumView.swift; sourceTree = "<group>"; };
@@ -461,6 +465,7 @@
 			isa = PBXGroup;
 			children = (
 				2223CB55367C869D06A5001D /* DolphinGalleryModel.swift */,
+				D01F1A400000000000000002 /* DolphinPackService.swift */,
 				5BED9B32FBAF32014BF4E49E /* DolphinGalleryView.swift */,
 				50CD66866729ECD5B550F4B7 /* DolphinProfile.swift */,
 				D40FDF9AC257DE97849E36E9 /* DolphinProfileService.swift */,
@@ -507,6 +512,7 @@
 			isa = PBXGroup;
 			children = (
 				6DB8FBDDFA1BA4791D40EADD /* Assets.xcassets */,
+				D01F1A400000000000000004 /* DolphinPacks */,
 				DB003747D5AF7D07C4094F9F /* Info.plist */,
 				3342FDAF60635FDA2E1AC94C /* russian_trusted_root_ca.pem */,
 				41F36DBBEDAD596C1AD1EAD9 /* UnleashedCompanion.entitlements */,
@@ -910,6 +916,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E79C6619468C7F98B5CC5723 /* Assets.xcassets in Resources */,
+				D01F1A400000000000000003 /* DolphinPacks in Resources */,
 				BD4118BB0E5018BF9D2BB6C1 /* russian_trusted_root_ca.pem in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -986,6 +993,7 @@
 				4E7FA0C44894AAF123F151F1 /* DeviceInfoView.swift in Sources */,
 				F87A64CF22F8A48A6E86EFA2 /* DevicesView.swift in Sources */,
 				3F042FA8BCF01CBAD8377161 /* DolphinGalleryModel.swift in Sources */,
+				D01F1A400000000000000001 /* DolphinPackService.swift in Sources */,
 				50FBBB4D678B5A086581A1CA /* DolphinGalleryView.swift in Sources */,
 				4F7299005E04CA176ABFECF2 /* DolphinProfile.swift in Sources */,
 				3E084727311DC9FAEC499A99 /* DolphinProfileService.swift in Sources */,

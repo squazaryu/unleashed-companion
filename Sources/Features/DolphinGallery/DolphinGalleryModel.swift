@@ -10,6 +10,15 @@ final class DolphinGalleryModel: ObservableObject {
         case failed(String)
     }
 
+    enum PackPhase: Equatable {
+        case unknown
+        case checking
+        case notInstalled
+        case installing
+        case installed
+        case failed(String)
+    }
+
     private struct Preferences: Codable {
         var enabled: Bool
         var order: DolphinProfileOrder
@@ -17,6 +26,7 @@ final class DolphinGalleryModel: ObservableObject {
         var durationSeconds: Int
         var activeCollectionID: UUID
         var collections: [DolphinCollection]
+        var installedPackIDs: Set<String>?
     }
 
     static let allCollectionID = UUID(uuidString: "00000000-0000-0000-0000-000000000132")!
@@ -27,18 +37,23 @@ final class DolphinGalleryModel: ObservableObject {
     @Published var durationSeconds: Int { didSet { persist() } }
     @Published var activeCollectionID: UUID { didSet { persist() } }
     @Published private(set) var collections: [DolphinCollection] { didSet { persist() } }
+    @Published private(set) var installedPackIDs: Set<String> { didSet { persist() } }
+    @Published private(set) var packPhases: [String: PackPhase] = [:]
     @Published private(set) var phase: Phase = .idle
 
     private let service: DolphinProfileService
+    private let packInstaller: DolphinPackInstaller
     private let defaults: UserDefaults
     private let preferencesKey = "dolphinGallery.preferences.v1"
     private var suppressPersistence = false
 
     init(
         service: DolphinProfileService = DolphinProfileService(),
+        packInstaller: DolphinPackInstaller = DolphinPackInstaller(),
         defaults: UserDefaults = .standard
     ) {
         self.service = service
+        self.packInstaller = packInstaller
         self.defaults = defaults
 
         if let data = defaults.data(forKey: preferencesKey),
@@ -52,6 +67,7 @@ final class DolphinGalleryModel: ObservableObject {
             )
             activeCollectionID = saved.activeCollectionID
             collections = saved.collections
+            installedPackIDs = saved.installedPackIDs ?? []
         } else {
             enabled = false
             order = .random
@@ -59,6 +75,7 @@ final class DolphinGalleryModel: ObservableObject {
             durationSeconds = 60
             activeCollectionID = Self.allCollectionID
             collections = []
+            installedPackIDs = []
         }
 
         if collection(id: activeCollectionID) == nil {
@@ -70,8 +87,14 @@ final class DolphinGalleryModel: ObservableObject {
         DolphinCollection(
             id: Self.allCollectionID,
             name: "All animations",
-            animationIDs: DolphinCatalog.animations.map(\.id)
+            animationIDs: availableAnimations.map(\.id)
         )
+    }
+
+    var availableAnimations: [DolphinAnimation] {
+        DolphinCatalog.legacy + DolphinPackCatalog.installable
+            .filter { installedPackIDs.contains($0.id) }
+            .map(\.animation)
     }
 
     var availableCollections: [DolphinCollection] {
@@ -79,7 +102,13 @@ final class DolphinGalleryModel: ObservableObject {
     }
 
     var activeCollection: DolphinCollection {
-        collection(id: activeCollectionID) ?? allCollection
+        let selected = collection(id: activeCollectionID) ?? allCollection
+        let availableIDs = Set(availableAnimations.map(\.id))
+        return DolphinCollection(
+            id: selected.id,
+            name: selected.name,
+            animationIDs: selected.animationIDs.filter(availableIDs.contains)
+        )
     }
 
     var canApply: Bool {
@@ -90,6 +119,14 @@ final class DolphinGalleryModel: ObservableObject {
 
     var isBusy: Bool {
         phase == .loading || phase == .applying
+    }
+
+    func packPhase(_ descriptor: DolphinPackDescriptor) -> PackPhase {
+        packPhases[descriptor.id] ?? (installedPackIDs.contains(descriptor.id) ? .installed : .unknown)
+    }
+
+    func animations(for source: DolphinLibrarySource) -> [DolphinAnimation] {
+        availableAnimations.filter { $0.source == source }
     }
 
     func selectCollection(_ id: UUID) {
@@ -132,6 +169,32 @@ final class DolphinGalleryModel: ObservableObject {
         }
     }
 
+    func refreshPackStates() async {
+        for descriptor in DolphinPackCatalog.installable {
+            packPhases[descriptor.id] = .checking
+            let installed = await packInstaller.isInstalled(descriptor)
+            if installed {
+                installedPackIDs.insert(descriptor.id)
+                packPhases[descriptor.id] = .installed
+            } else {
+                installedPackIDs.remove(descriptor.id)
+                packPhases[descriptor.id] = .notInstalled
+            }
+        }
+    }
+
+    func install(_ descriptor: DolphinPackDescriptor) async {
+        guard packPhase(descriptor) != .installing else { return }
+        packPhases[descriptor.id] = .installing
+        do {
+            try await packInstaller.install(descriptor)
+            installedPackIDs.insert(descriptor.id)
+            packPhases[descriptor.id] = .installed
+        } catch {
+            packPhases[descriptor.id] = .failed(error.localizedDescription)
+        }
+    }
+
     func apply() async {
         guard canApply else {
             phase = .failed(DolphinProfileError.emptyCollection.localizedDescription)
@@ -149,6 +212,31 @@ final class DolphinGalleryModel: ObservableObject {
                 durationSeconds: durationSeconds,
                 animationIDs: collection.animationIDs
             ))
+            phase = .applied
+        } catch {
+            phase = .failed(error.localizedDescription)
+        }
+    }
+
+    func resetToOriginal() async {
+        phase = .applying
+        do {
+            try await service.apply(DolphinDesktopProfile(
+                enabled: false,
+                collection: "All animations",
+                order: .random,
+                timing: .original,
+                durationSeconds: 60,
+                animationIDs: []
+            ))
+            suppressPersistence = true
+            enabled = false
+            order = .random
+            timing = .original
+            durationSeconds = 60
+            activeCollectionID = Self.allCollectionID
+            suppressPersistence = false
+            persist()
             phase = .applied
         } catch {
             phase = .failed(error.localizedDescription)
@@ -194,7 +282,8 @@ final class DolphinGalleryModel: ObservableObject {
             timing: timing,
             durationSeconds: durationSeconds,
             activeCollectionID: activeCollectionID,
-            collections: collections
+            collections: collections,
+            installedPackIDs: installedPackIDs
         )
         if let data = try? JSONEncoder().encode(preferences) {
             defaults.set(data, forKey: preferencesKey)

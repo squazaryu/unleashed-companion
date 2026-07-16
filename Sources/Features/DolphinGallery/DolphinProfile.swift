@@ -153,6 +153,18 @@ enum DolphinProfileError: LocalizedError, Equatable {
 
 struct DolphinAnimation: Identifiable, Hashable, Codable {
     let id: String
+    let source: DolphinLibrarySource
+    let previewURL: URL?
+
+    init(
+        id: String,
+        source: DolphinLibrarySource = .legacy,
+        previewURL: URL? = nil
+    ) {
+        self.id = id
+        self.source = source
+        self.previewURL = previewURL
+    }
 
     var title: String {
         var value = id
@@ -165,11 +177,13 @@ struct DolphinAnimation: Identifiable, Hashable, Codable {
         return value.replacingOccurrences(of: "_", with: " ")
     }
 
-    var previewAsset: String { "Dolphin_\(id)" }
+    var previewAsset: String? {
+        source == .legacy ? "Dolphin_\(id)" : nil
+    }
 }
 
 enum DolphinCatalog {
-    static let animations: [DolphinAnimation] = [
+    static let legacy: [DolphinAnimation] = [
         "L1_Tv_128x47",
         "L1_Waves_128x50",
         "L1_Laptop_128x51",
@@ -206,7 +220,9 @@ enum DolphinCatalog {
         "L2_FlipperCity_128x64",
         "L3_FlipperMustache_128x64",
         "L1_Doom_128x64",
-    ].map(DolphinAnimation.init(id:))
+    ].map { DolphinAnimation(id: $0) }
+
+    static let animations = legacy
 }
 
 struct DolphinCollection: Identifiable, Codable, Equatable {
