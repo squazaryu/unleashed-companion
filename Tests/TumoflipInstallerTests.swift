@@ -1,0 +1,626 @@
+import XCTest
+@testable import UnleashedCompanion
+
+/// Orchestrator tests for the atomic tumoflip installer (issue #8): write-ahead
+/// staging, abort-with-no-partial-activation, crash recovery at each interruption
+/// point, rollback failure surfacing, reversible cleanup, group-aware idempotency,
+/// and device compatibility. Hardware-independent — a fake device FS + package source
+/// stand in for the Flipper.
+final class TumoflipInstallerTests: XCTestCase {
+
+    // MARK: - Fakes
+
+    private final class FakeFS: TumoflipDeviceFS, @unchecked Sendable {
+        enum Err: Error { case injected, notFound }
+        var files: [String: Data] = [:]
+        var dirs = Set<String>()
+        var writeCount = 0
+        var corruptWrites = false
+        var failWrite: ((String) -> Bool)?
+        var failMove: ((String, String) -> Bool)?
+        var failMoveAfterCopy: ((String, String) -> Bool)?
+        var failMoveAfterRemove: ((String, String) -> Bool)?
+
+        func write(_ data: Data, to path: String) async throws {
+            if failWrite?(path) == true { throw Err.injected }
+            writeCount += 1
+            let isState = path == TumoflipInstaller.stateSlotA || path == TumoflipInstaller.stateSlotB
+            files[path] = corruptWrites && !isState ? (data + Data([0xFF])) : data
+        }
+        func read(_ path: String) async -> Data? { files[path] }
+        func deviceMD5(_ path: String) async -> String? { files[path].map { TumoflipHash.md5($0) } }
+        func move(_ from: String, to: String) async throws {
+            if failMove?(from, to) == true { throw Err.injected }
+            guard let d = files[from] else { throw Err.notFound }
+            files[to] = d
+            if failMoveAfterCopy?(from, to) == true { throw Err.injected }
+            files[from] = nil
+            if failMoveAfterRemove?(from, to) == true { throw Err.injected }
+        }
+        func delete(_ path: String) async throws { files[path] = nil }
+        func deleteTree(_ path: String) async throws {
+            files = files.filter { $0.key != path && !$0.key.hasPrefix(path + "/") }
+            dirs = dirs.filter { $0 != path && !$0.hasPrefix(path + "/") }
+        }
+        func makeDirectory(_ path: String) async throws { dirs.insert(path) }
+        func exists(_ path: String) async -> Bool { files[path] != nil }
+        func readState() async -> TumoflipState? {
+            [TumoflipInstaller.stateSlotA, TumoflipInstaller.stateSlotB]
+                .compactMap { files[$0].flatMap(TumoflipInstaller.decodeStateSlot) }
+                .max { $0.generation < $1.generation }
+        }
+        func seedState(_ state: TumoflipState) {
+            files[TumoflipInstaller.stateSlotA] = try! TumoflipInstaller.encodeStateSlot(state)
+        }
+    }
+
+    private struct FakeSource: TumoflipPackageSource {
+        var data: [String: Data]
+        func bytes(for source: String) async throws -> Data {
+            guard let d = data[source] else { throw TumoflipInstallError.sourceMissing(source) }
+            return d
+        }
+    }
+
+    func testCompatibilityStateReflectsCommittedManifestAndPlan() async throws {
+        let fs = FakeFS()
+        let bytes = Data("new-app".utf8)
+        let manifest = TumoflipManifest(
+            schema: 2,
+            releaseId: String(repeating: "a", count: 64),
+            firmware: .init(
+                api: "88.0", name: "tumoflip", version: "t-dev-089-037-058",
+                target: 7, radioAddress: nil),
+            artifacts: [:],
+            packages: [
+                "base": [.init(
+                    bytes: bytes.count, sha256: TumoflipHash.sha256(bytes),
+                    source: "apps/new.fap", target: "/ext/apps/Tools/new.fap")],
+                "arf": [], "module_one": [], "protocol_packs": [],
+            ],
+            cleanup: [],
+            safety: nil
+        )
+        let plan = try TumoflipInstallPlan.make(manifest: manifest, groups: ["base"])
+        let installer = TumoflipInstaller(fs: fs, source: FakeSource(data: [:]))
+
+        try await installer.refreshCompatibilityState(manifest: manifest, plan: plan)
+
+        let compact = try XCTUnwrap(fs.files["/ext/.tumoflip/package-state.txt"])
+        let compactText = try XCTUnwrap(String(data: compact, encoding: .utf8))
+        XCTAssertTrue(compactText.contains("Firmware: t-dev-089-037-058"))
+        XCTAssertTrue(compactText.contains("InstalledFiles: 1"))
+        XCTAssertTrue(compactText.contains("ReleaseId: \(manifest.releaseId)"))
+
+        let compatibility = try XCTUnwrap(fs.files["/ext/.tumoflip/install-state.json"])
+        let decoded = try JSONSerialization.jsonObject(with: compatibility) as? [String: Any]
+        XCTAssertEqual(decoded?["release_id"] as? String, manifest.releaseId)
+        XCTAssertEqual(decoded?["groups"] as? [String], ["base"])
+        XCTAssertEqual((decoded?["files"] as? [[String: Any]])?.count, 1)
+    }
+
+    private let rid = String(repeating: "c", count: 64)
+
+    private func file(_ source: String, _ target: String, _ bytes: Data) -> TumoflipManifest.PackageFile {
+        .init(bytes: bytes.count, sha256: TumoflipHash.sha256(bytes), source: source, target: target)
+    }
+    private func plan(_ files: [TumoflipManifest.PackageFile],
+                      cleanup: [TumoflipManifest.CleanupEntry] = [],
+                      groups: [String] = ["base"]) -> TumoflipInstallPlan {
+        .init(releaseId: rid, groups: groups, files: files, cleanup: cleanup)
+    }
+
+    // MARK: - Success
+
+    func testCleanInstall() async throws {
+        let b1 = Data("one".utf8), b2 = Data("two".utf8)
+        let p = plan([file("a", "/ext/apps/a.fap", b1), file("b", "/ext/apps/b.fap", b2)])
+        let fs = FakeFS()
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: ["a": b1, "b": b2]))
+        let outcome = try await inst.install(p)
+        XCTAssertEqual(outcome, .installed(files: 2, legacyMovedAside: 0))
+        XCTAssertEqual(fs.files["/ext/apps/a.fap"], b1)
+        XCTAssertEqual(fs.files["/ext/apps/b.fap"], b2)
+        let st = await fs.readState()
+        XCTAssertNil(st?.txn, "transaction cleared after commit")
+        XCTAssertEqual(st?.ledger["/ext/apps/a.fap"]?.sha256, TumoflipHash.sha256(b1))
+        XCTAssertFalse(fs.files.keys.contains { $0.contains("/.tumoflip/staging/") })
+        XCTAssertFalse(fs.files.keys.contains { $0.contains("/.tumoflip/rollback/") })
+    }
+
+    func testIdenticalLiveFileIsRecordedWithoutMove() async throws {
+        let bytes = Data("already-current".utf8)
+        let target = "/ext/apps/Bluetooth/flipper_companion.fap"
+        let p = plan([file("companion", target, bytes)])
+        let fs = FakeFS()
+        fs.files[target] = bytes
+        fs.failMove = { _, _ in true }
+
+        let inst = TumoflipInstaller(
+            fs: fs, source: FakeSource(data: ["companion": bytes]))
+        let outcome = try await inst.install(p)
+
+        XCTAssertEqual(outcome, .installed(files: 1, legacyMovedAside: 0))
+        XCTAssertEqual(fs.files[target], bytes)
+        let state = await fs.readState()
+        XCTAssertNil(state?.txn)
+        XCTAssertEqual(state?.ledger[target]?.md5, TumoflipHash.md5(bytes))
+    }
+
+    // MARK: - Abort with no partial activation
+
+    func testHashMismatchActivatesNothing() async throws {
+        let good = Data("good".utf8)
+        let bad = TumoflipManifest.PackageFile(bytes: 4, sha256: String(repeating: "0", count: 64),
+                                               source: "b", target: "/ext/apps/b.fap")
+        let p = plan([file("a", "/ext/apps/a.fap", good), bad])
+        let fs = FakeFS()
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: ["a": good, "b": Data("bad".utf8)]))
+        await assertThrows({ try await inst.install(p) }, .hashMismatch("b"))
+        XCTAssertNil(fs.files["/ext/apps/a.fap"])
+        XCTAssertNil(fs.files["/ext/apps/b.fap"])
+        let finalState = await fs.readState(); XCTAssertNil(finalState?.txn)
+    }
+
+    func testDeviceVerifyFailureAborts() async throws {
+        let b = Data("x".utf8)
+        let p = plan([file("a", "/ext/apps/a.fap", b)])
+        let fs = FakeFS(); fs.corruptWrites = true
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: ["a": b]))
+        await assertThrows({ try await inst.install(p) }, .deviceVerifyFailed("/ext/apps/a.fap"))
+        XCTAssertNil(fs.files["/ext/apps/a.fap"])
+    }
+
+    // MARK: - In-process rollback
+
+    func testInterruptedActivationRollsBack() async throws {
+        let old1 = Data("OLD1".utf8), old2 = Data("OLD2".utf8)
+        let new1 = Data("new1".utf8), new2 = Data("new2".utf8)
+        let t1 = "/ext/apps/a.fap", t2 = "/ext/apps/b.fap"
+        let p = plan([file("a", t1, new1), file("b", t2, new2)])
+        let fs = FakeFS()
+        fs.files[t1] = old1; fs.files[t2] = old2
+        // Fail ONLY the activation (staged -> target) move for the 2nd file, not the
+        // later restore (backup -> target) move.
+        fs.failMove = { from, to in to == t2 && from.contains("/staging/") }
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: ["a": new1, "b": new2]))
+        do { _ = try await inst.install(p); XCTFail("expected failure") } catch {}
+        XCTAssertEqual(fs.files[t1], old1, "t1 restored")
+        XCTAssertEqual(fs.files[t2], old2, "t2 restored")
+        let finalState = await fs.readState(); XCTAssertNil(finalState?.txn)
+    }
+
+    // MARK: - Stop (user pressed Stop → rollback, the app stays fully functional)
+
+    /// Stop requested before any staging: nothing is written or activated, and the
+    /// app you stopped on keeps its previous, working version.
+    func testStopBeforeStagingLeavesDeviceUnchanged() async throws {
+        let old = Data("OLD".utf8), new = Data("new".utf8)
+        let t = "/ext/apps/a.fap"
+        let p = plan([file("a", t, new)])
+        let fs = FakeFS()
+        fs.files[t] = old
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: ["a": new]))
+        await assertThrows({ try await inst.install(p, isStopRequested: { true }) }, .cancelled)
+        XCTAssertEqual(fs.files[t], old, "prior working version untouched")
+        XCTAssertFalse(fs.files.keys.contains { $0.contains("/staging/") }, "nothing staged")
+        let st = await fs.readState(); XCTAssertNil(st?.txn, "transaction rolled back / cleared")
+    }
+
+    /// Stop during staging (after the first file is staged, before the second):
+    /// staging touches no live path, so BOTH live apps keep their previous versions.
+    func testStopDuringStagingChangesNoLiveFile() async throws {
+        let old1 = Data("OLD1".utf8), old2 = Data("OLD2".utf8)
+        let new1 = Data("new1".utf8), new2 = Data("new2".utf8)
+        let t1 = "/ext/apps/a.fap", t2 = "/ext/apps/b.fap"
+        let p = plan([file("a", t1, new1), file("b", t2, new2)])
+        let fs = FakeFS()
+        fs.files[t1] = old1; fs.files[t2] = old2
+        // Trip the stop as soon as the first staging file exists — the boundary check
+        // at the top of the 2nd staging iteration then throws.
+        let stop: @Sendable () -> Bool = { fs.files.keys.contains { $0.contains("/staging/") } }
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: ["a": new1, "b": new2]))
+        await assertThrows({ try await inst.install(p, isStopRequested: stop) }, .cancelled)
+        XCTAssertEqual(fs.files[t1], old1, "no live path touched during staging")
+        XCTAssertEqual(fs.files[t2], old2)
+        let st = await fs.readState(); XCTAssertNil(st?.txn)
+    }
+
+    /// Stop DURING activation, after the first file has been swapped live: the
+    /// transactional rollback must restore the already-activated file to its prior
+    /// version, so the app you stopped on remains fully functional.
+    func testStopDuringActivationRestoresPriorVersion() async throws {
+        let old1 = Data("OLD1".utf8), old2 = Data("OLD2".utf8)
+        let new1 = Data("new1".utf8), new2 = Data("new2".utf8)
+        let t1 = "/ext/apps/a.fap", t2 = "/ext/apps/b.fap"
+        let p = plan([file("a", t1, new1), file("b", t2, new2)])
+        let fs = FakeFS()
+        fs.files[t1] = old1; fs.files[t2] = old2
+        // Stop once t1 is live-activated (== new1). The boundary check at the top of the
+        // 2nd activation iteration then throws → rollback restores t1 to old1.
+        let stop: @Sendable () -> Bool = { fs.files[t1] == new1 }
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: ["a": new1, "b": new2]))
+        await assertThrows({ try await inst.install(p, isStopRequested: stop) }, .cancelled)
+        XCTAssertEqual(fs.files[t1], old1, "activated file rolled back to its prior working version")
+        XCTAssertEqual(fs.files[t2], old2, "not-yet-activated file untouched")
+        let st = await fs.readState(); XCTAssertNil(st?.txn)
+    }
+
+    func testRollbackDoesNotDeleteLaterStagedTargets() async throws {
+        let oldBase = Data("old-base".utf8), oldARF = Data("old-arf".utf8)
+        let newBase = Data("new-base".utf8), newARF = Data("new-arf".utf8)
+        let base = "/ext/apps/Bluetooth/flipper_companion.fap"
+        let arf = "/ext/apps/ARF Tools/arf_keeloq.fap"
+        let p = plan([file("base", base, newBase), file("arf", arf, newARF)])
+        let fs = FakeFS()
+        fs.files[base] = oldBase
+        fs.files[arf] = oldARF
+        fs.failMove = { from, to in from.contains("/staging/") && to == base }
+
+        let inst = TumoflipInstaller(
+            fs: fs, source: FakeSource(data: ["base": newBase, "arf": newARF]))
+        do { _ = try await inst.install(p); XCTFail("expected activation failure") } catch {}
+
+        XCTAssertEqual(fs.files[base], oldBase, "failed Base activation restored")
+        XCTAssertEqual(fs.files[arf], oldARF, "untouched staged ARF target must remain live")
+        let finalState = await fs.readState()
+        XCTAssertNil(finalState?.txn)
+    }
+
+    func testRollbackFailureIsSurfacedNotSwallowed() async throws {
+        let old1 = Data("OLD1".utf8), new1 = Data("new1".utf8), new2 = Data("new2".utf8)
+        let t1 = "/ext/apps/a.fap", t2 = "/ext/apps/b.fap"
+        let p = plan([file("a", t1, new1), file("b", t2, new2)])
+        let fs = FakeFS()
+        fs.files[t1] = old1                                  // only t1 pre-exists
+        // Fail activating t2 (triggers rollback) AND fail restoring t1 from its backup.
+        fs.failMove = { from, to in to == t2 || (to == t1 && from.contains("rollback")) }
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: ["a": new1, "b": new2]))
+        do { _ = try await inst.install(p); XCTFail("expected rollbackIncomplete") }
+        catch {
+            guard case .rollbackIncomplete(let t)? = error as? TumoflipInstallError else {
+                return XCTFail("got \(error)")
+            }
+            XCTAssertTrue(t.contains(t1))
+        }
+        // Not claimed rolled back — the txn stays recoverable.
+        let st = await fs.readState()
+        XCTAssertEqual(st?.txn?.phase, .activating)
+    }
+
+    // MARK: - Crash recovery (out-of-process), considering real fs presence
+
+    /// Build a persisted state representing a crash partway through activation, plus the
+    /// matching filesystem snapshot, then return a fresh installer over the same FS.
+    private func crashSnapshot() -> (FakeFS, TumoflipInstaller) {
+        let fs = FakeFS()
+        let new0 = Data("new0".utf8), old0 = Data("old0".utf8)
+        let new1 = Data("new1".utf8), old1 = Data("old1".utf8)
+        let op0 = TumoflipJournal.FileOp(target: "/ext/a", stage: "/ext/.tumoflip/staging/x/a",
+                                         backup: "/ext/.tumoflip/rollback/x/a",
+                                         sha256: TumoflipHash.sha256(new0), md5: TumoflipHash.md5(new0),
+                                         originalMD5: TumoflipHash.md5(old0), hadOriginal: true,
+                                         state: .activated)
+        let op1 = TumoflipJournal.FileOp(target: "/ext/b", stage: "/ext/.tumoflip/staging/x/b",
+                                         backup: "/ext/.tumoflip/rollback/x/b",
+                                         sha256: TumoflipHash.sha256(new1), md5: TumoflipHash.md5(new1),
+                                         originalMD5: TumoflipHash.md5(old1), hadOriginal: true,
+                                         state: .backedUp)
+        // op0 fully activated; op1 backed up but staged file not yet renamed in.
+        fs.files[op0.target] = new0; fs.files[op0.backup] = old0
+        fs.files[op1.backup] = old1; fs.files[op1.stage] = new1
+        let j = TumoflipJournal(releaseId: "r", fingerprint: String(repeating: "f", count: 64),
+                                groups: ["base"], phase: .activating, ops: [op0, op1], cleanups: [])
+        var state = TumoflipState(); state.txn = j
+        fs.seedState(state)
+        return (fs, TumoflipInstaller(fs: fs, source: FakeSource(data: [:])))
+    }
+
+    func testRecoverInterruptedActivationRestoresAll() async throws {
+        let (fs, inst) = crashSnapshot()
+        try await inst.recover()
+        XCTAssertEqual(fs.files["/ext/a"], Data("old0".utf8), "op0 original restored")
+        XCTAssertEqual(fs.files["/ext/b"], Data("old1".utf8), "op1 original restored")
+        let finalState = await fs.readState(); XCTAssertNil(finalState?.txn)
+    }
+
+    func testRecoverRestoresMovedAsideLegacy() async throws {
+        let fs = FakeFS()
+        let legacyBytes = Data("legacy".utf8)
+        let op0 = TumoflipJournal.FileOp(target: "/ext/a", stage: "/ext/.tumoflip/staging/x/a",
+                                         backup: "/ext/.tumoflip/rollback/x/a",
+                                         sha256: TumoflipHash.sha256(Data("new".utf8)),
+                                         md5: TumoflipHash.md5(Data("new".utf8)),
+                                         originalMD5: TumoflipHash.md5(Data("orig".utf8)),
+                                         hadOriginal: true, state: .backedUp)
+        fs.files[op0.backup] = Data("orig".utf8)            // original backed up, target absent
+        let cl = TumoflipJournal.CleanupOp(legacy: "/ext/Old.fap",
+                                           backup: "/ext/.tumoflip/rollback/x/cleanup__Old.fap",
+                                           md5: TumoflipHash.md5(legacyBytes), state: .movedAside)
+        fs.files[cl.backup] = legacyBytes                   // legacy already moved aside
+        let j = TumoflipJournal(releaseId: "r", fingerprint: String(repeating: "f", count: 64),
+                                groups: ["arf"], phase: .activating, ops: [op0], cleanups: [cl])
+        var state = TumoflipState(); state.txn = j
+        fs.seedState(state)
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: [:]))
+
+        try await inst.recover()
+        XCTAssertEqual(fs.files["/ext/a"], Data("orig".utf8), "op original restored")
+        XCTAssertEqual(fs.files["/ext/Old.fap"], legacyBytes, "moved-aside legacy restored")
+        let finalState = await fs.readState(); XCTAssertNil(finalState?.txn)
+    }
+
+    func testAllCorruptedStateSlotsFailClosed() async throws {
+        let b = Data("z".utf8)
+        let p = plan([file("a", "/ext/apps/a.fap", b)])
+        let fs = FakeFS()
+        fs.files[TumoflipInstaller.stateSlotA] = Data("{ not valid json".utf8)
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: ["a": b]))
+        await assertThrows(
+            { try await inst.install(p) },
+            .statePersistenceFailed("both state slots are invalid"))
+        XCTAssertNil(fs.files["/ext/apps/a.fap"])
+    }
+
+    // MARK: - Idempotency & incremental groups
+
+    func testRepeatInstallIsNoOp() async throws {
+        let b = Data("z".utf8)
+        let p = plan([file("a", "/ext/apps/a.fap", b)])
+        let fs = FakeFS()
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: ["a": b]))
+        _ = try await inst.install(p)
+        let countAfterFirst = fs.writeCount
+        let outcome = try await inst.install(p)
+        XCTAssertEqual(outcome, .alreadyInstalled)
+        XCTAssertEqual(fs.writeCount, countAfterFirst, "no-op must not write")
+    }
+
+    func testIncrementalGroupInstallSameRelease() async throws {
+        let base = Data("base".utf8), arf = Data("arf".utf8)
+        let fs = FakeFS()
+        let source = FakeSource(data: ["base": base, "arf": arf])
+        let inst = TumoflipInstaller(fs: fs, source: source)
+        // Install Base alone.
+        _ = try await inst.install(plan([file("base", "/ext/apps/base.fap", base)], groups: ["base"]))
+        XCTAssertEqual(fs.files["/ext/apps/base.fap"], base)
+        // Now install ARF for the SAME release — must NOT be treated as already done.
+        let outcome = try await inst.install(plan([file("arf", "/ext/apps/arf.fap", arf)], groups: ["arf"]))
+        XCTAssertEqual(outcome, .installed(files: 1, legacyMovedAside: 0))
+        XCTAssertEqual(fs.files["/ext/apps/arf.fap"], arf)
+        XCTAssertEqual(fs.files["/ext/apps/base.fap"], base, "Base still present after ARF")
+    }
+
+    // MARK: - Reversible cleanup (forward path)
+
+    func testCleanupMovesLegacyAside() async throws {
+        let b = Data("c".utf8)
+        let canonical = "/ext/apps/ARF Tools/arf.fap", legacy = "/ext/apps/ARF Tools/ARF Old.fap"
+        let p = plan([file("a", canonical, b)],
+                     cleanup: [.init(canonical: canonical, legacy: legacy)], groups: ["arf"])
+        let fs = FakeFS()
+        fs.files[legacy] = Data("legacy".utf8)
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: ["a": b]))
+        let outcome = try await inst.install(p)
+        XCTAssertEqual(outcome, .installed(files: 1, legacyMovedAside: 1))
+        XCTAssertEqual(fs.files[canonical], b)
+        XCTAssertNil(fs.files[legacy], "legacy moved out of its live path")
+    }
+
+    func testMissingLegacyCleanupIsIgnored() async throws {
+        let bytes = Data("canonical".utf8)
+        let canonical = "/ext/apps/ARF Tools/arf_car_emulate.fap"
+        let missingLegacy = "/ext/apps/ARF Tools/ARF Car Emulate.fap"
+        let p = plan(
+            [file("car", canonical, bytes)],
+            cleanup: [.init(canonical: canonical, legacy: missingLegacy)],
+            groups: ["arf"])
+        let fs = FakeFS()
+        fs.files[canonical] = bytes
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: ["car": bytes]))
+
+        let outcome = try await inst.install(p)
+
+        XCTAssertEqual(outcome, .installed(files: 1, legacyMovedAside: 0))
+        XCTAssertEqual(fs.files[canonical], bytes)
+        XCTAssertNil(fs.files[missingLegacy])
+    }
+
+    // MARK: - Flipper copy+remove move semantics
+
+    func testActivationErrorAfterCopyIsReconciled() async throws {
+        let bytes = Data("new".utf8)
+        let target = "/ext/apps/a.fap"
+        let p = plan([file("a", target, bytes)])
+        let fs = FakeFS()
+        fs.failMoveAfterCopy = { from, to in from.contains("/staging/") && to == target }
+
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: ["a": bytes]))
+        let outcome = try await inst.install(p)
+
+        XCTAssertEqual(outcome, .installed(files: 1, legacyMovedAside: 0))
+        XCTAssertEqual(fs.files[target], bytes)
+        XCTAssertFalse(fs.files.keys.contains { $0.contains("/staging/") && $0.hasSuffix("a.fap") })
+    }
+
+    func testBackupErrorAfterCopyIsReconciled() async throws {
+        let old = Data("old".utf8), new = Data("new".utf8)
+        let target = "/ext/apps/a.fap"
+        let p = plan([file("a", target, new)])
+        let fs = FakeFS()
+        fs.files[target] = old
+        fs.failMoveAfterCopy = { from, to in from == target && to.contains("/rollback/") }
+
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: ["a": new]))
+        let outcome = try await inst.install(p)
+
+        XCTAssertEqual(outcome, .installed(files: 1, legacyMovedAside: 0))
+        XCTAssertEqual(fs.files[target], new)
+    }
+
+    func testRecoverRemovesPartialActivationCopyAndRestoresOriginal() async throws {
+        let old = Data("old".utf8), new = Data("new".utf8)
+        let target = "/ext/apps/a.fap"
+        let stage = "/ext/.tumoflip/staging/x/a.fap"
+        let backup = "/ext/.tumoflip/rollback/x/a.fap"
+        let op = TumoflipJournal.FileOp(
+            target: target,
+            stage: stage,
+            backup: backup,
+            sha256: TumoflipHash.sha256(new),
+            md5: TumoflipHash.md5(new),
+            originalMD5: TumoflipHash.md5(old),
+            hadOriginal: true,
+            state: .activationPlanned)
+        let journal = TumoflipJournal(
+            releaseId: rid,
+            fingerprint: String(repeating: "f", count: 64),
+            groups: ["base"],
+            phase: .activating,
+            ops: [op],
+            cleanups: [])
+        var state = TumoflipState()
+        state.txn = journal
+        let fs = FakeFS()
+        fs.files[target] = Data("pa".utf8) // torn destination copy
+        fs.files[stage] = new
+        fs.files[backup] = old
+        fs.seedState(state)
+
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: [:]))
+        try await inst.recover()
+
+        XCTAssertEqual(fs.files[target], old)
+        let recoveredState = await fs.readState()
+        XCTAssertNil(recoveredState?.txn)
+    }
+
+    func testCorruptNewestStateSlotFallsBackToPreviousGeneration() async {
+        var previous = TumoflipState(generation: 7)
+        previous.ledger["/ext/apps/a.fap"] = .init(
+            sha256: String(repeating: "a", count: 64), md5: "old", releaseId: rid)
+        let fs = FakeFS()
+        fs.files[TumoflipInstaller.stateSlotB] = try! TumoflipInstaller.encodeStateSlot(previous)
+        fs.files[TumoflipInstaller.stateSlotA] = Data("partial-json".utf8)
+
+        let loaded = await fs.readState()
+        XCTAssertEqual(loaded, previous)
+    }
+
+    // MARK: - Device compatibility
+
+    func testCompatOK() throws {
+        let m = makeManifest(target: 7, api: "87.14")
+        XCTAssertNoThrow(try TumoflipCompat.check(deviceTarget: 7, deviceAPI: "87.14",
+                                                  deviceVersion: "v", deviceOriginFork: "tumoflip", manifest: m))
+    }
+
+    func testCompatUnknownDeviceIdentityFailsClosed() {
+        let m = makeManifest(target: 7, api: "87.14")
+        XCTAssertThrowsError(try TumoflipCompat.check(deviceTarget: nil, deviceAPI: nil,
+                                                      deviceVersion: nil, manifest: m)) {
+            guard case .incompatible? = $0 as? TumoflipInstallError else { return XCTFail("\($0)") }
+        }
+    }
+
+    func testCompatTargetMismatch() {
+        let m = makeManifest(target: 7, api: "87.14")
+        XCTAssertThrowsError(try TumoflipCompat.check(deviceTarget: 5, deviceAPI: "87.14",
+                                                      deviceVersion: "v", deviceOriginFork: "tumoflip", manifest: m)) {
+            guard case .incompatible? = $0 as? TumoflipInstallError else { return XCTFail("\($0)") }
+        }
+    }
+
+    func testCompatAPIMismatch() {
+        let m = makeManifest(target: 7, api: "87.14")
+        XCTAssertThrowsError(try TumoflipCompat.check(deviceTarget: 7, deviceAPI: "87.13",
+                                                      deviceVersion: "v", deviceOriginFork: "tumoflip", manifest: m)) {
+            guard case .incompatible? = $0 as? TumoflipInstallError else { return XCTFail("\($0)") }
+        }
+    }
+
+    func testCompatFirmwareVersionMismatch() {
+        let m = makeManifest(target: 7, api: "87.14")
+        XCTAssertThrowsError(try TumoflipCompat.check(deviceTarget: 7, deviceAPI: "87.14",
+                                                      deviceVersion: "old", deviceOriginFork: "tumoflip", manifest: m)) {
+            guard case .incompatible? = $0 as? TumoflipInstallError else { return XCTFail("\($0)") }
+        }
+    }
+
+    func testCompatOriginMismatch() {
+        let m = makeManifest(target: 7, api: "87.14")
+        XCTAssertThrowsError(try TumoflipCompat.check(deviceTarget: 7, deviceAPI: "87.14",
+                                                      deviceVersion: "v", deviceOriginFork: "unleashed", manifest: m)) {
+            guard case .incompatible? = $0 as? TumoflipInstallError else { return XCTFail("\($0)") }
+        }
+    }
+
+    private func makeManifest(target: Int, api: String) -> TumoflipManifest {
+        TumoflipManifest(schema: 2, releaseId: rid,
+                         firmware: .init(api: api, name: "tumoflip", version: "v", target: target, radioAddress: nil),
+                         artifacts: [:], packages: [:], cleanup: [], safety: nil)
+    }
+
+    // MARK: - Device-backed verification ("Verify on device", #9)
+
+    private func baseManifest(_ files: [TumoflipManifest.PackageFile]) -> TumoflipManifest {
+        TumoflipManifest(schema: 2, releaseId: rid,
+                         firmware: .init(api: "87.14", name: "tumoflip", version: "v", target: 7, radioAddress: nil),
+                         artifacts: [:],
+                         packages: ["base": files, "arf": [], "module_one": [], "protocol_packs": []],
+                         cleanup: [], safety: nil)
+    }
+    private func entry(_ sha: String, _ bytes: Data) -> TumoflipState.LedgerEntry {
+        .init(sha256: sha, md5: TumoflipHash.md5(bytes), releaseId: rid)
+    }
+
+    func testVerifyUpToDateWhenPresentAndIntact() async {
+        let bytes = Data("content".utf8), target = "/ext/apps/a.fap"
+        let f = file("a", target, bytes)
+        let fs = FakeFS(); fs.files[target] = bytes                       // physically present + intact
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: [:]))
+        let status = await inst.verifyGroupOnDevice("base", manifest: baseManifest([f]),
+                                                    ledger: [target: entry(f.sha256, bytes)])
+        XCTAssertEqual(status, .upToDate)
+    }
+
+    func testVerifyFlagsMissingFile() async {
+        let bytes = Data("content".utf8), target = "/ext/apps/a.fap"
+        let f = file("a", target, bytes)
+        let fs = FakeFS()                                                 // target NOT on device
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: [:]))
+        let status = await inst.verifyGroupOnDevice("base", manifest: baseManifest([f]),
+                                                    ledger: [target: entry(f.sha256, bytes)])
+        XCTAssertEqual(status, .updateAvailable)
+    }
+
+    func testVerifyFlagsChangedFile() async {
+        let bytes = Data("content".utf8), target = "/ext/apps/a.fap"
+        let f = file("a", target, bytes)
+        let fs = FakeFS(); fs.files[target] = Data("CHANGED".utf8)        // present but different bytes
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: [:]))
+        let status = await inst.verifyGroupOnDevice("base", manifest: baseManifest([f]),
+                                                    ledger: [target: entry(f.sha256, bytes)])
+        XCTAssertEqual(status, .updateAvailable)
+    }
+
+    func testVerifyNotInstalledForFileNotInLedger() async {
+        // A file physically present but installed OUTSIDE the app (no ledger entry):
+        // can't confirm without the expected hash, so it's reported as not installed.
+        let bytes = Data("content".utf8), target = "/ext/apps/a.fap"
+        let f = file("a", target, bytes)
+        let fs = FakeFS(); fs.files[target] = bytes
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: [:]))
+        let status = await inst.verifyGroupOnDevice("base", manifest: baseManifest([f]), ledger: [:])
+        XCTAssertEqual(status, .notInstalled)
+    }
+
+    // MARK: - shared assertions
+
+    private func assertThrows(_ expr: () async throws -> TumoflipInstaller.Outcome,
+                              _ expected: TumoflipInstallError,
+                              file: StaticString = #filePath, line: UInt = #line) async {
+        do { _ = try await expr(); XCTFail("expected \(expected)", file: file, line: line) }
+        catch { XCTAssertEqual(error as? TumoflipInstallError, expected, file: file, line: line) }
+    }
+}

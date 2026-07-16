@@ -1,1 +1,7 @@
 routing-drift-report.md
+.DS_Store
+build/
+DerivedData/
+xcuserdata/
+*.xcuserstate
+Sources/App/BuildInfo.swift

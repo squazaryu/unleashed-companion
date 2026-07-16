@@ -6,15 +6,14 @@ JSON the CI drift-check can read (issue #11). Run it whenever you edit the map:
 
     python3 scripts/export_routing_map.py [path/to/PluginUpdater.swift]
 
-Default source path assumes the app sources sit next to this repo
-(…/UnleashedCompanion/Sources and …/UnleashedCompanion/feather-repo).
+The default source path targets the Swift sources in this repository.
 """
 import json
 import pathlib
 import re
 import sys
 
-DEFAULT_SRC = "../Sources/Features/Updates/PluginUpdater.swift"
+DEFAULT_SRC = "Sources/Features/Updates/PluginUpdater.swift"
 
 
 def main() -> int:

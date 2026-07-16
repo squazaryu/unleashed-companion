@@ -1,0 +1,167 @@
+name: UnleashedCompanion
+options:
+  bundleIdPrefix: com.tumoflip
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+
+packages:
+  SwiftProtobuf:
+    url: https://github.com/apple/swift-protobuf.git
+    from: "1.28.0"
+  ZIPFoundation:
+    url: https://github.com/weichsel/ZIPFoundation.git
+    from: "0.9.0"
+
+settings:
+  base:
+    MARKETING_VERSION: "1.6.27"
+    CURRENT_PROJECT_VERSION: "185"
+    SWIFT_VERSION: "5.9"
+    DEVELOPMENT_TEAM: ""
+    CODE_SIGN_STYLE: Manual
+    CODE_SIGNING_REQUIRED: "NO"
+    CODE_SIGNING_ALLOWED: "NO"
+    TARGETED_DEVICE_FAMILY: "1,2"
+
+targets:
+  UnleashedCompanion:
+    type: application
+    platform: iOS
+    sources:
+      - path: Sources
+      - path: Resources
+        optional: true
+    dependencies:
+      - package: SwiftProtobuf
+      - package: ZIPFoundation
+      - target: UnleashedShared
+      - target: UnleashedWidgets
+    info:
+      path: Resources/Info.plist
+      properties:
+        CFBundleDisplayName: TumoCompanion
+        CFBundleShortVersionString: "$(MARKETING_VERSION)"
+        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
+        NSSupportsLiveActivities: true
+        CFBundleURLTypes:
+          - CFBundleURLName: com.tumoflip.unleashedcompanion
+            CFBundleURLSchemes:
+              - unleashed
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        NSBluetoothAlwaysUsageDescription: >-
+          TumoCompanion connects to your Flipper Zero over Bluetooth Low Energy to
+          manage files, mirror the screen, run apps and send Sub-GHz signals.
+        NSBluetoothPeripheralUsageDescription: >-
+          TumoCompanion uses Bluetooth to communicate with your Flipper Zero.
+        NSLocalNetworkUsageDescription: >-
+          TumoCompanion finds the Mac AI Radar bridge on your local network and sends
+          relay actions to Home Assistant when your Flipper triggers them.
+        NSLocationWhenInUseUsageDescription: >-
+          TumoCompanion uses your location to map WiFi networks — it tags each scan
+          reading relayed from your Flipper with your phone's GPS position and
+          triangulates where the access points are.
+        NFCReaderUsageDescription: >-
+          TumoCompanion uses NFC to run authorized TumoVM and TumoCard transport
+          diagnostics against your Flipper Zero.
+        com.apple.developer.nfc.readersession.iso7816.select-identifiers:
+          - F054564D01
+          - F0544341524401
+          - F0544341524402
+        NSBonjourServices:
+          - _airadar._tcp
+          - _home-assistant._tcp
+        NSAppTransportSecurity:
+          NSAllowsArbitraryLoads: true
+        UIBackgroundModes:
+          - bluetooth-central
+          - fetch
+        BGTaskSchedulerPermittedIdentifiers:
+          - com.tumoflip.unleashedcompanion.plugincheck
+        UIFileSharingEnabled: true
+        LSSupportsOpeningDocumentsInPlace: true
+    entitlements:
+      path: Resources/UnleashedCompanion.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.com.tumoflip.unleashedcompanion
+        com.apple.developer.nfc.readersession.formats:
+          - TAG
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.tumoflip.unleashedcompanion
+        GENERATE_INFOPLIST_FILE: "NO"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS: "YES"
+        ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES: AppIcon-Mono AppIcon-Green AppIcon-Purple AppIcon-Dolphin
+
+  # Shared framework: holds the Live Activity attributes so the app and the widget
+  # extension reference the SAME type (cross-module ActivityKit matching needs it).
+  UnleashedShared:
+    type: framework
+    platform: iOS
+    sources:
+      - path: Shared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.tumoflip.unleashedcompanion.shared
+        GENERATE_INFOPLIST_FILE: "YES"
+        SKIP_INSTALL: "NO"
+
+  # WidgetKit extension: Live Activity UI (install progress).
+  UnleashedWidgets:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: Widgets
+    dependencies:
+      - target: UnleashedShared
+        embed: false
+    info:
+      path: Widgets/Info.plist
+      properties:
+        CFBundleDisplayName: TumoCompanion
+        CFBundleShortVersionString: "$(MARKETING_VERSION)"
+        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    entitlements:
+      path: Widgets/UnleashedWidgets.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.com.tumoflip.unleashedcompanion
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.tumoflip.unleashedcompanion.widgets
+        GENERATE_INFOPLIST_FILE: "NO"
+        LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/../../Frameworks"
+
+  # Unit tests for the wire protocols (App Bridge frame, AI Radar parser, RPC
+  # varint). Run from Xcode on a simulator — not part of the device IPA build.
+  UnleashedTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: Tests
+    dependencies:
+      - target: UnleashedCompanion
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.tumoflip.unleashedcompanion.tests
+        GENERATE_INFOPLIST_FILE: "YES"
+
+schemes:
+  UnleashedCompanion:
+    build:
+      targets:
+        UnleashedCompanion: all
+        UnleashedShared: all
+        UnleashedWidgets: all
+        UnleashedTests: [test]
+    test:
+      targets:
+        - UnleashedTests

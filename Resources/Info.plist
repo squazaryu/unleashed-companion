@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>com.tumoflip.unleashedcompanion.plugincheck</string>
+	</array>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>TumoCompanion</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.6.27</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.tumoflip.unleashedcompanion</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>unleashed</string>
+			</array>
+		</dict>
+	</array>
+	<key>CFBundleVersion</key>
+	<string>185</string>
+	<key>LSSupportsOpeningDocumentsInPlace</key>
+	<true/>
+	<key>NFCReaderUsageDescription</key>
+	<string>TumoCompanion uses NFC to run authorized TumoVM and TumoCard transport diagnostics against your Flipper Zero.</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>TumoCompanion connects to your Flipper Zero over Bluetooth Low Energy to manage files, mirror the screen, run apps and send Sub-GHz signals.</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>TumoCompanion uses Bluetooth to communicate with your Flipper Zero.</string>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_airadar._tcp</string>
+		<string>_home-assistant._tcp</string>
+	</array>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>TumoCompanion finds the Mac AI Radar bridge on your local network and sends relay actions to Home Assistant when your Flipper triggers them.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>TumoCompanion uses your location to map WiFi networks — it tags each scan reading relayed from your Flipper with your phone's GPS position and triangulates where the access points are.</string>
+	<key>NSSupportsLiveActivities</key>
+	<true/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>bluetooth-central</string>
+		<string>fetch</string>
+	</array>
+	<key>UIFileSharingEnabled</key>
+	<true/>
+	<key>UILaunchScreen</key>
+	<dict/>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>com.apple.developer.nfc.readersession.iso7816.select-identifiers</key>
+	<array>
+		<string>F054564D01</string>
+		<string>F0544341524401</string>
+		<string>F0544341524402</string>
+	</array>
+</dict>
+</plist>

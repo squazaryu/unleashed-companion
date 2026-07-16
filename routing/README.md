@@ -1,6 +1,6 @@
 # Module One routing drift check
 
-Automation for [issue #11](https://github.com/squazaryu/unleashed-companion/issues/11):
+Automation for [issue #11](https://github.com/squazaryu/TumoCompanion/issues/11):
 keep the app's hand-maintained Module One routing map honest against upstream
 [xMasterX/all-the-plugins](https://github.com/xMasterX/all-the-plugins).
 
@@ -20,8 +20,7 @@ After editing `PluginInstallRouting.targetPaths` in `Sources/Features/Updates/Pl
 regenerate the JSON and commit it here:
 
 ```sh
-cd feather-repo
-python3 scripts/export_routing_map.py        # reads ../Sources/.../PluginUpdater.swift
+python3 scripts/export_routing_map.py
 git add routing/module_one_routes.json && git commit -m "routing: sync map"
 ```
 

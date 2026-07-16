@@ -1,12 +1,12 @@
 <div align="center">
 
-<img src="icon.png" width="120" alt="Unleashed icon">
+<img src="icon.png" width="120" alt="TumoCompanion icon">
 
-# Unleashed
+# TumoCompanion
 
 **A native iOS companion for Flipper Zero** — BLE/USB SD file access, screen mirror, Sub-GHz/NFC, a Sber smart-relay failsafe, Marauder log analysis, ESP32 firmware flashing, and live Claude Code status on your Flipper.
 
-![version](https://img.shields.io/badge/version-1.3.5-F36E12)
+![version](https://img.shields.io/badge/version-1.6.27-F36E12)
 ![platform](https://img.shields.io/badge/iOS-17%2B-black?logo=apple)
 ![SwiftUI](https://img.shields.io/badge/SwiftUI-5.9-orange?logo=swift)
 ![transport](https://img.shields.io/badge/transport-BLE%20%2B%20USB%20SD-blue?logo=bluetooth)
@@ -25,6 +25,7 @@
 - [Firmware packages (atomic updater)](#firmware-packages-atomic-updater)
 - [How the relay state works](#how-the-relay-state-works)
 - [Privacy](#privacy)
+- [Build from source](#build-from-source)
 - [Requirements](#requirements)
 
 ## Install (Feather / AltStore)
@@ -32,7 +33,7 @@
 Add the source, then install — Feather signs it with your own certificate and auto-updates on each release:
 
 ```
-https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/apps.json
+https://raw.githubusercontent.com/squazaryu/TumoCompanion/main/apps.json
 ```
 
 > Unsigned IPA, sideloaded. Built for the **[tumoflip](https://github.com/squazaryu/tumoflip)** firmware (Unleashed-based — its App Bridge BLE service is what most of the integrations talk to). Works as a plain BLE file/screen client on stock firmware too.
@@ -118,6 +119,22 @@ The Sber relay doesn't report a reliable *steady* state back to Home Assistant (
 - Update notifications are **local** (`BGAppRefreshTask` + local notifications); they only fetch public GitHub release tags.
 - Bundles the public Russian Trusted Root CA so Sber's TLS validates — no private keys involved.
 
+## Build from source
+
+The repository contains the complete SwiftUI application, widget extension,
+tests, Feather source metadata and release scripts. The internal Xcode target
+remains `UnleashedCompanion` to preserve the existing iOS update identity.
+
+Prerequisites: Xcode 16+, XcodeGen and Swift Protobuf.
+
+```sh
+brew install xcodegen swift-protobuf protobuf
+./scripts/build_ipa.sh
+```
+
+The unsigned IPA is written to `build/TumoCompanion-unsigned.ipa`. Sign it with
+your own certificate using Feather, SideStore, AltStore or Sideloadly.
+
 ## Requirements
 
 - iPhone on **iOS 17+**, a Flipper Zero, and (for most integrations) the **[tumoflip](https://github.com/squazaryu/tumoflip)** firmware (Unleashed-based) with App Bridge.
@@ -125,6 +142,6 @@ The Sber relay doesn't report a reliable *steady* state back to Home Assistant (
 
 ## Releases
 
-See [Releases](https://github.com/squazaryu/unleashed-companion/releases) for the changelog and IPAs. `apps.json` is the Feather source manifest.
+See [Releases](https://github.com/squazaryu/TumoCompanion/releases) for the changelog and IPAs. `apps.json` is the Feather source manifest.
 
 <div align="center"><sub>Built for personal use with the Flipper Zero community. Not affiliated with Flipper Devices, Sber, or Anthropic.</sub></div>

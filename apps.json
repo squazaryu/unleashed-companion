@@ -1,28 +1,28 @@
 {
-  "name": "Unleashed Companion",
+  "name": "TumoCompanion",
   "identifier": "com.tumoflip.unleashed-source",
-  "sourceURL": "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/apps.json",
-  "iconURL": "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/icon.png",
+  "sourceURL": "https://raw.githubusercontent.com/squazaryu/TumoCompanion/main/apps.json",
+  "iconURL": "https://raw.githubusercontent.com/squazaryu/TumoCompanion/main/icon.png",
   "apps": [
     {
-      "name": "Unleashed",
+      "name": "TumoCompanion",
       "bundleIdentifier": "com.tumoflip.unleashedcompanion",
       "developerName": "tumoflip",
-      "subtitle": "Flipper Zero BLE companion",
-      "localizedDescription": "Native companion for Flipper Zero on tumoflip/Unleashed firmware. Files & folder upload, screen mirror + remote, Sub-GHz TX and NFC/RFID emulate via the companion .fap, Sber relay failsafe (HA -> Sber cloud), Marauder log analysis, and an all-the-plugins auto-updater.",
-      "iconURL": "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/icon.png",
+      "subtitle": "Tumoflip companion for Flipper Zero",
+      "localizedDescription": "Native iOS companion for Flipper Zero running Tumoflip or Unleashed firmware. Includes BLE and USB SD file access, screen control, firmware and API-gated FAP installation, Dolphin Gallery, Sub-GHz and NFC workflows, TumoSurvey, Marauder analysis, ESP32 flashing and App Bridge integrations.",
+      "iconURL": "https://raw.githubusercontent.com/squazaryu/TumoCompanion/main/icon.png",
       "tintColor": "F36E12",
       "category": "utilities",
       "screenshotURLs": [
-        "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/home.png",
-        "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/relay.png",
-        "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/settings.png",
-        "https://raw.githubusercontent.com/squazaryu/unleashed-companion/main/screenshots/onboarding.png"
+        "https://raw.githubusercontent.com/squazaryu/TumoCompanion/main/screenshots/home.png",
+        "https://raw.githubusercontent.com/squazaryu/TumoCompanion/main/screenshots/relay.png",
+        "https://raw.githubusercontent.com/squazaryu/TumoCompanion/main/screenshots/settings.png",
+        "https://raw.githubusercontent.com/squazaryu/TumoCompanion/main/screenshots/onboarding.png"
       ],
       "version": "1.6.26",
       "versionDate": "2026-07-15",
       "versionDescription": "Fix firmware package state metadata after successful installs and keep package selection bound to the connected Tumoflip release.",
-      "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.26/UnleashedCompanion-unsigned.ipa",
+      "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.6.26/UnleashedCompanion-unsigned.ipa",
       "size": 24852710,
       "minOSVersion": "17.0",
       "versions": [
@@ -30,7 +30,7 @@
           "version": "1.6.26",
           "date": "2026-07-15",
           "localizedDescription": "Fix firmware package state metadata after successful installs and keep package selection bound to the connected Tumoflip release.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.26/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.6.26/UnleashedCompanion-unsigned.ipa",
           "size": 24852710,
           "minOSVersion": "17.0"
         },
@@ -38,7 +38,7 @@
           "version": "1.6.25",
           "date": "2026-07-15",
           "localizedDescription": "Firmware Packages safety fix: package discovery now selects the exact release matching the connected Flipper firmware version, bypasses stale GitHub/asset caches, and revalidates the release immediately before installation. USB SD Mode still transfers files quickly but now requires a fresh BLE device identity and enforces the same firmware version/API/target/origin checks as BLE. Package ZIP caching is keyed by content-addressed release_id, preventing stale package-only assets from being reused under the same firmware tag.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.25/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.6.25/UnleashedCompanion-unsigned.ipa",
           "size": 24842265,
           "minOSVersion": "17.0"
         },
@@ -46,7 +46,7 @@
           "version": "1.6.24",
           "date": "2026-07-15",
           "localizedDescription": "Stop during an All-The-Plugins install now leaves the in-flight app fully working. Each FAP is written to a temp file and only swapped into place after it's md5-verified, so pressing Stop (or a dropped link) mid-write discards the temp and the app keeps its previous, working version \u2014 never a half-written/broken FAP. Also hardens installs against mid-write link drops for the same reason.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.24/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.6.24/UnleashedCompanion-unsigned.ipa",
           "size": 24839549,
           "minOSVersion": "17.0"
         },
@@ -54,7 +54,7 @@
           "version": "1.6.23",
           "date": "2026-07-15",
           "localizedDescription": "Add a Stop button to All-The-Plugins and FW package installs. Plugins: stops at the next file boundary \u2014 the app being written finishes its verified write and stays whole, the rest keep their current version (files whose write was interrupted are reported, not hidden). FW packages: stops via the transactional installer and rolls back to the previous version, so a partial package set is never left behind.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.23/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.6.23/UnleashedCompanion-unsigned.ipa",
           "size": 24822586,
           "minOSVersion": "17.0"
         },
@@ -62,7 +62,7 @@
           "version": "1.6.22",
           "date": "2026-07-15",
           "localizedDescription": "TumoSpectrum Phase B: bounded bit-field map, counter/checksum candidates and practical capture-set visualization.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.22/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.6.22/UnleashedCompanion-unsigned.ipa",
           "size": 24807484,
           "minOSVersion": "17.0"
         },
@@ -70,7 +70,7 @@
           "version": "1.6.21",
           "date": "2026-07-15",
           "localizedDescription": "TumoSpectrum 2.0 capture-set reports, timing inference charts, and strict schema-2 validation.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.21/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.6.21/UnleashedCompanion-unsigned.ipa",
           "size": 24769136,
           "minOSVersion": "17.0"
         },
@@ -78,7 +78,7 @@
           "version": "1.6.20",
           "date": "2026-07-14",
           "localizedDescription": "Fix Apps Market install (HTTP 404 on every app): the catalog build-asset URL now uses the version's _id instead of the build's _id \u2014 the wrong id 404'd for every app. Fix All-The-Plugins card overlap/z-fight during a BLE install: skip compatibility re-validation while installing, so mid-install reconnects no longer thrash the category list layout.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.20/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.6.20/UnleashedCompanion-unsigned.ipa",
           "size": 24723524,
           "minOSVersion": "17.0"
         },
@@ -86,7 +86,7 @@
           "version": "1.6.19",
           "date": "2026-07-14",
           "localizedDescription": "Adds TumoSpectrum signal analysis with report history, timing statistics, histograms, comparisons, and BLE report import from t-dev-089-037-050.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.19/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.6.19/UnleashedCompanion-unsigned.ipa",
           "size": 24722619,
           "minOSVersion": "17.0"
         },
@@ -94,7 +94,7 @@
           "version": "1.6.18",
           "date": "2026-07-14",
           "localizedDescription": "Adds the TumoSurvey network explorer dashboard with automatic survey sessions, live network and security insights, channel analytics, iPhone-GPS mapping, saved maps, and shareable reports.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.18/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.6.18/UnleashedCompanion-unsigned.ipa",
           "size": 24631664,
           "minOSVersion": "17.0"
         },
@@ -102,7 +102,7 @@
           "version": "1.6.17",
           "date": "2026-07-14",
           "localizedDescription": "Add the TumoNet Gateway client with Inbox/Radio delivery, same-ID retry for dedupe checks, and expanded protection for Tumoflip FAPs.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.17/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.6.17/UnleashedCompanion-unsigned.ipa",
           "size": 24575459,
           "minOSVersion": "17.0"
         },
@@ -110,7 +110,7 @@
           "version": "1.6.16",
           "date": "2026-07-13",
           "localizedDescription": "Recognize t-flppr-fw stable firmware builds while preserving legacy tmwhflpprarf and t-dev package routing.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.16/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.6.16/UnleashedCompanion-unsigned.ipa",
           "size": 24525069,
           "minOSVersion": "17.0"
         },
@@ -118,7 +118,7 @@
           "version": "1.6.15",
           "date": "2026-07-13",
           "localizedDescription": "Automatically attach the open TumoFabric Counter screen to sessions started on Flipper, without creating idle sessions.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.15/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.6.15/UnleashedCompanion-unsigned.ipa",
           "size": 24523067,
           "minOSVersion": "17.0"
         },
@@ -126,7 +126,7 @@
           "version": "1.6.14",
           "date": "2026-07-13",
           "localizedDescription": "Fix TumoFabric shared-state handoff, live two-way sync, and session recovery.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.14/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.6.14/UnleashedCompanion-unsigned.ipa",
           "size": 24519723,
           "minOSVersion": "17.0"
         },
@@ -134,7 +134,7 @@
           "version": "1.6.13",
           "date": "2026-07-13",
           "localizedDescription": "TumoFabric Counter (Settings \u2192 Diagnostics): bounded FAB2 sessions with monotonic sequence IDs, duplicate replay suppression, BLE reconnect resume, explicit cancellation, and visible trust/data boundaries. Requires t-dev-089-037-029 or newer.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.13/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.6.13/UnleashedCompanion-unsigned.ipa",
           "size": 24513188,
           "minOSVersion": "17.0"
         },
@@ -142,7 +142,7 @@
           "version": "1.6.12",
           "date": "2026-07-12",
           "localizedDescription": "App Bridge Console (Settings \u2192 Diagnostics): a unified FAB2 diagnostic panel that drives both app_bridge_terminal (hello/ping/status/help/echo/emit/release with an auto-tracked session sid) and ble_gatt_lab (ping/status/echo), with a live tx/rx/event frame log (issues #16 + #17).",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.12/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.6.12/UnleashedCompanion-unsigned.ipa",
           "size": 24465707,
           "minOSVersion": "17.0"
         },
@@ -150,7 +150,7 @@
           "version": "1.6.11",
           "date": "2026-07-12",
           "localizedDescription": "Relay: auto-discover Home Assistant over Bonjour (_home-assistant._tcp) \u2014 leave the HA URL empty and the relay finds HA on your network and survives DHCP IP changes; pinned URLs still honored (issue #2).",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.11/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.6.11/UnleashedCompanion-unsigned.ipa",
           "size": 24432052,
           "minOSVersion": "17.0"
         },
@@ -158,7 +158,7 @@
           "version": "1.6.10",
           "date": "2026-07-11",
           "localizedDescription": "Fix TumoCard NFC smoke by keeping every iPhone SELECT within the CoreNFC AID allowlist; firmware fail-closed coverage remains in the macOS CCID smoke.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.10/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.6.10/UnleashedCompanion-unsigned.ipa",
           "size": 24422314,
           "minOSVersion": "17.0"
         },
@@ -166,7 +166,7 @@
           "version": "1.6.9",
           "date": "2026-07-11",
           "localizedDescription": "Add TumoCard OS NFC smoke for two-AID routing, isolated applet state, safe restore, and USB-to-NFC handoff validation.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.9/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.6.9/UnleashedCompanion-unsigned.ipa",
           "size": 24421720,
           "minOSVersion": "17.0"
         },
@@ -174,7 +174,7 @@
           "version": "1.6.8",
           "date": "2026-07-11",
           "localizedDescription": "Add TumoVM NFC transport smoke diagnostic for real-device validation of issue #60.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.8/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.6.8/UnleashedCompanion-unsigned.ipa",
           "size": 24383339,
           "minOSVersion": "17.0"
         },
@@ -182,7 +182,7 @@
           "version": "1.6.7",
           "date": "2026-07-11",
           "localizedDescription": "Issue #19: block installing FAP/FAL binaries built for a different firmware API. Full check-time catalog classification (incl. unselected + protected), separate collapsed Incompatible section with disabled toggles + exact reasons (e.g. 'API 87.15 \u00b7 requires firmware API 87; connected firmware API 88'), selection policy that can't select blocked entries, fresh BLE identity required for FAP compat even in USB SD Mode, fail-closed before any write.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.7/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.6.7/UnleashedCompanion-unsigned.ipa",
           "size": 25737867,
           "minOSVersion": "17.0"
         },
@@ -190,7 +190,7 @@
           "version": "1.6.6",
           "date": "2026-07-11",
           "localizedDescription": "Protected-app hardening for Claude Buddy. The Community Apps and official catalog installers now protect the Tumoflip Claude Buddy build from replacement, and catalog FAP downloads are validated against the connected firmware API and hardware target before any write.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.6/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.6.6/UnleashedCompanion-unsigned.ipa",
           "size": 25737868,
           "minOSVersion": "17.0"
         },
@@ -198,7 +198,7 @@
           "version": "1.6.5",
           "date": "2026-07-11",
           "localizedDescription": "All The Plugins protection hardening. Removed the obsolete BLE Killer denylist entry, expanded protection to the full Tumoflip custom-app set, and now discovers, validates, and protects dependent FAL binaries under apps_data (including TOTP and Sub-GHz protocol families) together with their owning apps.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.5/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.6.5/UnleashedCompanion-unsigned.ipa",
           "size": 25737866,
           "minOSVersion": "17.0"
         },
@@ -206,7 +206,7 @@
           "version": "1.6.4",
           "date": "2026-07-11",
           "localizedDescription": "FAP API compatibility guard. Community apps and FW Packages now validate FAP/FAL metadata against the connected Flipper before installation, separate and disable incompatible entries, keep bulk selection on compatible apps only, show full API diagnostics, and require a fresh BLE identity when installing binaries through USB SD Mode.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.4/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.6.4/UnleashedCompanion-unsigned.ipa",
           "size": 25688890,
           "minOSVersion": "17.0"
         },
@@ -214,7 +214,7 @@
           "version": "1.6.3",
           "date": "2026-07-09",
           "localizedDescription": "FW packages: per-file selection. Each package group is now a tri-state category checkbox (select/deselect all) that expands to a toggle per file, so you can install a firmware package minus specific files. Install stays atomic over whatever's selected; deselecting a file just leaves it out of the transaction.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.3/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.6.3/UnleashedCompanion-unsigned.ipa",
           "size": 25611311,
           "minOSVersion": "17.0"
         },
@@ -222,7 +222,7 @@
           "version": "1.6.2",
           "date": "2026-07-09",
           "localizedDescription": "All The Plugins: install-categories are now collapsible sections (collapsed by default) \u2014 each header has a checkbox to select/deselect the whole category (skip Games in one tap) and expands to reveal every app with its own toggle for individual picking",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.2/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.6.2/UnleashedCompanion-unsigned.ipa",
           "size": 25604809,
           "minOSVersion": "17.0"
         },
@@ -230,7 +230,7 @@
           "version": "1.6.1",
           "date": "2026-07-09",
           "localizedDescription": "All The Plugins now groups the update list by install category (the /ext/apps/<category>/ folder each app lands in) with a per-category select/deselect header \u2014 so you can skip a whole category like Games in one tap before installing",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.1/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.6.1/UnleashedCompanion-unsigned.ipa",
           "size": 25597601,
           "minOSVersion": "17.0"
         },
@@ -238,7 +238,7 @@
           "version": "1.6.0",
           "date": "2026-07-09",
           "localizedDescription": "Live WiFi map using the iPhone's GPS: a new WiFi \u2192 Live map (iPhone GPS) screen tags each scan reading relayed from the Flipper with your phone's location and triangulates AP positions in real time (no ESP32 GPS needed). Also: parse Wardrive-format lines (correct SSIDs instead of MAC fragments) and show network encryption.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.6.0/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.6.0/UnleashedCompanion-unsigned.ipa",
           "size": 25586605,
           "minOSVersion": "17.0"
         },
@@ -246,7 +246,7 @@
           "version": "1.5.8",
           "date": "2026-07-09",
           "localizedDescription": "Marauder networks: drop the misleading expand arrow on APs with no clients (a WiFi scan has AP-only data), and show each network's signal (RSSI) + channel inline",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.5.8/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.5.8/UnleashedCompanion-unsigned.ipa",
           "size": 25519330,
           "minOSVersion": "17.0"
         },
@@ -254,7 +254,7 @@
           "version": "1.5.7",
           "date": "2026-07-09",
           "localizedDescription": "New Media Remote screen (Home \u2192 Media): reads the system now-playing (Spotify/Apple Music/any app) and can relay artist+title to a Flipper media_remote FAP over App Bridge, with transport controls. MVP + on-device MediaRemote availability probe.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.5.7/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.5.7/UnleashedCompanion-unsigned.ipa",
           "size": 25512241,
           "minOSVersion": "17.0"
         },
@@ -262,7 +262,7 @@
           "version": "1.5.6",
           "date": "2026-07-08",
           "localizedDescription": "ESP32 update now shows a live '45% \u00b7 2.1 MB / 4.6 MB' caption directly under the progress bar during BOTH the WiFi download and the on-device write (the write phase previously showed only the total size)",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.5.6/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.5.6/UnleashedCompanion-unsigned.ipa",
           "size": 25458533,
           "minOSVersion": "17.0"
         },
@@ -270,7 +270,7 @@
           "version": "1.5.5",
           "date": "2026-07-08",
           "localizedDescription": "ESP32 firmware download now shows live progress \u2014 percent and downloaded/total bytes in the status line and progress bar (streamed instead of fetched in one shot)",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.5.5/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.5.5/UnleashedCompanion-unsigned.ipa",
           "size": 25457489,
           "minOSVersion": "17.0"
         },
@@ -278,7 +278,7 @@
           "version": "1.5.4",
           "date": "2026-07-07",
           "localizedDescription": "Fix: v1.5.3's transfer-activity fix could stall every BLE install by 3s on firmware without App Bridge, and left a wider double-tap re-entrancy window; both fixed",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.5.4/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.5.4/UnleashedCompanion-unsigned.ipa",
           "size": 25448951,
           "minOSVersion": "17.0"
         },
@@ -286,7 +286,7 @@
           "version": "1.5.3",
           "date": "2026-07-07",
           "localizedDescription": "Fix: Tumoflip BLE transfer-activity indicator could miss the whole install if it started during the brief ready\u2192FAB2-negotiated window (issue #18)",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.5.3/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.5.3/UnleashedCompanion-unsigned.ipa",
           "size": 25448384,
           "minOSVersion": "17.0"
         },
@@ -294,7 +294,7 @@
           "version": "1.5.2",
           "date": "2026-07-06",
           "localizedDescription": "Give AppBridgeError and RuntimeDiagnosticsError proper LocalizedError messages \u2014 errors surfaced in the new Runtime diagnostics card (disconnect mid-request, timeout, firmware badcmd/chunk/owner tokens) now show a readable sentence instead of Foundation's generic NSError fallback text.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.5.2/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.5.2/UnleashedCompanion-unsigned.ipa",
           "size": 25448368,
           "minOSVersion": "17.0"
         },
@@ -302,7 +302,7 @@
           "version": "1.5.1",
           "date": "2026-07-06",
           "localizedDescription": "Runtime diagnostics (issue #15): parse the compact FAB2 Runtime contract (feat=pkg,radio,trace,twin), add status/trace/twin async requests, a read-only diagnostics card in Device Info (firmware/commit/dirty, API/target, SD/package state, bridge session/owner, radio state, recent trace ring, live battery % where advertised), and stop sending removed transfer-activity commands against firmware that no longer supports them.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.5.1/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.5.1/UnleashedCompanion-unsigned.ipa",
           "size": 25446940,
           "minOSVersion": "17.0"
         },
@@ -310,7 +310,7 @@
           "version": "1.5.0",
           "date": "2026-07-06",
           "localizedDescription": "Add a Release picker to Community apps (all-the-plugins): pin to any exact GitHub release instead of always trusting Auto/latest \u2014 fixes missing same-day follow-up builds (tag suffixed p2, p3, ...) that Auto hadn't reflected yet, and lets you deliberately roll back.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.5.0/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.5.0/UnleashedCompanion-unsigned.ipa",
           "size": 25407490,
           "minOSVersion": "17.0"
         },
@@ -318,7 +318,7 @@
           "version": "1.4.3",
           "date": "2026-07-05",
           "localizedDescription": "Show per-app file size in the Community apps (all-the-plugins) update list, next to each row's NEW/UPD badge \u2014 matches Firmware packages, which already shows per-file size once a group is expanded.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.4.3/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.4.3/UnleashedCompanion-unsigned.ipa",
           "size": 25372379,
           "minOSVersion": "17.0"
         },
@@ -326,7 +326,7 @@
           "version": "1.4.2",
           "date": "2026-07-05",
           "localizedDescription": "Apps Market polish: crisp pixel-art icon/screenshot rendering (no more blur), no background chip behind icons, opens on Recent (newest) instead of the single Featured pick, and two new top-level filters \u2014 All (alphabetical browse of the whole catalog) and Installed (cross-references what's actually on your connected Flipper's SD).",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.4.2/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.4.2/UnleashedCompanion-unsigned.ipa",
           "size": 25370702,
           "minOSVersion": "17.0"
         },
@@ -334,7 +334,7 @@
           "version": "1.4.1",
           "date": "2026-07-05",
           "localizedDescription": "Rename App Store to Apps Market. Fix icons/screenshots being invisible in dark mode \u2014 they're monochrome 1-bit bitmaps (matching the Flipper's own screen), now rendered as templates that adapt automatically: black on light theme, white on dark theme.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.4.1/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.4.1/UnleashedCompanion-unsigned.ipa",
           "size": 25363884,
           "minOSVersion": "17.0"
         },
@@ -342,7 +342,7 @@
           "version": "1.4.0",
           "date": "2026-07-04",
           "localizedDescription": "Add App Store: browse, search, and install apps from the official Flipper Application Catalog directly from a new App Store tab. Featured/Recent sort, category filters, name search, screenshots/description/changelog, and one-tap install straight to the SD (path-sanitized, hash-verified download, MD5-verified write).",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.4.0/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.4.0/UnleashedCompanion-unsigned.ipa",
           "size": 25360454,
           "minOSVersion": "17.0"
         },
@@ -350,7 +350,7 @@
           "version": "1.3.7",
           "date": "2026-07-04",
           "localizedDescription": "Fix: collapsed section headers (Activity, Developer, Package channel details, etc.) were missing their chevron indicator, making them look like static labels instead of tappable sections. Chevron now shows correctly in both collapsed (\u203a) and expanded (\u2304) states.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.3.7/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.3.7/UnleashedCompanion-unsigned.ipa",
           "size": 25213403,
           "minOSVersion": "17.0"
         },
@@ -358,7 +358,7 @@
           "version": "1.3.6",
           "date": "2026-07-04",
           "localizedDescription": "Minimal interface pass: secondary/diagnostic detail across the app (Relay activity/dev tools, firmware package metadata, WiFi Mapper lists, Marauder network lists, device raw properties, ESP32 version manager) now tucked behind collapsible sections \u2014 auto-expanded only when something needs attention. Primary status/controls stay visible on first glance.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.3.6/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.3.6/UnleashedCompanion-unsigned.ipa",
           "size": 25213538,
           "minOSVersion": "17.0"
         },
@@ -366,7 +366,7 @@
           "version": "1.3.5",
           "date": "2026-07-03",
           "localizedDescription": "1.3.5 \u2014 Fix a crash (SIGTRAP / array index out of bounds) confirmed from on-device crash logs from builds 1.3.2 and 1.3.3 \u2014 pre-dates and is unrelated to the recent write-timeout work. Community apps' changed-list Toggle was bound via ForEach($updater.updates), a positional array-index Binding; the moment that array is mutated (an install completes and removes installed items, or a Protect action, or a fresh check() reassigns it) while the screen is still 'warm' one level back in the navigation stack, SwiftUI could resolve a Toggle's Binding against a now out-of-bounds index and trap. Replaced with an id-based lookup Binding that looks up the row by its stable identity instead of a positional index, so a row whose item has already been removed just becomes a no-op instead of crashing. Swept the rest of the app for the same ForEach($array) pattern \u2014 this was the only instance.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.3.5/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.3.5/UnleashedCompanion-unsigned.ipa",
           "size": 25211624,
           "minOSVersion": "17.0"
         },
@@ -374,7 +374,7 @@
           "version": "1.3.4",
           "date": "2026-07-03",
           "localizedDescription": "1.3.4 \u2014 Fix a transfer-speed regression from 1.3.3's stall-timeout fix. The per-chunk progress touch was going through a Swift actor, adding a real (if small) scheduling hop on every one of the thousands of chunks a large file is split into \u2014 measurable across a multi-MB write. Replaced with a plain lock-guarded class (same pattern used elsewhere in this codebase), which is synchronous and adds no suspension point on the hot per-chunk path. Stall-detection behavior is unchanged.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.3.4/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.3.4/UnleashedCompanion-unsigned.ipa",
           "size": 25210483,
           "minOSVersion": "17.0"
         },
@@ -382,7 +382,7 @@
           "version": "1.3.3",
           "date": "2026-07-02",
           "localizedDescription": "1.3.3 \u2014 Fix large-file BLE installs (e.g. ESP32 Flasher, ~7MB) failing right after the progress bar reaches the end. The RPC layer used a single fixed 300s ceiling for the ENTIRE chunked write, timed from the start \u2014 a large file could legitimately take longer than that to transmit + let the Flipper flush to SD, even while healthy, so the whole write was killed and retried from scratch (repeating the same failure). The timeout is now a 60s STALL threshold that resets on every chunk actually acknowledged (and again while waiting for the final write confirmation) instead of measuring total elapsed time \u2014 a multi-minute transfer that keeps making progress never trips it, while a genuinely dead link is still caught within ~60s of going quiet. Single-frame RPC calls (the vast majority) are unaffected \u2014 this only changes behavior for the one multi-chunk streaming path (file writes).",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.3.3/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.3.3/UnleashedCompanion-unsigned.ipa",
           "size": 25210498,
           "minOSVersion": "17.0"
         },
@@ -390,7 +390,7 @@
           "version": "1.3.2",
           "date": "2026-07-02",
           "localizedDescription": "1.3.2 \u2014 Live WiFi scan mode (#6). New 'Live Scan' screen (toolbar button on the WiFi/Marauder tab) shows access points and clients updating in real time, streamed from the Flipper's WiFi Mapper app over BLE App Bridge \u2014 separate from the existing offline pcap/log analysis, which is untouched. Requires the WiFi Mapper firmware app to have its opt-in live relay armed (hold Down on the Flipper) and App Bridge v2. Reuses the same parsing and network/client list UI as the offline flow, now shared between both screens.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.3.2/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.3.2/UnleashedCompanion-unsigned.ipa",
           "size": 25209145,
           "minOSVersion": "17.0"
         },
@@ -398,7 +398,7 @@
           "version": "1.3.1",
           "date": "2026-07-02",
           "localizedDescription": "1.3.1 \u2014 Firmware packages: stable/dev channel routing (#14). The updater now reads the connected Flipper's identity (firmware_version + firmware_origin_fork) and routes to the matching tumoflip package release: a t-dev-\u2026 build gets dev packages, a stable tmwhflpprarf\u2026 build gets stable packages. A new Package channel card on the Firmware packages screen shows the installed version, origin fork, detected vs selected channel, target package + API, commit, and a dirty-build warning. Unknown or non-tumoflip firmware never silently installs a dev package \u2014 it defaults to stable with an explicit warning; manual Stable/Dev override requires a confirmation dialog. Install still fails closed on any target/API/version/origin mismatch. 8 routing unit tests added (dev/stable/unknown/non-tumoflip/missing-identity/manual override).",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.3.1/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.3.1/UnleashedCompanion-unsigned.ipa",
           "size": 25178646,
           "minOSVersion": "17.0"
         },
@@ -406,7 +406,7 @@
           "version": "1.3.0",
           "date": "2026-07-01",
           "localizedDescription": "1.3.0 \u2014 App Updates: one unified hub instead of two split screens. Firmware packages (tumoflip) and Community apps (all-the-plugins) are now two equal-weight rows in a single 'Sources' card, each collapsing its backend (a 4-group firmware dashboard, or a 50-300 file plugin diff) into one verdict badge. A single combined header line states the overall status ('Everything is up to date' / 'Updates available for firmware and community apps' / 'Needs your attention'). A 'Needs attention' card appears only when something genuinely needs a look (first sync, protected-app review, a failed verify) \u2014 gone otherwise. The buried 'Firmware packages' link is gone from More; there is no longer a path to firmware updates that doesn't go through the same Sources list as plugins. Firmware packages' detail screen was also rebuilt from a plain List onto the app's card design system, matching the rest of the app. Bottom install bar stays a single bar even when both sources have pending installs, with each transaction honestly labeled (firmware groups install atomically; plugin files install individually).",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.3.0/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.3.0/UnleashedCompanion-unsigned.ipa",
           "size": 25135569,
           "minOSVersion": "17.0"
         },
@@ -414,7 +414,7 @@
           "version": "1.2.8",
           "date": "2026-06-30",
           "localizedDescription": "1.2.8 \u2014 Declutter App Updates + protect esp32_wifi_marauder (#13). The main Updates screen now shows far fewer cards at once: the scan-mismatch warning is folded into the changed-apps card instead of its own banner, and the last install's signature verification + legacy-duplicate cleanup are merged into one collapsible 'Last run' card (auto-expanded only when something needs attention). The inline Protected review card is gone from the main screen \u2014 it now lives as a 'Needs review' section at the top of Protected Apps, with clearer per-item wording (e.g. 'GPIO -> ESP32 Wi-Fi (tumoflip route)'). Also: esp32_wifi_marauder is now a protected app (it overlaps the canonical Module One ESP32 Wi-Fi path) instead of being silently auto-installed.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.2.8/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.2.8/UnleashedCompanion-unsigned.ipa",
           "size": 25090418,
           "minOSVersion": "17.0"
         },
@@ -422,7 +422,7 @@
           "version": "1.2.7",
           "date": "2026-06-30",
           "localizedDescription": "1.2.7 \u2014 Fix Firmware packages install showing 'Flipper not connected' while connected over BLE. Installing over BLE drives RPC, which reports not-ready in two cases the screen didn't surface clearly: the link is still finishing connecting (connected but not yet ready), or Claude Buddy passthrough is holding the serial channel. Install now waits up to 8s for the link to reach ready and, if it still can't proceed, shows the actual reason \u2014 'wait for Connected & ready' or 'Claude Buddy passthrough is active \u2014 turn it off in Settings' \u2014 instead of the generic 'Flipper is not connected'.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.2.7/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.2.7/UnleashedCompanion-unsigned.ipa",
           "size": 25089306,
           "minOSVersion": "17.0"
         },
@@ -430,7 +430,7 @@
           "version": "1.2.6",
           "date": "2026-06-30",
           "localizedDescription": "1.2.6 \u2014 Firmware packages loading feedback. Entering Firmware packages (or tapping refresh) now shows a spinner immediately. Previously, when a Flipper was connected the screen ran a silent device-recovery step before fetching the release, so it looked frozen with no loading indication and refresh appeared to do nothing. The load now sets the checking state up front (spinner + status text), the toolbar shows a progress spinner while busy, and entry/refresh share one reload path.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.2.6/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.2.6/UnleashedCompanion-unsigned.ipa",
           "size": 25086314,
           "minOSVersion": "17.0"
         },
@@ -438,7 +438,7 @@
           "version": "1.2.5",
           "date": "2026-06-29",
           "localizedDescription": "1.2.5 \u2014 Routing map cleanup. Removed three inert Module One routing entries (infrared, ibutton, wifi_mapper) that all-the-plugins never ships \u2014 infrared/ibutton are core firmware apps and wifi_mapper is a protected tumoflip custom, so those entries never fired. No functional change to installs; this just keeps the map honest with the new routing-drift CI.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.2.5/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.2.5/UnleashedCompanion-unsigned.ipa",
           "size": 25085453,
           "minOSVersion": "17.0"
         },
@@ -446,7 +446,7 @@
           "version": "1.2.4",
           "date": "2026-06-29",
           "localizedDescription": "1.2.4 \u2014 Legacy-duplicate cleanup, unprotect, and a minimal App Updates screen. After a routed all-the-plugins app installs and verifies at its Module One path, the old pre-routing copy at the source path is removed ONLY when its md5 exactly matches what was just installed; a copy that differs is kept for manual review (could be your custom/older build). The install summary now reports removed duplicates and files kept for review. Protected apps can now be unprotected: swipe a built-in tumoflip protection to lift it (and Re-protect anytime) so all-the-plugins can manage that app. The App Updates screen was reworked to be minimal \u2014 status + actions up top, with verification, cleanup and protected-review tucked into collapsible sections and all secondary navigation grouped under More.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.2.4/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.2.4/UnleashedCompanion-unsigned.ipa",
           "size": 25085076,
           "minOSVersion": "17.0"
         },
@@ -454,7 +454,7 @@
           "version": "1.2.3",
           "date": "2026-06-29",
           "localizedDescription": "1.2.3 \u2014 All-the-plugins Module One routing and protected app review. The plugin updater now installs Module One-related apps into their canonical /ext/apps/Module One folders instead of duplicating them in GPIO/Sub-GHz/Infrared/iButton. Protected tumoflip apps are shown separately, routed rows display their destination, the plugin baseline cache was reset for the new routing model, and transfers report activity to tumoflip firmware 089-033 when supported.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.2.3/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.2.3/UnleashedCompanion-unsigned.ipa",
           "size": 25048992,
           "minOSVersion": "17.0"
         },
@@ -462,7 +462,7 @@
           "version": "1.2.2",
           "date": "2026-06-28",
           "localizedDescription": "1.2.2 \u2014 Signature verification for all-the-plugins, like Firmware packages. Every install was already md5-verified per file on the device; now after an install you get a clear summary card (N installed & verified / M failed), and the failed apps stay listed for a one-tap reinstall. New 'Verify on device' button re-hashes the whole pack on the Flipper against the expected md5 and flags anything missing or corrupted for reinstall \u2014 so you can confirm nothing silently failed to install. Fast over USB SD, slower over BLE (one md5 per file).",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.2.2/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.2.2/UnleashedCompanion-unsigned.ipa",
           "size": 25011226,
           "minOSVersion": "17.0"
         },
@@ -470,7 +470,7 @@
           "version": "1.2.1",
           "date": "2026-06-28",
           "localizedDescription": "1.2.1 \u2014 Fix BLE keep-alive getting stuck in Connecting (#10). Keep-alive previously suppressed the connect timeout entirely, so a link that connected (or was restored by iOS) but never reached app-level ready could sit in Connecting forever while the Flipper held the link and stopped advertising \u2014 the only recovery was toggling Bluetooth on the Flipper. Added a separate ready watchdog that runs for every connection attempt, including keep-alive: if the serial characteristics aren't discovered within the timeout, it clears stale GATT state and forces a clean reconnect. Keep-alive's standing background reconnect is unchanged once a healthy connection is reached. autoConnect no longer early-returns forever on a stale Connecting state.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.2.1/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.2.1/UnleashedCompanion-unsigned.ipa",
           "size": 24998584,
           "minOSVersion": "17.0"
         },
@@ -478,7 +478,7 @@
           "version": "1.2.0",
           "date": "2026-06-28",
           "localizedDescription": "1.2.0 \u2014 Reworked Home & navigation. Home is now organised into three collapsible sections \u2014 Info (Info \u00b7 Apps \u00b7 Files), Tools (AI Radar \u00b7 WiFi \u00b7 Relay \u00b7 ESP32) and Revision (Updates \u00b7 Backup \u00b7 Remotes) \u2014 so the full Files, Relay and WiFi screens live on Home and open with a single back button. The bottom tab bar is slimmed to Home \u00b7 Screen \u00b7 Settings (the gear moved off Home into the tab bar). New Customize Home screen (the sliders button, top-left of Home): drag to reorder tiles within a section, move a tile to another section or hide it from its menu, re-add hidden tiles, and Reset to default \u2014 your layout and each section's collapsed state are saved. Deep links (Files / Relay / WiFi) now open as a push on Home.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.2.0/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.2.0/UnleashedCompanion-unsigned.ipa",
           "size": 24993980,
           "minOSVersion": "17.0"
         },
@@ -486,7 +486,7 @@
           "version": "1.1.38",
           "date": "2026-06-28",
           "localizedDescription": "1.1.38 \u2014 App Updates screen brought into the card design system (#3). The all-the-plugins Updates screen now uses CardScroll/SectionCard like the rest of the app: a status card (with the active file-channel pill), the first-sync/baseline card, an orange warning card for apps that differ from the pack, the changed-plugins card with the bulk-select menu in its header, and Firmware-packages / Protected-apps navigation cards. The plugin list renders in a LazyVStack so large change sets stay smooth. One interaction change: because cards aren't a List, swipe-to-Protect is now a long-press \u2192 Protect (context menu); Protected Apps still uses a deliberate swipe-to-unprotect.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.38/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.38/UnleashedCompanion-unsigned.ipa",
           "size": 24949448,
           "minOSVersion": "17.0"
         },
@@ -494,7 +494,7 @@
           "version": "1.1.37",
           "date": "2026-06-28",
           "localizedDescription": "1.1.37 \u2014 Keep bridge alive in background. New Settings \u2192 Connection toggle (on by default) holds the Bluetooth link open while the app is backgrounded, so the Flipper can trigger the Sber relay (and other App Bridge actions) without you opening the app. Under the hood: a timeout-less standing CoreBluetooth connect that iOS preserves across suspension and app relaunch, plus unbounded auto-reconnect, so the Flipper reconnects automatically the moment it's back in range. Note: this can't survive force-quitting the app from the App Switcher \u2014 that's an iOS limit.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.37/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.37/UnleashedCompanion-unsigned.ipa",
           "size": 24951691,
           "minOSVersion": "17.0"
         },
@@ -502,7 +502,7 @@
           "version": "1.1.36",
           "date": "2026-06-28",
           "localizedDescription": "1.1.36 \u2014 USB SD polish. (1) Mid-session disconnect: a USB file op that fails because the cable was pulled / USB SD Mode closed now drops to BLE and shows a 'USB SD disconnected \u2014 Reconnect' banner instead of raw errors. (2) Chunked write progress: USB writes stream in 256 KB chunks with real progress (then an atomic swap), so large files no longer freeze the bar. (3) Tests: new USBStorageTests cover path mapping + traversal guard, chunked write/read/MD5 round-trip, list/move/delete, and reachability. 98 tests green.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.36/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.36/UnleashedCompanion-unsigned.ipa",
           "size": 24950050,
           "minOSVersion": "17.0"
         },
@@ -510,7 +510,7 @@
           "version": "1.1.35",
           "date": "2026-06-27",
           "localizedDescription": "Fix USB SD channel selection on iOS. The Files screen now exposes USB SD directly, remembers the selected SD card folder with an iOS bookmark, retries USB channel restore on foreground, and falls back to the Files picker when iOS requires fresh permission. BLE remains the live-control channel.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.35/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.35/UnleashedCompanion-unsigned.ipa",
           "size": 24939174,
           "minOSVersion": "17.0"
         },
@@ -518,7 +518,7 @@
           "version": "1.1.34",
           "date": "2026-06-27",
           "localizedDescription": "BLE/USB SD file channel support. Files, plugin updates, tumoflip firmware packages, and ESP32 firmware staging now show whether they use BLE or USB SD Mode; large file/package writes can use the iPhone Files-mounted Flipper SD while live control remains on BLE.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.34/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.34/UnleashedCompanion-unsigned.ipa",
           "size": 24925915,
           "minOSVersion": "17.0"
         },
@@ -526,7 +526,7 @@
           "version": "1.1.33",
           "date": "2026-06-26",
           "localizedDescription": "Files bulk move/delete and ESP32 version manager. Files now supports Select mode with multi-select bulk moves and bulk delete. ESP32 Firmware groups staged Marauder builds by board key, shows active and archived versions, and lets older builds be restored before flashing. C5/WROOM modules keep separate versioned folders. 92 tests green.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.33/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.33/UnleashedCompanion-unsigned.ipa",
           "size": 24850425,
           "minOSVersion": "17.0"
         },
@@ -534,7 +534,7 @@
           "version": "1.1.32",
           "date": "2026-06-26",
           "localizedDescription": "ESP32 firmware archive. The ESP32 screen now keeps the newest staged Marauder firmware visible, moves outdated *_manual folders into /ext/apps_data/esp_flasher/_archive, and exposes archive/restore/delete controls so old versions like 1.12.1/1.12.2 do not clutter the active flashing list. 92 tests green.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.32/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.32/UnleashedCompanion-unsigned.ipa",
           "size": 24792572,
           "minOSVersion": "17.0"
         },
@@ -542,7 +542,7 @@
           "version": "1.1.31",
           "date": "2026-06-26",
           "localizedDescription": "WiFi Mapper AP location estimates. The Marauder WiFi Mapper screen now groups repeated observations by BSSID, estimates approximate AP locations from RSSI-weighted scan points, shows confidence/radius markers on the map, and adds Seen/APs/Both map layers. GPS no-fix points remain filtered out. 90 tests green.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.31/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.31/UnleashedCompanion-unsigned.ipa",
           "size": 24767180,
           "minOSVersion": "17.0"
         },
@@ -550,7 +550,7 @@
           "version": "1.1.30",
           "date": "2026-06-26",
           "localizedDescription": "1.1.30 \u2014 WiFi Mapper GPS placeholder fix. GeoJSON points at 0,0 are now treated as ESP32/Marauder 'GPS has no fix' placeholders and are hidden instead of being plotted on the map. This prevents old and new WiFi Mapper exports with no GPS fix from appearing at the wrong location. 87 tests green.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.30/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.30/UnleashedCompanion-unsigned.ipa",
           "size": 24724374,
           "minOSVersion": "17.0"
         },
@@ -558,7 +558,7 @@
           "version": "1.1.29",
           "date": "2026-06-26",
           "localizedDescription": "1.1.29 \u2014 WiFi Mapper GeoJSON map. Adds a WiFi Mapper screen in the WiFi tab that reads clean/raw GeoJSON exports from /ext/apps_data/wifi_mapper/exports, plots networks on MapKit, supports RSSI filtering, and shows the mapped network list. Includes clean/raw parser coverage and a small ESP32 updater compatibility fix for current Xcode static-helper lookup. 86 tests green.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.29/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.29/UnleashedCompanion-unsigned.ipa",
           "size": 24723978,
           "minOSVersion": "17.0"
         },
@@ -566,7 +566,7 @@
           "version": "1.1.28",
           "date": "2026-06-25",
           "localizedDescription": "1.1.28 \u2014 Fix relay widget (revert to working deep-link). The headless App Intent from 1.1.27 didn't work: an interactive widget Button(intent:) runs in the widget-extension process, which under Feather has no access to the relay credentials (Sber token in the app Keychain, device_id in app UserDefaults \u2014 no shared App Group), so taps did nothing. Restored the deep-link buttons: tapping On/Off/Toggle opens the app and flips the relay via the real RelayExecutor (HA\u2192Sber failover). A truly headless widget toggle would require an App-Group/shared-Keychain-capable signer (SideStore/AltStore). 83 tests green.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.28/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.28/UnleashedCompanion-unsigned.ipa",
           "size": 24594876,
           "minOSVersion": "17.0"
         },
@@ -574,7 +574,7 @@
           "version": "1.1.27",
           "date": "2026-06-25",
           "localizedDescription": "1.1.27 \u2014 Headless relay widget + Files navigation polish. The Relay widget's On/Off/Toggle buttons now use an interactive App Intent (openAppWhenRun=false): tapping them flips the Sber relay in the background WITHOUT opening the app (previously the deep-link opened the app every time). Files: cleaner breadcrumb (Home + Back buttons + path), a folder/file count header, an explicit inset-grouped style and an empty-folder hint. 83 tests green.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.27/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.27/UnleashedCompanion-unsigned.ipa",
           "size": 24604593,
           "minOSVersion": "17.0"
         },
@@ -582,7 +582,7 @@
           "version": "1.1.26",
           "date": "2026-06-25",
           "localizedDescription": "1.1.26 \u2014 WiFi analysis is manual + scoped. Entering the WiFi tab no longer rebuilds anything \u2014 it just lists files and shows the cached overview. Building/rebuilding happens only when you tap Analyze (or \u21bb). New Scope control \u2014 Latest / 5 / 20 / All \u2014 lets you analyze just the newest captures instead of all 200+ (newest is by Marauder's filename index, since the Flipper FS has no real file dates). The button shows the scoped file count and turns into 'Rebuild' once an overview exists; a hint appears when the filter/scope changed so you know to rebuild. 83 tests green.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.26/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.26/UnleashedCompanion-unsigned.ipa",
           "size": 24580051,
           "minOSVersion": "17.0"
         },
@@ -590,7 +590,7 @@
           "version": "1.1.25",
           "date": "2026-06-25",
           "localizedDescription": "1.1.25 \u2014 Stable WiFi overview (no more re-analysis on every visit). The aggregated Marauder overview is now cached: re-entering the WiFi tab or relaunching the app shows the last overview instantly instead of re-reading all 200+ files over BLE. On appear it only lists the folders and re-analyzes when the file set or filter actually changed (content fingerprint); the \u21bb button and the Analyze button still force a full re-scan. The cached overview is also shown immediately on launch. 83 tests green.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.25/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.25/UnleashedCompanion-unsigned.ipa",
           "size": 24564318,
           "minOSVersion": "17.0"
         },
@@ -598,7 +598,7 @@
           "version": "1.1.24",
           "date": "2026-06-24",
           "localizedDescription": "1.1.24 \u2014 Widgets trimmed for Feather. Since Feather doesn't register App Groups, the data-backed widgets (Flipper status, AI Radar) could never get a shared container, so they're removed from the widget gallery to avoid showing blank/offline. Shipped widgets now only need deep links: Quick Actions (Files/Screen/Relay/WiFi) and Relay (On/Off/Toggle buttons), plus the install Live Activity \u2014 all work under Feather. The relay widget shows on/off state only if a shared container exists (SideStore/AltStore); under Feather it shows controls only. Removed the now-irrelevant App Group indicator from Settings. 83 tests green.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.24/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.24/UnleashedCompanion-unsigned.ipa",
           "size": 24543951,
           "minOSVersion": "17.0"
         },
@@ -606,7 +606,7 @@
           "version": "1.1.23",
           "date": "2026-06-24",
           "localizedDescription": "1.1.23 \u2014 New full-bleed app icons + WiFi tab redesign. (1) Icons: replaced with the new edge-to-edge artwork (Light/Dark/Liquid Glass/Liquid Glass\u00b7Dark) \u2014 no border, device naturally framed. (2) WiFi/Marauder: the aggregated statistics now sit at the TOP, right under a compact filter + single Analyze button; the long file list (200+ entries) is collapsed at the bottom, so you no longer scroll past every file to reach the overview. 83 tests green.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.23/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.23/UnleashedCompanion-unsigned.ipa",
           "size": 24576213,
           "minOSVersion": "17.0"
         },
@@ -614,7 +614,7 @@
           "version": "1.1.22",
           "date": "2026-06-24",
           "localizedDescription": "1.1.22 \u2014 Widget App Group fix (build-side). The unsigned IPA now ad-hoc-embeds the com.apple.security.application-groups entitlement into both the app and the widget extension, so a re-signer (Feather/AltStore/Sideloadly) reads it from the existing signature and carries the App Group into its own signature \u2014 previously there was nothing for it to carry, so widgets had no shared container ('Widgets: unavailable'). Combined with the runtime group resolution from 1.1.21, the home-screen widgets should now get live data. Check Settings \u2192 About: 'Widgets: shared \u2713'. No app-code changes.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.22/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.22/UnleashedCompanion-unsigned.ipa",
           "size": 21491886,
           "minOSVersion": "17.0"
         },
@@ -622,7 +622,7 @@
           "version": "1.1.21",
           "date": "2026-06-24",
           "localizedDescription": "1.1.21 \u2014 New icons, folder creation, widget fix. (1) App icons: new full-bleed artwork (no border under iOS's mask) \u2014 primary follows the system (light/dark), plus Settings \u2192 App icon styles: Light, Dark, Liquid Glass, Liquid Glass \u00b7 Dark. (2) Files: 'New folder\u2026' in the toolbar menu \u2014 create folders on the SD (e.g. an Archive to tidy Module One installs). (3) Widgets: app + widget now resolve the real App Group from the provisioning profile so home-screen widgets get live data even when a sideload signer rewrites the group id; Settings \u2192 About shows a 'Widgets: shared \u2713 / unavailable' indicator. 83 tests green.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.21/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.21/UnleashedCompanion-unsigned.ipa",
           "size": 21448977,
           "minOSVersion": "17.0"
         },
@@ -630,7 +630,7 @@
           "version": "1.1.20",
           "date": "2026-06-24",
           "localizedDescription": "1.1.20 \u2014 New app icons. Replaced the icon set with the new 3D Flipper-remote artwork: the primary icon is now Auto (orange in light mode, dark matte in dark mode), and Settings \u2192 App icon offers four fixed styles \u2014 Orange, Dark \u00b7 Matte, Glass, and Dark \u00b7 Glossy. Pick one in Settings; the primary follows the system appearance. No functional changes.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.20/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.20/UnleashedCompanion-unsigned.ipa",
           "size": 18361814,
           "minOSVersion": "17.0"
         },
@@ -638,7 +638,7 @@
           "version": "1.1.19",
           "date": "2026-06-24",
           "localizedDescription": "1.1.19 \u2014 Home-screen widgets. Four new widgets backed by a shared App Group the app keeps up to date: (1) Flipper status \u2014 battery, connected/offline, firmware, device name; (2) AI Radar \u2014 provider usage bars from your bridge; (3) Sber relay \u2014 current on/off state with On/Off/Toggle buttons that drive the real relay (HA\u2192Sber failover) via deep link; (4) Quick actions \u2014 one-tap deep links to Files, Screen, Relay, WiFi. The install Live Activity (now also for FW packages, from 1.1.18) stays. Deep-link scheme unleashed:// added with tab routing. 83 tests green.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.19/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.19/UnleashedCompanion-unsigned.ipa",
           "size": 4110961,
           "minOSVersion": "17.0"
         },
@@ -646,7 +646,7 @@
           "version": "1.1.18",
           "date": "2026-06-23",
           "localizedDescription": "1.1.18 \u2014 Firmware packages install now drives the Live Activity too. The lock-screen banner and Dynamic Island (already used for plugin installs) now also appear when installing FW packages, showing the live per-file progress ('Preparing \u2026' / 'Installing \u2026') with a progress bar \u2014 so you can watch a long BLE install from the lock screen without keeping the app foreground. Ends cleanly on success, dismisses immediately on failure. 83 tests green.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.18/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.18/UnleashedCompanion-unsigned.ipa",
           "size": 4010217,
           "minOSVersion": "17.0"
         },
@@ -654,7 +654,7 @@
           "version": "1.1.17",
           "date": "2026-06-23",
           "localizedDescription": "1.1.17 \u2014 Firmware packages: real-time per-file install progress. Instead of a static 'Installing 0/41', the install row now shows the actual file being processed ('Preparing protocol_vag.fal' while staging, then 'Installing arf_keeloq.fap' while activating) with a determinate progress bar and a live percentage that advances across both phases (staging + activation). Built on the installer's existing per-op journal \u2014 no change to the transaction/rollback safety. 83 tests green.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.17/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.17/UnleashedCompanion-unsigned.ipa",
           "size": 4009359,
           "minOSVersion": "17.0"
         },
@@ -662,7 +662,7 @@
           "version": "1.1.16",
           "date": "2026-06-23",
           "localizedDescription": "1.1.16 \u2014 Firmware packages: fewer 'command timed out' failures. The Flipper 'rename' op is copy+remove on the SD, so a large package file (~300 KB) over a loaded BLE link could exceed the default 30 s RPC ceiling and abort the whole install; storage move/delete now get 90 s. When a Bluetooth command does time out, the error is actionable ('reboot the Flipper, reconnect, retry \u2014 files were rolled back and are safe') instead of a bare 'Command timed out'. Verified the v0.2.8 package archive is intact (41 files, API 87.15). 83 tests green.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.16/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.16/UnleashedCompanion-unsigned.ipa",
           "size": 4007863,
           "minOSVersion": "17.0"
         },
@@ -670,7 +670,7 @@
           "version": "1.1.15",
           "date": "2026-06-23",
           "localizedDescription": "1.1.15 \u2014 Firmware packages: install robustness + cleaner status. The installer now keeps the screen awake (isIdleTimerDisabled) and holds a background-task assertion for the whole BLE install/recovery, so locking the phone or briefly backgrounding the app no longer tears down the link mid-transaction (the cause of the 'rollback could not restore' error). A caution under the Install button and in the progress row reminds you not to lock the phone, and the \u27f3 button now also runs crash-recovery, not just a re-check. Per-group status no longer wraps awkwardly \u2014 title / 'N files \u00b7 size' / status each on their own line. 83 tests green.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.15/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.15/UnleashedCompanion-unsigned.ipa",
           "size": 4007195,
           "minOSVersion": "17.0"
         },
@@ -678,7 +678,7 @@
           "version": "1.1.14",
           "date": "2026-06-23",
           "localizedDescription": "1.1.14 \u2014 Marauder overview is now automatic. On connect (and on refresh) the app discovers every scan/sniff/portal log and aggregates them into the infographic with no button press. It's incremental: tiny text logs are read first so the networks/channels/vendors overview appears almost instantly, then .pcap captures stream in and enrich it live (clients, handshakes). The 'Analyze all' button stays as a manual re-run after you change the filter; aggregation cancels cleanly if you leave the screen. 83 tests green.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.14/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.14/UnleashedCompanion-unsigned.ipa",
           "size": 3996885,
           "minOSVersion": "17.0"
         },
@@ -686,7 +686,7 @@
           "version": "1.1.13",
           "date": "2026-06-23",
           "localizedDescription": "1.1.13 \u2014 Marauder: filter + aggregated infographics. The file list now has a Useful/Captures/Scans/Portal filter (hides info/help/update/status noise by default). New 'Analyze all' parses and MERGES every file in the current filter into one Overview: totals (networks \u00b7 clients \u00b7 creds \u00b7 EAPOL), a networks-per-channel bar chart, and a top-vendors chart (Swift Charts) \u2014 networks deduped by BSSID, clients by MAC (packets summed), credentials deduped. Each file row shows its subfolder. 83 tests green.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.13/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.13/UnleashedCompanion-unsigned.ipa",
           "size": 3991890,
           "minOSVersion": "17.0"
         },
@@ -694,7 +694,7 @@
           "version": "1.1.12",
           "date": "2026-06-23",
           "localizedDescription": "1.1.12 \u2014 Marauder log discovery fixed. The app was only listing the TOP of /ext/apps_data/marauder, but Marauder writes captures into subfolders (pcaps/, logs/, dumps/) \u2014 so it found nothing. findLogs now recurses one level into each root (incl. evil_portal), lists every .pcap/.log/.txt/.csv (skipping empties), sorts by size, and shows each file's subfolder. Also: the scanall text log format ('\u2026 <BSSID> ESSID: <name> <hh> <hh>') now parses the SSID correctly. Verified on-device (real captures are DLT-105 802.11). 81 tests green.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.12/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.12/UnleashedCompanion-unsigned.ipa",
           "size": 3939269,
           "minOSVersion": "17.0"
         },
@@ -702,7 +702,7 @@
           "version": "1.1.11",
           "date": "2026-06-22",
           "localizedDescription": "1.1.11 \u2014 Marauder log import is now diagnostic instead of silently blank. It detects the file format (classic pcap + its link-type/DLT, pcapng, or text), shows file size + parsed counts, and when nothing is found explains the likely cause \u2014 most commonly that the WiFi dev board saved the .pcap to its OWN microSD (not the Flipper SD the app reads), plus pcapng-not-yet-supported and empty/non-802.11 files. 80 tests green.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.11/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.11/UnleashedCompanion-unsigned.ipa",
           "size": 3925281,
           "minOSVersion": "17.0"
         },
@@ -710,7 +710,7 @@
           "version": "1.1.10",
           "date": "2026-06-22",
           "localizedDescription": "1.1.10 \u2014 Firmware packages: each group is now expandable. Tap the chevron on Base / ARF / Module One / Protocol Packs to reveal the exact files it installs (name + size) \u2014 so you can see what's in each group before installing. Verified against the live release (v0.2.2). 79 tests green.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.10/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.10/UnleashedCompanion-unsigned.ipa",
           "size": 3917555,
           "minOSVersion": "17.0"
         },
@@ -718,7 +718,7 @@
           "version": "1.1.9",
           "date": "2026-06-22",
           "localizedDescription": "1.1.9 \u2014 Firmware packages: 'Verify on device' (issue #9). New button hashes the actual .fap/.fal files on the Flipper (deviceMD5) and compares them to the install record, so the badges reflect the real SD contents \u2014 catching files deleted, corrupted, or changed outside the app, which the ledger snapshot alone can't see. On-demand (slower than the snapshot check); files installed outside the app still show 'Not installed' until a real install records them. 79 tests green.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.9/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.9/UnleashedCompanion-unsigned.ipa",
           "size": 3908376,
           "minOSVersion": "17.0"
         },
@@ -726,7 +726,7 @@
           "version": "1.1.8",
           "date": "2026-06-22",
           "localizedDescription": "1.1.8 \u2014 card design system on the remaining utility screens (issue #3). Settings, Backup & Restore, and Remotes are now built from the shared SectionCard/CardScroll components (matching Home/Relay/AI Radar); the Screen-mirror controls get a card surface. Updates keeps its native List (multi-select with swipe-to-protect + bottom install bar \u2014 where a card pass would regress UX). No logic changes; 75 tests green.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.8/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.8/UnleashedCompanion-unsigned.ipa",
           "size": 3894730,
           "minOSVersion": "17.0"
         },
@@ -734,7 +734,7 @@
           "version": "1.1.7",
           "date": "2026-06-22",
           "localizedDescription": "1.1.7 \u2014 Firmware packages: Up to date / Update available status. The screen now shows, per group (Base/ARF/Module One/Protocol Packs) and overall, whether your installed packages match the latest release \u2014 compared by content hash against the on-device install ledger, mirroring the ESP32 updater. Works from the manifest alone (no package zip needed); groups read 'Not installed' until a real install runs.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.7/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.7/UnleashedCompanion-unsigned.ipa",
           "size": 3885100,
           "minOSVersion": "17.0"
         },
@@ -742,7 +742,7 @@
           "version": "1.1.6",
           "date": "2026-06-21",
           "localizedDescription": "1.1.6 \u2014 ESP32 firmware updater fix. Board-image name parsing is now robust: it strips the version, an optional build date (e.g. 20260617), and the 0x10000 flash offset to get a clean board key, so boards like esp32-c5 (esp32c5devkitc1) match their GitHub release asset again \u2014 fixes the 'No \u2026 image in v1.12.2' download error. Each board now also shows Installed vs Latest version explicitly with an Update/Latest badge.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.6/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.6/UnleashedCompanion-unsigned.ipa",
           "size": 3872545,
           "minOSVersion": "17.0"
         },
@@ -750,7 +750,7 @@
           "version": "1.1.5",
           "date": "2026-06-21",
           "localizedDescription": "Fix package installer cleanup: recursively remove staging and rollback directories after commit or recovery. Keeps installed files and dual-slot transaction state intact.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.5/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.5/UnleashedCompanion-unsigned.ipa",
           "size": 3868504,
           "minOSVersion": "17.0"
         },
@@ -758,7 +758,7 @@
           "version": "1.1.4",
           "date": "2026-06-21",
           "localizedDescription": "Package cleanup fix: file existence now uses Storage Stat instead of Timestamp. Tumoflip firmware can return a stale timestamp for a missing FAT path, which caused false legacy cleanup attempts. Includes missing-legacy regression coverage and all prior rollback/no-move protections.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.4/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.4/UnleashedCompanion-unsigned.ipa",
           "size": 3867615,
           "minOSVersion": "17.0"
         },
@@ -766,7 +766,7 @@
           "version": "1.1.3",
           "date": "2026-06-21",
           "localizedDescription": "Package updater reliability: identical live files are now recorded without backup/rename/rewrite, avoiding transient locks on an active companion FAP. Adds a post-Loader-unlock file-handle grace period and regression coverage. Retains the v1.1.2 staged-target rollback protection.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.3/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.3/UnleashedCompanion-unsigned.ipa",
           "size": 3867090,
           "minOSVersion": "17.0"
         },
@@ -774,7 +774,7 @@
           "version": "1.1.2",
           "date": "2026-06-21",
           "localizedDescription": "Critical package-updater fix: rollback no longer deletes untouched staged targets, and active Flipper apps are stopped and verified idle before activation. Adds a regression test for the hardware-reproduced ARF Tools data-loss scenario.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.2/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.2/UnleashedCompanion-unsigned.ipa",
           "size": 3865498,
           "minOSVersion": "17.0"
         },
@@ -782,7 +782,7 @@
           "version": "1.1.1",
           "date": "2026-06-21",
           "localizedDescription": "Fix FAB2 request correlation, strict frame validation and firmware error handling. Add crash-recoverable tumoflip SD package updates with exact firmware/API checks, verified staging, reversible cleanup and rollback.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.1/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.1/UnleashedCompanion-unsigned.ipa",
           "size": 3864187,
           "minOSVersion": "17.0"
         },
@@ -790,7 +790,7 @@
           "version": "1.1.0",
           "date": "2026-06-21",
           "localizedDescription": "1.1.0 \u2014 two engineering issues landed.\n\n#7 App Bridge FAB2 request/response: sendAppBridge is no longer fire-and-forget. New async request API correlates replies by monotonic nonzero request id, reassembles ordered response chunks (<=512B), rejects duplicate/out-of-order/mixed/oversized/trailing frames, surfaces firmware errors as typed Swift errors, and cleans up pending requests on timeout or disconnect. The v2 capability probe is now strict (only a matching runtime/capabilities response negotiates v2; unknown capability keys preserved). FAB1 fallback and event-driven Relay/AI Radar unchanged. 17 unit tests.\n\n#8 Atomic tumoflip package updater (Updates -> Firmware packages): installs Base/ARF/Module One/Protocol Pack SD files from the latest tumoflip release. Manifest (schema v2) validation, path-safety, staging under /ext/.tumoflip, on-device MD5 verify, atomic same-volume activation with a transaction journal, full rollback on any failure, and host-side legacy cleanup only after verified replacement. Byte source is a published tumoflip-packages.zip (firmware release tooling added). 14 unit tests.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.1.0/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.1.0/UnleashedCompanion-unsigned.ipa",
           "size": 3814855,
           "minOSVersion": "17.0"
         },
@@ -798,7 +798,7 @@
           "version": "1.0.0",
           "date": "2026-06-20",
           "localizedDescription": "1.0.0 (build 87) \u2014 Relay state fix. The Sber relay doesn't report a reliable steady state to HA (switch.rele_1 reverts to off seconds after an on command; the template switch sticks on), so the on/off pill now follows your last command \u2014 from the app or the Flipper \u2014 and is persisted across launches, instead of being overwritten by an unreliable HA read. 'Test read state' in Relay Settings is now a comparison-only diagnostic.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v1.0.0/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.0.0/UnleashedCompanion-unsigned.ipa",
           "size": 3683151,
           "minOSVersion": "17.0"
         },
@@ -806,7 +806,7 @@
           "version": "0.9.57",
           "date": "2026-06-20",
           "localizedDescription": "Relay tab decluttered: the main screen is now just the On/Off/Toggle control + current state pill (and a compact bridge/route line). Everything else \u2014 Executor enable + route, Home Assistant URL/state token, Sber account, Activity log, and the Developer raw-frame tool \u2014 moved into a 'Relay Settings' screen behind the gear icon.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.57/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.57/UnleashedCompanion-unsigned.ipa",
           "size": 3686067,
           "minOSVersion": "17.0"
         },
@@ -814,7 +814,7 @@
           "version": "0.9.56",
           "date": "2026-06-20",
           "localizedDescription": "Relay state: optimistic update \u2014 the On/Off/Toggle pill now flips instantly on command, then reconciles with HA. (Pair with HA reading a state source that actually reflects on/off \u2014 see notes.)",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.56/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.56/UnleashedCompanion-unsigned.ipa",
           "size": 3687874,
           "minOSVersion": "17.0"
         },
@@ -822,7 +822,7 @@
           "version": "0.9.55",
           "date": "2026-06-20",
           "localizedDescription": "Notifications: fix the permission prompt never appearing (an old guard flag suppressed it on upgraded installs) \u2014 the app now requests on launch whenever the status is undecided, and Settings has a Notifications row showing On/Off with an Enable button (or a deep link to iOS Settings if denied). Also: Claude Buddy now shows live thinking/Running/Done on the Flipper \u2014 derived from the active session transcript by the Mac relay daemon, independent of plugin hooks (which weren't firing).",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.55/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.55/UnleashedCompanion-unsigned.ipa",
           "size": 3687255,
           "minOSVersion": "17.0"
         },
@@ -830,7 +830,7 @@
           "version": "0.9.54",
           "date": "2026-06-20",
           "localizedDescription": "Relay state diagnosis: the HA state read now retries once on a cold mDNS/DNS timeout (same fix as commands) and surfaces WHY it's Unknown \u2014 '401 bad token', '404 entity not found', timeout, or 'add token+entity' \u2014 instead of silently staying Unknown. Shown under the state pill in Relay \u2192 Quick control.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.54/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.54/UnleashedCompanion-unsigned.ipa",
           "size": 3675965,
           "minOSVersion": "17.0"
         },
@@ -838,7 +838,7 @@
           "version": "0.9.53",
           "date": "2026-06-20",
           "localizedDescription": "Background update notifications: the daily GitHub watcher now tracks BOTH all-the-plugins AND ESP32Marauder firmware releases, posting a local iOS notification when either has a new version (no push/APNs needed \u2014 works with a personal dev cert). ~6h background refresh; first observation per repo is a silent baseline.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.53/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.53/UnleashedCompanion-unsigned.ipa",
           "size": 3670918,
           "minOSVersion": "17.0"
         },
@@ -846,7 +846,7 @@
           "version": "0.9.52",
           "date": "2026-06-20",
           "localizedDescription": "WiFi: pick a log file manually. The toolbar now has a file browser (folder icon) that opens an SD file picker starting at Marauder's save folder (/ext/apps_data/marauder) \u2014 navigate anywhere and tap any file (.pcap/.log/.csv/.txt or other) to analyze it. The refresh icon still auto-scans the known folders.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.52/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.52/UnleashedCompanion-unsigned.ipa",
           "size": 3668446,
           "minOSVersion": "17.0"
         },
@@ -854,7 +854,7 @@
           "version": "0.9.51",
           "date": "2026-06-20",
           "localizedDescription": "WiFi: structured Marauder data. New 802.11 pcap parser (radiotap-aware) pulls saved sniff captures from the Flipper over BLE and shows Networks \u2192 the clients connected to each (with MAC vendor from OUI), plus unassociated clients; text scan logs still parse APs + Evil Portal creds (now with vendor). ESP32 Firmware moved from WiFi to a Home tile.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.51/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.51/UnleashedCompanion-unsigned.ipa",
           "size": 3632308,
           "minOSVersion": "17.0"
         },
@@ -862,7 +862,7 @@
           "version": "0.9.50",
           "date": "2026-06-20",
           "localizedDescription": "ESP32 updater integrity fix: verify the downloaded firmware size against GitHub and md5-verify the on-SD app image after writing, retry once, and never leave a truncated image (which bricked the flash \u2192 'Resetting Board' errors). The 1.7MB write needs the app foregrounded; failures now report bytes-landed clearly instead of silently writing a partial file.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.50/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.50/UnleashedCompanion-unsigned.ipa",
           "size": 3605204,
           "minOSVersion": "17.0"
         },
@@ -870,7 +870,7 @@
           "version": "0.9.49",
           "date": "2026-06-20",
           "localizedDescription": "ESP32 Marauder firmware updater (WiFi \u2192 ESP32 Firmware): checks github.com/justcallmekoko/ESP32Marauder for new releases, detects your installed boards from the esp_flasher *_manual folders, and on update downloads the matching per-board app image and writes a NEW manual folder on the SD (reusing the version-independent bootloader/partitions/boot_app0) \u2014 then flash it from the Flipper's esp_flasher app.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.49/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.49/UnleashedCompanion-unsigned.ipa",
           "size": 3598468,
           "minOSVersion": "17.0"
         },
@@ -878,7 +878,7 @@
           "version": "0.9.48",
           "date": "2026-06-20",
           "localizedDescription": "Relay state + reliability: shows the relay's current On/Off state via the HA REST API (add a long-lived token + entity id under Home Assistant \u2192 'Show on/off state'); state refreshes after each command. Fixes the 'doesn't work the first time' issue \u2014 HA webhook calls now retry once with a longer timeout on a cold mDNS/DNS resolve.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.48/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.48/UnleashedCompanion-unsigned.ipa",
           "size": 3546613,
           "minOSVersion": "17.0"
         },
@@ -886,7 +886,7 @@
           "version": "0.9.47",
           "date": "2026-06-20",
           "localizedDescription": "UI redesign (4/n): compact Home tool tiles (3-col, smaller, shorter labels) and WiFi/Marauder tab restyled to cards with a clear 'reads saved scan logs' explainer (saved-scans card, log-files card, credentials/APs/summary cards).",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.47/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.47/UnleashedCompanion-unsigned.ipa",
           "size": 3522284,
           "minOSVersion": "17.0"
         },
@@ -894,7 +894,7 @@
           "version": "0.9.46",
           "date": "2026-06-20",
           "localizedDescription": "UI redesign (3/n): Flipper battery on the Home hero card \u2014 live from the standard BLE Battery Service (0x180F notify), colored battery glyph + %. AI Radar screen restyled to the card design (Source card with auto-discovery + updated pill, per-provider cards with usage bars and a source/stale pill).",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.46/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.46/UnleashedCompanion-unsigned.ipa",
           "size": 3513434,
           "minOSVersion": "17.0"
         },
@@ -902,7 +902,7 @@
           "version": "0.9.45",
           "date": "2026-06-20",
           "localizedDescription": "UI redesign (2/n): new premium Home dashboard (replaces the Device list) \u2014 connection hero card with v1/v2 App Bridge pill, nearby Flippers, Claude Buddy status, and a card grid for Device info / Installed apps / Updates / AI Radar / Backup / Remotes. Tabs renamed/cleaned (Home, Files, Screen, Relay, WiFi). Files: long-press \u2192 'Move to\u2026' with a folder picker to move files/folders between directories (new FlipperStorage.move via storage rename RPC).",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.45/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.45/UnleashedCompanion-unsigned.ipa",
           "size": 3509876,
           "minOSVersion": "17.0"
         },
@@ -910,7 +910,7 @@
           "version": "0.9.44",
           "date": "2026-06-20",
           "localizedDescription": "UI redesign (1/n): new card-based design system (Theme: cards, status pills, pill buttons) and a fully refactored Relay tab \u2014 premium card layout, real On/Off/Toggle controls (no more 'Test' buttons), Sber account card with status pill + collapsible manual-token, Home Assistant card, styled activity feed, and the raw frame sender tucked into a Developer disclosure.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.44/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.44/UnleashedCompanion-unsigned.ipa",
           "size": 3458928,
           "minOSVersion": "17.0"
         },
@@ -918,7 +918,7 @@
           "version": "0.9.43",
           "date": "2026-06-20",
           "localizedDescription": "Show negotiated App Bridge version in Settings (v1/FAB1 vs v2/FAB2) so it's visible in-app instead of only in OSLog. Settings -> bottom: 'App Bridge: v1 (FAB1)' on current firmware, turns green 'v2 (FAB2)' once you connect to an App Bridge v2 firmware.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.43/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.43/UnleashedCompanion-unsigned.ipa",
           "size": 3423245,
           "minOSVersion": "17.0"
         },
@@ -926,7 +926,7 @@
           "version": "0.9.42",
           "date": "2026-06-20",
           "localizedDescription": "App Bridge v2 (FAB2) support: the app now probes runtime/capabilities on connect and auto-upgrades to FAB2 framing (16-byte header, request ids, 160-byte chunking) when the firmware supports it, falling back to FAB1 otherwise. Fully backward compatible \u2014 no change on current 87.12 firmware; auto-switches once you flash an App Bridge v2 build. Decoder accepts both FAB1 and FAB2.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.42/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.42/UnleashedCompanion-unsigned.ipa",
           "size": 3419749,
           "minOSVersion": "17.0"
         },
@@ -934,7 +934,7 @@
           "version": "0.9.41",
           "date": "2026-06-19",
           "localizedDescription": "Claude Buddy passthrough is now self-arming and safe to leave ON. It pauses RPC (Device/Files/View) ONLY while the Claude Buddy app is actually the live serial peer on the Flipper (detected from its JSON stream); otherwise RPC works normally and nothing is written to the link. Fixes: no Device Info / screen / files + periodic disconnects that happened when the toggle was left on without the Buddy app open. App Bridge (AI Radar, Relay) is unaffected either way.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.41/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.41/UnleashedCompanion-unsigned.ipa",
           "size": 3414086,
           "minOSVersion": "17.0"
         },
@@ -942,7 +942,7 @@
           "version": "0.9.40",
           "date": "2026-06-19",
           "localizedDescription": "Fix periodic BLE disconnects in Claude Buddy passthrough: Buddy now writes raw to the serial char (credit-free), matching the plugin host-bridge. The old credit-gated path stalled (the Buddy .fap doesn't feed the RPC flow-control buffer) and tripped the stall-watchdog into forced reconnects. Note: while Buddy passthrough is ON, RPC is paused by design, so the Device tab won't show Flipper info until you turn it off.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.40/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.40/UnleashedCompanion-unsigned.ipa",
           "size": 3411490,
           "minOSVersion": "17.0"
         },
@@ -950,7 +950,7 @@
           "version": "0.9.39",
           "date": "2026-06-19",
           "localizedDescription": "Fix Claude Buddy passthrough corruption: while the Buddy app owns the Flipper serial channel, RPC is now hard-disabled (no writes, no parsing) so background features can't interleave protobuf with Buddy JSON. That interleaving was what showed up as Cyrillic glyphs instead of the command and crashed the .fap (furi_check). Buttons + notifications now run clean.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.39/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.39/UnleashedCompanion-unsigned.ipa",
           "size": 3408426,
           "minOSVersion": "17.0"
         },
@@ -958,7 +958,7 @@
           "version": "0.9.38",
           "date": "2026-06-19",
           "localizedDescription": "Full-duplex Claude Buddy: the iPhone now bridges the REAL claude_buddy.fap on the Flipper to a Mac relay daemon \u2014 its serial is piped both ways over the AI Radar Bridge (notifications shown on Buddy + Buddy buttons type into Claude Code). No more flaky direct USB/BLE bridge. Enable in Settings -> Claude Buddy passthrough.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.38/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.38/UnleashedCompanion-unsigned.ipa",
           "size": 3407725,
           "minOSVersion": "17.0"
         },
@@ -966,7 +966,7 @@
           "version": "0.9.37",
           "date": "2026-06-19",
           "localizedDescription": "Claude Buddy over App Bridge: new BuddyRelay polls the Mac (AI Radar Bridge /buddy queue) and forwards Claude Code notifications to the Flipper companion as pager/notify frames \u2014 coexists with the iPhone BLE link. Toggle in Settings \u2192 Claude Buddy. (Mac side: AIRadarBridge /buddy endpoint.)",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.37/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.37/UnleashedCompanion-unsigned.ipa",
           "size": 3403549,
           "minOSVersion": "17.0"
         },
@@ -974,7 +974,7 @@
           "version": "0.9.36",
           "date": "2026-06-19",
           "localizedDescription": "Refined Dolphin icon: redesigned silhouette (long rostrum, hooked dorsal, flukes, eye, pectoral) rendered at 4x + downsampled for glass-smooth anti-aliased edges \u2014 no more low-poly look. Light/dark/tinted variants.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.36/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.36/UnleashedCompanion-unsigned.ipa",
           "size": 3391184,
           "minOSVersion": "17.0"
         },
@@ -982,7 +982,7 @@
           "version": "0.9.35",
           "date": "2026-06-18",
           "localizedDescription": "New Dolphin app icon (original cyan cetacean silhouette) as a 5th choice alongside Device/Radar/Key/Bolt \u2014 each with light/dark/tinted for Liquid Glass. Pick it in Settings \u2192 App icon.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.35/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.35/UnleashedCompanion-unsigned.ipa",
           "size": 3290077,
           "minOSVersion": "17.0"
         },
@@ -990,7 +990,7 @@
           "version": "0.9.34",
           "date": "2026-06-18",
           "localizedDescription": "Icons reworked: 4 DISTINCT designs (Device/Radar/Key/Bolt), not just recolors. Each ships light, dark and tinted appearance variants so iOS 26 applies Liquid Glass adapted to the system light/dark theme. Settings labels updated to the motif names.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.34/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.34/UnleashedCompanion-unsigned.ipa",
           "size": 3219529,
           "minOSVersion": "17.0"
         },
@@ -998,7 +998,7 @@
           "version": "0.9.33",
           "date": "2026-06-18",
           "localizedDescription": "Phase 6 finish: first-run onboarding (pairing \u2192 App Bridge \u2192 Sber \u2192 AI Radar \u2192 backup/remotes; re-openable from Settings). Added a unit-test target for the wire protocols (App Bridge frame, AI Radar parser, RPC varint) \u2014 run from Xcode; verified the logic passes. PSA offload landed Mac-side earlier.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.33/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.33/UnleashedCompanion-unsigned.ipa",
           "size": 3216325,
           "minOSVersion": "17.0"
         },
@@ -1006,7 +1006,7 @@
           "version": "0.9.32",
           "date": "2026-06-18",
           "localizedDescription": "AI Radar auto-discovery: the Mac bridge now advertises over Bonjour and the iPhone finds it automatically (by .local host, survives the Mac's DHCP IP changes) \u2014 leave the bridge URL empty. Explains why the URL kept changing: it was the Mac's LAN IP.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.32/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.32/UnleashedCompanion-unsigned.ipa",
           "size": 2156990,
           "minOSVersion": "17.0"
         },
@@ -1014,7 +1014,7 @@
           "version": "0.9.31",
           "date": "2026-06-18",
           "localizedDescription": "Phase 5: Live Activity for plugin install \u2014 lock-screen + Dynamic Island progress while a pack installs (new WidgetKit extension + shared framework, no App Group). NSSupportsLiveActivities enabled.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.31/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.31/UnleashedCompanion-unsigned.ipa",
           "size": 2147302,
           "minOSVersion": "17.0"
         },
@@ -1022,7 +1022,7 @@
           "version": "0.9.30",
           "date": "2026-06-18",
           "localizedDescription": "Phase 4: Remotes \u2014 favorite saved .sub files (Files \u2192 long-press \u2192 Add to Remotes) and fire them with big one-tap buttons from Device \u2192 Remotes. BadUSB/text editing already covered by the file editor (long-press \u2192 Edit text).",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.30/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.30/UnleashedCompanion-unsigned.ipa",
           "size": 2109453,
           "minOSVersion": "17.0"
         },
@@ -1030,7 +1030,7 @@
           "version": "0.9.29",
           "date": "2026-06-18",
           "localizedDescription": "Phase 3: Backup & Restore (Device \u2192 Backup & Restore). Pick SD folders, back them up to a timestamped zip on the phone over BLE (apps/update unticked by default), share or restore any backup back to the Flipper with intermediate dirs created.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.29/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.29/UnleashedCompanion-unsigned.ipa",
           "size": 2090358,
           "minOSVersion": "17.0"
         },
@@ -1038,7 +1038,7 @@
           "version": "0.9.28",
           "date": "2026-06-18",
           "localizedDescription": "Phase 2: Siri/Shortcuts \u2014 toggle/on/off the Sber relay by voice via the cloud (works without the Flipper). Background check for new all-the-plugins releases with a local notification when a new pack drops.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.28/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.28/UnleashedCompanion-unsigned.ipa",
           "size": 2042951,
           "minOSVersion": "17.0"
         },
@@ -1046,7 +1046,7 @@
           "version": "0.9.27",
           "date": "2026-06-18",
           "localizedDescription": "Phase 1: clean macOS junk (._*/.DS_Store/service dirs) from the SD over BLE (Files \u2192 upload menu); screenshot the screen mirror and share it (View \u2192 camera). Device info already shows firmware.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.27/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.27/UnleashedCompanion-unsigned.ipa",
           "size": 2019103,
           "minOSVersion": "17.0"
         },
@@ -1054,7 +1054,7 @@
           "version": "0.9.26",
           "date": "2026-06-18",
           "localizedDescription": "Move the built-in app launcher (Sub-GHz/NFC/RFID/IR/BadUSB/GPIO) from Files to the View (screen mirror) tab. Fix version: IPA now carries the real CFBundleShortVersionString (was pinned at 0.9.4 \u2014 Feather showed it). New 4 app icons (Orange/Mono/Green/Purple) with light/dark/tinted appearance variants for iOS 26 Liquid Glass.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.26/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.26/UnleashedCompanion-unsigned.ipa",
           "size": 1998869,
           "minOSVersion": "17.0"
         },
@@ -1062,7 +1062,7 @@
           "version": "0.9.25",
           "date": "2026-06-17",
           "localizedDescription": "Sber: log in directly in the app \u2014 new 'Log in with Sber' button in the Relay tab runs the real OAuth (auth-code + PKCE, companionapp:// redirect) in a WKWebView with the Russian Trusted CA injected, exchanges the code, stores the token, and auto-refreshes after. No more Home Assistant token-copying. Manual JSON paste kept as fallback.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.25/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.25/UnleashedCompanion-unsigned.ipa",
           "size": 3984201,
           "minOSVersion": "17.0"
         },
@@ -1070,7 +1070,7 @@
           "version": "0.9.24",
           "date": "2026-06-16",
           "localizedDescription": "Restore sub/nfc/rfid swipe actions (Edit moved to long-press context menu; tap-to-edit now only for plain-text files). Fix the stale Flipper bridge: on launch a system-held connection from the previous app process is force-disconnected and reconnected fresh (its RPC session was dead), so reconnect works without toggling the Flipper's Bluetooth.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.24/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.24/UnleashedCompanion-unsigned.ipa",
           "size": 3961231,
           "minOSVersion": "17.0"
         },
@@ -1078,7 +1078,7 @@
           "version": "0.9.23",
           "date": "2026-06-16",
           "localizedDescription": "Edit text files on the Flipper (like the App Store app): tap a text file in Files to open a monospaced editor, or swipe \u2192 Edit on any file. Reads fresh over BLE, writes the whole file back on Save and verifies by md5; binary/too-large files are detected and refused.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.23/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.23/UnleashedCompanion-unsigned.ipa",
           "size": 3959858,
           "minOSVersion": "17.0"
         },
@@ -1086,7 +1086,7 @@
           "version": "0.9.22",
           "date": "2026-06-16",
           "localizedDescription": "Tab bar shift in dark theme fixed: the forced color scheme is now applied at the UIWindow level (overrideUserInterfaceStyle) before first layout, instead of SwiftUI's late .preferredColorScheme which re-laid-out the tab bar (and shifted labels) when the app theme differed from the system theme.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.22/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.22/UnleashedCompanion-unsigned.ipa",
           "size": 3932791,
           "minOSVersion": "17.0"
         },
@@ -1094,7 +1094,7 @@
           "version": "0.9.21",
           "date": "2026-06-16",
           "localizedDescription": "Settings screen (gear, top-left of Device): theme System/Light/Dark and 4 app icons (Orange/Mono/Green/Purple). Tab bar fix: opaque appearance on standard+scrollEdge so labels stop rendering shifted on first paint. BLE state restoration + connect watchdog: reclaim a Flipper still showing 'connected' after an app relaunch instead of leaving it half-open and unconnectable.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.21/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.21/UnleashedCompanion-unsigned.ipa",
           "size": 3929064,
           "minOSVersion": "17.0"
         },
@@ -1102,7 +1102,7 @@
           "version": "0.9.20",
           "date": "2026-06-16",
           "localizedDescription": "AI Radar refresh works backgrounded/locked \u2014 same bluetooth-central path as Sber Relay (my earlier 'foreground only' note was wrong). Added a background-task assertion so the fetch + BLE write-back finishes when woken by the Flipper's event. Needs the phone on the same network as the Mac.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.20/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.20/UnleashedCompanion-unsigned.ipa",
           "size": 2475329,
           "minOSVersion": "17.0"
         },
@@ -1110,7 +1110,7 @@
           "version": "0.9.19",
           "date": "2026-06-16",
           "localizedDescription": "Flipper-triggered AI Radar: long-press OK on the Flipper's AI Dashboard sends ai_dashboard/refresh over the App Bridge; the phone fetches usage from the Mac and streams it back to the Flipper (Flipper\u2192phone\u2192Mac\u2192phone\u2192Flipper), no manual phone tap. Claude 'stale' marker when its OAuth token is expired so a cached 100% isn't shown as current.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.19/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.19/UnleashedCompanion-unsigned.ipa",
           "size": 2474945,
           "minOSVersion": "17.0"
         },
@@ -1118,7 +1118,7 @@
           "version": "0.9.18",
           "date": "2026-06-16",
           "localizedDescription": "AI Radar over the network: iOS now pulls usage from the Mac AI Radar Bridge app and writes usage.txt to the Flipper itself (Mac \u2192 phone \u2192 Flipper). Set the bridge URL on the AI Radar screen; empty still reads usage.txt straight off the Flipper.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.18/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.18/UnleashedCompanion-unsigned.ipa",
           "size": 2467592,
           "minOSVersion": "17.0"
         },
@@ -1126,7 +1126,7 @@
           "version": "0.9.17",
           "date": "2026-06-16",
           "localizedDescription": "Bring AI Radar back \u2014 as a read-only iOS view. The Mac bridge stays the data collector (it needs the codex/claude CLIs); iOS reads the Flipper's /ext/apps_data/ai_dashboard/usage.txt over BLE and shows the same per-provider usage the on-device app does. New Device \u2192 AI Radar screen.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.17/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.17/UnleashedCompanion-unsigned.ipa",
           "size": 2464060,
           "minOSVersion": "17.0"
         },
@@ -1134,7 +1134,7 @@
           "version": "0.9.16",
           "date": "2026-06-16",
           "localizedDescription": "Fix tab bar (dock) rendering crooked/truncated on first paint: removed the custom UITabBarAppearance font that broke layout metrics until a re-layout. Back to native rendering; Bridge tab renamed Relay so every label fits at the default size.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.16/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.16/UnleashedCompanion-unsigned.ipa",
           "size": 2431178,
           "minOSVersion": "17.0"
         },
@@ -1142,7 +1142,7 @@
           "version": "0.9.15",
           "date": "2026-06-16",
           "localizedDescription": "Implement Flipper's BLE serial flow control (the thing the official app does and we didn't): honor the flow-control characteristic credit (1024B RPC buffer, refilled on buffer-empty notify), write .withoutResponse in <=486B chunks gated by canSendWriteWithoutResponse. This is the real fix for file installs over BLE \u2014 no more overrun/wedge/md5-mismatch.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.15/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.15/UnleashedCompanion-unsigned.ipa",
           "size": 2433489,
           "minOSVersion": "17.0"
         },
@@ -1150,7 +1150,7 @@
           "version": "0.9.14",
           "date": "2026-06-16",
           "localizedDescription": "Kill the multi-minute install hang: a write-stall watchdog detects a wedged BLE link in 8s (Flipper stops acking mid-upload) and forces a reconnect instead of waiting out the 300s RPC timeout; the write queue is flushed so retries aren't poisoned by a stuck in-flight chunk.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.14/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.14/UnleashedCompanion-unsigned.ipa",
           "size": 2432429,
           "minOSVersion": "17.0"
         },
@@ -1158,7 +1158,7 @@
           "version": "0.9.13",
           "date": "2026-06-16",
           "localizedDescription": "Install verify: re-check md5 after a short delay (handles slow SD flush) and, on real mismatch, report device-vs-source file size so truncation vs corruption is clear. Diagnostic step toward the remaining md5-mismatch on installs.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.13/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.13/UnleashedCompanion-unsigned.ipa",
           "size": 2431084,
           "minOSVersion": "17.0"
         },
@@ -1166,7 +1166,7 @@
           "version": "0.9.12",
           "date": "2026-06-16",
           "localizedDescription": "Fix file installs over BLE: writes are now confirmation-driven (send next chunk only after the Flipper acks the previous) instead of blasting frames, which was overrunning the link and dropping it mid-upload ('not connected'). Progress now tracks real acks. Screen tab renamed View so it fits.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.12/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.12/UnleashedCompanion-unsigned.ipa",
           "size": 2434500,
           "minOSVersion": "17.0"
         },
@@ -1174,7 +1174,7 @@
           "version": "0.9.11",
           "date": "2026-06-16",
           "localizedDescription": "BLE: reattach to a Flipper the system still holds (it stops advertising while connected) instead of a scan that finds nothing \u2014 fixes 'rescan doesn't see Flipper until I toggle its BLE'. Reattach on foreground + remember last device. Sber relay: clear 'set device_id' message instead of cryptic 405 when device_id is empty; trust-OK log lines no longer shown as errors. Tab labels no longer truncate (Screen).",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.11/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.11/UnleashedCompanion-unsigned.ipa",
           "size": 2431349,
           "minOSVersion": "17.0"
         },
@@ -1182,7 +1182,7 @@
           "version": "0.9.10",
           "date": "2026-06-16",
           "localizedDescription": "Select menu in Updates is now a full-width tappable row (whole cell responds, not just the text) with a chevron affordance.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.10/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.10/UnleashedCompanion-unsigned.ipa",
           "size": 2424662,
           "minOSVersion": "17.0"
         },
@@ -1190,7 +1190,7 @@
           "version": "0.9.9",
           "date": "2026-06-16",
           "localizedDescription": "Real-time install progress (per-file name + byte bar, no more guessing if it hung). Install now retries each app up to 3x, waiting for BLE to reconnect after a blip, fixing 'Flipper not connected' mid/after install. Marauder tab renamed WiFi so the label fits.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.9/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.9/UnleashedCompanion-unsigned.ipa",
           "size": 2420041,
           "minOSVersion": "17.0"
         },
@@ -1198,7 +1198,7 @@
           "version": "0.9.8",
           "date": "2026-06-16",
           "localizedDescription": "Fix: updates failing with 'Flipper not connected' while BLE shows connected. RPC now waits for the link to reach ready (covers connect\u2192ready gap + reconnect blips) instead of failing instantly; status dot is now yellow until truly ready; clearer message if not ready.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.8/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.8/UnleashedCompanion-unsigned.ipa",
           "size": 2405529,
           "minOSVersion": "17.0"
         },
@@ -1206,7 +1206,7 @@
           "version": "0.9.7",
           "date": "2026-06-16",
           "localizedDescription": "Device info screen (model, firmware, region, radio stack, battery + full property dump) like the official app. Auto-sync: installed-apps list refreshes itself after any install/update/upload/delete.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.7/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.7/UnleashedCompanion-unsigned.ipa",
           "size": 2402202,
           "minOSVersion": "17.0"
         },
@@ -1214,7 +1214,7 @@
           "version": "0.9.6",
           "date": "2026-06-16",
           "localizedDescription": "Protected apps moved to their own screen (lock.shield row in Updates). Unprotect is now a deliberate left-swipe instead of a one-tap minus, so apps can't be unprotected by accident.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.6/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.6/UnleashedCompanion-unsigned.ipa",
           "size": 2370552,
           "minOSVersion": "17.0"
         },
@@ -1222,7 +1222,7 @@
           "version": "0.9.5",
           "date": "2026-06-15",
           "localizedDescription": "Fix: BLE file-write pacing (large app installs no longer silently fail) + install failures now verified by md5 and reported, not hidden behind a fake success.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.5/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.5/UnleashedCompanion-unsigned.ipa",
           "size": 2366083,
           "minOSVersion": "17.0"
         },
@@ -1230,7 +1230,7 @@
           "version": "0.9.4",
           "date": "2026-06-15",
           "localizedDescription": "Fix: Device tab stop-scan button now actually stops the scan (state reset).",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.4/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.4/UnleashedCompanion-unsigned.ipa",
           "size": 2363060,
           "minOSVersion": "17.0"
         },
@@ -1238,7 +1238,7 @@
           "version": "0.9.3",
           "date": "2026-06-15",
           "localizedDescription": "Installed apps: sort by Name/Size (Flipper FS has no per-file mtime, so no install-date sort). Use Updates history for install records.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.3/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.3/UnleashedCompanion-unsigned.ipa",
           "size": 2362948,
           "minOSVersion": "17.0"
         },
@@ -1246,7 +1246,7 @@
           "version": "0.9.2",
           "date": "2026-06-15",
           "localizedDescription": "Installed apps: sort by Name / Size / Time (install time = .fap mtime on SD).",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.2/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.2/UnleashedCompanion-unsigned.ipa",
           "size": 2374250,
           "minOSVersion": "17.0"
         },
@@ -1254,7 +1254,7 @@
           "version": "0.9.1",
           "date": "2026-06-15",
           "localizedDescription": "Installed apps: sort by 'recently installed' to find the last-added app. Timestamp via storage RPC.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.1/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.1/UnleashedCompanion-unsigned.ipa",
           "size": 2371127,
           "minOSVersion": "17.0"
         },
@@ -1262,7 +1262,7 @@
           "version": "0.9.0",
           "date": "2026-06-15",
           "localizedDescription": "First Feather-distributed build.",
-          "downloadURL": "https://github.com/squazaryu/unleashed-companion/releases/download/v0.9.0/UnleashedCompanion-unsigned.ipa",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v0.9.0/UnleashedCompanion-unsigned.ipa",
           "size": 2354172,
           "minOSVersion": "17.0"
         }
