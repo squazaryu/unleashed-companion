@@ -24,42 +24,38 @@ struct DolphinGalleryView: View {
 
     private var libraryCard: some View {
         SectionCard(title: "Animation library", systemImage: "photo.stack") {
-            libraryDisclosure(
-                source: .legacy,
-                count: DolphinCatalog.legacy.count
-            ) {
+            ForEach(DolphinLibrarySource.allCases) { source in
+                if source != .legacy {
+                    Divider().opacity(0.4)
+                }
+                librarySource(source)
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func librarySource(_ source: DolphinLibrarySource) -> some View {
+        if source == .legacy {
+            libraryDisclosure(source: source, count: DolphinCatalog.legacy.count) {
                 LazyVGrid(columns: libraryColumns, spacing: 10) {
                     ForEach(DolphinCatalog.legacy) { animation in
                         DolphinAnimationPreview(animation: animation)
                     }
                 }
             }
-
-            Divider().opacity(0.4)
-
+        } else {
+            let packs = DolphinPackCatalog.packs(for: source)
             libraryDisclosure(
-                source: .momentum,
-                count: model.animations(for: .momentum).count,
-                total: DolphinPackCatalog.momentum.count
+                source: source,
+                count: model.animations(for: source).count,
+                total: packs.count
             ) {
-                packRows(DolphinPackCatalog.momentum)
-                Link(destination: DolphinPackCatalog.momentumRepository) {
-                    Label("Momentum source", systemImage: "arrow.up.right.square")
-                        .font(.caption)
-                }
-            }
-
-            Divider().opacity(0.4)
-
-            libraryDisclosure(
-                source: .talkingSasquach,
-                count: model.animations(for: .talkingSasquach).count,
-                total: DolphinPackCatalog.talkingSasquach.count
-            ) {
-                packRows(DolphinPackCatalog.talkingSasquach)
-                Link(destination: DolphinPackCatalog.talkingSasquachRepository) {
-                    Label("Talking Sasquach source", systemImage: "arrow.up.right.square")
-                        .font(.caption)
+                packRows(packs)
+                if let repository = DolphinPackCatalog.repository(for: source) {
+                    Link(destination: repository) {
+                        Label("\(source.rawValue) source", systemImage: "arrow.up.right.square")
+                            .font(.caption)
+                    }
                 }
             }
         }
@@ -113,7 +109,7 @@ struct DolphinGalleryView: View {
     }
 
     private func packRows(_ packs: [DolphinPackDescriptor]) -> some View {
-        VStack(spacing: 0) {
+        LazyVStack(spacing: 0) {
             ForEach(packs) { pack in
                 DolphinPackRow(
                     descriptor: pack,
@@ -336,6 +332,7 @@ private struct DolphinCollectionEditor: View {
     @State private var name: String
     @State private var selection: Set<String>
     @State private var expandedSources: Set<DolphinLibrarySource> = []
+    @State private var searchText = ""
 
     init(
         collection: DolphinCollection?,
@@ -361,13 +358,13 @@ private struct DolphinCollectionEditor: View {
                     Button {
                         selection = Set(animations.map(\.id))
                     } label: {
-                        Label("Select all", systemImage: "checkmark.circle")
+                        Label("Select all wallpapers", systemImage: "checkmark.circle")
                     }
                     Spacer()
                     Button {
                         selection.removeAll()
                     } label: {
-                        Label("Clear", systemImage: "xmark.circle")
+                        Label("Clear all", systemImage: "xmark.circle")
                     }
                 }
                 .font(.subheadline)
@@ -383,6 +380,7 @@ private struct DolphinCollectionEditor: View {
         .background(Color(.systemGroupedBackground))
         .navigationTitle("Collection")
         .navigationBarTitleDisplayMode(.inline)
+        .searchable(text: $searchText, prompt: "Search wallpapers")
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
                 Button("Save") {
@@ -403,6 +401,11 @@ private struct DolphinCollectionEditor: View {
 
     private func animationDisclosure(_ source: DolphinLibrarySource) -> some View {
         let sourceAnimations = animations.filter { $0.source == source }
+        let visibleAnimations = sourceAnimations.filter {
+            searchText.isEmpty || $0.title.localizedCaseInsensitiveContains(searchText)
+        }
+        let sourceIDs = Set(sourceAnimations.map(\.id))
+        let allSourceSelected = !sourceIDs.isEmpty && sourceIDs.isSubset(of: selection)
         return DisclosureGroup(isExpanded: expansionBinding(for: source)) {
             if sourceAnimations.isEmpty {
                 Label("No installed animations", systemImage: "tray")
@@ -411,11 +414,33 @@ private struct DolphinCollectionEditor: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.vertical, 8)
             } else {
+                HStack {
+                    Text("\(sourceAnimations.count) installed")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                    Spacer()
+                    Button {
+                        if allSourceSelected {
+                            selection.subtract(sourceIDs)
+                        } else {
+                            selection.formUnion(sourceIDs)
+                        }
+                    } label: {
+                        Label(
+                            allSourceSelected ? "Clear" : "Select all",
+                            systemImage: allSourceSelected ? "xmark.circle" : "checkmark.circle"
+                        )
+                    }
+                    .buttonStyle(.bordered)
+                    .controlSize(.small)
+                }
+                .padding(.top, 10)
+
                 LazyVGrid(columns: [
                     GridItem(.flexible(), spacing: 10),
                     GridItem(.flexible(), spacing: 10),
                 ], spacing: 10) {
-                    ForEach(sourceAnimations) { animation in
+                    ForEach(visibleAnimations) { animation in
                         DolphinAnimationTile(
                             animation: animation,
                             selected: selection.contains(animation.id)
@@ -428,7 +453,11 @@ private struct DolphinCollectionEditor: View {
                         }
                     }
                 }
-                .padding(.top, 10)
+
+                if visibleAnimations.isEmpty {
+                    ContentUnavailableView.search(text: searchText)
+                        .frame(maxWidth: .infinity)
+                }
             }
         } label: {
             HStack {

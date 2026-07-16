@@ -6,6 +6,10 @@ enum DolphinLibrarySource: String, CaseIterable, Codable, Identifiable {
     case legacy = "Legacy"
     case momentum = "Momentum"
     case talkingSasquach = "Talking Sasquach"
+    case kuronons = "Kuronons"
+    case haseo = "Haseo"
+    case stopOxy = "stop oxy"
+    case wr3nch = "WR3NCH"
 
     var id: String { rawValue }
 
@@ -14,14 +18,30 @@ enum DolphinLibrarySource: String, CaseIterable, Codable, Identifiable {
         case .legacy: return "archivebox"
         case .momentum: return "bolt.horizontal.circle"
         case .talkingSasquach: return "person.wave.2"
+        case .kuronons: return "paintpalette"
+        case .haseo: return "film.stack"
+        case .stopOxy: return "sparkles.tv"
+        case .wr3nch: return "wrench.and.screwdriver"
         }
     }
+}
+
+struct DolphinRemoteFile: Hashable, Codable {
+    let name: String
+    let sha256: String
 }
 
 struct DolphinPackDescriptor: Identifiable, Hashable {
     enum Payload: Hashable {
         case bundled(resourcePath: String)
         case remoteZip(url: URL, sha256: String)
+        case remoteFiles(baseURL: URL, files: [DolphinRemoteFile])
+        case repositoryArchive(
+            url: URL,
+            sha256: String,
+            rootDirectory: String,
+            animationPath: String
+        )
     }
 
     let id: String
@@ -39,7 +59,6 @@ struct DolphinPackDescriptor: Identifiable, Hashable {
 
 enum DolphinPackCatalog {
     static let momentumRepository = URL(string: "https://github.com/Next-Flip/Momentum-Firmware")!
-    static let talkingSasquachRepository = URL(string: "https://github.com/skizzophrenic/Talking-Sasquach")!
 
     static let momentum: [DolphinPackDescriptor] = [
         DolphinPackDescriptor(
@@ -66,80 +85,108 @@ enum DolphinPackCatalog {
         ),
     ]
 
-    static let talkingSasquach: [DolphinPackDescriptor] = [
-        talkingPack(
-            id: "Sasquach_Blaster",
-            title: "Blaster",
-            zipPath: "Finished Animations/Sasquach_Blaster/Sasquach_Blaster.zip",
-            sha256: "f31c1215adfa1010efe2b94124d846b42ad3ccb0147961a8e4efbf1dea9fc74c"
-        ),
-        talkingPack(
-            id: "Sasquach_CloudGoku",
-            title: "Cloud Goku",
-            zipPath: "Finished Animations/Sasquach_CloudGoku/Sasquach_CloudGoku.zip",
-            sha256: "9cb46bf711fbeb01de4703fb0d04db29778d7ce0d2bb4ad25ba0e7780dce57e8"
-        ),
-        talkingPack(
-            id: "Sasquach_D1g1talRa1n",
-            title: "Digital Rain",
-            zipPath: "Finished Animations/Sasquach_D1g1talRa1n/Sasquach_D1g1talRa1n.zip",
-            sha256: "2362b1e8f1ea286b527a86b58b662c7c1fbe6ed89f4cc60bdef32646e436ddb6"
-        ),
-        talkingPack(
-            id: "Sasquach_Goku",
-            title: "Goku",
-            zipPath: "Finished Animations/Sasquach_Goku/Sasquach_Goku.zip",
-            sha256: "5f73336c8f7c9e37360bb0861beb4e874aa1f924a7e0a33602838d1c23bb0e35"
-        ),
-        talkingPack(
-            id: "Sasquach_Naruto",
-            title: "Naruto",
-            zipPath: "Finished Animations/Sasquach_Naruto/Sasquach_Naruto.zip",
-            sha256: "e4611406b94008e79c80671549b42846683c3bd2536e95bf6f47a2c3b653844e"
-        ),
-        talkingPack(
-            id: "Sasquach_SaladFingers_128x64",
-            title: "Salad Fingers",
-            zipPath: "Finished Animations/Sasquach_SaladFingers_128x64/Sasquach_SaladFingers_128x64.zip",
-            sha256: "2a49a0a7117ed888ff8687861f3f08483a9a3e8c6a8799edc77b7f4e8b182eed"
-        ),
-        talkingPack(
-            id: "Sasquach_StickFight_128x64",
-            title: "Stick Fight",
-            zipPath: "Finished Animations/Sasquach_StickFight_128x64/Sasquach_StickFight_128x64.zip",
-            sha256: "8028464bcad23a715a1d3549da850840bf4dbfc60a85c99d95fb9de5289c19da"
-        ),
-        talkingPack(
-            id: "axolotl",
-            title: "Axolotl",
-            zipPath: "Finished Animations/axolotl/axolotl.zip",
-            sha256: "56ca349ce1adfc31545b86203a79a7e56208b8a1c8c6d4463b8b2e2306ab0e66"
-        ),
-    ]
+    static let remote: [DolphinPackDescriptor] = loadRemoteCatalog()
+    static let installable = momentum + remote
 
-    static let installable = momentum + talkingSasquach
+    static let talkingSasquach = packs(for: .talkingSasquach)
+    static let kuronons = packs(for: .kuronons)
+    static let haseo = packs(for: .haseo)
+    static let stopOxy = packs(for: .stopOxy)
+    static let wr3nch = packs(for: .wr3nch)
 
-    private static let talkingCommit = "1088fb0fab1a875517086085e2e44c7b1d331c7e"
+    static func packs(for source: DolphinLibrarySource) -> [DolphinPackDescriptor] {
+        switch source {
+        case .legacy:
+            return []
+        case .momentum:
+            return momentum
+        default:
+            return remote.filter { $0.source == source }
+        }
+    }
 
-    private static func talkingPack(
-        id: String,
-        title: String,
-        zipPath: String,
-        sha256: String
-    ) -> DolphinPackDescriptor {
-        let encodedPath = zipPath.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!
-        let url = rawURL(
-            "https://raw.githubusercontent.com/skizzophrenic/Talking-Sasquach/\(talkingCommit)/\(encodedPath)"
-        )
-        return DolphinPackDescriptor(
-            id: id,
-            title: title,
-            source: .talkingSasquach,
-            author: "Talking Sasquach",
-            sourceURL: talkingSasquachRepository,
-            previewURL: nil,
-            payload: .remoteZip(url: url, sha256: sha256)
-        )
+    static func repository(for source: DolphinLibrarySource) -> URL? {
+        if source == .momentum { return momentumRepository }
+        return packs(for: source).first?.sourceURL
+    }
+
+    private struct CatalogDocument: Decodable {
+        let version: Int
+        let packs: [CatalogPack]
+    }
+
+    private struct CatalogPack: Decodable {
+        let id: String
+        let title: String
+        let source: DolphinLibrarySource
+        let author: String
+        let sourceURL: URL
+        let previewURL: URL?
+        let payload: CatalogPayload
+
+        var descriptor: DolphinPackDescriptor {
+            DolphinPackDescriptor(
+                id: id,
+                title: title,
+                source: source,
+                author: author,
+                sourceURL: sourceURL,
+                previewURL: previewURL,
+                payload: payload.descriptorPayload
+            )
+        }
+    }
+
+    private struct CatalogPayload: Decodable {
+        enum Kind: String, Decodable {
+            case remoteZip
+            case remoteFiles
+            case repositoryArchive
+        }
+
+        let kind: Kind
+        let url: URL?
+        let sha256: String?
+        let baseURL: URL?
+        let files: [DolphinRemoteFile]?
+        let rootDirectory: String?
+        let animationPath: String?
+
+        var descriptorPayload: DolphinPackDescriptor.Payload {
+            switch kind {
+            case .remoteZip:
+                guard let url, let sha256 else { preconditionFailure("Invalid remote ZIP catalog entry") }
+                return .remoteZip(url: url, sha256: sha256)
+            case .remoteFiles:
+                guard let baseURL, let files, !files.isEmpty else {
+                    preconditionFailure("Invalid remote file catalog entry")
+                }
+                return .remoteFiles(baseURL: baseURL, files: files)
+            case .repositoryArchive:
+                guard let url, let sha256, let rootDirectory, let animationPath else {
+                    preconditionFailure("Invalid repository archive catalog entry")
+                }
+                return .repositoryArchive(
+                    url: url,
+                    sha256: sha256,
+                    rootDirectory: rootDirectory,
+                    animationPath: animationPath
+                )
+            }
+        }
+    }
+
+    private static func loadRemoteCatalog(bundle: Bundle = .main) -> [DolphinPackDescriptor] {
+        guard let url = bundle.url(
+            forResource: "catalog",
+            withExtension: "json",
+            subdirectory: "DolphinPacks"
+        ), let data = try? Data(contentsOf: url),
+        let document = try? JSONDecoder().decode(CatalogDocument.self, from: data),
+        document.version == 1 else {
+            preconditionFailure("Missing or invalid Dolphin pack catalog")
+        }
+        return document.packs.map(\.descriptor)
     }
 
     private static func rawURL(_ value: String) -> URL {
@@ -195,8 +242,10 @@ enum DolphinPackError: LocalizedError, Equatable {
 
 enum DolphinPackArchive {
     static let maximumArchiveBytes = 2 * 1_024 * 1_024
+    static let maximumRepositoryArchiveBytes = 8 * 1_024 * 1_024
     static let maximumExtractedBytes = 2 * 1_024 * 1_024
     static let maximumEntries = 512
+    static let maximumRepositoryEntries = 10_000
     static let maximumFrames = 256
 
     static func decode(
@@ -252,6 +301,61 @@ enum DolphinPackArchive {
         return try validate(animationID: descriptor.id, files: files)
     }
 
+    static func decodeRepositoryArchive(
+        _ data: Data,
+        descriptor: DolphinPackDescriptor,
+        expectedSHA256: String,
+        rootDirectory: String,
+        animationPath: String
+    ) throws -> DolphinPackPayload {
+        guard data.count <= maximumRepositoryArchiveBytes else {
+            throw DolphinPackError.archiveTooLarge
+        }
+        guard matchesDigest(data, expectedSHA256: expectedSHA256) else {
+            throw DolphinPackError.digestMismatch
+        }
+
+        let archive: Archive
+        do {
+            archive = try Archive(data: data, accessMode: .read)
+        } catch {
+            throw DolphinPackError.invalidArchive
+        }
+
+        let expectedPrefix = try safeComponents(rootDirectory) + safeComponents(animationPath)
+        var files: [String: Data] = [:]
+        var totalBytes = 0
+        var entryCount = 0
+
+        for entry in archive {
+            entryCount += 1
+            guard entryCount <= maximumRepositoryEntries else {
+                throw DolphinPackError.invalidArchive
+            }
+            let components = try safeComponents(entry.path)
+            guard components.starts(with: expectedPrefix) else { continue }
+            let relative = components.dropFirst(expectedPrefix.count)
+            if entry.type == .directory { continue }
+            guard entry.type == .file, relative.count == 1,
+                  let filename = relative.first,
+                  isAllowedPackFilename(filename) else { continue }
+            guard files[filename] == nil else { throw DolphinPackError.invalidArchive }
+            guard Int64(entry.uncompressedSize) <= Int64(maximumExtractedBytes - totalBytes) else {
+                throw DolphinPackError.archiveTooLarge
+            }
+
+            var bytes = Data()
+            _ = try archive.extract(entry) { bytes.append($0) }
+            totalBytes += bytes.count
+            guard totalBytes <= maximumExtractedBytes else {
+                throw DolphinPackError.archiveTooLarge
+            }
+            files[filename] = bytes
+        }
+
+        return try validate(animationID: descriptor.id, files: files)
+    }
+
     static func loadBundled(
         descriptor: DolphinPackDescriptor,
         bundle: Bundle = .main
@@ -287,12 +391,24 @@ enum DolphinPackArchive {
         guard let metadata = files["meta.txt"] else { throw DolphinPackError.invalidMetadata }
         let referencedFrameIndexes = try validateMetadata(metadata)
         let frameIndexes = Set(files.keys.compactMap(frameIndex))
+        guard let maximumReferencedFrame = referencedFrameIndexes.max() else {
+            throw DolphinPackError.invalidMetadata
+        }
+        let requiredFrameIndexes = Set(0...maximumReferencedFrame)
         guard !frameIndexes.isEmpty,
               frameIndexes.count <= maximumFrames,
-              frameIndexes == referencedFrameIndexes else {
+              frameIndexes == requiredFrameIndexes else {
             throw DolphinPackError.missingFrames
         }
         return DolphinPackPayload(animationID: animationID, files: files)
+    }
+
+    static func matchesDigest(_ data: Data, expectedSHA256: String) -> Bool {
+        sha256(data) == expectedSHA256.lowercased()
+    }
+
+    static func isAllowedPackFilename(_ value: String) -> Bool {
+        value == "meta.txt" || isFrameFilename(value)
     }
 
     private static func validateMetadata(_ data: Data) throws -> Set<Int> {
@@ -357,7 +473,8 @@ enum DolphinPackArchive {
 
 struct DolphinPackInstaller {
     static let dolphinRoot = "/ext/dolphin"
-    static let manifestPath = "\(dolphinRoot)/manifest.txt"
+    static let stockManifestPath = "\(dolphinRoot)/manifest.txt"
+    static let manifestPath = "\(DolphinProfileService.directory)/animation_packs.txt"
     static let stagingRoot = "\(dolphinRoot)/.tumocompanion-stage"
     static let backupRoot = "\(DolphinProfileService.directory)/dolphin-pack-backup"
 
@@ -379,11 +496,22 @@ struct DolphinPackInstaller {
     }
 
     func isInstalled(_ descriptor: DolphinPackDescriptor) async -> Bool {
-        guard await storage.exists("\(Self.dolphinRoot)/\(descriptor.id)/meta.txt"),
-              let manifest = await storage.read(Self.manifestPath) else {
+        guard await storage.exists("\(Self.dolphinRoot)/\(descriptor.id)/meta.txt") else {
             return false
         }
-        return DolphinAnimationManifest.contains(descriptor.id, in: manifest)
+        let custom = await storage.read(Self.manifestPath)
+        let stock = await storage.read(Self.stockManifestPath)
+        return [custom, stock].compactMap { $0 }.contains {
+            DolphinAnimationManifest.contains(descriptor.id, in: $0)
+        }
+    }
+
+    func installedIDs() async -> Set<String> {
+        let custom = await storage.read(Self.manifestPath)
+        let stock = await storage.read(Self.stockManifestPath)
+        return [custom, stock].compactMap { $0 }.reduce(into: Set<String>()) {
+            $0.formUnion(DolphinAnimationManifest.animationIDs(in: $1))
+        }
     }
 
     func install(_ descriptor: DolphinPackDescriptor) async throws {
@@ -395,6 +523,7 @@ struct DolphinPackInstaller {
         let backupManifest = "\(Self.backupRoot)/manifest.txt.previous"
 
         try await storage.makeDirectory(Self.stagingRoot)
+        try await storage.makeDirectory(DolphinProfileService.directory)
         try await storage.makeDirectory(Self.backupRoot)
         if await storage.exists(stagedDirectory) {
             try await storage.deleteTree(stagedDirectory)
@@ -485,13 +614,48 @@ struct DolphinPackInstaller {
         case .bundled:
             return try DolphinPackArchive.loadBundled(descriptor: descriptor, bundle: bundle)
         case .remoteZip(let url, let sha256):
-            let (data, response) = try await session.data(from: url)
-            guard let response = response as? HTTPURLResponse,
-                  response.statusCode == 200 else {
-                throw DolphinPackError.downloadFailed
-            }
+            let data = try await download(url)
             return try DolphinPackArchive.decode(data, descriptor: descriptor, expectedSHA256: sha256)
+        case .remoteFiles(let baseURL, let remoteFiles):
+            var files: [String: Data] = [:]
+            var totalBytes = 0
+            for remoteFile in remoteFiles {
+                guard DolphinPackArchive.isAllowedPackFilename(remoteFile.name),
+                      files[remoteFile.name] == nil else {
+                    throw DolphinPackError.invalidArchive
+                }
+                let data = try await download(baseURL.appendingPathComponent(remoteFile.name))
+                guard DolphinPackArchive.matchesDigest(data, expectedSHA256: remoteFile.sha256) else {
+                    throw DolphinPackError.digestMismatch
+                }
+                totalBytes += data.count
+                guard totalBytes <= DolphinPackArchive.maximumExtractedBytes else {
+                    throw DolphinPackError.archiveTooLarge
+                }
+                files[remoteFile.name] = data
+            }
+            return try DolphinPackArchive.validate(animationID: descriptor.id, files: files)
+        case .repositoryArchive(let url, let sha256, let rootDirectory, let animationPath):
+            let data = try await download(url)
+            return try DolphinPackArchive.decodeRepositoryArchive(
+                data,
+                descriptor: descriptor,
+                expectedSHA256: sha256,
+                rootDirectory: rootDirectory,
+                animationPath: animationPath
+            )
         }
+    }
+
+    private func download(_ url: URL) async throws -> Data {
+        var request = URLRequest(url: url)
+        request.cachePolicy = .returnCacheDataElseLoad
+        let (data, response) = try await session.data(for: request)
+        guard let response = response as? HTTPURLResponse,
+              response.statusCode == 200 else {
+            throw DolphinPackError.downloadFailed
+        }
+        return data
     }
 
     private func verify(_ data: Data, at path: String) async -> Bool {
@@ -509,10 +673,15 @@ enum DolphinAnimationManifest {
     static let empty = Data("Filetype: Flipper Animation Manifest\nVersion: 1\n".utf8)
 
     static func contains(_ animationID: String, in data: Data) -> Bool {
-        guard let text = String(data: data, encoding: .utf8) else { return false }
-        return text.split(whereSeparator: { $0.isNewline }).contains { line in
-            line == "Name: \(animationID)"
-        }
+        animationIDs(in: data).contains(animationID)
+    }
+
+    static func animationIDs(in data: Data) -> Set<String> {
+        guard let text = String(data: data, encoding: .utf8) else { return [] }
+        return Set(text.split(whereSeparator: { $0.isNewline }).compactMap { line in
+            guard line.hasPrefix("Name: ") else { return nil }
+            return String(line.dropFirst("Name: ".count))
+        })
     }
 
     static func appending(_ animationID: String, to data: Data) throws -> Data {

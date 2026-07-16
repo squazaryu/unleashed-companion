@@ -24,6 +24,45 @@ final class DolphinProfileTests: XCTestCase {
         }
     }
 
+    func testAllSelectionDoesNotSerializeHundredsOfAnimationIDs() throws {
+        let profile = DolphinDesktopProfile(
+            enabled: true,
+            collection: "All animations",
+            order: .random,
+            timing: .original,
+            durationSeconds: 60,
+            animationIDs: [],
+            selection: .all
+        )
+
+        let data = try profile.encoded()
+        let text = String(decoding: data, as: UTF8.self)
+        XCTAssertTrue(text.contains("Version: 2"))
+        XCTAssertTrue(text.contains("Selection: All"))
+        XCTAssertFalse(text.contains("Animation:"))
+        XCTAssertEqual(try DolphinDesktopProfile.decode(data), profile)
+    }
+
+    func testVersionOneProfileRemainsReadableAsExplicitSelection() throws {
+        let data = Data(
+            """
+            Filetype: Tumoflip Desktop Profile
+            Version: 1
+            Enabled: true
+            Collection: Legacy
+            Order: Random
+            Timing: Original
+            Duration: 60
+            Animation: L1_Tv_128x47
+
+            """.utf8
+        )
+
+        let profile = try DolphinDesktopProfile.decode(data)
+        XCTAssertEqual(profile.selection, .explicit)
+        XCTAssertEqual(profile.animationIDs, ["L1_Tv_128x47"])
+    }
+
     func testApplyStagesVerifiesMovesAndSignalsReload() async throws {
         let storage = DolphinProfileMemoryStore()
         let service = DolphinProfileService(storage: storage)
@@ -162,14 +201,77 @@ final class DolphinProfileTests: XCTestCase {
     }
 
     func testTalkingSasquachCatalogPinsReviewedCommitAndDigests() {
-        XCTAssertEqual(DolphinPackCatalog.talkingSasquach.count, 8)
+        XCTAssertEqual(DolphinPackCatalog.talkingSasquach.count, 9)
+        var archiveCount = 0
+        var fileTreeCount = 0
         for descriptor in DolphinPackCatalog.talkingSasquach {
-            guard case .remoteZip(let url, let digest) = descriptor.payload else {
-                return XCTFail("Talking Sasquach entries must use source downloads")
+            XCTAssertTrue(descriptor.sourceURL.absoluteString.contains("Finished%20Animations"))
+            switch descriptor.payload {
+            case .remoteZip(let url, let digest):
+                archiveCount += 1
+                XCTAssertTrue(url.absoluteString.contains("1088fb0fab1a875517086085e2e44c7b1d331c7e"))
+                XCTAssertEqual(digest.count, 64)
+            case .remoteFiles(let baseURL, let files):
+                fileTreeCount += 1
+                XCTAssertEqual(descriptor.id, "Sasquach_RMCF")
+                XCTAssertTrue(baseURL.absoluteString.contains("1088fb0fab1a875517086085e2e44c7b1d331c7e"))
+                XCTAssertEqual(files.count, 40)
+                XCTAssertTrue(files.allSatisfy { $0.sha256.count == 64 })
+            default:
+                XCTFail("Talking Sasquach entries must use pinned source downloads")
             }
-            XCTAssertTrue(url.absoluteString.contains("1088fb0fab1a875517086085e2e44c7b1d331c7e"))
-            XCTAssertEqual(digest.count, 64)
         }
+        XCTAssertEqual(archiveCount, 8)
+        XCTAssertEqual(fileTreeCount, 1)
+    }
+
+    func testRemoteCatalogSeparatesAuthorsAndUsesUniqueSafeIDs() {
+        XCTAssertEqual(DolphinPackCatalog.kuronons.count, 132)
+        XCTAssertEqual(DolphinPackCatalog.haseo.count, 28)
+        XCTAssertEqual(DolphinPackCatalog.stopOxy.count, 11)
+        XCTAssertEqual(DolphinPackCatalog.wr3nch.count, 64)
+        XCTAssertEqual(DolphinPackCatalog.remote.count, 244)
+
+        let ids = DolphinPackCatalog.installable.map(\.id)
+        XCTAssertEqual(Set(ids).count, ids.count)
+        XCTAssertTrue(ids.allSatisfy { id in
+            !id.isEmpty && id.utf8.allSatisfy {
+                (48...57).contains($0) || (65...90).contains($0) ||
+                    (97...122).contains($0) || $0 == 45 || $0 == 95
+            }
+        })
+    }
+
+    func testRepositoryArchiveExtractsOnlySelectedAnimation() throws {
+        let data = try makeArchive(entries: [
+            "Repo-abc/Animations/TestPack/meta.txt": animationMetadata(passiveFrames: 1, order: "0"),
+            "Repo-abc/Animations/TestPack/frame_0.bm": Data([0x01]),
+            "Repo-abc/Animations/OtherPack/meta.txt": Data("ignored".utf8),
+        ])
+        let descriptor = DolphinPackDescriptor(
+            id: "TestPack",
+            title: "Test Pack",
+            source: .haseo,
+            author: "Tests",
+            sourceURL: URL(string: "https://example.com/source")!,
+            previewURL: nil,
+            payload: .repositoryArchive(
+                url: URL(string: "https://example.com/repo.zip")!,
+                sha256: TumoflipHash.sha256(data),
+                rootDirectory: "Repo-abc",
+                animationPath: "Animations/TestPack"
+            )
+        )
+
+        let payload = try DolphinPackArchive.decodeRepositoryArchive(
+            data,
+            descriptor: descriptor,
+            expectedSHA256: TumoflipHash.sha256(data),
+            rootDirectory: "Repo-abc",
+            animationPath: "Animations/TestPack"
+        )
+
+        XCTAssertEqual(Set(payload.files.keys), ["meta.txt", "frame_0.bm"])
     }
 
     func testBundledMomentumPacksValidate() throws {

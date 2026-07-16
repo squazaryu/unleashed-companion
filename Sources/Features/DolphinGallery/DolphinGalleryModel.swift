@@ -172,14 +172,15 @@ final class DolphinGalleryModel: ObservableObject {
     func refreshPackStates() async {
         for descriptor in DolphinPackCatalog.installable {
             packPhases[descriptor.id] = .checking
-            let installed = await packInstaller.isInstalled(descriptor)
-            if installed {
-                installedPackIDs.insert(descriptor.id)
-                packPhases[descriptor.id] = .installed
-            } else {
-                installedPackIDs.remove(descriptor.id)
-                packPhases[descriptor.id] = .notInstalled
-            }
+        }
+
+        let manifestIDs = await packInstaller.installedIDs()
+        let catalogIDs = Set(DolphinPackCatalog.installable.map(\.id))
+        installedPackIDs = manifestIDs.intersection(catalogIDs)
+        for descriptor in DolphinPackCatalog.installable {
+            packPhases[descriptor.id] = installedPackIDs.contains(descriptor.id)
+                ? .installed
+                : .notInstalled
         }
     }
 
@@ -204,13 +205,16 @@ final class DolphinGalleryModel: ObservableObject {
         phase = .applying
         do {
             let collection = activeCollection
+            let availableIDs = Set(availableAnimations.map(\.id))
+            let selectsAll = Set(collection.animationIDs) == availableIDs
             try await service.apply(DolphinDesktopProfile(
                 enabled: enabled,
                 collection: collection.name,
                 order: order,
                 timing: timing,
                 durationSeconds: durationSeconds,
-                animationIDs: collection.animationIDs
+                animationIDs: selectsAll ? [] : collection.animationIDs,
+                selection: selectsAll ? .all : .explicit
             ))
             phase = .applied
         } catch {
@@ -255,7 +259,7 @@ final class DolphinGalleryModel: ObservableObject {
         timing = profile.timing
         durationSeconds = profile.durationSeconds
 
-        if profile.animationIDs == allCollection.animationIDs {
+        if profile.selection == .all || profile.animationIDs == allCollection.animationIDs {
             activeCollectionID = Self.allCollectionID
         } else if let existing = collections.first(where: {
             $0.name == profile.collection && $0.animationIDs == profile.animationIDs

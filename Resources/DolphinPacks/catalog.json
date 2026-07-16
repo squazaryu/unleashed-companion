@@ -1,0 +1,3300 @@
+{
+  "version": 1,
+  "packs": [
+    {
+      "id": "axolotl",
+      "title": "axolotl",
+      "source": "Talking Sasquach",
+      "author": "Talking Sasquach",
+      "sourceURL": "https://github.com/skizzophrenic/Talking-Sasquach/tree/main/Finished%20Animations",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/skizzophrenic/Talking-Sasquach/1088fb0fab1a875517086085e2e44c7b1d331c7e/Finished%20Animations/axolotl/axolotl.zip",
+        "sha256": "56ca349ce1adfc31545b86203a79a7e56208b8a1c8c6d4463b8b2e2306ab0e66"
+      }
+    },
+    {
+      "id": "Sasquach_RMCF",
+      "title": "RMCF",
+      "source": "Talking Sasquach",
+      "author": "Talking Sasquach",
+      "sourceURL": "https://github.com/skizzophrenic/Talking-Sasquach/tree/main/Finished%20Animations",
+      "payload": {
+        "kind": "remoteFiles",
+        "baseURL": "https://raw.githubusercontent.com/skizzophrenic/Talking-Sasquach/1088fb0fab1a875517086085e2e44c7b1d331c7e/Finished%20Animations/Sasquach_RMCF/",
+        "files": [
+          {
+            "name": "frame_0.bm",
+            "sha256": "126bc5623e7915e96ac08492596f92be7389a1a893db221363ef549dd5167f8c"
+          },
+          {
+            "name": "frame_1.bm",
+            "sha256": "d506a544a880b1736272c84c6cbd193daead7906923ea9ae0ceb99d7b5a2d3ca"
+          },
+          {
+            "name": "frame_10.bm",
+            "sha256": "e7045f86bff4fd8d8839c83df965146d44596bf7e9d04f3a456c5fe4a7b80b6d"
+          },
+          {
+            "name": "frame_11.bm",
+            "sha256": "9aa586ca341b8be69475ff0d6fbae09bfddd80769b30a26e45d99dfb2e4fc99c"
+          },
+          {
+            "name": "frame_12.bm",
+            "sha256": "13427cab46bb1fdd5acb1950f0ed2105b0b41b8ea589f8894bbc3b21afb43bde"
+          },
+          {
+            "name": "frame_13.bm",
+            "sha256": "a9a60010debc1be6e474aa89f49467eaba72f4bbef328129a62d045de55c82f5"
+          },
+          {
+            "name": "frame_14.bm",
+            "sha256": "649bf4cb1f75158517ccf9b71080ec95a0461e0de68f7bd177ae1f6ec62e1963"
+          },
+          {
+            "name": "frame_15.bm",
+            "sha256": "0de0d2c9e43e9f41a054f9e876fc97de81f41cb96919df93f55442309685da01"
+          },
+          {
+            "name": "frame_16.bm",
+            "sha256": "9c5d2d0a3135d14469117b01eb527c5be3e226a0d5cd7f10ad83aa11bf7ecbf1"
+          },
+          {
+            "name": "frame_17.bm",
+            "sha256": "d41d2f08b15a2a4068f6750f9f4a838538a07aac5e74196dd8abee54c124146b"
+          },
+          {
+            "name": "frame_18.bm",
+            "sha256": "89b051fe4f39dea8dec5b2a18866d4e242491f46fd8c67cfaff9d1f4d6ee455c"
+          },
+          {
+            "name": "frame_19.bm",
+            "sha256": "d8600415963d3d9baba4f645ba9a18ed6f871a3ed36c0984d9def64d840ee76e"
+          },
+          {
+            "name": "frame_2.bm",
+            "sha256": "21f3d3d2ceb5ef74994e2598b842d35e43f226369d17128861dcc120f738dce1"
+          },
+          {
+            "name": "frame_20.bm",
+            "sha256": "403ad168c5c6e859bd38a11ef1ce10b1d92d799ab4543d56679973b6f21dbb02"
+          },
+          {
+            "name": "frame_21.bm",
+            "sha256": "7628d1c4fc5aa131bed754ef77a5b33a985eb1e12789ee2fd85630446c25160f"
+          },
+          {
+            "name": "frame_22.bm",
+            "sha256": "bd3da32062657c74c0fa55a0477a9bdba55a24e24bd1bda4c5b013edf6257031"
+          },
+          {
+            "name": "frame_23.bm",
+            "sha256": "7628d1c4fc5aa131bed754ef77a5b33a985eb1e12789ee2fd85630446c25160f"
+          },
+          {
+            "name": "frame_24.bm",
+            "sha256": "7b423b9c91703ecb5610b0bb34842e95977bbdcf236030593e3e03acc2166d66"
+          },
+          {
+            "name": "frame_25.bm",
+            "sha256": "3272141f8ab2a03a4b8c500bd1ebdd30a6892fe08f6bb24774f5f3c0f42dd197"
+          },
+          {
+            "name": "frame_26.bm",
+            "sha256": "a81ed51fc22e72d58053df36171b63a6a7bdfdaa32f96ef7dfedfb18cf28c417"
+          },
+          {
+            "name": "frame_27.bm",
+            "sha256": "b5f3bba612b840abe9d6c8a2bc75d2ce8012bbffa46a578e3fbf05849002e6f1"
+          },
+          {
+            "name": "frame_28.bm",
+            "sha256": "4850f961845556629bc3ffb55222a2c39d31a51fe3206c9b96486bae00baf9af"
+          },
+          {
+            "name": "frame_29.bm",
+            "sha256": "8c537e02c7a45b357eb3e220ff3a410c8317cb128d6b35964cbec12beca21de5"
+          },
+          {
+            "name": "frame_3.bm",
+            "sha256": "6019f6601499af1598d1abcffe396fa68728a411c08d83ab96468876b72b4b61"
+          },
+          {
+            "name": "frame_30.bm",
+            "sha256": "818a6c208a7f2ac01e0322151f766b9f0e5220adab023ba0ecd048bf6bbcc9c0"
+          },
+          {
+            "name": "frame_31.bm",
+            "sha256": "b9200faaf8643e37388f2868d71b2cf0bf85fa64da0aca136c2561124b502296"
+          },
+          {
+            "name": "frame_32.bm",
+            "sha256": "f09d951bf0ff15d8b74578731598b2214857f61243de3362d1d56ddba036006a"
+          },
+          {
+            "name": "frame_33.bm",
+            "sha256": "f82b242135159bb1a8d77cdd22e59987d462c0ad558be8f9b087d2f0da3deda2"
+          },
+          {
+            "name": "frame_34.bm",
+            "sha256": "af2599a29c4f1fbb00aa65433d2b2f4fb4b395771aaabf329d8c0210ac999d3f"
+          },
+          {
+            "name": "frame_35.bm",
+            "sha256": "7a42488bb72bdaf7f52da7b5830fe35aee3d921682a0e15c436af790c56263eb"
+          },
+          {
+            "name": "frame_36.bm",
+            "sha256": "6552384c3f9867c95d7271a6d6cc476702101b656ea41e203800ff1606d10772"
+          },
+          {
+            "name": "frame_37.bm",
+            "sha256": "a3cecb16facb30d873fcbfb2d2af2d7de5b8bb1aed9d0a2922e3c10f24228fcb"
+          },
+          {
+            "name": "frame_38.bm",
+            "sha256": "b9d4bdbe799462564218d1804bdc600620394c102c9be887fd9969ec8d274c8e"
+          },
+          {
+            "name": "frame_4.bm",
+            "sha256": "3d861aa7f5501f8310697f5e05ef342c475e10d65f2f24af2a345f63b8db6fb3"
+          },
+          {
+            "name": "frame_5.bm",
+            "sha256": "78ae1c63654fa55369b7a285569356a4b8e5bb175c8e0fd32ece0e9a161b187b"
+          },
+          {
+            "name": "frame_6.bm",
+            "sha256": "a5df5d54843dd7105c35e24bed3890cf60910ce2b49845a75161e3c63084f4cb"
+          },
+          {
+            "name": "frame_7.bm",
+            "sha256": "d0749cab2a56976c365e620305c3692fae12cbe3e0d7d70bc95d395a1ad4e6f7"
+          },
+          {
+            "name": "frame_8.bm",
+            "sha256": "055e00cd8536f92b31da20e0251cd40fe198b748febc5fd5e07c598639823503"
+          },
+          {
+            "name": "frame_9.bm",
+            "sha256": "d83be7319d2d3ab1ad70af84e4c4ae71306f9a6ed25a6e867bd0f80f15f27b1f"
+          },
+          {
+            "name": "meta.txt",
+            "sha256": "f33447321210915c6768a9339270dc9c1112d0963e073806fe64d06f671b1554"
+          }
+        ]
+      }
+    },
+    {
+      "id": "Sasquach_Blaster",
+      "title": "Sasquach Blaster",
+      "source": "Talking Sasquach",
+      "author": "Talking Sasquach",
+      "sourceURL": "https://github.com/skizzophrenic/Talking-Sasquach/tree/main/Finished%20Animations",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/skizzophrenic/Talking-Sasquach/1088fb0fab1a875517086085e2e44c7b1d331c7e/Finished%20Animations/Sasquach_Blaster/Sasquach_Blaster.zip",
+        "sha256": "f31c1215adfa1010efe2b94124d846b42ad3ccb0147961a8e4efbf1dea9fc74c"
+      }
+    },
+    {
+      "id": "Sasquach_CloudGoku",
+      "title": "Sasquach CloudGoku",
+      "source": "Talking Sasquach",
+      "author": "Talking Sasquach",
+      "sourceURL": "https://github.com/skizzophrenic/Talking-Sasquach/tree/main/Finished%20Animations",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/skizzophrenic/Talking-Sasquach/1088fb0fab1a875517086085e2e44c7b1d331c7e/Finished%20Animations/Sasquach_CloudGoku/Sasquach_CloudGoku.zip",
+        "sha256": "9cb46bf711fbeb01de4703fb0d04db29778d7ce0d2bb4ad25ba0e7780dce57e8"
+      }
+    },
+    {
+      "id": "Sasquach_D1g1talRa1n",
+      "title": "Sasquach D1g1talRa1n",
+      "source": "Talking Sasquach",
+      "author": "Talking Sasquach",
+      "sourceURL": "https://github.com/skizzophrenic/Talking-Sasquach/tree/main/Finished%20Animations",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/skizzophrenic/Talking-Sasquach/1088fb0fab1a875517086085e2e44c7b1d331c7e/Finished%20Animations/Sasquach_D1g1talRa1n/Sasquach_D1g1talRa1n.zip",
+        "sha256": "2362b1e8f1ea286b527a86b58b662c7c1fbe6ed89f4cc60bdef32646e436ddb6"
+      }
+    },
+    {
+      "id": "Sasquach_Goku",
+      "title": "Sasquach Goku",
+      "source": "Talking Sasquach",
+      "author": "Talking Sasquach",
+      "sourceURL": "https://github.com/skizzophrenic/Talking-Sasquach/tree/main/Finished%20Animations",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/skizzophrenic/Talking-Sasquach/1088fb0fab1a875517086085e2e44c7b1d331c7e/Finished%20Animations/Sasquach_Goku/Sasquach_Goku.zip",
+        "sha256": "5f73336c8f7c9e37360bb0861beb4e874aa1f924a7e0a33602838d1c23bb0e35"
+      }
+    },
+    {
+      "id": "Sasquach_Naruto",
+      "title": "Sasquach Naruto",
+      "source": "Talking Sasquach",
+      "author": "Talking Sasquach",
+      "sourceURL": "https://github.com/skizzophrenic/Talking-Sasquach/tree/main/Finished%20Animations",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/skizzophrenic/Talking-Sasquach/1088fb0fab1a875517086085e2e44c7b1d331c7e/Finished%20Animations/Sasquach_Naruto/Sasquach_Naruto.zip",
+        "sha256": "e4611406b94008e79c80671549b42846683c3bd2536e95bf6f47a2c3b653844e"
+      }
+    },
+    {
+      "id": "Sasquach_SaladFingers_128x64",
+      "title": "Sasquach SaladFingers",
+      "source": "Talking Sasquach",
+      "author": "Talking Sasquach",
+      "sourceURL": "https://github.com/skizzophrenic/Talking-Sasquach/tree/main/Finished%20Animations",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/skizzophrenic/Talking-Sasquach/1088fb0fab1a875517086085e2e44c7b1d331c7e/Finished%20Animations/Sasquach_SaladFingers_128x64/Sasquach_SaladFingers_128x64.zip",
+        "sha256": "2a49a0a7117ed888ff8687861f3f08483a9a3e8c6a8799edc77b7f4e8b182eed"
+      }
+    },
+    {
+      "id": "Sasquach_StickFight_128x64",
+      "title": "Sasquach StickFight",
+      "source": "Talking Sasquach",
+      "author": "Talking Sasquach",
+      "sourceURL": "https://github.com/skizzophrenic/Talking-Sasquach/tree/main/Finished%20Animations",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/skizzophrenic/Talking-Sasquach/1088fb0fab1a875517086085e2e44c7b1d331c7e/Finished%20Animations/Sasquach_StickFight_128x64/Sasquach_StickFight_128x64.zip",
+        "sha256": "8028464bcad23a715a1d3549da850840bf4dbfc60a85c99d95fb9de5289c19da"
+      }
+    },
+    {
+      "id": "Kuronons_BlackFlags_Angot_128x64",
+      "title": "BlackFlags Angot",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Black_Flags_Collection/Animation_ZIP_files_%5BBlackFlags%5D/Kuronons_BlackFlags_Angot_128x64.zip",
+        "sha256": "fe997cd524c016f5e92b18a3cb0982f0a23442e51be027f03150cd062c005ba0"
+      }
+    },
+    {
+      "id": "Kuronons_BlackFlags_Belain_128x64",
+      "title": "BlackFlags Belain",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Black_Flags_Collection/Animation_ZIP_files_%5BBlackFlags%5D/Kuronons_BlackFlags_Belain_128x64.zip",
+        "sha256": "4d83c5e9445d08a0abdec7829dd7e18849b563dbc8673cbded0d9d1e2e36cfd2"
+      }
+    },
+    {
+      "id": "Kuronons_BlackFlags_Beluche_128x64",
+      "title": "BlackFlags Beluche",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Black_Flags_Collection/Animation_ZIP_files_%5BBlackFlags%5D/Kuronons_BlackFlags_Beluche_128x64.zip",
+        "sha256": "aec11ea4db19a1c1c3e90670cf53d54b793f9508ad1a753e11747bddd67d1809"
+      }
+    },
+    {
+      "id": "Kuronons_BlackFlags_Bonnet_128x64",
+      "title": "BlackFlags Bonnet",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Black_Flags_Collection/Animation_ZIP_files_%5BBlackFlags%5D/Kuronons_BlackFlags_Bonnet_128x64.zip",
+        "sha256": "1e5c624daa356673c487a424d4a6c022ea4b80cefeb29d76b31c4fa0dba63619"
+      }
+    },
+    {
+      "id": "Kuronons_BlackFlags_Boze_128x64",
+      "title": "BlackFlags Boze",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Black_Flags_Collection/Animation_ZIP_files_%5BBlackFlags%5D/Kuronons_BlackFlags_Boze_128x64.zip",
+        "sha256": "1e8a4ec2094ac14c8004d90960ab4c6b599d405f8c0c2e502cec947bd791fad5"
+      }
+    },
+    {
+      "id": "Kuronons_BlackFlags_Busket_128x64",
+      "title": "BlackFlags Busket",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Black_Flags_Collection/Animation_ZIP_files_%5BBlackFlags%5D/Kuronons_BlackFlags_Busket_128x64.zip",
+        "sha256": "90e420a9853b2200618332653d5d387ffe16757fff303fa0cd175becea339c0b"
+      }
+    },
+    {
+      "id": "Kuronons_BlackFlags_ChrisMoody_128x64",
+      "title": "BlackFlags ChrisMoody",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Black_Flags_Collection/Animation_ZIP_files_%5BBlackFlags%5D/Kuronons_BlackFlags_ChrisMoody_128x64.zip",
+        "sha256": "95af5af2d5a8a53803b92d4df3736206af0cf267e3d90d17c99566a9c33a0da9"
+      }
+    },
+    {
+      "id": "Kuronons_BlackFlags_Condent_128x64",
+      "title": "BlackFlags Condent",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Black_Flags_Collection/Animation_ZIP_files_%5BBlackFlags%5D/Kuronons_BlackFlags_Condent_128x64.zip",
+        "sha256": "8897b30d14f1e663fe67a401db800f6c3991c629581120d1e51e8191dd49490b"
+      }
+    },
+    {
+      "id": "Kuronons_BlackFlags_Delahaye_128x64",
+      "title": "BlackFlags Delahaye",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Black_Flags_Collection/Animation_ZIP_files_%5BBlackFlags%5D/Kuronons_BlackFlags_Delahaye_128x64.zip",
+        "sha256": "59643dab772436f49e716e22753edcf1e08ff5d756149d50092796884b9e944b"
+      }
+    },
+    {
+      "id": "Kuronons_BlackFlags_Egron_128x64",
+      "title": "BlackFlags Egron",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Black_Flags_Collection/Animation_ZIP_files_%5BBlackFlags%5D/Kuronons_BlackFlags_Egron_128x64.zip",
+        "sha256": "303b920c0ce9de06ba1fe253b157a7d339c62a58bed95f8ef3f8ca25e7f46bab"
+      }
+    },
+    {
+      "id": "Kuronons_BlackFlags_England_128x64",
+      "title": "BlackFlags England",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Black_Flags_Collection/Animation_ZIP_files_%5BBlackFlags%5D/Kuronons_BlackFlags_England_128x64.zip",
+        "sha256": "aac534bc4cad9c176e3f3f8680856061a0f3c5f7d3ffe5b735fd43c5d57a8e85"
+      }
+    },
+    {
+      "id": "Kuronons_BlackFlags_Every_128x64",
+      "title": "BlackFlags Every",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Black_Flags_Collection/Animation_ZIP_files_%5BBlackFlags%5D/Kuronons_BlackFlags_Every_128x64.zip",
+        "sha256": "e6769a947c3bc2844922d502171218bf101d2419970a6fdc982b36a058364dce"
+      }
+    },
+    {
+      "id": "Kuronons_BlackFlags_Kennedy_128x64",
+      "title": "BlackFlags Kennedy",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Black_Flags_Collection/Animation_ZIP_files_%5BBlackFlags%5D/Kuronons_BlackFlags_Kennedy_128x64.zip",
+        "sha256": "22ca964cb8598430ccdfd4ee3b3329b4ffe872a80ce2b2b20450eb20dbfb8325"
+      }
+    },
+    {
+      "id": "Kuronons_BlackFlags_Lafitte_128x64",
+      "title": "BlackFlags Lafitte",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Black_Flags_Collection/Animation_ZIP_files_%5BBlackFlags%5D/Kuronons_BlackFlags_Lafitte_128x64.zip",
+        "sha256": "a6a5a7f79028ca751b689557dee48bb490bb03aa0ed8f3411f4b32a5078d92a4"
+      }
+    },
+    {
+      "id": "Kuronons_BlackFlags_Landolphe_128x64",
+      "title": "BlackFlags Landolphe",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Black_Flags_Collection/Animation_ZIP_files_%5BBlackFlags%5D/Kuronons_BlackFlags_Landolphe_128x64.zip",
+        "sha256": "7cd02776d36b5701c9d4602161c73a84242081852fa58f9bff3bbdf49c4f9f1f"
+      }
+    },
+    {
+      "id": "Kuronons_BlackFlags_LeBasque_128x64",
+      "title": "BlackFlags LeBasque",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Black_Flags_Collection/Animation_ZIP_files_%5BBlackFlags%5D/Kuronons_BlackFlags_LeBasque_128x64.zip",
+        "sha256": "e9d1cee66514c68aac4c1e95b555189ea0ef641073b46d2890cd54206e045c89"
+      }
+    },
+    {
+      "id": "Kuronons_BlackFlags_Lelong_128x64",
+      "title": "BlackFlags Lelong",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Black_Flags_Collection/Animation_ZIP_files_%5BBlackFlags%5D/Kuronons_BlackFlags_Lelong_128x64.zip",
+        "sha256": "511771e16be145da0f50694335a46e4413996342b55a5098492ddc28770ee5ed"
+      }
+    },
+    {
+      "id": "Kuronons_BlackFlags_Low_128x64",
+      "title": "BlackFlags Low",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Black_Flags_Collection/Animation_ZIP_files_%5BBlackFlags%5D/Kuronons_BlackFlags_Low_128x64.zip",
+        "sha256": "31aac6d42c92f9ab267a3fc008786044b8b159a99a4ab2df59cb3040c369358e"
+      }
+    },
+    {
+      "id": "Kuronons_BlackFlags_Napin_128x64",
+      "title": "BlackFlags Napin",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Black_Flags_Collection/Animation_ZIP_files_%5BBlackFlags%5D/Kuronons_BlackFlags_Napin_128x64.zip",
+        "sha256": "75b64261248c5ff9ee5e8e9a0fb25183de4497334391413c4380dd4d19882331"
+      }
+    },
+    {
+      "id": "Kuronons_BlackFlags_Quelch_128x64",
+      "title": "BlackFlags Quelch",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Black_Flags_Collection/Animation_ZIP_files_%5BBlackFlags%5D/Kuronons_BlackFlags_Quelch_128x64.zip",
+        "sha256": "bfeb95b72f4f0e982d3daccf0c6d62f5934e732a3e0f4e7a3e026e76dc51556b"
+      }
+    },
+    {
+      "id": "Kuronons_BlackFlags_Rackham_128x64",
+      "title": "BlackFlags Rackham",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Black_Flags_Collection/Animation_ZIP_files_%5BBlackFlags%5D/Kuronons_BlackFlags_Rackham_128x64.zip",
+        "sha256": "d09603b7119774f3cee62ffbcd80f42d922efb387795cb726617c217c28bcc25"
+      }
+    },
+    {
+      "id": "Kuronons_BlackFlags_Roberts3_128x64",
+      "title": "BlackFlags Roberts3",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Black_Flags_Collection/Animation_ZIP_files_%5BBlackFlags%5D/Kuronons_BlackFlags_Roberts3_128x64.zip",
+        "sha256": "e3ad528dd0f101053556aebfe22699fff77a774e9d2f654ee6a1e676aa7de354"
+      }
+    },
+    {
+      "id": "Kuronons_BlackFlags_Roberts5_128x64",
+      "title": "BlackFlags Roberts5",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Black_Flags_Collection/Animation_ZIP_files_%5BBlackFlags%5D/Kuronons_BlackFlags_Roberts5_128x64.zip",
+        "sha256": "716495f5c9d3ded6717dc7fabd1ae52a88619c6e7f540290a25938b52306e7d8"
+      }
+    },
+    {
+      "id": "Kuronons_BlackFlags_RocketGod_128x64",
+      "title": "BlackFlags RocketGod",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Black_Flags_Collection/Animation_ZIP_files_%5BBlackFlags%5D/Kuronons_BlackFlags_RocketGod_128x64.zip",
+        "sha256": "2a0c5fbbae03deb4dc30dda8d5a823d5ef1abd8de9500a75108cdca48c5572e1"
+      }
+    },
+    {
+      "id": "Kuronons_BlackFlags_Surcouf_128x64",
+      "title": "BlackFlags Surcouf",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Black_Flags_Collection/Animation_ZIP_files_%5BBlackFlags%5D/Kuronons_BlackFlags_Surcouf_128x64.zip",
+        "sha256": "f5f7587f1876a02f9dd151a01c1da50bf476492042e08f54a1136b2f005f030c"
+      }
+    },
+    {
+      "id": "Kuronons_BlackFlags_Teach_128x64",
+      "title": "BlackFlags Teach",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Black_Flags_Collection/Animation_ZIP_files_%5BBlackFlags%5D/Kuronons_BlackFlags_Teach_128x64.zip",
+        "sha256": "86cf10233e5fd02cc8a250111e571a0ff79b2e79f308e3e9a77cc04268c41d59"
+      }
+    },
+    {
+      "id": "Kuronons_BlackFlags_Tew_128x64",
+      "title": "BlackFlags Tew",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Black_Flags_Collection/Animation_ZIP_files_%5BBlackFlags%5D/Kuronons_BlackFlags_Tew_128x64.zip",
+        "sha256": "365a3f6573bd33d08fc22c4915c6c4f67a92af382f1123adf5ccf429df0c2111"
+      }
+    },
+    {
+      "id": "Kuronons_BlackFlags_WillMoody_128x64",
+      "title": "BlackFlags WillMoody",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Black_Flags_Collection/Animation_ZIP_files_%5BBlackFlags%5D/Kuronons_BlackFlags_WillMoody_128x64.zip",
+        "sha256": "0333fefcedd81f7df40a700be67ec7138ee38bb0fe689c6dd1c547845e359818"
+      }
+    },
+    {
+      "id": "Kuronons_BlackFlags_Worley_128x64",
+      "title": "BlackFlags Worley",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Black_Flags_Collection/Animation_ZIP_files_%5BBlackFlags%5D/Kuronons_BlackFlags_Worley_128x64.zip",
+        "sha256": "5c9c993c7a9e253d4238f2cfb5d5fa10ca30b68f689390c84df6d0c1341a7c02"
+      }
+    },
+    {
+      "id": "Kuronons_BlackFlags_Wynne_128x64",
+      "title": "BlackFlags Wynne",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Black_Flags_Collection/Animation_ZIP_files_%5BBlackFlags%5D/Kuronons_BlackFlags_Wynne_128x64.zip",
+        "sha256": "320d95be67dcdce8f81292e96bd33d5bb036d6138dd2d1a916ea2eadb8d81993"
+      }
+    },
+    {
+      "id": "Kuronons_BlackFlags_You_128x64",
+      "title": "BlackFlags You",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Black_Flags_Collection/Animation_ZIP_files_%5BBlackFlags%5D/Kuronons_BlackFlags_You_128x64.zip",
+        "sha256": "e3b79de70ea1e4b7b8311a404536ce6a94f8458e5c40d7365eea427417f761f5"
+      }
+    },
+    {
+      "id": "Kuronons_CFW_EscapeFrom_128x64",
+      "title": "CFW EscapeFrom",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Custom_Firmwares/Animation_ZIP_files_%5BCustom_Firmwares%5D/Kuronons_CFW_EscapeFrom_128x64.zip",
+        "sha256": "081d1c9e24c7dcf890ddac9edd51818b801ee4ebee731d5603ef487bf0b0fb63"
+      }
+    },
+    {
+      "id": "Kuronons_CFW_FH_Rocket_128x64",
+      "title": "CFW FH Rocket",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Custom_Firmwares/Animation_ZIP_files_%5BCustom_Firmwares%5D/Kuronons_CFW_FH_Rocket_128x64.zip",
+        "sha256": "bf8211600d3a0db8052829fc186fde3f5b12b24d4d9f51f21dbca9c18ad7da18"
+      }
+    },
+    {
+      "id": "Kuronons_CFW_FlipperHub_128x64",
+      "title": "CFW FlipperHub",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Custom_Firmwares/Animation_ZIP_files_%5BCustom_Firmwares%5D/Kuronons_CFW_FlipperHub_128x64.zip",
+        "sha256": "beba7b5f682575a9c51926dd3e4d2fc997cb72286d51a32f0f0dd37f0b417136"
+      }
+    },
+    {
+      "id": "Kuronons_CFW_Marauder_128x64",
+      "title": "CFW Marauder",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Custom_Firmwares/Animation_ZIP_files_%5BCustom_Firmwares%5D/Kuronons_CFW_Marauder_128x64.zip",
+        "sha256": "107b32e3cf2a0739c792965d472e32dbb21dfdae5856f0be100fa235a1bc97ba"
+      }
+    },
+    {
+      "id": "Kuronons_CFW_Momentum1_128x64",
+      "title": "CFW Momentum1",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Custom_Firmwares/Animation_ZIP_files_%5BCustom_Firmwares%5D/Kuronons_CFW_Momentum1_128x64.zip",
+        "sha256": "66495f3bcb67737f93312f65b8d434d8c924c57142f128e5510daaa4acf0c642"
+      }
+    },
+    {
+      "id": "Kuronons_CFW_Momentum2_128x64",
+      "title": "CFW Momentum2",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Custom_Firmwares/Animation_ZIP_files_%5BCustom_Firmwares%5D/Kuronons_CFW_Momentum2_128x64.zip",
+        "sha256": "04c8bf1491f3b0bcae2cc867de53d2fe9a4b41770cd2170cf509121c618a9ce7"
+      }
+    },
+    {
+      "id": "Kuronons_CFW_Momentum3_128x64",
+      "title": "CFW Momentum3",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Custom_Firmwares/Animation_ZIP_files_%5BCustom_Firmwares%5D/Kuronons_CFW_Momentum3_128x64.zip",
+        "sha256": "e593a915098add5c377ea3c3d735867d6225491440097b18fc101a121ab2594c"
+      }
+    },
+    {
+      "id": "Kuronons_CFW_RMCFW_128x64",
+      "title": "CFW RMCFW",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Custom_Firmwares/Animation_ZIP_files_%5BCustom_Firmwares%5D/Kuronons_CFW_RMCFW_128x64.zip",
+        "sha256": "51175e997d4675cd8992b7c8a8cb17004c68dde3082e82b559afa81cc36c2274"
+      }
+    },
+    {
+      "id": "Kuronons_CFW_SasTV_128x64",
+      "title": "CFW SasTV",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Custom_Firmwares/Animation_ZIP_files_%5BCustom_Firmwares%5D/Kuronons_CFW_SasTV_128x64.zip",
+        "sha256": "b0e1f2e27b73e389ee2eadae8b13fdf0801817e670a4432588a751846ec94a72"
+      }
+    },
+    {
+      "id": "Kuronons_CFW_TS3000_128x64",
+      "title": "CFW TS3000",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Custom_Firmwares/Animation_ZIP_files_%5BCustom_Firmwares%5D/Kuronons_CFW_TS3000_128x64.zip",
+        "sha256": "5b785d838407578cdc0554e992f35bf731219c966e0c7bf5c59f88172b3f99e3"
+      }
+    },
+    {
+      "id": "Kuronons_CFW_TWH_128x64",
+      "title": "CFW TWH",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Custom_Firmwares/Animation_ZIP_files_%5BCustom_Firmwares%5D/Kuronons_CFW_TWH_128x64.zip",
+        "sha256": "1fcfc692b362b94b2c720b833638ec4cc130abd16fc1b8b0545633fac68166a2"
+      }
+    },
+    {
+      "id": "Kuronons_CFW_V_128x64",
+      "title": "CFW V",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Custom_Firmwares/Animation_ZIP_files_%5BCustom_Firmwares%5D/Kuronons_CFW_V_128x64.zip",
+        "sha256": "d1df95552ac7a27ef6138b41d6e3e3736b8fdcb614e733bf50a0d0f3df73c9b1"
+      }
+    },
+    {
+      "id": "Kuronons_Citizen_Sleeper_Havenage_128x64",
+      "title": "Citizen Sleeper Havenage",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Citizen_Sleeper/Animation_ZIP_files%20%28Citizen_Sleeper%29/Kuronons_Citizen_Sleeper_Havenage_128x64.zip",
+        "sha256": "14e6b929b23c41db1f3bd772f3aa51169fcb251f1c94ecf5e4d7e83c13ecc812"
+      }
+    },
+    {
+      "id": "Kuronons_Citizen_Sleeper_Hunter_128x64",
+      "title": "Citizen Sleeper Hunter",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Citizen_Sleeper/Animation_ZIP_files%20%28Citizen_Sleeper%29/Kuronons_Citizen_Sleeper_Hunter_128x64.zip",
+        "sha256": "71c08a000c6e8dd32a53dec3aa95d93b5ebd6cd8efe8863ff07f44a27bdd4ada"
+      }
+    },
+    {
+      "id": "Kuronons_Citizen_Sleeper_Hypha_128x64",
+      "title": "Citizen Sleeper Hypha",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Citizen_Sleeper/Animation_ZIP_files%20%28Citizen_Sleeper%29/Kuronons_Citizen_Sleeper_Hypha_128x64.zip",
+        "sha256": "25a6eac93a23e78ad107d37ca176aa2b88604ee4d881d3286f2961049ca1390d"
+      }
+    },
+    {
+      "id": "Kuronons_Citizen_Sleeper_Solheim_128x64",
+      "title": "Citizen Sleeper Solheim",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Citizen_Sleeper/Animation_ZIP_files%20%28Citizen_Sleeper%29/Kuronons_Citizen_Sleeper_Solheim_128x64.zip",
+        "sha256": "fcac73680b512d9db88f1ecbbcadacd094010bfdce9c1c437149341aa45b8a02"
+      }
+    },
+    {
+      "id": "Kuronons_Citizen_Sleeper_Worm_128x64",
+      "title": "Citizen Sleeper Worm",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Citizen_Sleeper/Animation_ZIP_files%20%28Citizen_Sleeper%29/Kuronons_Citizen_Sleeper_Worm_128x64.zip",
+        "sha256": "09e0c79c9f65b3a7212934d0bee943a485df942a3d3d682104550c5c03f4173e"
+      }
+    },
+    {
+      "id": "Kuronons_Citizen_Sleeper_Yatagan_128x64",
+      "title": "Citizen Sleeper Yatagan",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Citizen_Sleeper/Animation_ZIP_files%20%28Citizen_Sleeper%29/Kuronons_Citizen_Sleeper_Yatagan_128x64.zip",
+        "sha256": "50a72b0f87859e1ce6aa7fcaa2d883479d5a63f149271f11d9fefd74754a8533"
+      }
+    },
+    {
+      "id": "Kuronons_CP77_Arasaka_128x64",
+      "title": "CP77 Arasaka",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/CP77/Animation_ZIP_files%20%28CP77%29/Kuronons_CP77_Arasaka_128x64.zip",
+        "sha256": "0b55c4d6c926b13ff0bf6df0eb3277a92a5000f9845375d04cd0b884df30038c"
+      }
+    },
+    {
+      "id": "Kuronons_CP77_Delamain_128x64",
+      "title": "CP77 Delamain",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/CP77/Animation_ZIP_files%20%28CP77%29/Kuronons_CP77_Delamain_128x64.zip",
+        "sha256": "28fe3e7c1f54f60cd3233ab35e63ee1a888d04e5ea3fffd6e48d9abc46ebc4c4"
+      }
+    },
+    {
+      "id": "Kuronons_CP77_KangTao_128x64",
+      "title": "CP77 KangTao",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/CP77/Animation_ZIP_files%20%28CP77%29/Kuronons_CP77_KangTao_128x64.zip",
+        "sha256": "901eb5be607a965be91c30994f78e43489816b04a884fa83c7e245778e328829"
+      }
+    },
+    {
+      "id": "Kuronons_CP77_Kendachi_128x64",
+      "title": "CP77 Kendachi",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/CP77/Animation_ZIP_files%20%28CP77%29/Kuronons_CP77_Kendachi_128x64.zip",
+        "sha256": "24d92db4c94c80a9a1e8903e822ff58a9cf55e6799b1fc6467c75ff5c733f176"
+      }
+    },
+    {
+      "id": "Kuronons_CP77_Kiroshi_128x64",
+      "title": "CP77 Kiroshi",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/CP77/Animation_ZIP_files%20%28CP77%29/Kuronons_CP77_Kiroshi_128x64.zip",
+        "sha256": "cc30d757d5f5877ce3fe50a5c0c0291e215677c53af17fb0a46f7f831f56da92"
+      }
+    },
+    {
+      "id": "Kuronons_CP77_Malorian_128x64",
+      "title": "CP77 Malorian",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/CP77/Animation_ZIP_files%20%28CP77%29/Kuronons_CP77_Malorian_128x64.zip",
+        "sha256": "8e742aa48e690f84fee47c4effcd7d16a554bd9c7055dea911e95f731bc1d2af"
+      }
+    },
+    {
+      "id": "Kuronons_CP77_MaxiWear_128x64",
+      "title": "CP77 MaxiWear",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/CP77/Animation_ZIP_files%20%28CP77%29/Kuronons_CP77_MaxiWear_128x64.zip",
+        "sha256": "9994694a6ab1fb2965210cfff8db811440f0206c8d76590e24963ce0910852e1"
+      }
+    },
+    {
+      "id": "Kuronons_CP77_Militech_128x64",
+      "title": "CP77 Militech",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/CP77/Animation_ZIP_files%20%28CP77%29/Kuronons_CP77_Militech_128x64.zip",
+        "sha256": "7533b2422df1687c294ff543bbe1085e1403f9e227acf6f07f76d0c1f674749b"
+      }
+    },
+    {
+      "id": "Kuronons_CP77_Relic_128x64",
+      "title": "CP77 Relic",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/CP77/Animation_ZIP_files%20%28CP77%29/Kuronons_CP77_Relic_128x64.zip",
+        "sha256": "205484fb19224c3b394e4c3147b16b7020c99fcccc7a87cabf64146d117e027d"
+      }
+    },
+    {
+      "id": "Kuronons_CP77_Rostovic_128x64",
+      "title": "CP77 Rostovic",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/CP77/Animation_ZIP_files%20%28CP77%29/Kuronons_CP77_Rostovic_128x64.zip",
+        "sha256": "a4d734892a6e549f3c581f6bc757ef6cf26ae35f48123e09666717b12924f083"
+      }
+    },
+    {
+      "id": "Kuronons_CP77_Segotari_128x64",
+      "title": "CP77 Segotari",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/CP77/Animation_ZIP_files%20%28CP77%29/Kuronons_CP77_Segotari_128x64.zip",
+        "sha256": "196ed04cf3b6c545c0e2e5c1471426a636ed2d85fb9276d44dc36ae2d5485c97"
+      }
+    },
+    {
+      "id": "Kuronons_CP77_Tsunami_128x64",
+      "title": "CP77 Tsunami",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/CP77/Animation_ZIP_files%20%28CP77%29/Kuronons_CP77_Tsunami_128x64.zip",
+        "sha256": "a75a3f10589db6319d861f9759c81c2df7cd72da1a9519c07f8dfc74451240e9"
+      }
+    },
+    {
+      "id": "Kuronons_CP77MC_Arch_128x64",
+      "title": "CP77MC Arch",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/CP77/Animation_ZIP_files%20%28CP77%29/Kuronons_CP77MC_Arch_128x64.zip",
+        "sha256": "d8606380a3b1f3b3773a5c15a3da837ee60ea4b0e09a3c3939d7195541ee72a7"
+      }
+    },
+    {
+      "id": "Kuronons_CP77MC_Archer_128x64",
+      "title": "CP77MC Archer",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/CP77/Animation_ZIP_files%20%28CP77%29/Kuronons_CP77MC_Archer_128x64.zip",
+        "sha256": "99aa8c7fa65161be2eded7300f011e68eccfe052666cd5359be47828f76dc51b"
+      }
+    },
+    {
+      "id": "Kuronons_CP77MC_Brennan_128x64",
+      "title": "CP77MC Brennan",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/CP77/Animation_ZIP_files%20%28CP77%29/Kuronons_CP77MC_Brennan_128x64.zip",
+        "sha256": "816701e59e473024fa7ed28c76017e5efe50a9d5024372842ffd3abc9ff5155a"
+      }
+    },
+    {
+      "id": "Kuronons_CP77MC_Chevillon_128x64",
+      "title": "CP77MC Chevillon",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/CP77/Animation_ZIP_files%20%28CP77%29/Kuronons_CP77MC_Chevillon_128x64.zip",
+        "sha256": "c01eaab245b707ce24916efb2476594baf186e49668644ded213634329547978"
+      }
+    },
+    {
+      "id": "Kuronons_CP77MC_Herrera_128x64",
+      "title": "CP77MC Herrera",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/CP77/Animation_ZIP_files%20%28CP77%29/Kuronons_CP77MC_Herrera_128x64.zip",
+        "sha256": "1386efae79c5fbe28d337d96b8ad872ca0ac86670841da524cd6f2e33e148d1f"
+      }
+    },
+    {
+      "id": "Kuronons_CP77MC_Kaukaz_128x64",
+      "title": "CP77MC Kaukaz",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/CP77/Animation_ZIP_files%20%28CP77%29/Kuronons_CP77MC_Kaukaz_128x64.zip",
+        "sha256": "9963b110e67a2e388d0b88568a0febf9f0156c8a6f6593750b89cfc8c3c3cb3a"
+      }
+    },
+    {
+      "id": "Kuronons_CP77MC_Mahir_128x64",
+      "title": "CP77MC Mahir",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/CP77/Animation_ZIP_files%20%28CP77%29/Kuronons_CP77MC_Mahir_128x64.zip",
+        "sha256": "d46384af0bf217452eb002d830a5cae483ac3a6a0356f850342757726bbe79ff"
+      }
+    },
+    {
+      "id": "Kuronons_CP77MC_Makigai_128x64",
+      "title": "CP77MC Makigai",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/CP77/Animation_ZIP_files%20%28CP77%29/Kuronons_CP77MC_Makigai_128x64.zip",
+        "sha256": "dc7403cfe5ce8668a314284301ed20415b10ab0472c4af063b10524ad8c46b13"
+      }
+    },
+    {
+      "id": "Kuronons_CP77MC_Mizutani_128x64",
+      "title": "CP77MC Mizutani",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/CP77/Animation_ZIP_files%20%28CP77%29/Kuronons_CP77MC_Mizutani_128x64.zip",
+        "sha256": "867cc9815620bdb292f5358b4505c0b75c1f709672cf2de4846f46fd62595c4f"
+      }
+    },
+    {
+      "id": "Kuronons_CP77MC_Porsche_128x64",
+      "title": "CP77MC Porsche",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/CP77/Animation_ZIP_files%20%28CP77%29/Kuronons_CP77MC_Porsche_128x64.zip",
+        "sha256": "f34fff6c97e01569d8846aebcc05f24f078544030254321f1d4b56ce2f408ba5"
+      }
+    },
+    {
+      "id": "Kuronons_CP77MC_Quadra_128x64",
+      "title": "CP77MC Quadra",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/CP77/Animation_ZIP_files%20%28CP77%29/Kuronons_CP77MC_Quadra_128x64.zip",
+        "sha256": "31a5a2b3e305f785f4d269907e0e3a080f6d29ca09b9d20d5b6553ba0d66e6e1"
+      }
+    },
+    {
+      "id": "Kuronons_CP77MC_Rayfield_128x64",
+      "title": "CP77MC Rayfield",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/CP77/Animation_ZIP_files%20%28CP77%29/Kuronons_CP77MC_Rayfield_128x64.zip",
+        "sha256": "8240615d8eea99b668ce2ad4eae86315ae200a11113b67d38384f443ddc5537b"
+      }
+    },
+    {
+      "id": "Kuronons_CP77MC_Thorton_128x64",
+      "title": "CP77MC Thorton",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/CP77/Animation_ZIP_files%20%28CP77%29/Kuronons_CP77MC_Thorton_128x64.zip",
+        "sha256": "18fed1cbcbcbc9585504148feb83fcc0effd72d74cee8a4900c98ebb5735877d"
+      }
+    },
+    {
+      "id": "Kuronons_CP77MC_Villefort_128x64",
+      "title": "CP77MC Villefort",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/CP77/Animation_ZIP_files%20%28CP77%29/Kuronons_CP77MC_Villefort_128x64.zip",
+        "sha256": "23d0b1a0e800bc7050c0ddf27a8161d610b83394dade92efcb8057748d496cd4"
+      }
+    },
+    {
+      "id": "Kuronons_CP77MC_Yaiba_128x64",
+      "title": "CP77MC Yaiba",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/CP77/Animation_ZIP_files%20%28CP77%29/Kuronons_CP77MC_Yaiba_128x64.zip",
+        "sha256": "d31c215c1c26c06bbb9f8d815b6acc0671119861ed4fedbd36b84fd994d43262"
+      }
+    },
+    {
+      "id": "Kuronons_GITS_Individual_Eleven_128x64",
+      "title": "GITS Individual Eleven",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/GITS/Animation_ZIP_files%20%28GITS%29/Kuronons_GITS_Individual_Eleven_128x64.zip",
+        "sha256": "c2312dfd1e24a93cb79d9a9822385ba03c70cbf0b237aa813f0d47291bc4b012"
+      }
+    },
+    {
+      "id": "Kuronons_GITS_LaughingMan_v2_128x64",
+      "title": "GITS LaughingMan v2",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/GITS/Animation_ZIP_files%20%28GITS%29/Kuronons_GITS_LaughingMan_v2_128x64.zip",
+        "sha256": "b02ce1ea206f91f0883ce74e12c27282be57db2ca04a4c458979a7ba050bf12d"
+      }
+    },
+    {
+      "id": "Kuronons_GITS_Section9_JP_128x64",
+      "title": "GITS Section9 JP",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/GITS/Animation_ZIP_files%20%28GITS%29/Kuronons_GITS_Section9_JP_128x64.zip",
+        "sha256": "57d3b192875168db8fa3b010e10c930aed093b9be464e8eecfc6e6a0b0c2e31e"
+      }
+    },
+    {
+      "id": "Kuronons_GITS_Section9_US_128x64",
+      "title": "GITS Section9 US",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/GITS/Animation_ZIP_files%20%28GITS%29/Kuronons_GITS_Section9_US_128x64.zip",
+        "sha256": "c00f62ece180097ed58839c940df8a60ca478d4d8852b45adcbace95711dbcfd"
+      }
+    },
+    {
+      "id": "Kuronons_GITS_Tachikoma_128x64",
+      "title": "GITS Tachikoma",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/GITS/Animation_ZIP_files%20%28GITS%29/Kuronons_GITS_Tachikoma_128x64.zip",
+        "sha256": "1ba14b7f6b313b3f62b50720d206e5636fa766bd4f148d3c8038cc241d2d8165"
+      }
+    },
+    {
+      "id": "Kuronons_Misc_Akira_Capsule_128x64",
+      "title": "Misc Akira Capsule",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Miscellaneous/Animation_ZIP_files_%5BMiscellaneous%5D/Kuronons_Misc_Akira_Capsule_128x64.zip",
+        "sha256": "36ec13b850b6addfbfece5b8601e60aa0c03eae79d2eb54cd0e53f878bb890eb"
+      }
+    },
+    {
+      "id": "Kuronons_Misc_Cobra_128x64",
+      "title": "Misc Cobra",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Miscellaneous/Animation_ZIP_files_%5BMiscellaneous%5D/Kuronons_Misc_Cobra_128x64.zip",
+        "sha256": "62d58f39013c43111f82c843480ac3753a8e620c04c6adca649a2c1470494f29"
+      }
+    },
+    {
+      "id": "Kuronons_Misc_Cowsay_128x64",
+      "title": "Misc Cowsay",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Miscellaneous/Animation_ZIP_files_%5BMiscellaneous%5D/Kuronons_Misc_Cowsay_128x64.zip",
+        "sha256": "d26f5abf4e397e195614008812e449d17b37ab15e6d0835164817e31772949eb"
+      }
+    },
+    {
+      "id": "Kuronons_Misc_Earth_Arcadia_128x64",
+      "title": "Misc Earth Arcadia",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Miscellaneous/Animation_ZIP_files_%5BMiscellaneous%5D/Kuronons_Misc_Earth_Arcadia_128x64.zip",
+        "sha256": "8f71f2f93b76681020dd299efc82a36ce5999fa2e7c2cc8a86616083456c3740"
+      }
+    },
+    {
+      "id": "Kuronons_Misc_Eye_of_the_Flipper_128x64",
+      "title": "Misc Eye of the Flipper",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Miscellaneous/Animation_ZIP_files_%5BMiscellaneous%5D/Kuronons_Misc_Eye_of_the_Flipper_128x64.zip",
+        "sha256": "5a291aacd17c28da4c7aeccfd877badc81c8b415a97dcf725c584e4feb74b697"
+      }
+    },
+    {
+      "id": "Kuronons_Misc_FlippaVerse_128x64",
+      "title": "Misc FlippaVerse",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Miscellaneous/Animation_ZIP_files_%5BMiscellaneous%5D/Kuronons_Misc_FlippaVerse_128x64.zip",
+        "sha256": "06ad8e476b435c684225a2007f2fcc30cc1f7fc357827be9ad3547f736fa1232"
+      }
+    },
+    {
+      "id": "Kuronons_Misc_HAL9000_128x64",
+      "title": "Misc HAL9000",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Miscellaneous/Animation_ZIP_files_%5BMiscellaneous%5D/Kuronons_Misc_HAL9000_128x64.zip",
+        "sha256": "6e6c63ef484a39f838b6902c44a135cda9c233597a5144d6bbf088b3414a613c"
+      }
+    },
+    {
+      "id": "Kuronons_Misc_Jolly_Roger_128x64",
+      "title": "Misc Jolly Roger",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Miscellaneous/Animation_ZIP_files_%5BMiscellaneous%5D/Kuronons_Misc_Jolly_Roger_128x64.zip",
+        "sha256": "a7776ffb29e20bfd2cd53491024dd1227fa9baa61dfb960345f8d34159d95d35"
+      }
+    },
+    {
+      "id": "Kuronons_Misc_L_128x64",
+      "title": "Misc L",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Miscellaneous/Animation_ZIP_files_%5BMiscellaneous%5D/Kuronons_Misc_L_128x64.zip",
+        "sha256": "951c5372c8e572125d0f80e139ead878967ea42a2c6e3f90cdb0d89a3476bc73"
+      }
+    },
+    {
+      "id": "Kuronons_Misc_NGE_Emergency_128x64",
+      "title": "Misc NGE Emergency",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Miscellaneous/Animation_ZIP_files_%5BMiscellaneous%5D/Kuronons_Misc_NGE_Emergency_128x64.zip",
+        "sha256": "03539b987ed23843f81cfc763fade89116e68de9446bdf8caf6f9d0bbbab7fd4"
+      }
+    },
+    {
+      "id": "Kuronons_Misc_Orcat_128x64",
+      "title": "Misc Orcat",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Miscellaneous/Animation_ZIP_files_%5BMiscellaneous%5D/Kuronons_Misc_Orcat_128x64.zip",
+        "sha256": "0ae1d6737ddcb740c22e2699a607b793061c72471664e53748d44d88d89549c7"
+      }
+    },
+    {
+      "id": "Kuronons_Misc_Zone414_128x64",
+      "title": "Misc Zone414",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Miscellaneous/Animation_ZIP_files_%5BMiscellaneous%5D/Kuronons_Misc_Zone414_128x64.zip",
+        "sha256": "070a9bee1aae8454e4c8df833bb271f541d71248ccc24afecd76bdae9f3182db"
+      }
+    },
+    {
+      "id": "Kuronons_Monopoly_DoctorFee_128x64",
+      "title": "Monopoly DoctorFee",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Monopoly_Cards/Animation_ZIP_files_%5BMonopoly_Cards%5D/Kuronons_Monopoly_DoctorFee_128x64.zip",
+        "sha256": "ea691ac80b1e281691a29bddd327dd9b9eaafa4a2f2ae667a29468125987e90c"
+      }
+    },
+    {
+      "id": "Kuronons_Monopoly_Gotojail_128x64",
+      "title": "Monopoly Gotojail",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Monopoly_Cards/Animation_ZIP_files_%5BMonopoly_Cards%5D/Kuronons_Monopoly_Gotojail_128x64.zip",
+        "sha256": "38faf36714a5908724b330cb6ce6ec79d6fd587c3a81b1011299faaace54cf53"
+      }
+    },
+    {
+      "id": "Kuronons_SFlogo_Cyberdyne_128x64",
+      "title": "SFlogo Cyberdyne",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/SF_Corporations_Logos/Animation_ZIP_files_%5BSF_Corporations_Logos%5D/Kuronons_SFlogo_Cyberdyne_128x64.zip",
+        "sha256": "d4713c462fa87dc5c36c3a5e1943ccefa281df868cc672f32b983891bc71a381"
+      }
+    },
+    {
+      "id": "Kuronons_SFlogo_Dharma_128x64",
+      "title": "SFlogo Dharma",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/SF_Corporations_Logos/Animation_ZIP_files_%5BSF_Corporations_Logos%5D/Kuronons_SFlogo_Dharma_128x64.zip",
+        "sha256": "713683b081e9aea579bc9280c6f8ac13225653a3328028d17793d41ca5614b2a"
+      }
+    },
+    {
+      "id": "Kuronons_SFlogo_Dharma_dark_128x64",
+      "title": "SFlogo Dharma dark",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/SF_Corporations_Logos/Animation_ZIP_files_%5BSF_Corporations_Logos%5D/Kuronons_SFlogo_Dharma_dark_128x64.zip",
+        "sha256": "67d07db1040ace8dd83bd7ed7726098fa4a2b198b3e1adb560a40bed1e5f0ba2"
+      }
+    },
+    {
+      "id": "Kuronons_SFlogo_ENCOM_128x64",
+      "title": "SFlogo ENCOM",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/SF_Corporations_Logos/Animation_ZIP_files_%5BSF_Corporations_Logos%5D/Kuronons_SFlogo_ENCOM_128x64.zip",
+        "sha256": "8b8d38c1c3e25326a98164941da68e585b459db30a108c343b6a1040b62a744b"
+      }
+    },
+    {
+      "id": "Kuronons_SFlogo_INGSOC_128x64",
+      "title": "SFlogo INGSOC",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/SF_Corporations_Logos/Animation_ZIP_files_%5BSF_Corporations_Logos%5D/Kuronons_SFlogo_INGSOC_128x64.zip",
+        "sha256": "2d4cd8a339c8a404e90d37a45f00b99724c3c5f7191d1a85647656738257efa7"
+      }
+    },
+    {
+      "id": "Kuronons_SFlogo_OCP_128x64",
+      "title": "SFlogo OCP",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/SF_Corporations_Logos/Animation_ZIP_files_%5BSF_Corporations_Logos%5D/Kuronons_SFlogo_OCP_128x64.zip",
+        "sha256": "2186f4b3c31dab9ec163cf3ab1f29b2cf63de743195e29dbd4db2b50be514aea"
+      }
+    },
+    {
+      "id": "Kuronons_SFlogo_OCP2_128x64",
+      "title": "SFlogo OCP2",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/SF_Corporations_Logos/Animation_ZIP_files_%5BSF_Corporations_Logos%5D/Kuronons_SFlogo_OCP2_128x64.zip",
+        "sha256": "1d4235086ae17e99c1b729cd0193cc7a865289e3a5a6b5205301ce093436d3fe"
+      }
+    },
+    {
+      "id": "Kuronons_SFlogo_OCP3_128x64",
+      "title": "SFlogo OCP3",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/SF_Corporations_Logos/Animation_ZIP_files_%5BSF_Corporations_Logos%5D/Kuronons_SFlogo_OCP3_128x64.zip",
+        "sha256": "54c1a01be535e8954718fc1b257e4c2d8d215903e6e2cb12e562a56f90ddce1c"
+      }
+    },
+    {
+      "id": "Kuronons_SFlogo_Rekall_128x64",
+      "title": "SFlogo Rekall",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/SF_Corporations_Logos/Animation_ZIP_files_%5BSF_Corporations_Logos%5D/Kuronons_SFlogo_Rekall_128x64.zip",
+        "sha256": "2b50d6a7a84a9ee88fa1a79f9caa287783dab8310322e4f81b8102c63fc99f7d"
+      }
+    },
+    {
+      "id": "Kuronons_SFlogo_Skynet_128x64",
+      "title": "SFlogo Skynet",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/SF_Corporations_Logos/Animation_ZIP_files_%5BSF_Corporations_Logos%5D/Kuronons_SFlogo_Skynet_128x64.zip",
+        "sha256": "384249f00b3ffe3ef1c190cf4ee931c3152011f056b22ce4ca611f5f0c5c5e99"
+      }
+    },
+    {
+      "id": "Kuronons_SFlogo_Tyrell_128x64",
+      "title": "SFlogo Tyrell",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/SF_Corporations_Logos/Animation_ZIP_files_%5BSF_Corporations_Logos%5D/Kuronons_SFlogo_Tyrell_128x64.zip",
+        "sha256": "398bbc37a2ed1488e8a7112bbedbe7219b65854637aac6ebd207175a61cb8397"
+      }
+    },
+    {
+      "id": "Kuronons_SFlogo_Weyland_128x64",
+      "title": "SFlogo Weyland",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/SF_Corporations_Logos/Animation_ZIP_files_%5BSF_Corporations_Logos%5D/Kuronons_SFlogo_Weyland_128x64.zip",
+        "sha256": "0b55e38177ee83f9188f4eeb20d8e577f56c46049de7d7d111995ae9bebfc4df"
+      }
+    },
+    {
+      "id": "Kuronons_SFlogo_WeylandYutani_128x64",
+      "title": "SFlogo WeylandYutani",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/SF_Corporations_Logos/Animation_ZIP_files_%5BSF_Corporations_Logos%5D/Kuronons_SFlogo_WeylandYutani_128x64.zip",
+        "sha256": "9bab4d5ecd9e2c628964b776d0c36963246cd0f3f884ec21947831a591683bf0"
+      }
+    },
+    {
+      "id": "Kuronons_SFlogoLoop_Cyberdyne_128x64",
+      "title": "SFlogoLoop Cyberdyne",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/SF_Corporations_Logos/Animation_ZIP_files_%5BSF_Corporations_Logos_Looped%5D/Kuronons_SFlogoLoop_Cyberdyne_128x64.zip",
+        "sha256": "115ca6afe05b0edd58003a8af0fe64523d4ae934541be73e24bbf2546e5bacdf"
+      }
+    },
+    {
+      "id": "Kuronons_SFlogoLoop_Dharma_dark_128x64",
+      "title": "SFlogoLoop Dharma dark",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/SF_Corporations_Logos/Animation_ZIP_files_%5BSF_Corporations_Logos_Looped%5D/Kuronons_SFlogoLoop_Dharma_dark_128x64.zip",
+        "sha256": "ee8f1049403fe85cf13c1d6c2ddbab25d072ab01c84145bcd101dd4aec907f48"
+      }
+    },
+    {
+      "id": "Kuronons_SFlogoLoop_ENCOM_128x64",
+      "title": "SFlogoLoop ENCOM",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/SF_Corporations_Logos/Animation_ZIP_files_%5BSF_Corporations_Logos_Looped%5D/Kuronons_SFlogoLoop_ENCOM_128x64.zip",
+        "sha256": "6685157bd40822f43d29d8a08b0b6587bb2344983546bbb20668c82b02ab7aee"
+      }
+    },
+    {
+      "id": "Kuronons_SFlogoLoop_INGSOC_128x64",
+      "title": "SFlogoLoop INGSOC",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/SF_Corporations_Logos/Animation_ZIP_files_%5BSF_Corporations_Logos_Looped%5D/Kuronons_SFlogoLoop_INGSOC_128x64.zip",
+        "sha256": "6bbc7e5d0c73fe412def1048f686b2392986e046e28ded8c8aedf4965cc36af8"
+      }
+    },
+    {
+      "id": "Kuronons_SFlogoLoop_OCP_128x64",
+      "title": "SFlogoLoop OCP",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/SF_Corporations_Logos/Animation_ZIP_files_%5BSF_Corporations_Logos_Looped%5D/Kuronons_SFlogoLoop_OCP_128x64.zip",
+        "sha256": "eb3e506edac6765b660fe1427b2557e05a62a10efae00a217d07b0b2c67a2cb8"
+      }
+    },
+    {
+      "id": "Kuronons_SFlogoLoop_OCP2_128x64",
+      "title": "SFlogoLoop OCP2",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/SF_Corporations_Logos/Animation_ZIP_files_%5BSF_Corporations_Logos_Looped%5D/Kuronons_SFlogoLoop_OCP2_128x64.zip",
+        "sha256": "3a174754febd432887b404b3a08f537721dbb622a982004fc8e30cc120064af1"
+      }
+    },
+    {
+      "id": "Kuronons_SFlogoLoop_OCP3_128x64",
+      "title": "SFlogoLoop OCP3",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/SF_Corporations_Logos/Animation_ZIP_files_%5BSF_Corporations_Logos_Looped%5D/Kuronons_SFlogoLoop_OCP3_128x64.zip",
+        "sha256": "b93b9e52d8dec42b7a4916e345d7ec705efd1b5522c5ee1a4aa66b5dfb310035"
+      }
+    },
+    {
+      "id": "Kuronons_SFlogoLoop_Rekall_128x64",
+      "title": "SFlogoLoop Rekall",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/SF_Corporations_Logos/Animation_ZIP_files_%5BSF_Corporations_Logos_Looped%5D/Kuronons_SFlogoLoop_Rekall_128x64.zip",
+        "sha256": "936640f2cc35fe1ca5470ac69705d3f7abe83f46fb245bfeed149aa33e6dc50a"
+      }
+    },
+    {
+      "id": "Kuronons_SFlogoLoop_Skynet_128x64",
+      "title": "SFlogoLoop Skynet",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/SF_Corporations_Logos/Animation_ZIP_files_%5BSF_Corporations_Logos_Looped%5D/Kuronons_SFlogoLoop_Skynet_128x64.zip",
+        "sha256": "2b9f781aa803878d581e50d4c55c076f65d427af3eae0394131f95815848df0a"
+      }
+    },
+    {
+      "id": "Kuronons_SFlogoLoop_Tyrell_128x64",
+      "title": "SFlogoLoop Tyrell",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/SF_Corporations_Logos/Animation_ZIP_files_%5BSF_Corporations_Logos_Looped%5D/Kuronons_SFlogoLoop_Tyrell_128x64.zip",
+        "sha256": "ccac7759f6da524cd7ffa9e4e2441059a4b51eb625e83d307c6e6f28cc3661fe"
+      }
+    },
+    {
+      "id": "Kuronons_SFlogoLoop_Weyland_128x64",
+      "title": "SFlogoLoop Weyland",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/SF_Corporations_Logos/Animation_ZIP_files_%5BSF_Corporations_Logos_Looped%5D/Kuronons_SFlogoLoop_Weyland_128x64.zip",
+        "sha256": "acbeb30e5161cf92b132650a47c4ff553ab4893e83ec3641784c6c21bea8bac3"
+      }
+    },
+    {
+      "id": "Kuronons_SFlogoLoop_WeylandYutani_128x64",
+      "title": "SFlogoLoop WeylandYutani",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/SF_Corporations_Logos/Animation_ZIP_files_%5BSF_Corporations_Logos_Looped%5D/Kuronons_SFlogoLoop_WeylandYutani_128x64.zip",
+        "sha256": "6f884df39168e39e90c8dc1b21df2524b0d725bbebe823e533a5d10d925848bc"
+      }
+    },
+    {
+      "id": "Kuronons_Virus_Ambulance_128x64",
+      "title": "Virus Ambulance",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Virus/Animation_ZIP_files_%5BVirus%5D/Kuronons_Virus_Ambulance_128x64.zip",
+        "sha256": "56f2eabd4d09b422dd1792bf1237de45c79af9e843e3b4cbb26ce8dc5a148f1d"
+      }
+    },
+    {
+      "id": "Kuronons_Virus_Cascade_128x64",
+      "title": "Virus Cascade",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Virus/Animation_ZIP_files_%5BVirus%5D/Kuronons_Virus_Cascade_128x64.zip",
+        "sha256": "34b48f1f0bd953470b2b7e0278bb6ae607df6fbfe428cd3d6d89b2f80e2795b5"
+      }
+    },
+    {
+      "id": "Kuronons_Virus_Cerberus_128x64",
+      "title": "Virus Cerberus",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Virus/Animation_ZIP_files_%5BVirus%5D/Kuronons_Virus_Cerberus_128x64.zip",
+        "sha256": "c14bd0b0e5d31eda11f5acba35d6fe0e7fb2073cae4805c117a9b5e1dfbc452c"
+      }
+    },
+    {
+      "id": "Kuronons_Virus_CMOSDead_128x64",
+      "title": "Virus CMOSDead",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Virus/Animation_ZIP_files_%5BVirus%5D/Kuronons_Virus_CMOSDead_128x64.zip",
+        "sha256": "7a4d01b6d0d71efb1cac6f1134a1e3ebb6069365a877872347704d72bfbff8d3"
+      }
+    },
+    {
+      "id": "Kuronons_Virus_Coconut_128x64",
+      "title": "Virus Coconut",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Virus/Animation_ZIP_files_%5BVirus%5D/Kuronons_Virus_Coconut_128x64.zip",
+        "sha256": "ad35ffc2a9c66fbc46a284cbdc7f7cdd33a31726c6eee214c21fac4ba623060f"
+      }
+    },
+    {
+      "id": "Kuronons_Virus_Elvira_128x64",
+      "title": "Virus Elvira",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Virus/Animation_ZIP_files_%5BVirus%5D/Kuronons_Virus_Elvira_128x64.zip",
+        "sha256": "383910a9a4c14e93ddc9185b10859f71394a40105d5d11d72f5aa51d196d7358"
+      }
+    },
+    {
+      "id": "Kuronons_Virus_MadMan_128x64",
+      "title": "Virus MadMan",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Virus/Animation_ZIP_files_%5BVirus%5D/Kuronons_Virus_MadMan_128x64.zip",
+        "sha256": "ccf4a0d1d445c33df0a2ade75d0ad96b5a5b40f95742cfa9f2f3a44fe53391c9"
+      }
+    },
+    {
+      "id": "Kuronons_Virus_Phantom1_128x64",
+      "title": "Virus Phantom1",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Virus/Animation_ZIP_files_%5BVirus%5D/Kuronons_Virus_Phantom1_128x64.zip",
+        "sha256": "80a20be46a18c0496622cf31aac49a78205e532b5f462b3daf931fe749cdda82"
+      }
+    },
+    {
+      "id": "Kuronons_Virus_Plane_128x64",
+      "title": "Virus Plane",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Virus/Animation_ZIP_files_%5BVirus%5D/Kuronons_Virus_Plane_128x64.zip",
+        "sha256": "118c57dab6ff968dadfb7388a819d29f19bb842b6df90a82fda6b712f50966f5"
+      }
+    },
+    {
+      "id": "Kuronons_Virus_Techno_128x64",
+      "title": "Virus Techno",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Virus/Animation_ZIP_files_%5BVirus%5D/Kuronons_Virus_Techno_128x64.zip",
+        "sha256": "b340c89feb0e420725a1a12fc8817d1928545f8c8f65b2b02c151ab6ff79a579"
+      }
+    },
+    {
+      "id": "Kuronons_Virus_Upsilon_128x64",
+      "title": "Virus Upsilon",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Virus/Animation_ZIP_files_%5BVirus%5D/Kuronons_Virus_Upsilon_v2_128x64.zip",
+        "sha256": "c50bc9c3c00260d303bc76638ffac7a625307dc4dda023784acbc0abb26266fd"
+      }
+    },
+    {
+      "id": "Kuronons_Virus_Walker_128x64",
+      "title": "Virus Walker",
+      "source": "Kuronons",
+      "author": "Kuronons",
+      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
+      "payload": {
+        "kind": "remoteZip",
+        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Virus/Animation_ZIP_files_%5BVirus%5D/Kuronons_Virus_Walker_128x64.zip",
+        "sha256": "2a3102616a96714f6602f3825ad9aca774e8a08b4f5a994a2da324c443bbe919"
+      }
+    },
+    {
+      "id": "Haseo_80s_128x64",
+      "title": "80s",
+      "source": "Haseo",
+      "author": "Haseo",
+      "sourceURL": "https://github.com/Haseosama/FZ_Animations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/Haseosama/FZ_Animations/zip/c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "sha256": "1fc40e11fb11cbab4a19049b366feb1f090ce9aa569dba34d07de8be4a39352d",
+        "rootDirectory": "FZ_Animations-c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "animationPath": "Divers/Haseo_80s_128x64"
+      }
+    },
+    {
+      "id": "Haseo_A_New_Hope_128x64",
+      "title": "A New Hope",
+      "source": "Haseo",
+      "author": "Haseo",
+      "sourceURL": "https://github.com/Haseosama/FZ_Animations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/Haseosama/FZ_Animations/zip/c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "sha256": "1fc40e11fb11cbab4a19049b366feb1f090ce9aa569dba34d07de8be4a39352d",
+        "rootDirectory": "FZ_Animations-c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "animationPath": "Movies/Haseo_A_New_Hope_128x64"
+      }
+    },
+    {
+      "id": "Haseo_Allen_128x64",
+      "title": "Allen",
+      "source": "Haseo",
+      "author": "Haseo",
+      "sourceURL": "https://github.com/Haseosama/FZ_Animations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/Haseosama/FZ_Animations/zip/c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "sha256": "1fc40e11fb11cbab4a19049b366feb1f090ce9aa569dba34d07de8be4a39352d",
+        "rootDirectory": "FZ_Animations-c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "animationPath": "Japanimation/Haseo_Allen_128x64"
+      }
+    },
+    {
+      "id": "Haseo_B0ws3r_128x64",
+      "title": "B0ws3r",
+      "source": "Haseo",
+      "author": "Haseo",
+      "sourceURL": "https://github.com/Haseosama/FZ_Animations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/Haseosama/FZ_Animations/zip/c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "sha256": "1fc40e11fb11cbab4a19049b366feb1f090ce9aa569dba34d07de8be4a39352d",
+        "rootDirectory": "FZ_Animations-c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "animationPath": "Video Games/Haseo_B0ws3r_128x64"
+      }
+    },
+    {
+      "id": "Haseo_Bleach_128x64",
+      "title": "Bleach",
+      "source": "Haseo",
+      "author": "Haseo",
+      "sourceURL": "https://github.com/Haseosama/FZ_Animations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/Haseosama/FZ_Animations/zip/c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "sha256": "1fc40e11fb11cbab4a19049b366feb1f090ce9aa569dba34d07de8be4a39352d",
+        "rootDirectory": "FZ_Animations-c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "animationPath": "Japanimation/Haseo_Bleach_128x64"
+      }
+    },
+    {
+      "id": "Haseo_Dino2_128x64",
+      "title": "Dino2",
+      "source": "Haseo",
+      "author": "Haseo",
+      "sourceURL": "https://github.com/Haseosama/FZ_Animations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/Haseosama/FZ_Animations/zip/c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "sha256": "1fc40e11fb11cbab4a19049b366feb1f090ce9aa569dba34d07de8be4a39352d",
+        "rootDirectory": "FZ_Animations-c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "animationPath": "Divers/Haseo_Dino2_128x64"
+      }
+    },
+    {
+      "id": "Haseo_Dino3_128x64",
+      "title": "Dino3",
+      "source": "Haseo",
+      "author": "Haseo",
+      "sourceURL": "https://github.com/Haseosama/FZ_Animations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/Haseosama/FZ_Animations/zip/c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "sha256": "1fc40e11fb11cbab4a19049b366feb1f090ce9aa569dba34d07de8be4a39352d",
+        "rootDirectory": "FZ_Animations-c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "animationPath": "Divers/Haseo_Dino3_128x64"
+      }
+    },
+    {
+      "id": "Haseo_DVA_128x64",
+      "title": "DVA",
+      "source": "Haseo",
+      "author": "Haseo",
+      "sourceURL": "https://github.com/Haseosama/FZ_Animations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/Haseosama/FZ_Animations/zip/c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "sha256": "1fc40e11fb11cbab4a19049b366feb1f090ce9aa569dba34d07de8be4a39352d",
+        "rootDirectory": "FZ_Animations-c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "animationPath": "Video Games/Haseo_DVA_128x64"
+      }
+    },
+    {
+      "id": "Haseo_G0ku_128x64",
+      "title": "G0ku",
+      "source": "Haseo",
+      "author": "Haseo",
+      "sourceURL": "https://github.com/Haseosama/FZ_Animations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/Haseosama/FZ_Animations/zip/c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "sha256": "1fc40e11fb11cbab4a19049b366feb1f090ce9aa569dba34d07de8be4a39352d",
+        "rootDirectory": "FZ_Animations-c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "animationPath": "Japanimation/Haseo_G0ku_128x64"
+      }
+    },
+    {
+      "id": "Haseo_GITS_128x64",
+      "title": "GITS",
+      "source": "Haseo",
+      "author": "Haseo",
+      "sourceURL": "https://github.com/Haseosama/FZ_Animations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/Haseosama/FZ_Animations/zip/c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "sha256": "1fc40e11fb11cbab4a19049b366feb1f090ce9aa569dba34d07de8be4a39352d",
+        "rootDirectory": "FZ_Animations-c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "animationPath": "Japanimation/Haseo_GITS_128x64"
+      }
+    },
+    {
+      "id": "Haseo_Luffy_128x64",
+      "title": "Luffy",
+      "source": "Haseo",
+      "author": "Haseo",
+      "sourceURL": "https://github.com/Haseosama/FZ_Animations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/Haseosama/FZ_Animations/zip/c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "sha256": "1fc40e11fb11cbab4a19049b366feb1f090ce9aa569dba34d07de8be4a39352d",
+        "rootDirectory": "FZ_Animations-c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "animationPath": "Japanimation/Haseo_Luffy_128x64"
+      }
+    },
+    {
+      "id": "Haseo_Maha_128x64",
+      "title": "Maha",
+      "source": "Haseo",
+      "author": "Haseo",
+      "sourceURL": "https://github.com/Haseosama/FZ_Animations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/Haseosama/FZ_Animations/zip/c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "sha256": "1fc40e11fb11cbab4a19049b366feb1f090ce9aa569dba34d07de8be4a39352d",
+        "rootDirectory": "FZ_Animations-c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "animationPath": "Japanimation/Haseo_Maha_128x64"
+      }
+    },
+    {
+      "id": "Haseo_Mario_128x64",
+      "title": "Mario",
+      "source": "Haseo",
+      "author": "Haseo",
+      "sourceURL": "https://github.com/Haseosama/FZ_Animations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/Haseosama/FZ_Animations/zip/c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "sha256": "1fc40e11fb11cbab4a19049b366feb1f090ce9aa569dba34d07de8be4a39352d",
+        "rootDirectory": "FZ_Animations-c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "animationPath": "Video Games/Haseo_Mario_128x64"
+      }
+    },
+    {
+      "id": "Haseo_Mudra_128x64",
+      "title": "Mudra",
+      "source": "Haseo",
+      "author": "Haseo",
+      "sourceURL": "https://github.com/Haseosama/FZ_Animations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/Haseosama/FZ_Animations/zip/c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "sha256": "1fc40e11fb11cbab4a19049b366feb1f090ce9aa569dba34d07de8be4a39352d",
+        "rootDirectory": "FZ_Animations-c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "animationPath": "Japanimation/Haseo_Mudra_128x64"
+      }
+    },
+    {
+      "id": "Haseo_Mug1wara_128x64",
+      "title": "Mug1wara",
+      "source": "Haseo",
+      "author": "Haseo",
+      "sourceURL": "https://github.com/Haseosama/FZ_Animations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/Haseosama/FZ_Animations/zip/c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "sha256": "1fc40e11fb11cbab4a19049b366feb1f090ce9aa569dba34d07de8be4a39352d",
+        "rootDirectory": "FZ_Animations-c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "animationPath": "Japanimation/Haseo_Mug1wara_128x64"
+      }
+    },
+    {
+      "id": "Haseo_Nude_128x64",
+      "title": "Nude",
+      "source": "Haseo",
+      "author": "Haseo",
+      "sourceURL": "https://github.com/Haseosama/FZ_Animations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/Haseosama/FZ_Animations/zip/c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "sha256": "1fc40e11fb11cbab4a19049b366feb1f090ce9aa569dba34d07de8be4a39352d",
+        "rootDirectory": "FZ_Animations-c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "animationPath": "Divers/Haseo_Nude_128x64"
+      }
+    },
+    {
+      "id": "Haseo_NyanCat_128x64",
+      "title": "NyanCat",
+      "source": "Haseo",
+      "author": "Haseo",
+      "sourceURL": "https://github.com/Haseosama/FZ_Animations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/Haseosama/FZ_Animations/zip/c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "sha256": "1fc40e11fb11cbab4a19049b366feb1f090ce9aa569dba34d07de8be4a39352d",
+        "rootDirectory": "FZ_Animations-c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "animationPath": "Divers/Haseo_NyanCat_128x64"
+      }
+    },
+    {
+      "id": "Haseo_On3_Pi3ce_128x64",
+      "title": "On3 Pi3ce",
+      "source": "Haseo",
+      "author": "Haseo",
+      "sourceURL": "https://github.com/Haseosama/FZ_Animations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/Haseosama/FZ_Animations/zip/c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "sha256": "1fc40e11fb11cbab4a19049b366feb1f090ce9aa569dba34d07de8be4a39352d",
+        "rootDirectory": "FZ_Animations-c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "animationPath": "Japanimation/Haseo_On3_Pi3ce_128x64"
+      }
+    },
+    {
+      "id": "Haseo_Oni_128x64",
+      "title": "Oni",
+      "source": "Haseo",
+      "author": "Haseo",
+      "sourceURL": "https://github.com/Haseosama/FZ_Animations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/Haseosama/FZ_Animations/zip/c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "sha256": "1fc40e11fb11cbab4a19049b366feb1f090ce9aa569dba34d07de8be4a39352d",
+        "rootDirectory": "FZ_Animations-c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "animationPath": "Divers/Haseo_Oni_128x64"
+      }
+    },
+    {
+      "id": "Haseo_Seiya_128x64",
+      "title": "Seiya",
+      "source": "Haseo",
+      "author": "Haseo",
+      "sourceURL": "https://github.com/Haseosama/FZ_Animations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/Haseosama/FZ_Animations/zip/c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "sha256": "1fc40e11fb11cbab4a19049b366feb1f090ce9aa569dba34d07de8be4a39352d",
+        "rootDirectory": "FZ_Animations-c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "animationPath": "Japanimation/Haseo_Seiya_128x64"
+      }
+    },
+    {
+      "id": "Haseo_Sharingan_128x64",
+      "title": "Sharingan",
+      "source": "Haseo",
+      "author": "Haseo",
+      "sourceURL": "https://github.com/Haseosama/FZ_Animations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/Haseosama/FZ_Animations/zip/c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "sha256": "1fc40e11fb11cbab4a19049b366feb1f090ce9aa569dba34d07de8be4a39352d",
+        "rootDirectory": "FZ_Animations-c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "animationPath": "Japanimation/Haseo_Sharingan_128x64"
+      }
+    },
+    {
+      "id": "Haseo_Sirene_128x64",
+      "title": "Sirene",
+      "source": "Haseo",
+      "author": "Haseo",
+      "sourceURL": "https://github.com/Haseosama/FZ_Animations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/Haseosama/FZ_Animations/zip/c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "sha256": "1fc40e11fb11cbab4a19049b366feb1f090ce9aa569dba34d07de8be4a39352d",
+        "rootDirectory": "FZ_Animations-c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "animationPath": "Video Games/Haseo_Sirene_128x64"
+      }
+    },
+    {
+      "id": "Haseo_Sogeking_128x64",
+      "title": "Sogeking",
+      "source": "Haseo",
+      "author": "Haseo",
+      "sourceURL": "https://github.com/Haseosama/FZ_Animations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/Haseosama/FZ_Animations/zip/c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "sha256": "1fc40e11fb11cbab4a19049b366feb1f090ce9aa569dba34d07de8be4a39352d",
+        "rootDirectory": "FZ_Animations-c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "animationPath": "Japanimation/Haseo_Sogeking_128x64"
+      }
+    },
+    {
+      "id": "Haseo_The_Witch_128x64",
+      "title": "The Witch",
+      "source": "Haseo",
+      "author": "Haseo",
+      "sourceURL": "https://github.com/Haseosama/FZ_Animations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/Haseosama/FZ_Animations/zip/c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "sha256": "1fc40e11fb11cbab4a19049b366feb1f090ce9aa569dba34d07de8be4a39352d",
+        "rootDirectory": "FZ_Animations-c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "animationPath": "Video Games/Haseo_The_Witch_128x64"
+      }
+    },
+    {
+      "id": "Haseo_TigerGhost_128x64",
+      "title": "TigerGhost",
+      "source": "Haseo",
+      "author": "Haseo",
+      "sourceURL": "https://github.com/Haseosama/FZ_Animations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/Haseosama/FZ_Animations/zip/c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "sha256": "1fc40e11fb11cbab4a19049b366feb1f090ce9aa569dba34d07de8be4a39352d",
+        "rootDirectory": "FZ_Animations-c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "animationPath": "Divers/Haseo_TigerGhost_128x64"
+      }
+    },
+    {
+      "id": "Haseo_Troopers_128x64",
+      "title": "Troopers",
+      "source": "Haseo",
+      "author": "Haseo",
+      "sourceURL": "https://github.com/Haseosama/FZ_Animations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/Haseosama/FZ_Animations/zip/c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "sha256": "1fc40e11fb11cbab4a19049b366feb1f090ce9aa569dba34d07de8be4a39352d",
+        "rootDirectory": "FZ_Animations-c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "animationPath": "Movies/Haseo_Troopers_128x64"
+      }
+    },
+    {
+      "id": "Haseo_Umbrella_128x64",
+      "title": "Umbrella",
+      "source": "Haseo",
+      "author": "Haseo",
+      "sourceURL": "https://github.com/Haseosama/FZ_Animations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/Haseosama/FZ_Animations/zip/c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "sha256": "1fc40e11fb11cbab4a19049b366feb1f090ce9aa569dba34d07de8be4a39352d",
+        "rootDirectory": "FZ_Animations-c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "animationPath": "Video Games/Haseo_Umbrella_128x64"
+      }
+    },
+    {
+      "id": "Haseo_Vampire_128x64",
+      "title": "Vampire",
+      "source": "Haseo",
+      "author": "Haseo",
+      "sourceURL": "https://github.com/Haseosama/FZ_Animations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/Haseosama/FZ_Animations/zip/c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "sha256": "1fc40e11fb11cbab4a19049b366feb1f090ce9aa569dba34d07de8be4a39352d",
+        "rootDirectory": "FZ_Animations-c35098d8bdce2ad22cd1cd33855bb2fd4b8ce1eb",
+        "animationPath": "Divers/Haseo_Vampire_128x64"
+      }
+    },
+    {
+      "id": "stopoxy_CN_128x64",
+      "title": "CN",
+      "source": "stop oxy",
+      "author": "stop oxy",
+      "sourceURL": "https://github.com/stopoxy/FZAnimations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/stopoxy/FZAnimations/zip/e73a939ed2d5dedcddb1bddd4d23cf091b56e5fc",
+        "sha256": "820ccd3cb9e8ac5b3c1a8c3d61d4bff5c1c570a3b95e7a2df6590689b2cf3554",
+        "rootDirectory": "FZAnimations-e73a939ed2d5dedcddb1bddd4d23cf091b56e5fc",
+        "animationPath": "stopoxy_CN_128x64"
+      }
+    },
+    {
+      "id": "stopoxy_daria_128x64",
+      "title": "daria",
+      "source": "stop oxy",
+      "author": "stop oxy",
+      "sourceURL": "https://github.com/stopoxy/FZAnimations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/stopoxy/FZAnimations/zip/e73a939ed2d5dedcddb1bddd4d23cf091b56e5fc",
+        "sha256": "820ccd3cb9e8ac5b3c1a8c3d61d4bff5c1c570a3b95e7a2df6590689b2cf3554",
+        "rootDirectory": "FZAnimations-e73a939ed2d5dedcddb1bddd4d23cf091b56e5fc",
+        "animationPath": "stopoxy_daria_128x64"
+      }
+    },
+    {
+      "id": "stopoxy_goku_128x64",
+      "title": "goku",
+      "source": "stop oxy",
+      "author": "stop oxy",
+      "sourceURL": "https://github.com/stopoxy/FZAnimations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/stopoxy/FZAnimations/zip/e73a939ed2d5dedcddb1bddd4d23cf091b56e5fc",
+        "sha256": "820ccd3cb9e8ac5b3c1a8c3d61d4bff5c1c570a3b95e7a2df6590689b2cf3554",
+        "rootDirectory": "FZAnimations-e73a939ed2d5dedcddb1bddd4d23cf091b56e5fc",
+        "animationPath": "stopoxy_goku_128x64"
+      }
+    },
+    {
+      "id": "stopoxy_hatsune_miku_128x64",
+      "title": "hatsune miku",
+      "source": "stop oxy",
+      "author": "stop oxy",
+      "sourceURL": "https://github.com/stopoxy/FZAnimations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/stopoxy/FZAnimations/zip/e73a939ed2d5dedcddb1bddd4d23cf091b56e5fc",
+        "sha256": "820ccd3cb9e8ac5b3c1a8c3d61d4bff5c1c570a3b95e7a2df6590689b2cf3554",
+        "rootDirectory": "FZAnimations-e73a939ed2d5dedcddb1bddd4d23cf091b56e5fc",
+        "animationPath": "stopoxy_hatsune_miku_128x64"
+      }
+    },
+    {
+      "id": "stopoxy_in_out_128x64",
+      "title": "in&out",
+      "source": "stop oxy",
+      "author": "stop oxy",
+      "sourceURL": "https://github.com/stopoxy/FZAnimations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/stopoxy/FZAnimations/zip/e73a939ed2d5dedcddb1bddd4d23cf091b56e5fc",
+        "sha256": "820ccd3cb9e8ac5b3c1a8c3d61d4bff5c1c570a3b95e7a2df6590689b2cf3554",
+        "rootDirectory": "FZAnimations-e73a939ed2d5dedcddb1bddd4d23cf091b56e5fc",
+        "animationPath": "stopoxy_in&out_128x64"
+      }
+    },
+    {
+      "id": "STOPOXY_MTV_128x64",
+      "title": "MTV",
+      "source": "stop oxy",
+      "author": "stop oxy",
+      "sourceURL": "https://github.com/stopoxy/FZAnimations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/stopoxy/FZAnimations/zip/e73a939ed2d5dedcddb1bddd4d23cf091b56e5fc",
+        "sha256": "820ccd3cb9e8ac5b3c1a8c3d61d4bff5c1c570a3b95e7a2df6590689b2cf3554",
+        "rootDirectory": "FZAnimations-e73a939ed2d5dedcddb1bddd4d23cf091b56e5fc",
+        "animationPath": "STOPOXY_MTV_128x64"
+      }
+    },
+    {
+      "id": "STOPOXY_PKMNEMRLD_128x64",
+      "title": "PKMNEMRLD",
+      "source": "stop oxy",
+      "author": "stop oxy",
+      "sourceURL": "https://github.com/stopoxy/FZAnimations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/stopoxy/FZAnimations/zip/e73a939ed2d5dedcddb1bddd4d23cf091b56e5fc",
+        "sha256": "820ccd3cb9e8ac5b3c1a8c3d61d4bff5c1c570a3b95e7a2df6590689b2cf3554",
+        "rootDirectory": "FZAnimations-e73a939ed2d5dedcddb1bddd4d23cf091b56e5fc",
+        "animationPath": "STOPOXY_PKMNEMRLD_128x64"
+      }
+    },
+    {
+      "id": "STOPOXY_SCHOOL_DAYS_128x64",
+      "title": "SCHOOL DAYS",
+      "source": "stop oxy",
+      "author": "stop oxy",
+      "sourceURL": "https://github.com/stopoxy/FZAnimations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/stopoxy/FZAnimations/zip/e73a939ed2d5dedcddb1bddd4d23cf091b56e5fc",
+        "sha256": "820ccd3cb9e8ac5b3c1a8c3d61d4bff5c1c570a3b95e7a2df6590689b2cf3554",
+        "rootDirectory": "FZAnimations-e73a939ed2d5dedcddb1bddd4d23cf091b56e5fc",
+        "animationPath": "STOPOXY_SCHOOL_DAYS_128x64"
+      }
+    },
+    {
+      "id": "STOPOXY_SEGA_128x64",
+      "title": "SEGA",
+      "source": "stop oxy",
+      "author": "stop oxy",
+      "sourceURL": "https://github.com/stopoxy/FZAnimations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/stopoxy/FZAnimations/zip/e73a939ed2d5dedcddb1bddd4d23cf091b56e5fc",
+        "sha256": "820ccd3cb9e8ac5b3c1a8c3d61d4bff5c1c570a3b95e7a2df6590689b2cf3554",
+        "rootDirectory": "FZAnimations-e73a939ed2d5dedcddb1bddd4d23cf091b56e5fc",
+        "animationPath": "STOPOXY_SEGA_128x64"
+      }
+    },
+    {
+      "id": "STOPOXY_TLOZ_128x64",
+      "title": "TLOZ",
+      "source": "stop oxy",
+      "author": "stop oxy",
+      "sourceURL": "https://github.com/stopoxy/FZAnimations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/stopoxy/FZAnimations/zip/e73a939ed2d5dedcddb1bddd4d23cf091b56e5fc",
+        "sha256": "820ccd3cb9e8ac5b3c1a8c3d61d4bff5c1c570a3b95e7a2df6590689b2cf3554",
+        "rootDirectory": "FZAnimations-e73a939ed2d5dedcddb1bddd4d23cf091b56e5fc",
+        "animationPath": "STOPOXY_TLOZ_128x64"
+      }
+    },
+    {
+      "id": "STOPOXY_WHISPER_OF_THE_HEART_128x64",
+      "title": "WHISPER OF THE HEART",
+      "source": "stop oxy",
+      "author": "stop oxy",
+      "sourceURL": "https://github.com/stopoxy/FZAnimations",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/stopoxy/FZAnimations/zip/e73a939ed2d5dedcddb1bddd4d23cf091b56e5fc",
+        "sha256": "820ccd3cb9e8ac5b3c1a8c3d61d4bff5c1c570a3b95e7a2df6590689b2cf3554",
+        "rootDirectory": "FZAnimations-e73a939ed2d5dedcddb1bddd4d23cf091b56e5fc",
+        "animationPath": "STOPOXY_WHISPER_OF_THE_HEART_128x64"
+      }
+    },
+    {
+      "id": "X_X_ANNA",
+      "title": "ANNA",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/VA-11 Hall-a/X_X_ANNA"
+      }
+    },
+    {
+      "id": "X_X_BIRB",
+      "title": "BIRB",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/Memes/X_X_BIRB"
+      }
+    },
+    {
+      "id": "BMO_angy",
+      "title": "BMO angy",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/BMO/BMO_angy"
+      }
+    },
+    {
+      "id": "BMO_happy",
+      "title": "BMO happy",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/BMO/BMO_happy"
+      }
+    },
+    {
+      "id": "BMO_hmm",
+      "title": "BMO hmm",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/BMO/BMO_hmm"
+      }
+    },
+    {
+      "id": "BMO_hng",
+      "title": "BMO hng",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/BMO/BMO_hng"
+      }
+    },
+    {
+      "id": "BMO_laugh",
+      "title": "BMO laugh",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/BMO/BMO_laugh"
+      }
+    },
+    {
+      "id": "BMO_oo",
+      "title": "BMO oo",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/BMO/BMO_oo"
+      }
+    },
+    {
+      "id": "BMO_smile",
+      "title": "BMO smile",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/BMO/BMO_smile"
+      }
+    },
+    {
+      "id": "BMO_smirk",
+      "title": "BMO smirk",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/BMO/BMO_smirk"
+      }
+    },
+    {
+      "id": "BMO_yawn",
+      "title": "BMO yawn",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/BMO/BMO_yawn"
+      }
+    },
+    {
+      "id": "X_X_BOMBS",
+      "title": "BOMBS",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/WatchDogs/X_X_BOMBS"
+      }
+    },
+    {
+      "id": "X_X_BONK",
+      "title": "BONK",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/Memes/X_X_BONK"
+      }
+    },
+    {
+      "id": "X_X_BOTTY",
+      "title": "BOTTY",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/WatchDogs/X_X_BOTTY"
+      }
+    },
+    {
+      "id": "X_X_BOTTY_ALT",
+      "title": "BOTTY ALT",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/WatchDogs/X_X_BOTTY_ALT"
+      }
+    },
+    {
+      "id": "X_X_BURNS",
+      "title": "BURNS",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/other_misc/X_X_BURNS"
+      }
+    },
+    {
+      "id": "X_X_BURNS_INV",
+      "title": "BURNS INV",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/other_misc/X_X_BURNS_INV"
+      }
+    },
+    {
+      "id": "X_X_COOKIE",
+      "title": "COOKIE",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/Hackers/X_X_COOKIE"
+      }
+    },
+    {
+      "id": "X_X_DEDSEC",
+      "title": "DEDSEC",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/WatchDogs/X_X_DEDSEC"
+      }
+    },
+    {
+      "id": "X_X_DEFALT",
+      "title": "DEFALT",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/WatchDogs/X_X_DEFALT"
+      }
+    },
+    {
+      "id": "X_X_DEFALT_INV",
+      "title": "DEFALT INV",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/WatchDogs/X_X_DEFALT_INV"
+      }
+    },
+    {
+      "id": "X_X_DSLOGO",
+      "title": "DSLOGO",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/WatchDogs/X_X_DSLOGO"
+      }
+    },
+    {
+      "id": "X_X_DSLOGO_INV",
+      "title": "DSLOGO INV",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/WatchDogs/X_X_DSLOGO_INV"
+      }
+    },
+    {
+      "id": "X_X_DSLOGO2",
+      "title": "DSLOGO2",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/WatchDogs/X_X_DSLOGO2"
+      }
+    },
+    {
+      "id": "X_X_ERROR",
+      "title": "ERROR",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/other_misc/X_X_ERROR"
+      }
+    },
+    {
+      "id": "X_X_ERROR_INV",
+      "title": "ERROR INV",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/other_misc/X_X_ERROR_INV"
+      }
+    },
+    {
+      "id": "X_X_F0Pattern",
+      "title": "F0Pattern",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/Flipper/X_X_F0Pattern"
+      }
+    },
+    {
+      "id": "X_X_FINGER",
+      "title": "FINGER",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/WatchDogs/X_X_FINGER"
+      }
+    },
+    {
+      "id": "X_X_FLIPCLAP",
+      "title": "FLIPCLAP",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/Flipper/X_X_FLIPCLAP"
+      }
+    },
+    {
+      "id": "X_X_FLIPPAH",
+      "title": "FLIPPAH",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/Flipper/X_X_FLIPPAH"
+      }
+    },
+    {
+      "id": "X_X_FlippaZero",
+      "title": "FlippaZero",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/Flipper/X_X_FlippaZero"
+      }
+    },
+    {
+      "id": "X_X_Floopa",
+      "title": "Floopa",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/Flipper/X_X_Floopa"
+      }
+    },
+    {
+      "id": "X_X_FSOCIETY",
+      "title": "FSOCIETY",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/MrRobot/X_X_FSOCIETY"
+      }
+    },
+    {
+      "id": "X_X_GALAXYBRAIN",
+      "title": "GALAXYBRAIN",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/Memes/X_X_GALAXYBRAIN"
+      }
+    },
+    {
+      "id": "X_X_GARFIELD",
+      "title": "GARFIELD",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/Memes/X_X_GARFIELD"
+      }
+    },
+    {
+      "id": "X_X_GCHTP",
+      "title": "GCHTP",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/Hackers/X_X_GCHTP"
+      }
+    },
+    {
+      "id": "X_X_HACKERMAN",
+      "title": "HACKERMAN",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/MrRobot/X_X_HACKERMAN"
+      }
+    },
+    {
+      "id": "X_X_HACKERMAN_ALT",
+      "title": "HACKERMAN ALT",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/MrRobot/X_X_HACKERMAN_ALT"
+      }
+    },
+    {
+      "id": "X_X_HAUNTER",
+      "title": "HAUNTER",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/Pokemon/X_X_HAUNTER"
+      }
+    },
+    {
+      "id": "X_X_JILL",
+      "title": "JILL",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/VA-11 Hall-a/X_X_JILL"
+      }
+    },
+    {
+      "id": "X_X_JOINUS",
+      "title": "JOINUS",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/WatchDogs/X_X_JOINUS"
+      }
+    },
+    {
+      "id": "X_X_JOINUS_ALT",
+      "title": "JOINUS ALT",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/WatchDogs/X_X_JOINUS_ALT"
+      }
+    },
+    {
+      "id": "X_X_JOINUS_SR",
+      "title": "JOINUS SR",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/WatchDogs/X_X_JOINUS_SR"
+      }
+    },
+    {
+      "id": "X_X_MASTERSYS",
+      "title": "MASTERSYS",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/other_misc/X_X_MASTERSYS"
+      }
+    },
+    {
+      "id": "X_X_MESS",
+      "title": "MESS",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/Hackers/X_X_MESS"
+      }
+    },
+    {
+      "id": "X_X_MOONINITE",
+      "title": "MOONINITE",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/other_misc/X_X_MOONINITE"
+      }
+    },
+    {
+      "id": "X_X_MRROBOT",
+      "title": "MRROBOT",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/MrRobot/X_X_MRROBOT"
+      }
+    },
+    {
+      "id": "X_X_MUMMY",
+      "title": "MUMMY",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/WatchDogs/X_X_MUMMY"
+      }
+    },
+    {
+      "id": "X_X_NES",
+      "title": "NES",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/other_misc/X_X_NES"
+      }
+    },
+    {
+      "id": "X_X_PIKACHU",
+      "title": "PIKACHU",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/Pokemon/X_X_PIKACHU"
+      }
+    },
+    {
+      "id": "X_X_PIPSHOVEL",
+      "title": "PIPSHOVEL",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/other_misc/X_X_PIPSHOVEL"
+      }
+    },
+    {
+      "id": "X_X_PKMNWALK",
+      "title": "PKMNWALK",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/Pokemon/X_X_PKMNWALK"
+      }
+    },
+    {
+      "id": "X_X_PROJECTUR",
+      "title": "PROJECTUR",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/Flipper/X_X_PROJECTUR"
+      }
+    },
+    {
+      "id": "X_X_SMEARGLE",
+      "title": "SMEARGLE",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/Pokemon/X_X_SMEARGLE"
+      }
+    },
+    {
+      "id": "X_X_SOUTHPARK",
+      "title": "SOUTHPARK",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/other_misc/X_X_SOUTHPARK"
+      }
+    },
+    {
+      "id": "X_X_SPACEINV",
+      "title": "SPACEINV",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/other_misc/X_X_SPACEINV"
+      }
+    },
+    {
+      "id": "X_X_SPACEINV_INV",
+      "title": "SPACEINV INV",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/other_misc/X_X_SPACEINV_INV"
+      }
+    },
+    {
+      "id": "X_X_SPIRAL",
+      "title": "SPIRAL",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/WatchDogs/X_X_SPIRAL"
+      }
+    },
+    {
+      "id": "X_X_SPONGEDOLPHIN",
+      "title": "SPONGEDOLPHIN",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/Memes/X_X_SPONGEDOLPHIN"
+      }
+    },
+    {
+      "id": "X_X_SPONGEXD",
+      "title": "SPONGEXD",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/Memes/X_X_SPONGEXD"
+      }
+    },
+    {
+      "id": "X_X_TAPPINGHEAD",
+      "title": "TAPPINGHEAD",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/Memes/X_X_TAPPINGHEAD"
+      }
+    },
+    {
+      "id": "X_X_TROLL",
+      "title": "TROLL",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/Memes/X_X_TROLL"
+      }
+    },
+    {
+      "id": "X_X_VIRUS",
+      "title": "VIRUS",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/WatchDogs/X_X_VIRUS"
+      }
+    },
+    {
+      "id": "X_X_WDANIM",
+      "title": "WDANIM",
+      "source": "WR3NCH",
+      "author": "WR3NCH",
+      "sourceURL": "https://github.com/wrenchathome/flip0anims",
+      "payload": {
+        "kind": "repositoryArchive",
+        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
+        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
+        "animationPath": "Animations/WatchDogs/X_X_WDANIM"
+      }
+    }
+  ]
+}

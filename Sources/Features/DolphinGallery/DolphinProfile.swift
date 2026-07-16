@@ -16,10 +16,15 @@ enum DolphinProfileTiming: String, Codable, CaseIterable, Identifiable {
     var label: String { rawValue }
 }
 
+enum DolphinProfileSelection: String, Codable {
+    case explicit = "Explicit"
+    case all = "All"
+}
+
 struct DolphinDesktopProfile: Equatable {
     static let minimumDuration = 5
     static let maximumDuration = 86_399
-    static let maximumAnimationCount = 128
+    static let maximumAnimationCount = 320
     static let maximumCollectionBytes = 64
 
     var enabled: Bool
@@ -28,9 +33,10 @@ struct DolphinDesktopProfile: Equatable {
     var timing: DolphinProfileTiming
     var durationSeconds: Int
     var animationIDs: [String]
+    var selection: DolphinProfileSelection = .explicit
 
     func encoded() throws -> Data {
-        guard !enabled || (!collection.isEmpty && !animationIDs.isEmpty) else {
+        guard !enabled || (!collection.isEmpty && (selection == .all || !animationIDs.isEmpty)) else {
             throw DolphinProfileError.emptyCollection
         }
         guard Self.isValidCollectionName(collection) else {
@@ -39,7 +45,8 @@ struct DolphinDesktopProfile: Equatable {
         guard (Self.minimumDuration...Self.maximumDuration).contains(durationSeconds) else {
             throw DolphinProfileError.invalidDuration
         }
-        guard animationIDs.count <= Self.maximumAnimationCount,
+        guard (selection == .explicit || animationIDs.isEmpty),
+              animationIDs.count <= Self.maximumAnimationCount,
               Set(animationIDs).count == animationIDs.count,
               animationIDs.allSatisfy(Self.isValidAnimationID) else {
             throw DolphinProfileError.invalidAnimation
@@ -47,12 +54,13 @@ struct DolphinDesktopProfile: Equatable {
 
         var lines = [
             "Filetype: Tumoflip Desktop Profile",
-            "Version: 1",
+            "Version: 2",
             "Enabled: \(enabled ? "true" : "false")",
             "Collection: \(collection)",
             "Order: \(order.rawValue)",
             "Timing: \(timing.rawValue)",
             "Duration: \(durationSeconds)",
+            "Selection: \(selection.rawValue)",
         ]
         lines.append(contentsOf: animationIDs.map { "Animation: \($0)" })
         return Data((lines.joined(separator: "\n") + "\n").utf8)
@@ -79,7 +87,9 @@ struct DolphinDesktopProfile: Equatable {
         }
 
         guard values["Filetype"] == "Tumoflip Desktop Profile",
-              values["Version"] == "1",
+              let versionText = values["Version"],
+              let version = Int(versionText),
+              version == 1 || version == 2,
               let enabledText = values["Enabled"],
               let enabled = Bool(enabledText),
               let collection = values["Collection"],
@@ -92,13 +102,24 @@ struct DolphinDesktopProfile: Equatable {
             throw DolphinProfileError.invalidFormat
         }
 
+        let selection: DolphinProfileSelection
+        if version == 1 {
+            selection = .explicit
+        } else if let selectionText = values["Selection"],
+                  let decodedSelection = DolphinProfileSelection(rawValue: selectionText) {
+            selection = decodedSelection
+        } else {
+            throw DolphinProfileError.invalidFormat
+        }
+
         let profile = DolphinDesktopProfile(
             enabled: enabled,
             collection: collection,
             order: order,
             timing: timing,
             durationSeconds: duration,
-            animationIDs: animations
+            animationIDs: animations,
+            selection: selection
         )
         _ = try profile.encoded()
         return profile
