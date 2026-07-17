@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 struct DolphinGalleryView: View {
     @EnvironmentObject private var ble: FlipperBLE
@@ -15,9 +16,9 @@ struct DolphinGalleryView: View {
         .navigationTitle("Dolphin Gallery")
         .navigationBarTitleDisplayMode(.inline)
         .task {
+            await model.refreshPackStates()
             if ble.state == .ready {
                 await model.loadFromDevice()
-                await model.refreshPackStates()
             }
         }
     }
@@ -39,7 +40,11 @@ struct DolphinGalleryView: View {
             libraryDisclosure(source: source, count: DolphinCatalog.legacy.count) {
                 LazyVGrid(columns: libraryColumns, spacing: 10) {
                     ForEach(DolphinCatalog.legacy) { animation in
-                        DolphinAnimationPreview(animation: animation)
+                        DolphinLibraryTile(
+                            animation: animation,
+                            subtitle: "TumoFlip",
+                            state: .builtIn
+                        )
                     }
                 }
             }
@@ -47,10 +52,10 @@ struct DolphinGalleryView: View {
             let packs = DolphinPackCatalog.packs(for: source)
             libraryDisclosure(
                 source: source,
-                count: model.animations(for: source).count,
+                count: packs.filter { model.cachedPackIDs.contains($0.id) }.count,
                 total: packs.count
             ) {
-                packRows(packs)
+                packGrid(packs)
                 if let repository = DolphinPackCatalog.repository(for: source) {
                     Link(destination: repository) {
                         Label("\(source.rawValue) source", systemImage: "arrow.up.right.square")
@@ -74,12 +79,7 @@ struct DolphinGalleryView: View {
         total: Int? = nil,
         @ViewBuilder content: @escaping () -> Content
     ) -> some View {
-        DisclosureGroup(isExpanded: expansionBinding(for: source)) {
-            VStack(alignment: .leading, spacing: 10) {
-                content()
-            }
-            .padding(.top, 10)
-        } label: {
+        DolphinCollapsibleSection(isExpanded: expansionBinding(for: source)) {
             HStack(spacing: 10) {
                 Image(systemName: source.systemImage)
                     .foregroundStyle(Theme.accent)
@@ -91,8 +91,12 @@ struct DolphinGalleryView: View {
                     .font(.caption.monospacedDigit())
                     .foregroundStyle(.secondary)
             }
+        } content: {
+            VStack(alignment: .leading, spacing: 10) {
+                content()
+            }
+            .padding(.top, 10)
         }
-        .tint(Theme.accent)
     }
 
     private func expansionBinding(for source: DolphinLibrarySource) -> Binding<Bool> {
@@ -108,18 +112,15 @@ struct DolphinGalleryView: View {
         )
     }
 
-    private func packRows(_ packs: [DolphinPackDescriptor]) -> some View {
-        LazyVStack(spacing: 0) {
+    private func packGrid(_ packs: [DolphinPackDescriptor]) -> some View {
+        LazyVGrid(columns: libraryColumns, spacing: 10) {
             ForEach(packs) { pack in
-                DolphinPackRow(
-                    descriptor: pack,
-                    phase: model.packPhase(pack),
-                    connected: ble.state == .ready
+                DolphinLibraryTile(
+                    animation: pack.animation,
+                    subtitle: pack.author,
+                    state: .download(model.packPhase(pack))
                 ) {
-                    Task { await model.install(pack) }
-                }
-                if pack.id != packs.last?.id {
-                    Divider().opacity(0.35)
+                    Task { await model.download(pack) }
                 }
             }
         }
@@ -182,6 +183,10 @@ struct DolphinGalleryView: View {
             }
             .buttonStyle(.borderedProminent)
             .disabled(ble.state != .ready || model.isBusy || !model.canApply)
+
+            if let progress = model.transferProgress {
+                transferProgressView(progress)
+            }
 
             Button {
                 confirmsReset = true
@@ -321,6 +326,61 @@ struct DolphinGalleryView: View {
         let seconds = model.durationSeconds % 60
         return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
     }
+
+    private func transferProgressView(_ progress: DolphinPackSyncProgress) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack(spacing: 8) {
+                Image(systemName: transferIcon(progress.stage))
+                    .foregroundStyle(Theme.accent)
+                Text(transferTitle(progress.stage))
+                    .font(.subheadline.weight(.semibold))
+                Spacer()
+                if progress.total > 0 {
+                    Text("\(min(progress.completed, progress.total))/\(progress.total)")
+                        .font(.caption.monospacedDigit())
+                        .foregroundStyle(.secondary)
+                }
+            }
+
+            if progress.total > 0 {
+                ProgressView(
+                    value: Double(min(progress.completed, progress.total)),
+                    total: Double(progress.total)
+                )
+                .tint(Theme.accent)
+            } else {
+                ProgressView()
+                    .tint(Theme.accent)
+            }
+
+            if let item = progress.item, !item.isEmpty {
+                Text(item)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(1)
+            }
+        }
+        .padding(12)
+        .background(Color.primary.opacity(0.05), in: RoundedRectangle(cornerRadius: 8))
+    }
+
+    private func transferTitle(_ stage: DolphinPackSyncStage) -> String {
+        switch stage {
+        case .caching: return "Preparing on iPhone"
+        case .uploading: return "Uploading to Flipper"
+        case .removing: return "Removing from Flipper"
+        case .profile: return "Applying profile"
+        }
+    }
+
+    private func transferIcon(_ stage: DolphinPackSyncStage) -> String {
+        switch stage {
+        case .caching: return "iphone.and.arrow.down"
+        case .uploading: return "iphone.and.arrow.forward"
+        case .removing: return "trash"
+        case .profile: return "checkmark.rectangle.stack"
+        }
+    }
 }
 
 private struct DolphinCollectionEditor: View {
@@ -406,16 +466,24 @@ private struct DolphinCollectionEditor: View {
         }
         let sourceIDs = Set(sourceAnimations.map(\.id))
         let allSourceSelected = !sourceIDs.isEmpty && sourceIDs.isSubset(of: selection)
-        return DisclosureGroup(isExpanded: expansionBinding(for: source)) {
+        return DolphinCollapsibleSection(isExpanded: expansionBinding(for: source)) {
+            HStack {
+                Label(source.rawValue, systemImage: source.systemImage)
+                Spacer()
+                Text("\(selection.intersection(sourceAnimations.map(\.id)).count)/\(sourceAnimations.count)")
+                    .font(.caption.monospacedDigit())
+                    .foregroundStyle(.secondary)
+            }
+        } content: {
             if sourceAnimations.isEmpty {
-                Label("No installed animations", systemImage: "tray")
+                Label("No animations", systemImage: "tray")
                     .font(.caption)
                     .foregroundStyle(.secondary)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.vertical, 8)
             } else {
                 HStack {
-                    Text("\(sourceAnimations.count) installed")
+                    Text("\(sourceAnimations.count) wallpapers")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                     Spacer()
@@ -459,16 +527,7 @@ private struct DolphinCollectionEditor: View {
                         .frame(maxWidth: .infinity)
                 }
             }
-        } label: {
-            HStack {
-                Label(source.rawValue, systemImage: source.systemImage)
-                Spacer()
-                Text("\(selection.intersection(sourceAnimations.map(\.id)).count)/\(sourceAnimations.count)")
-                    .font(.caption.monospacedDigit())
-                    .foregroundStyle(.secondary)
-            }
         }
-        .tint(Theme.accent)
         .padding(12)
         .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 8))
     }
@@ -487,73 +546,19 @@ private struct DolphinCollectionEditor: View {
     }
 }
 
-private struct DolphinPackRow: View {
-    let descriptor: DolphinPackDescriptor
-    let phase: DolphinGalleryModel.PackPhase
-    let connected: Bool
-    let install: () -> Void
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            HStack(spacing: 10) {
-                DolphinAnimationPreview(animation: descriptor.animation, compact: true)
-                    .frame(width: 72)
-
-                VStack(alignment: .leading, spacing: 3) {
-                    Text(descriptor.title)
-                        .font(.subheadline.weight(.semibold))
-                    Text(descriptor.author)
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                        .lineLimit(1)
-                }
-
-                Spacer(minLength: 8)
-                action
-            }
-
-            if case .failed(let message) = phase {
-                Label(message, systemImage: "exclamationmark.triangle.fill")
-                    .font(.caption)
-                    .foregroundStyle(.red)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-        }
-        .padding(.vertical, 8)
+private struct DolphinLibraryTile: View {
+    enum State {
+        case builtIn
+        case download(DolphinGalleryModel.PackPhase)
     }
 
-    @ViewBuilder
-    private var action: some View {
-        switch phase {
-        case .checking, .installing:
-            ProgressView()
-                .frame(width: 36, height: 36)
-        case .installed:
-            Button(action: install) {
-                Image(systemName: "arrow.clockwise")
-                    .frame(width: 30, height: 30)
-            }
-            .buttonStyle(.bordered)
-            .disabled(!connected)
-            .accessibilityLabel("Reinstall \(descriptor.title)")
-        case .unknown, .notInstalled, .failed:
-            Button(action: install) {
-                Image(systemName: "square.and.arrow.down")
-                    .frame(width: 30, height: 30)
-            }
-            .buttonStyle(.borderedProminent)
-            .disabled(!connected)
-            .accessibilityLabel("Install \(descriptor.title)")
-        }
-    }
-}
-
-private struct DolphinAnimationPreview: View {
     let animation: DolphinAnimation
-    var compact = false
+    let subtitle: String
+    let state: State
+    var action: (() -> Void)?
 
     var body: some View {
-        VStack(alignment: .leading, spacing: compact ? 4 : 8) {
+        VStack(alignment: .leading, spacing: 7) {
             ZStack {
                 Color.white
                 DolphinAnimationArtwork(animation: animation)
@@ -561,15 +566,21 @@ private struct DolphinAnimationPreview: View {
             .aspectRatio(2, contentMode: .fit)
             .clipShape(RoundedRectangle(cornerRadius: 6))
 
-            if !compact {
-                Text(animation.title)
-                    .font(.caption)
-                    .foregroundStyle(.primary)
-                    .lineLimit(2)
-                    .frame(maxWidth: .infinity, minHeight: 32, alignment: .topLeading)
-            }
+            Text(animation.title)
+                .font(.caption.weight(.semibold))
+                .foregroundStyle(.primary)
+                .lineLimit(2)
+                .frame(maxWidth: .infinity, minHeight: 32, alignment: .topLeading)
+
+            Text(subtitle)
+                .font(.caption2)
+                .foregroundStyle(.secondary)
+                .lineLimit(1)
+
+            stateView
+                .frame(maxWidth: .infinity, minHeight: 32, alignment: .leading)
         }
-        .padding(compact ? 4 : 8)
+        .padding(8)
         .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 8))
         .overlay {
             RoundedRectangle(cornerRadius: 8)
@@ -577,6 +588,39 @@ private struct DolphinAnimationPreview: View {
         }
     }
 
+    @ViewBuilder
+    private var stateView: some View {
+        switch state {
+        case .builtIn:
+            Label("Built in", systemImage: "checkmark.seal.fill")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+        case .download(let phase):
+            switch phase {
+            case .checking, .downloading:
+                HStack(spacing: 7) {
+                    ProgressView()
+                    Text(phase == .checking ? "Checking" : "Downloading")
+                }
+                .font(.caption)
+                .foregroundStyle(.secondary)
+            case .downloaded:
+                Label("On iPhone", systemImage: "checkmark.circle.fill")
+                    .font(.caption)
+                    .foregroundStyle(.green)
+            case .unknown, .notDownloaded, .failed:
+                Button {
+                    action?()
+                } label: {
+                    Label("Download", systemImage: "arrow.down.circle")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
+                .controlSize(.small)
+                .accessibilityLabel("Download \(animation.title) to iPhone")
+            }
+        }
+    }
 }
 
 private struct DolphinAnimationArtwork: View {
@@ -586,6 +630,13 @@ private struct DolphinAnimationArtwork: View {
     var body: some View {
         if let asset = animation.previewAsset {
             Image(asset)
+                .renderingMode(.original)
+                .resizable()
+                .interpolation(.none)
+                .scaledToFit()
+                .padding(4)
+        } else if let preview = bundledPreview {
+            Image(uiImage: preview)
                 .renderingMode(.original)
                 .resizable()
                 .interpolation(.none)
@@ -614,6 +665,59 @@ private struct DolphinAnimationArtwork: View {
         Image(systemName: "rectangle.on.rectangle.angled")
             .font(.title2)
             .foregroundStyle(.secondary)
+    }
+
+    private var bundledPreview: UIImage? {
+        guard let url = Bundle.main.url(
+            forResource: animation.id,
+            withExtension: "png",
+            subdirectory: "DolphinPreviews"
+        ) else { return nil }
+        return UIImage(contentsOfFile: url.path)
+    }
+}
+
+private struct DolphinCollapsibleSection<Label: View, Content: View>: View {
+    @Binding private var isExpanded: Bool
+    private let label: Label
+    private let content: Content
+
+    init(
+        isExpanded: Binding<Bool>,
+        @ViewBuilder label: () -> Label,
+        @ViewBuilder content: () -> Content
+    ) {
+        _isExpanded = isExpanded
+        self.label = label()
+        self.content = content()
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Button {
+                var transaction = Transaction()
+                transaction.animation = nil
+                withTransaction(transaction) {
+                    isExpanded.toggle()
+                }
+            } label: {
+                HStack(spacing: 10) {
+                    label
+                    Image(systemName: "chevron.right")
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(.secondary)
+                        .rotationEffect(.degrees(isExpanded ? 90 : 0))
+                }
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+
+            if isExpanded {
+                content
+            }
+        }
+        .clipped()
+        .animation(nil, value: isExpanded)
     }
 }
 

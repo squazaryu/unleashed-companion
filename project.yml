@@ -15,8 +15,8 @@ packages:
 
 settings:
   base:
-    MARKETING_VERSION: "1.6.28"
-    CURRENT_PROJECT_VERSION: "186"
+    MARKETING_VERSION: "1.6.29"
+    CURRENT_PROJECT_VERSION: "187"
     SWIFT_VERSION: "5.9"
     DEVELOPMENT_TEAM: ""
     CODE_SIGN_STYLE: Manual
@@ -33,8 +33,12 @@ targets:
       - path: Resources
         excludes:
           - DolphinPacks
+          - DolphinPreviews
         optional: true
       - path: Resources/DolphinPacks
+        type: folder
+        buildPhase: resources
+      - path: Resources/DolphinPreviews
         type: folder
         buildPhase: resources
     dependencies:

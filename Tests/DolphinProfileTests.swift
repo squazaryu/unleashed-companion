@@ -91,6 +91,21 @@ final class DolphinProfileTests: XCTestCase {
         XCTAssertEqual(installed, try profile.encoded())
     }
 
+    func testResetToOriginalRemovesProfileAndSignalsReload() async throws {
+        let storage = DolphinProfileMemoryStore()
+        let service = DolphinProfileService(storage: storage)
+
+        try await service.apply(makeProfile())
+        try await service.resetToOriginal()
+
+        let profile = await storage.data(at: DolphinProfileService.profilePath)
+        let temporary = await storage.data(at: DolphinProfileService.temporaryPath)
+        let reload = await storage.data(at: DolphinProfileService.reloadPath)
+        XCTAssertNil(profile)
+        XCTAssertNil(temporary)
+        XCTAssertEqual(reload, Data("reload\n".utf8))
+    }
+
     func testProfileRejectsDuplicateAndNonASCIIAnimationIDs() {
         var profile = makeProfile()
         profile.animationIDs = ["L1_Tv_128x47", "L1_Tv_128x47"]
@@ -226,11 +241,11 @@ final class DolphinProfileTests: XCTestCase {
     }
 
     func testRemoteCatalogSeparatesAuthorsAndUsesUniqueSafeIDs() {
-        XCTAssertEqual(DolphinPackCatalog.kuronons.count, 132)
+        XCTAssertEqual(DolphinPackCatalog.kuronons.count, 130)
         XCTAssertEqual(DolphinPackCatalog.haseo.count, 28)
         XCTAssertEqual(DolphinPackCatalog.stopOxy.count, 11)
-        XCTAssertEqual(DolphinPackCatalog.wr3nch.count, 64)
-        XCTAssertEqual(DolphinPackCatalog.remote.count, 244)
+        XCTAssertEqual(DolphinPackCatalog.wr3nch.count, 63)
+        XCTAssertEqual(DolphinPackCatalog.remote.count, 241)
 
         let ids = DolphinPackCatalog.installable.map(\.id)
         XCTAssertEqual(Set(ids).count, ids.count)
@@ -240,6 +255,19 @@ final class DolphinProfileTests: XCTestCase {
                     (97...122).contains($0) || $0 == 45 || $0 == 95
             }
         })
+    }
+
+    func testEveryInstallablePackHasBundledPreview() {
+        for descriptor in DolphinPackCatalog.installable {
+            XCTAssertNotNil(
+                Bundle.main.url(
+                    forResource: descriptor.id,
+                    withExtension: "png",
+                    subdirectory: "DolphinPreviews"
+                ),
+                "Missing preview for \(descriptor.id)"
+            )
+        }
     }
 
     func testRepositoryArchiveExtractsOnlySelectedAnimation() throws {
@@ -289,8 +317,11 @@ final class DolphinProfileTests: XCTestCase {
         let storage = DolphinPackMemoryFS()
         storage.files[DolphinPackInstaller.manifestPath] = DolphinAnimationManifest.empty
         let descriptor = testPackDescriptor()
+        let cacheRoot = temporaryCacheURL()
+        defer { try? FileManager.default.removeItem(at: cacheRoot) }
         let installer = DolphinPackInstaller(
             storage: storage,
+            cacheRoot: cacheRoot,
             payloadProvider: { _ in self.testPackPayload() }
         )
 
@@ -322,8 +353,11 @@ final class DolphinProfileTests: XCTestCase {
         storage.failMove = { from, to in
             from.hasSuffix("manifest.txt.new") && to == DolphinPackInstaller.manifestPath
         }
+        let cacheRoot = temporaryCacheURL()
+        defer { try? FileManager.default.removeItem(at: cacheRoot) }
         let installer = DolphinPackInstaller(
             storage: storage,
+            cacheRoot: cacheRoot,
             payloadProvider: { _ in self.testPackPayload() }
         )
 
@@ -338,6 +372,60 @@ final class DolphinProfileTests: XCTestCase {
             Data("old".utf8)
         )
         XCTAssertNil(storage.files[DolphinProfileService.reloadPath])
+    }
+
+    func testSynchronizeReplacesManagedManifestAndDeletesUnselectedPack() async throws {
+        let storage = DolphinPackMemoryFS()
+        let selected = DolphinPackCatalog.momentum[0]
+        let stale = DolphinPackCatalog.momentum[1]
+        storage.files[DolphinPackInstaller.manifestPath] = try DolphinAnimationManifest.replacing(
+            with: [stale.id]
+        )
+        storage.dirs.insert("/ext/dolphin/\(stale.id)")
+        storage.files["/ext/dolphin/\(stale.id)/meta.txt"] = Data("stale".utf8)
+        let cacheRoot = temporaryCacheURL()
+        defer { try? FileManager.default.removeItem(at: cacheRoot) }
+        let installer = DolphinPackInstaller(
+            storage: storage,
+            cacheRoot: cacheRoot,
+            payloadProvider: { descriptor in self.testPackPayload(id: descriptor.id) }
+        )
+        let progress = DolphinProgressRecorder()
+
+        try await installer.synchronize([selected]) { update in
+            await progress.append(update)
+        }
+
+        let manifest = try XCTUnwrap(storage.files[DolphinPackInstaller.manifestPath])
+        let updates = await progress.values
+        XCTAssertEqual(DolphinAnimationManifest.animationIDs(in: manifest), Set([selected.id]))
+        XCTAssertNotNil(storage.files["/ext/dolphin/\(selected.id)/meta.txt"])
+        XCTAssertNil(storage.files["/ext/dolphin/\(stale.id)/meta.txt"])
+        XCTAssertEqual(storage.files[DolphinProfileService.reloadPath], Data("reload\n".utf8))
+        XCTAssertEqual(Set(updates.map(\.stage)), [.caching, .uploading, .removing])
+        XCTAssertEqual(updates.last(where: { $0.stage == .uploading })?.completed, 1)
+        XCTAssertEqual(updates.last(where: { $0.stage == .removing })?.completed, 1)
+    }
+
+    func testPackResetPreservesStockManifestAndRemovesManagedPacks() async throws {
+        let storage = DolphinPackMemoryFS()
+        let managed = DolphinPackCatalog.momentum[0]
+        let stock = try DolphinAnimationManifest.replacing(with: ["L1_Tv_128x47"])
+        storage.files[DolphinPackInstaller.stockManifestPath] = stock
+        storage.files[DolphinPackInstaller.manifestPath] = try DolphinAnimationManifest.replacing(
+            with: [managed.id]
+        )
+        storage.dirs.insert("/ext/dolphin/\(managed.id)")
+        storage.files["/ext/dolphin/\(managed.id)/meta.txt"] = Data("managed".utf8)
+        let cacheRoot = temporaryCacheURL()
+        defer { try? FileManager.default.removeItem(at: cacheRoot) }
+        let installer = DolphinPackInstaller(storage: storage, cacheRoot: cacheRoot)
+
+        try await installer.resetToOriginal()
+
+        XCTAssertEqual(storage.files[DolphinPackInstaller.stockManifestPath], stock)
+        XCTAssertNil(storage.files[DolphinPackInstaller.manifestPath])
+        XCTAssertNil(storage.files["/ext/dolphin/\(managed.id)/meta.txt"])
     }
 
     private func makeProfile() -> DolphinDesktopProfile {
@@ -384,11 +472,16 @@ final class DolphinProfileTests: XCTestCase {
         )
     }
 
-    private func testPackPayload() -> DolphinPackPayload {
-        DolphinPackPayload(animationID: "TestPack", files: [
+    private func testPackPayload(id: String = "TestPack") -> DolphinPackPayload {
+        DolphinPackPayload(animationID: id, files: [
             "meta.txt": animationMetadata(passiveFrames: 1, order: "0"),
             "frame_0.bm": Data([0x01, 0x02]),
         ])
+    }
+
+    private func temporaryCacheURL() -> URL {
+        FileManager.default.temporaryDirectory
+            .appendingPathComponent("DolphinPackTests-\(UUID().uuidString)", isDirectory: true)
     }
 
     private func makeArchive(entries: [String: Data]) throws -> Data {
@@ -396,9 +489,7 @@ final class DolphinProfileTests: XCTestCase {
             .appendingPathComponent(UUID().uuidString)
             .appendingPathExtension("zip")
         defer { try? FileManager.default.removeItem(at: url) }
-        guard let archive = Archive(url: url, accessMode: .create) else {
-            throw CocoaError(.fileWriteUnknown)
-        }
+        let archive = try Archive(url: url, accessMode: .create)
         for (path, data) in entries {
             try archive.addEntry(
                 with: path,
@@ -501,5 +592,13 @@ private actor DolphinProfileMemoryStore: DolphinProfileFileStore {
 
     func data(at path: String) -> Data? {
         files[path]
+    }
+}
+
+private actor DolphinProgressRecorder {
+    private(set) var values: [DolphinPackSyncProgress] = []
+
+    func append(_ value: DolphinPackSyncProgress) {
+        values.append(value)
     }
 }

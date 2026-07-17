@@ -10,7 +10,7 @@ PATH="/opt/homebrew/bin:$PATH"
 XCODE_JOBS="${XCODE_JOBS:-2}"
 
 VERSION=$(awk -F'"' '/MARKETING_VERSION:/{print $2; exit}' project.yml)
-STAMP=$(date +%Y%m%d-%H%M)
+STAMP="${BUILD_STAMP:-$(date +%Y%m%d-%H%M)}"
 echo "==> Stamping BuildInfo: v$VERSION · $STAMP"
 cat > Sources/App/BuildInfo.swift <<EOF
 import Foundation

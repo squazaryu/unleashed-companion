@@ -54,4 +54,15 @@ struct DolphinProfileService {
             throw error
         }
     }
+
+    func resetToOriginal() async throws {
+        try await storage.makeDirectory(Self.directory)
+        if await storage.exists(Self.temporaryPath) {
+            try await storage.delete(Self.temporaryPath)
+        }
+        if await storage.exists(Self.profilePath) {
+            try await storage.delete(Self.profilePath)
+        }
+        try await storage.write(Self.reloadPath, data: Data("reload\n".utf8))
+    }
 }

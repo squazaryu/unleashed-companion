@@ -75,6 +75,7 @@
 		72AA0AFD7A1A377DA0CFBFFE /* AppBridgeConsoleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C90997591A015CAB64F92E9 /* AppBridgeConsoleTests.swift */; };
 		752AD784AC7FA646BAB74A3D /* FilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090EE11AA22E9A2D32CB5FBC /* FilesView.swift */; };
 		780B3810E03353B0DD280923 /* WiFiMapperMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0C38DF6573695C9B805A24 /* WiFiMapperMapView.swift */; };
+		7A2DB7310DAE7C8152FCD4A2 /* DolphinPreviews in Resources */ = {isa = PBXBuildFile; fileRef = CC55E01E623BEF12E94B15DA /* DolphinPreviews */; };
 		7C70DD575F23538982EAC3FF /* WiFiMapperGeoJSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3443A5546515DB6C6D192059 /* WiFiMapperGeoJSONTests.swift */; };
 		81045F2ACE03A6F7F90E76E6 /* flipper.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB011D9C22032D6D39A1ECF /* flipper.pb.swift */; };
 		816926EE2BFA24265146ECE6 /* TumoflipUpdaterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD911DD24B8F7F707E87CE0 /* TumoflipUpdaterView.swift */; };
@@ -307,6 +308,7 @@
 		C6F24142729978361986A6C2 /* AIRadarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIRadarView.swift; sourceTree = "<group>"; };
 		C823E47E64B2DF1022C4964B /* MarauderLiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarauderLiveView.swift; sourceTree = "<group>"; };
 		CBA5FCA0F80809900471F32E /* PluginUpdateMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginUpdateMonitor.swift; sourceTree = "<group>"; };
+		CC55E01E623BEF12E94B15DA /* DolphinPreviews */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DolphinPreviews; path = Resources/DolphinPreviews; sourceTree = SOURCE_ROOT; };
 		D40FDF9AC257DE97849E36E9 /* DolphinProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DolphinProfileService.swift; sourceTree = "<group>"; };
 		DB003747D5AF7D07C4094F9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DC29E67F84F7B70C836FB6EB /* UnleashedTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = UnleashedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -513,6 +515,7 @@
 			children = (
 				6DB8FBDDFA1BA4791D40EADD /* Assets.xcassets */,
 				99A7C616CDB7459049791342 /* DolphinPacks */,
+				CC55E01E623BEF12E94B15DA /* DolphinPreviews */,
 				DB003747D5AF7D07C4094F9F /* Info.plist */,
 				3342FDAF60635FDA2E1AC94C /* russian_trusted_root_ca.pem */,
 				41F36DBBEDAD596C1AD1EAD9 /* UnleashedCompanion.entitlements */,
@@ -917,6 +920,7 @@
 			files = (
 				E79C6619468C7F98B5CC5723 /* Assets.xcassets in Resources */,
 				71002F8061F2ADC7436D1CD5 /* DolphinPacks in Resources */,
+				7A2DB7310DAE7C8152FCD4A2 /* DolphinPreviews in Resources */,
 				BD4118BB0E5018BF9D2BB6C1 /* russian_trusted_root_ca.pem in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1135,7 +1139,7 @@
 				CODE_SIGNING_REQUIRED = NO;
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 186;
+				CURRENT_PROJECT_VERSION = 187;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1155,7 +1159,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 1.6.28;
+				MARKETING_VERSION = 1.6.29;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1328,7 +1332,7 @@
 				CODE_SIGNING_REQUIRED = NO;
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 186;
+				CURRENT_PROJECT_VERSION = 187;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1342,7 +1346,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 1.6.28;
+				MARKETING_VERSION = 1.6.29;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";

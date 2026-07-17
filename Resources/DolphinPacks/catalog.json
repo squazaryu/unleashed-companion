@@ -739,18 +739,6 @@
       }
     },
     {
-      "id": "Kuronons_CFW_SasTV_128x64",
-      "title": "CFW SasTV",
-      "source": "Kuronons",
-      "author": "Kuronons",
-      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
-      "payload": {
-        "kind": "remoteZip",
-        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Custom_Firmwares/Animation_ZIP_files_%5BCustom_Firmwares%5D/Kuronons_CFW_SasTV_128x64.zip",
-        "sha256": "b0e1f2e27b73e389ee2eadae8b13fdf0801817e670a4432588a751846ec94a72"
-      }
-    },
-    {
       "id": "Kuronons_CFW_TS3000_128x64",
       "title": "CFW TS3000",
       "source": "Kuronons",
@@ -772,18 +760,6 @@
         "kind": "remoteZip",
         "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Custom_Firmwares/Animation_ZIP_files_%5BCustom_Firmwares%5D/Kuronons_CFW_TWH_128x64.zip",
         "sha256": "1fcfc692b362b94b2c720b833638ec4cc130abd16fc1b8b0545633fac68166a2"
-      }
-    },
-    {
-      "id": "Kuronons_CFW_V_128x64",
-      "title": "CFW V",
-      "source": "Kuronons",
-      "author": "Kuronons",
-      "sourceURL": "https://github.com/Kuronons/FZ_graphics",
-      "payload": {
-        "kind": "remoteZip",
-        "url": "https://raw.githubusercontent.com/Kuronons/FZ_graphics/7b581654f64bbaaa7994db2f4c2cf790d3ca3041/Animations/Custom_Firmwares/Animation_ZIP_files_%5BCustom_Firmwares%5D/Kuronons_CFW_V_128x64.zip",
-        "sha256": "d1df95552ac7a27ef6138b41d6e3e3736b8fdcb614e733bf50a0d0f3df73c9b1"
       }
     },
     {
@@ -2650,20 +2626,6 @@
         "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
         "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
         "animationPath": "Animations/Hackers/X_X_COOKIE"
-      }
-    },
-    {
-      "id": "X_X_DEDSEC",
-      "title": "DEDSEC",
-      "source": "WR3NCH",
-      "author": "WR3NCH",
-      "sourceURL": "https://github.com/wrenchathome/flip0anims",
-      "payload": {
-        "kind": "repositoryArchive",
-        "url": "https://codeload.github.com/wrenchathome/flip0anims/zip/5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
-        "sha256": "740ee733c53706d4bd8f540a6738c81259a648dbef679f3135624821401ba321",
-        "rootDirectory": "flip0anims-5e26e99aa7bfc00c7bf6f84eef9b07af02a97493",
-        "animationPath": "Animations/WatchDogs/X_X_DEDSEC"
       }
     },
     {
