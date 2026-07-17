@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/TumoCompanion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/TumoCompanion/main/screenshots/onboarding.png"
       ],
-      "version": "1.6.29",
+      "version": "1.7.0",
       "versionDate": "2026-07-17",
-      "versionDescription": "Dolphin Gallery now previews every supported pack, caches downloads on iPhone, syncs only the selected collection to Flipper, restores stock settings reliably, and shows transfer progress on both devices.",
-      "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.6.29/TumoCompanion-unsigned.ipa",
-      "size": 25373616,
+      "versionDescription": "Dolphin Gallery: saved custom timing, long-press animated previews, and 279 bundled local animations.",
+      "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.7.0/TumoCompanion-unsigned.ipa",
+      "size": 28803942,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.7.0",
+          "date": "2026-07-17",
+          "localizedDescription": "Dolphin Gallery: saved custom timing, long-press animated previews, and 279 bundled local animations.",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.7.0/TumoCompanion-unsigned.ipa",
+          "size": 28803942,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.6.29",
           "date": "2026-07-17",
