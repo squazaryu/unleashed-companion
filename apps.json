@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/TumoCompanion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/TumoCompanion/main/screenshots/onboarding.png"
       ],
-      "version": "1.6.27",
-      "versionDate": "2026-07-16",
-      "versionDescription": "Rebrand the app as TumoCompanion and publish the complete Swift source. Add Dolphin Gallery with collections, random or sequential order, original or custom duration, and BLE profile sync for t-dev-089-038-008. Preserve the existing bundle identity and App Group for in-place updates.",
-      "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.6.27/TumoCompanion-unsigned.ipa",
-      "size": 24929362,
+      "version": "1.6.28",
+      "versionDate": "2026-07-17",
+      "versionDescription": "Add author-based Dolphin Gallery catalogs for Legacy, Momentum, Talking Sasquach, Kuronons, Haseo, stop oxy, and WR3NCH. Add per-author and global Select All controls, Reset to Original, pinned digest-verified downloads, and t-dev-089-038-009 profile sync.",
+      "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.6.28/TumoCompanion-unsigned.ipa",
+      "size": 25142816,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.6.28",
+          "date": "2026-07-17",
+          "localizedDescription": "Add author-based Dolphin Gallery catalogs for Legacy, Momentum, Talking Sasquach, Kuronons, Haseo, stop oxy, and WR3NCH. Add per-author and global Select All controls, Reset to Original, pinned digest-verified downloads, and t-dev-089-038-009 profile sync.",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.6.28/TumoCompanion-unsigned.ipa",
+          "size": 25142816,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.6.27",
           "date": "2026-07-16",
