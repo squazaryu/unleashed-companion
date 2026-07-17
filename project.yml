@@ -15,8 +15,8 @@ packages:
 
 settings:
   base:
-    MARKETING_VERSION: "1.6.29"
-    CURRENT_PROJECT_VERSION: "187"
+    MARKETING_VERSION: "1.7.0"
+    CURRENT_PROJECT_VERSION: "188"
     SWIFT_VERSION: "5.9"
     DEVELOPMENT_TEAM: ""
     CODE_SIGN_STYLE: Manual
@@ -34,11 +34,15 @@ targets:
         excludes:
           - DolphinPacks
           - DolphinPreviews
+          - DolphinAnimations
         optional: true
       - path: Resources/DolphinPacks
         type: folder
         buildPhase: resources
       - path: Resources/DolphinPreviews
+        type: folder
+        buildPhase: resources
+      - path: Resources/DolphinAnimations
         type: folder
         buildPhase: resources
     dependencies:
@@ -163,6 +167,18 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.tumoflip.unleashedcompanion.tests
         GENERATE_INFOPLIST_FILE: "YES"
 
+  UnleashedUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: UITests
+    dependencies:
+      - target: UnleashedCompanion
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.tumoflip.unleashedcompanion.uitests
+        GENERATE_INFOPLIST_FILE: "YES"
+
 schemes:
   UnleashedCompanion:
     build:
@@ -171,6 +187,8 @@ schemes:
         UnleashedShared: all
         UnleashedWidgets: all
         UnleashedTests: [test]
+        UnleashedUITests: [test]
     test:
       targets:
         - UnleashedTests
+        - UnleashedUITests

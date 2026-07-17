@@ -1,3 +1,4 @@
+import ImageIO
 import SwiftUI
 import UIKit
 
@@ -6,6 +7,7 @@ struct DolphinGalleryView: View {
     @StateObject private var model = DolphinGalleryModel()
     @State private var expandedLibrarySources: Set<DolphinLibrarySource> = []
     @State private var confirmsReset = false
+    @State private var previewAnimation: DolphinAnimation?
 
     var body: some View {
         CardScroll {
@@ -16,10 +18,14 @@ struct DolphinGalleryView: View {
         .navigationTitle("Dolphin Gallery")
         .navigationBarTitleDisplayMode(.inline)
         .task {
+            let shouldImportProfile = model.shouldLoadInitialProfileFromDevice
             await model.refreshPackStates()
-            if ble.state == .ready {
+            if ble.state == .ready && shouldImportProfile {
                 await model.loadFromDevice()
             }
+        }
+        .sheet(item: $previewAnimation) { animation in
+            DolphinAnimationPreview(animation: animation)
         }
     }
 
@@ -43,7 +49,8 @@ struct DolphinGalleryView: View {
                         DolphinLibraryTile(
                             animation: animation,
                             subtitle: "TumoFlip",
-                            state: .builtIn
+                            state: .builtIn,
+                            previewAction: { previewAnimation = animation }
                         )
                     }
                 }
@@ -118,7 +125,8 @@ struct DolphinGalleryView: View {
                 DolphinLibraryTile(
                     animation: pack.animation,
                     subtitle: pack.author,
-                    state: .download(model.packPhase(pack))
+                    state: .download(model.packPhase(pack)),
+                    previewAction: { previewAnimation = pack.animation }
                 ) {
                     Task { await model.download(pack) }
                 }
@@ -155,6 +163,7 @@ struct DolphinGalleryView: View {
                 }
             }
             .pickerStyle(.segmented)
+            .accessibilityIdentifier("dolphin-timing-picker")
 
             if model.timing == .custom {
                 NavigationLink {
@@ -165,6 +174,7 @@ struct DolphinGalleryView: View {
                             .foregroundStyle(.secondary)
                     }
                 }
+                .accessibilityIdentifier("dolphin-duration-link")
             }
 
             Button {
@@ -555,6 +565,7 @@ private struct DolphinLibraryTile: View {
     let animation: DolphinAnimation
     let subtitle: String
     let state: State
+    let previewAction: () -> Void
     var action: (() -> Void)?
 
     var body: some View {
@@ -565,6 +576,13 @@ private struct DolphinLibraryTile: View {
             }
             .aspectRatio(2, contentMode: .fit)
             .clipShape(RoundedRectangle(cornerRadius: 6))
+            .contentShape(Rectangle())
+            .onLongPressGesture(minimumDuration: 0.4, perform: previewAction)
+            .accessibilityElement(children: .ignore)
+            .accessibilityIdentifier("dolphin-preview-\(animation.id)")
+            .accessibilityLabel(animation.title)
+            .accessibilityHint("Long press to preview animation")
+            .accessibilityAction(named: "Preview", previewAction)
 
             Text(animation.title)
                 .font(.caption.weight(.semibold))
@@ -677,6 +695,130 @@ private struct DolphinAnimationArtwork: View {
     }
 }
 
+private struct DolphinAnimationPreview: View {
+    @Environment(\.dismiss) private var dismiss
+    let animation: DolphinAnimation
+    @State private var isPlaying = true
+
+    var body: some View {
+        NavigationStack {
+            VStack(spacing: 20) {
+                Spacer(minLength: 12)
+                ZStack {
+                    Color.white
+                    DolphinAnimatedArtwork(animationID: animation.id, isPlaying: isPlaying)
+                        .padding(12)
+                }
+                .aspectRatio(2, contentMode: .fit)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+                .overlay {
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(Color.primary.opacity(0.1), lineWidth: 1)
+                }
+
+                VStack(spacing: 5) {
+                    Text(animation.title)
+                        .font(.headline)
+                        .multilineTextAlignment(.center)
+                    Text(animation.source.rawValue)
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                }
+
+                Button {
+                    isPlaying.toggle()
+                } label: {
+                    Label(isPlaying ? "Pause" : "Play", systemImage: isPlaying ? "pause.fill" : "play.fill")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
+
+                Spacer()
+            }
+            .padding(20)
+            .navigationTitle("Animation preview")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Done") { dismiss() }
+                }
+            }
+        }
+    }
+}
+
+private struct DolphinAnimatedArtwork: UIViewRepresentable {
+    let animationID: String
+    let isPlaying: Bool
+
+    func makeUIView(context: Context) -> UIImageView {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        configure(imageView)
+        if isPlaying { imageView.startAnimating() }
+        return imageView
+    }
+
+    func updateUIView(_ imageView: UIImageView, context: Context) {
+        if imageView.image == nil { configure(imageView) }
+        if isPlaying {
+            imageView.startAnimating()
+        } else {
+            imageView.stopAnimating()
+        }
+    }
+
+    private func configure(_ imageView: UIImageView) {
+        guard let image = DolphinGIFLoader.image(named: animationID) else { return }
+        imageView.image = image.images?.first ?? image
+        imageView.animationImages = image.images
+        imageView.animationDuration = image.duration
+        imageView.animationRepeatCount = 0
+    }
+}
+
+private enum DolphinGIFLoader {
+    static let cache: NSCache<NSString, UIImage> = {
+        let cache = NSCache<NSString, UIImage>()
+        cache.countLimit = 3
+        return cache
+    }()
+
+    static func image(named name: String) -> UIImage? {
+        if let cached = cache.object(forKey: name as NSString) { return cached }
+        guard let url = Bundle.main.url(
+            forResource: name,
+            withExtension: "gif",
+            subdirectory: "DolphinAnimations"
+        ), let source = CGImageSourceCreateWithURL(url as CFURL, nil) else { return nil }
+
+        let count = CGImageSourceGetCount(source)
+        guard count > 0 else { return nil }
+        var frames: [UIImage] = []
+        var duration: TimeInterval = 0
+        frames.reserveCapacity(count)
+        for index in 0..<count {
+            guard let image = CGImageSourceCreateImageAtIndex(source, index, nil) else { continue }
+            frames.append(UIImage(cgImage: image))
+            duration += frameDuration(source: source, index: index)
+        }
+        guard !frames.isEmpty else { return nil }
+        let result = UIImage.animatedImage(with: frames, duration: max(duration, 0.1)) ?? frames[0]
+        cache.setObject(result, forKey: name as NSString)
+        return result
+    }
+
+    private static func frameDuration(source: CGImageSource, index: Int) -> TimeInterval {
+        guard let properties = CGImageSourceCopyPropertiesAtIndex(source, index, nil) as? [CFString: Any],
+              let gif = properties[kCGImagePropertyGIFDictionary] as? [CFString: Any] else {
+            return 0.1
+        }
+        let unclamped = gif[kCGImagePropertyGIFUnclampedDelayTime] as? Double
+        let clamped = gif[kCGImagePropertyGIFDelayTime] as? Double
+        return max(unclamped ?? clamped ?? 0.1, 0.02)
+    }
+}
+
 private struct DolphinCollapsibleSection<Label: View, Content: View>: View {
     @Binding private var isExpanded: Bool
     private let label: Label
@@ -760,12 +902,15 @@ private struct DolphinAnimationTile: View {
 }
 
 private struct DolphinDurationEditor: View {
-    @Binding var seconds: Int
+    @Environment(\.dismiss) private var dismiss
+    @Binding private var seconds: Int
+    @State private var draftSeconds: Int
     @State private var secondsText: String
     @FocusState private var secondsFieldFocused: Bool
 
     init(seconds: Binding<Int>) {
         _seconds = seconds
+        _draftSeconds = State(initialValue: seconds.wrappedValue)
         _secondsText = State(initialValue: String(seconds.wrappedValue))
     }
 
@@ -796,6 +941,15 @@ private struct DolphinDurationEditor: View {
                     .accessibilityLabel("Apply seconds")
                 }
             }
+
+            Button {
+                save()
+            } label: {
+                Label("Save duration", systemImage: "checkmark")
+                    .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(.borderedProminent)
+            .accessibilityIdentifier("dolphin-duration-save")
         }
         .navigationTitle("Animation duration")
         .navigationBarTitleDisplayMode(.inline)
@@ -808,7 +962,7 @@ private struct DolphinDurationEditor: View {
                 }
             }
         }
-        .onChange(of: seconds) { _, value in
+        .onChange(of: draftSeconds) { _, value in
             if !secondsFieldFocused {
                 secondsText = String(value)
             }
@@ -838,28 +992,28 @@ private struct DolphinDurationEditor: View {
 
     private var hoursBinding: Binding<Int> {
         Binding(
-            get: { seconds / 3_600 },
+            get: { draftSeconds / 3_600 },
             set: { update(hours: $0, minutes: minutesBinding.wrappedValue, seconds: secondsBinding.wrappedValue) }
         )
     }
 
     private var minutesBinding: Binding<Int> {
         Binding(
-            get: { (seconds % 3_600) / 60 },
+            get: { (draftSeconds % 3_600) / 60 },
             set: { update(hours: hoursBinding.wrappedValue, minutes: $0, seconds: secondsBinding.wrappedValue) }
         )
     }
 
     private var secondsBinding: Binding<Int> {
         Binding(
-            get: { seconds % 60 },
+            get: { draftSeconds % 60 },
             set: { update(hours: hoursBinding.wrappedValue, minutes: minutesBinding.wrappedValue, seconds: $0) }
         )
     }
 
     private func update(hours: Int, minutes: Int, seconds componentSeconds: Int) {
         let total = hours * 3_600 + minutes * 60 + componentSeconds
-        seconds = min(
+        draftSeconds = min(
             DolphinDesktopProfile.maximumDuration,
             max(DolphinDesktopProfile.minimumDuration, total)
         )
@@ -867,13 +1021,19 @@ private struct DolphinDurationEditor: View {
 
     private func commitTextValue() {
         guard let value = Int(secondsText) else {
-            secondsText = String(seconds)
+            secondsText = String(draftSeconds)
             return
         }
-        seconds = min(
+        draftSeconds = min(
             DolphinDesktopProfile.maximumDuration,
             max(DolphinDesktopProfile.minimumDuration, value)
         )
-        secondsText = String(seconds)
+        secondsText = String(draftSeconds)
+    }
+
+    private func save() {
+        commitTextValue()
+        seconds = draftSeconds
+        dismiss()
     }
 }

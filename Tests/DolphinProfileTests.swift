@@ -270,6 +270,37 @@ final class DolphinProfileTests: XCTestCase {
         }
     }
 
+    func testEveryAnimationHasBundledAnimatedPreview() {
+        let animations = DolphinCatalog.legacy + DolphinPackCatalog.installable.map(\.animation)
+        for animation in animations {
+            XCTAssertNotNil(
+                Bundle.main.url(
+                    forResource: animation.id,
+                    withExtension: "gif",
+                    subdirectory: "DolphinAnimations"
+                ),
+                "Missing animated preview for \(animation.id)"
+            )
+        }
+    }
+
+    @MainActor
+    func testLocalDurationSurvivesModelRecreationAndSuppressesAutomaticImport() {
+        let suiteName = "DolphinGalleryTests-\(UUID().uuidString)"
+        let defaults = UserDefaults(suiteName: suiteName)!
+        defer { defaults.removePersistentDomain(forName: suiteName) }
+
+        let initial = DolphinGalleryModel(defaults: defaults)
+        XCTAssertTrue(initial.shouldLoadInitialProfileFromDevice)
+        initial.timing = .custom
+        initial.durationSeconds = 137
+
+        let restored = DolphinGalleryModel(defaults: defaults)
+        XCTAssertFalse(restored.shouldLoadInitialProfileFromDevice)
+        XCTAssertEqual(restored.timing, .custom)
+        XCTAssertEqual(restored.durationSeconds, 137)
+    }
+
     func testRepositoryArchiveExtractsOnlySelectedAnimation() throws {
         let data = try makeArchive(entries: [
             "Repo-abc/Animations/TestPack/meta.txt": animationMetadata(passiveFrames: 1, order: "0"),

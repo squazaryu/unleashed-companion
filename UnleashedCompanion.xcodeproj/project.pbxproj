@@ -90,6 +90,7 @@
 		9557FFF86AE01FDF6E8BA371 /* FlipperBLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CC0246CF934A5E59B02502 /* FlipperBLE.swift */; };
 		9570769329A543974A6E3501 /* TumoFabricTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985815E6A1B91675260A0A0D /* TumoFabricTests.swift */; };
 		9970C1E57A8F9C71B510102E /* TumoflipFirmwareRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916BE931F747387EDB008311 /* TumoflipFirmwareRouting.swift */; };
+		9B2BB6377BAE0FC06FCDF701 /* DolphinAnimations in Resources */ = {isa = PBXBuildFile; fileRef = 022BE984F8DAB89F987AEC28 /* DolphinAnimations */; };
 		9D4526D85608E2635C63D0D8 /* HomeLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A900650A66F8794D717BD99 /* HomeLayout.swift */; };
 		9D7C4ACAF66ABA1DD3844B0D /* UnleashedWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5122076A627322769B9B5014 /* UnleashedWidgets.swift */; };
 		9FC598E759742CCC4DE8B272 /* TransferChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30560D061F3814086328E2D /* TransferChannel.swift */; };
@@ -101,6 +102,7 @@
 		A910F14D11CCC2B19261AB3F /* BackupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48EA867BF44D4BC76EDE7E /* BackupView.swift */; };
 		A9DC9FF761C1761A9C3BF594 /* UpdatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263FF028D83D9F5E4C56E6CF /* UpdatesView.swift */; };
 		AA54E113784D1DE45ED3721F /* CatalogAppDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC5D9580C2A7DD169D763E /* CatalogAppDetailView.swift */; };
+		B384864F1C44B833958723B0 /* DolphinGalleryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB5C504F3756F796BB35073 /* DolphinGalleryUITests.swift */; };
 		B6DB93E03F6FE5C851F2BD8F /* HomeAssistantDiscovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88944BB257B9DC6B24EFC2C /* HomeAssistantDiscovery.swift */; };
 		B7D3F97F8516475BDCB9C56A /* FlipperSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE028921DD19F9BC488190F1 /* FlipperSystem.swift */; };
 		B868D9DF098B04FB000252E1 /* FapMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E9E2A54A0286AF6188F9A9 /* FapMetadata.swift */; };
@@ -154,6 +156,13 @@
 			remoteGlobalIDString = 5A1FA1EFB5B2AEC5AFA8EC16;
 			remoteInfo = UnleashedCompanion;
 		};
+		7CB541ACFB941180FDF370C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FB866BDF3307EB6FA61D9438 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5A1FA1EFB5B2AEC5AFA8EC16;
+			remoteInfo = UnleashedCompanion;
+		};
 		7DB29112A324C71E44318D9A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FB866BDF3307EB6FA61D9438 /* Project object */;
@@ -196,6 +205,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		022BE984F8DAB89F987AEC28 /* DolphinAnimations */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DolphinAnimations; path = Resources/DolphinAnimations; sourceTree = SOURCE_ROOT; };
 		02EF4133669223E43E09D659 /* UnleashedWidgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = UnleashedWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		0711A5F791B6D248100D3EBD /* ProtocolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolTests.swift; sourceTree = "<group>"; };
 		090EE11AA22E9A2D32CB5FBC /* FilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesView.swift; sourceTree = "<group>"; };
@@ -313,6 +323,7 @@
 		DB003747D5AF7D07C4094F9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DC29E67F84F7B70C836FB6EB /* UnleashedTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = UnleashedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCE61D0B4EB2C9925E58FA87 /* DevicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesView.swift; sourceTree = "<group>"; };
+		E2EDFAFA602C188F8A589294 /* UnleashedUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = UnleashedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4930E5335E77EBB9BFA70EF /* PluginUpdatesDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginUpdatesDetailView.swift; sourceTree = "<group>"; };
 		E5384B4D1A11BD66FA2E57DD /* UnleashedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnleashedApp.swift; sourceTree = "<group>"; };
 		E66CABAA55465F56CC1CF2E8 /* MarauderLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarauderLog.swift; sourceTree = "<group>"; };
@@ -327,6 +338,7 @@
 		F7DFAFD2A63623B73457A3B2 /* InstallActivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallActivityController.swift; sourceTree = "<group>"; };
 		F9183EF8E1FF8617A2B48EA8 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		FB7E01B87B6C90282CEE9FE0 /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
+		FCB5C504F3756F796BB35073 /* DolphinGalleryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DolphinGalleryUITests.swift; sourceTree = "<group>"; };
 		FCE7269E5AB13331C01704F7 /* USBStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USBStorageTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -376,6 +388,14 @@
 				B9759CEE5F028AF5A01580A8 /* FlipperCatalogClient.swift */,
 			);
 			path = Catalog;
+			sourceTree = "<group>";
+		};
+		1A5A957AFCF284436C396F83 /* UITests */ = {
+			isa = PBXGroup;
+			children = (
+				FCB5C504F3756F796BB35073 /* DolphinGalleryUITests.swift */,
+			);
+			path = UITests;
 			sourceTree = "<group>";
 		};
 		1C9BEC341B9B1B61779D221B /* Features */ = {
@@ -429,6 +449,7 @@
 				B4A9D8B801C3E71456CF39F1 /* Shared */,
 				765E2E87B911B11131C01B12 /* Sources */,
 				9522343D6D9B8F826A9E2267 /* Tests */,
+				1A5A957AFCF284436C396F83 /* UITests */,
 				D392B3D977C027F96EF463EA /* Widgets */,
 				BB0EFAAD1D152C7F76D21789 /* Products */,
 			);
@@ -514,6 +535,7 @@
 			isa = PBXGroup;
 			children = (
 				6DB8FBDDFA1BA4791D40EADD /* Assets.xcassets */,
+				022BE984F8DAB89F987AEC28 /* DolphinAnimations */,
 				99A7C616CDB7459049791342 /* DolphinPacks */,
 				CC55E01E623BEF12E94B15DA /* DolphinPreviews */,
 				DB003747D5AF7D07C4094F9F /* Info.plist */,
@@ -683,6 +705,7 @@
 				7ECF810E2BD149C8F1726216 /* UnleashedCompanion.app */,
 				B269822737BE205267576415 /* UnleashedShared.framework */,
 				DC29E67F84F7B70C836FB6EB /* UnleashedTests.xctest */,
+				E2EDFAFA602C188F8A589294 /* UnleashedUITests.xctest */,
 				02EF4133669223E43E09D659 /* UnleashedWidgets.appex */,
 			);
 			name = Products;
@@ -824,6 +847,24 @@
 			productReference = DC29E67F84F7B70C836FB6EB /* UnleashedTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		D32CC88F496B8CA44874C775 /* UnleashedUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7BCE4A30078967F12976B99F /* Build configuration list for PBXNativeTarget "UnleashedUITests" */;
+			buildPhases = (
+				C18A304D54E764DA90612886 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				781A8410C04F29AFF98758C6 /* PBXTargetDependency */,
+			);
+			name = UnleashedUITests;
+			packageProductDependencies = (
+			);
+			productName = UnleashedUITests;
+			productReference = E2EDFAFA602C188F8A589294 /* UnleashedUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		E5AE788725F1100D0052A400 /* UnleashedWidgets */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA32CDC4B74B70996E503AF9 /* Build configuration list for PBXNativeTarget "UnleashedWidgets" */;
@@ -877,6 +918,11 @@
 						DevelopmentTeam = "";
 						ProvisioningStyle = Manual;
 					};
+					D32CC88F496B8CA44874C775 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Manual;
+						TestTargetID = 5A1FA1EFB5B2AEC5AFA8EC16;
+					};
 					E5AE788725F1100D0052A400 = {
 						DevelopmentTeam = "";
 						ProvisioningStyle = Manual;
@@ -908,6 +954,7 @@
 				5A1FA1EFB5B2AEC5AFA8EC16 /* UnleashedCompanion */,
 				F644916E6702111E43784F76 /* UnleashedShared */,
 				67EE70915573615253550944 /* UnleashedTests */,
+				D32CC88F496B8CA44874C775 /* UnleashedUITests */,
 				E5AE788725F1100D0052A400 /* UnleashedWidgets */,
 			);
 		};
@@ -919,6 +966,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E79C6619468C7F98B5CC5723 /* Assets.xcassets in Resources */,
+				9B2BB6377BAE0FC06FCDF701 /* DolphinAnimations in Resources */,
 				71002F8061F2ADC7436D1CD5 /* DolphinPacks in Resources */,
 				7A2DB7310DAE7C8152FCD4A2 /* DolphinPreviews in Resources */,
 				BD4118BB0E5018BF9D2BB6C1 /* russian_trusted_root_ca.pem in Resources */,
@@ -972,6 +1020,14 @@
 				0D58380E2D1F29BB7FF7DF4B /* TumoflipStatusTests.swift in Sources */,
 				19DFE5895853A9679A01976A /* USBStorageTests.swift in Sources */,
 				7C70DD575F23538982EAC3FF /* WiFiMapperGeoJSONTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C18A304D54E764DA90612886 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B384864F1C44B833958723B0 /* DolphinGalleryUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1089,6 +1145,11 @@
 			target = F644916E6702111E43784F76 /* UnleashedShared */;
 			targetProxy = AC2A20DF4D9BE401CE1DB72F /* PBXContainerItemProxy */;
 		};
+		781A8410C04F29AFF98758C6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5A1FA1EFB5B2AEC5AFA8EC16 /* UnleashedCompanion */;
+			targetProxy = 7CB541ACFB941180FDF370C4 /* PBXContainerItemProxy */;
+		};
 		CFAA251213FDA89AFBC4181E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5A1FA1EFB5B2AEC5AFA8EC16 /* UnleashedCompanion */;
@@ -1139,7 +1200,7 @@
 				CODE_SIGNING_REQUIRED = NO;
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 187;
+				CURRENT_PROJECT_VERSION = 188;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1159,7 +1220,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 1.6.29;
+				MARKETING_VERSION = 1.7.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1171,6 +1232,23 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
+		};
+		48A739BD8ABD41D6C88B0CEA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tumoflip.unleashedcompanion.uitests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = UnleashedCompanion;
+			};
+			name = Release;
 		};
 		4C36611B3DB4F124F3578C8F /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -1255,6 +1333,23 @@
 			};
 			name = Debug;
 		};
+		B31679BE4B4CA4557AE9A748 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tumoflip.unleashedcompanion.uitests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = UnleashedCompanion;
+			};
+			name = Debug;
+		};
 		B8C24D613B13270F2663BDF2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1332,7 +1427,7 @@
 				CODE_SIGNING_REQUIRED = NO;
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 187;
+				CURRENT_PROJECT_VERSION = 188;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1346,7 +1441,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 1.6.29;
+				MARKETING_VERSION = 1.7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1398,6 +1493,15 @@
 			buildConfigurations = (
 				7BEE45CDA14BAD50F94E4CD4 /* Debug */,
 				FE3E68DBDDB584E5DA53272D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		7BCE4A30078967F12976B99F /* Build configuration list for PBXNativeTarget "UnleashedUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B31679BE4B4CA4557AE9A748 /* Debug */,
+				48A739BD8ABD41D6C88B0CEA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

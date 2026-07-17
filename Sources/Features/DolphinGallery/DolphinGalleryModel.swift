@@ -42,6 +42,7 @@ final class DolphinGalleryModel: ObservableObject {
     @Published private(set) var packPhases: [String: PackPhase] = [:]
     @Published private(set) var phase: Phase = .idle
     @Published private(set) var transferProgress: DolphinPackSyncProgress?
+    private(set) var hasLocalPreferences: Bool
 
     private let service: DolphinProfileService
     private let packInstaller: DolphinPackInstaller
@@ -61,6 +62,7 @@ final class DolphinGalleryModel: ObservableObject {
 
         if let data = defaults.data(forKey: preferencesKey),
            let saved = try? JSONDecoder().decode(Preferences.self, from: data) {
+            hasLocalPreferences = true
             enabled = saved.enabled
             order = saved.order
             timing = saved.timing
@@ -72,6 +74,7 @@ final class DolphinGalleryModel: ObservableObject {
             collections = saved.collections
             cachedPackIDs = saved.installedPackIDs ?? []
         } else {
+            hasLocalPreferences = false
             enabled = false
             order = .random
             timing = .original
@@ -120,6 +123,10 @@ final class DolphinGalleryModel: ObservableObject {
 
     var isBusy: Bool {
         phase == .loading || phase == .applying
+    }
+
+    var shouldLoadInitialProfileFromDevice: Bool {
+        !hasLocalPreferences
     }
 
     func packPhase(_ descriptor: DolphinPackDescriptor) -> PackPhase {
@@ -351,6 +358,7 @@ final class DolphinGalleryModel: ObservableObject {
         )
         if let data = try? JSONEncoder().encode(preferences) {
             defaults.set(data, forKey: preferencesKey)
+            hasLocalPreferences = true
         }
     }
 }
