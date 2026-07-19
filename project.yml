@@ -12,11 +12,14 @@ packages:
   ZIPFoundation:
     url: https://github.com/weichsel/ZIPFoundation.git
     from: "0.9.0"
+  SWCompression:
+    url: https://github.com/tsolomko/SWCompression.git
+    from: "4.9.0"
 
 settings:
   base:
-    MARKETING_VERSION: "1.7.0"
-    CURRENT_PROJECT_VERSION: "188"
+    MARKETING_VERSION: "1.7.1"
+    CURRENT_PROJECT_VERSION: "189"
     SWIFT_VERSION: "5.9"
     DEVELOPMENT_TEAM: ""
     CODE_SIGN_STYLE: Manual
@@ -48,6 +51,7 @@ targets:
     dependencies:
       - package: SwiftProtobuf
       - package: ZIPFoundation
+      - package: SWCompression
       - target: UnleashedShared
       - target: UnleashedWidgets
     info:

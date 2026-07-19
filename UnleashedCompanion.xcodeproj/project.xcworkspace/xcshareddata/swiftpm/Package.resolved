@@ -1,6 +1,24 @@
 {
-  "originHash" : "c42778d21fefb2c09e22d387ccc780c66bb64d6ee80bd6b13b9748539b1ae37f",
+  "originHash" : "10fa63c56a5be8de7899a4053b5e40f65fee19ddb5dbaba81ce3de5bb764f3ca",
   "pins" : [
+    {
+      "identity" : "bitbytedata",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tsolomko/BitByteData",
+      "state" : {
+        "revision" : "e1a5443be67daf0833cbb5f4fa3a06a265ca3105",
+        "version" : "2.1.0"
+      }
+    },
+    {
+      "identity" : "swcompression",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tsolomko/SWCompression.git",
+      "state" : {
+        "revision" : "03a68e67991815a267e28174a0a01fbe0cff937b",
+        "version" : "4.9.1"
+      }
+    },
     {
       "identity" : "swift-protobuf",
       "kind" : "remoteSourceControl",

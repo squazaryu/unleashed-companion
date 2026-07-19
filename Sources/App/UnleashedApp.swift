@@ -13,6 +13,7 @@ struct UnleashedApp: App {
     @StateObject private var aiRadarRelay = AIRadarRelay()
     @StateObject private var settings = SettingsStore.shared
     @StateObject private var transfer = TransferChannelStore.shared
+    @StateObject private var updates = UpdatesCoordinator()
     @Environment(\.scenePhase) private var scenePhase
 
     init() {
@@ -41,6 +42,7 @@ struct UnleashedApp: App {
                 .environmentObject(aiRadarRelay)
                 .environmentObject(settings)
                 .environmentObject(transfer)
+                .environmentObject(updates)
                 .tint(.orange)
                 .background(WindowStyleApplier(style: settings.appearance.uiStyle))
         }

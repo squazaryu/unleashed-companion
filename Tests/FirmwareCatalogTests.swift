@@ -1,0 +1,97 @@
+import XCTest
+@testable import UnleashedCompanion
+
+final class FirmwareCatalogTests: XCTestCase {
+    func testCatalogSeparatesStableAndDevReleases() throws {
+        let releases = try FirmwareCatalog.decode(Data(json.utf8))
+
+        XCTAssertEqual(releases.map(\.version), ["t-dev-089-040-001", "t-flppr-fw-089-039"])
+        XCTAssertEqual(releases.map(\.channel), [.dev, .stable])
+        XCTAssertEqual(releases.first?.updaterSHA256, String(repeating: "a", count: 64))
+    }
+
+    func testCatalogRejectsMismatchedPrereleaseChannel() throws {
+        let changed = json.replacingOccurrences(
+            of: "\"prerelease\": true",
+            with: "\"prerelease\": false")
+        let releases = try FirmwareCatalog.decode(Data(changed.utf8))
+
+        XCTAssertEqual(releases.map(\.version), ["t-flppr-fw-089-039"])
+    }
+
+    func testCatalogKeepsLatestReleaseForDuplicateVersion() throws {
+        let duplicate = "[\(releaseJSON(tag: "new", date: "2026-07-19T10:00:00Z")),"
+            + "\(releaseJSON(tag: "old", date: "2026-07-18T10:00:00Z"))]"
+        let releases = try FirmwareCatalog.decode(Data(duplicate.utf8))
+
+        XCTAssertEqual(releases.filter { $0.version == "t-dev-089-040-001" }.count, 1)
+        XCTAssertEqual(releases.first?.publishedAt, ISO8601DateFormatter().date(from: "2026-07-19T10:00:00Z"))
+    }
+
+    private func releaseJSON(tag: String, date: String) -> String {
+        """
+        {
+          "tag_name": "\(tag)",
+          "name": "\(tag)",
+          "body": "",
+          "published_at": "\(date)",
+          "prerelease": true,
+          "draft": false,
+          "assets": [
+            {
+              "name": "flipper-z-f7-update-t-dev-089-040-001.tgz",
+              "browser_download_url": "https://example.com/\(tag).tgz",
+              "size": 123,
+              "digest": "sha256:\(String(repeating: "a", count: 64))"
+            }
+          ]
+        }
+        """
+    }
+
+    private let json = """
+    [
+      {
+        "tag_name": "t-dev-089-040-001",
+        "name": "Dev 040-001",
+        "body": "Dev notes",
+        "published_at": "2026-07-19T10:00:00Z",
+        "prerelease": true,
+        "draft": false,
+        "assets": [
+          {
+            "name": "flipper-z-f7-update-t-dev-089-040-001.tgz",
+            "browser_download_url": "https://example.com/dev.tgz",
+            "size": 123,
+            "digest": "sha256:\(String(repeating: "a", count: 64))"
+          }
+        ]
+      },
+      {
+        "tag_name": "t-flppr-fw-089-039",
+        "name": null,
+        "body": null,
+        "published_at": "2026-07-18T10:00:00Z",
+        "prerelease": false,
+        "draft": false,
+        "assets": [
+          {
+            "name": "flipper-z-f7-update-t-flppr-fw-089-039.tgz",
+            "browser_download_url": "https://example.com/stable.tgz",
+            "size": 456,
+            "digest": null
+          }
+        ]
+      },
+      {
+        "tag_name": "draft",
+        "name": "Draft",
+        "body": "",
+        "published_at": null,
+        "prerelease": false,
+        "draft": true,
+        "assets": []
+      }
+    ]
+    """
+}

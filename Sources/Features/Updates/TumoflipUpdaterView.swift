@@ -11,6 +11,7 @@ struct TumoflipUpdaterView: View {
     @ObservedObject var updater: TumoflipUpdater
     @State private var expanded: Set<String> = []
     @State private var pendingOverride: TumoflipFirmwareChannel?
+    @State private var showHelp = false
 
     private let groupLabels: [(key: String, title: String, icon: String)] = [
         ("base", "Base", "shippingbox.fill"),
@@ -28,9 +29,6 @@ struct TumoflipUpdaterView: View {
                             systemImage: transfer.activeChannel.systemImage))) {
                 statusRow
                 verifyRow
-                Text("Installs the SD package files from the latest tumoflip release onto your Flipper — staged, hash-verified, and rolled back on any failure. “Verify on device” hashes the files actually on the SD to confirm they’re present and intact. Firmware (DFU) flashing is separate and not done here.")
-                    .font(.caption2).foregroundStyle(.secondary)
-                    .fixedSize(horizontal: false, vertical: true)
             }
 
             channelCard
@@ -40,6 +38,12 @@ struct TumoflipUpdaterView: View {
         .navigationTitle("Firmware packages")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button { showHelp = true } label: {
+                    Image(systemName: "questionmark.circle")
+                }
+                .accessibilityLabel("FW Packages help")
+            }
             ToolbarItem(placement: .topBarTrailing) {
                 if updater.busy {
                     ProgressView()
@@ -54,10 +58,16 @@ struct TumoflipUpdaterView: View {
             }
         }
         .safeAreaInset(edge: .bottom) { installBar }
-        .task(id: ble.state) {
-            if updater.manifest == nil { await updater.reload(recover: hasFileChannel) }
-            if updater.manifest != nil { await updater.validateCompatibility() }
+        .onAppear {
+            if updater.manifest == nil {
+                Task { await updater.reload(recover: hasFileChannel) }
+            }
         }
+        .onChange(of: ble.state) { state in
+            guard state == .ready else { return }
+            Task { await updater.validateCompatibility() }
+        }
+        .sheet(isPresented: $showHelp) { TumoflipPackagesHelpView() }
         .confirmationDialog(
             "Switch package channel?",
             isPresented: Binding(
@@ -271,10 +281,6 @@ struct TumoflipUpdaterView: View {
                 }
                 .buttonStyle(.borderedProminent).tint(.red)
                 .disabled(updater.stopRequested)
-                Text("Stopping rolls the package back to the previous version — nothing is left half-installed.")
-                    .font(.caption2).foregroundStyle(.secondary)
-                    .multilineTextAlignment(.center)
-                    .fixedSize(horizontal: false, vertical: true)
             }
             .padding()
             .background(.bar)
@@ -297,12 +303,6 @@ struct TumoflipUpdaterView: View {
                 .disabled(
                     !hasFileChannel || updater.validating ||
                     (updater.selectedRequiresCompatibilityIdentity && !updater.hasFreshCompatibilityIdentity))
-                Label(transfer.activeChannel == .usb
-                      ? "Keep USB SD Mode active on the Flipper until it finishes."
-                      : "Keep your phone unlocked and the app open until it finishes.",
-                      systemImage: transfer.activeChannel == .usb ? "cable.connector" : "lock.open.iphone")
-                    .font(.caption2).foregroundStyle(.secondary)
-                    .multilineTextAlignment(.center)
             }
             .padding()
             .background(.bar)
@@ -421,6 +421,34 @@ struct TumoflipUpdaterView: View {
         case .updateAvailable: return ("Update available", .orange, "arrow.down.circle.fill")
         case .notInstalled:    return ("Not installed", .secondary, "circle.dashed")
         case .empty:           return nil
+        }
+    }
+}
+
+private struct TumoflipPackagesHelpView: View {
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        NavigationStack {
+            List {
+                Label("FW Packages update Tumoflip apps, resources, and protocol packs on the SD card.",
+                      systemImage: "shippingbox")
+                Label("The channel follows the installed Stable or Dev firmware unless you override it.",
+                      systemImage: "point.3.connected.trianglepath.dotted")
+                Label("Files are staged, verified, and rolled back if installation fails.",
+                      systemImage: "checkmark.shield")
+                Label("Verify on device checks the files currently stored on the Flipper.",
+                      systemImage: "checkmark.seal")
+                Label("Keep the app open during BLE transfer or USB SD Mode active during USB transfer.",
+                      systemImage: "arrow.left.arrow.right")
+            }
+            .navigationTitle("FW Packages help")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Done") { dismiss() }
+                }
+            }
         }
     }
 }
