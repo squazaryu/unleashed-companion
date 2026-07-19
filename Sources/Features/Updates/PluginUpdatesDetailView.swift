@@ -11,6 +11,7 @@ struct PluginUpdatesDetailView: View {
     @State private var showReleasePicker = false
     @State private var expandedCategories: Set<String> = []   // collapsed by default
     @State private var incompatibleExpanded = false
+    @State private var showHelp = false
 
     var body: some View {
         CardScroll {
@@ -48,6 +49,12 @@ struct PluginUpdatesDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
+                Button { showHelp = true } label: {
+                    Image(systemName: "questionmark.circle")
+                }
+                .accessibilityLabel("Community apps help")
+            }
+            ToolbarItem(placement: .topBarTrailing) {
                 NavigationLink { HistoryView(updater: updater) } label: {
                     Image(systemName: "clock.arrow.circlepath")
                 }
@@ -77,10 +84,6 @@ struct PluginUpdatesDetailView: View {
                     }
                     .buttonStyle(.borderedProminent).tint(.red)
                     .disabled(updater.stopRequested)
-                    Text("Stopping keeps every app on its current working version — a half-written update is discarded, never applied. Only fully verified apps are installed.")
-                        .font(.caption2).foregroundStyle(.secondary)
-                        .multilineTextAlignment(.center)
-                        .fixedSize(horizontal: false, vertical: true)
                 }
                 .padding()
                 .background(.bar)
@@ -101,12 +104,14 @@ struct PluginUpdatesDetailView: View {
             }
         }
         .onAppear { if case .idle = updater.phase, updater.updates.isEmpty { Task { await updater.check() } } }
-        .task(id: ble.state) {
-            if !updater.catalogMeta.isEmpty { await updater.validateCompatibility() }
+        .onChange(of: ble.state) { state in
+            guard state == .ready else { return }
+            Task { await updater.validateCompatibility() }
         }
         .sheet(isPresented: $showReleasePicker) {
             NavigationStack { PluginReleasePickerView(updater: updater) }
         }
+        .sheet(isPresented: $showHelp) { CommunityAppsHelpView() }
     }
 
     /// xMasterX occasionally ships a same-day follow-up build (tag suffixed p2, p3, …)
@@ -119,11 +124,8 @@ struct PluginUpdatesDetailView: View {
                             text: updater.manualReleaseTag ?? "Auto",
                             color: updater.manualReleaseTag == nil ? .secondary : .orange,
                             systemImage: updater.manualReleaseTag == nil ? "wand.and.stars" : "pin.fill"))) {
-            Text(updater.manualReleaseTag == nil
-                 ? "Using GitHub's latest all-the-plugins release automatically."
-                 : "Pinned to \(updater.manualReleaseTag ?? "") — won't move to a newer release until you switch back to Auto.")
+            Text(updater.manualReleaseTag == nil ? "Latest release" : "Pinned: \(updater.manualReleaseTag ?? "")")
                 .font(.caption2).foregroundStyle(.secondary)
-                .fixedSize(horizontal: false, vertical: true)
             PillButton(title: "Choose release…", systemImage: "list.bullet") {
                 showReleasePicker = true
             }
@@ -171,18 +173,13 @@ struct PluginUpdatesDetailView: View {
 
     private var baselineCard: some View {
         SectionCard(title: "First sync", systemImage: "magnifyingglass") {
-            Text("First sync (\(updater.tag)). Set a baseline so future checks show only what xMasterX changed:")
-                .font(.caption).foregroundStyle(.secondary)
-                .fixedSize(horizontal: false, vertical: true)
+            Text(updater.tag).font(.caption).foregroundStyle(.secondary)
             PillButton(title: "Scan Flipper (accurate)", systemImage: "magnifyingglass") {
                 Task { await updater.scanBaseline() }
             }.disabled(!hasFileChannel)
             PillButton(title: "This build is already installed", systemImage: "checkmark.circle", tint: .secondary) {
                 updater.seedBaseline()
             }
-            Text("Pick “already installed” if you just flashed this pack via SD card — it skips the slow per-app scan.")
-                .font(.caption2).foregroundStyle(.secondary)
-                .fixedSize(horizontal: false, vertical: true)
         }
     }
 
@@ -504,6 +501,34 @@ struct PluginUpdatesDetailView: View {
     /// Set each row's selection to whether it matches the predicate.
     private func select(_ match: (PluginUpdate) -> Bool) {
         updater.selectOnly(where: match)
+    }
+}
+
+private struct CommunityAppsHelpView: View {
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        NavigationStack {
+            List {
+                Label("Community apps checks All The Plugins and shows only changed files.",
+                      systemImage: "puzzlepiece.extension")
+                Label("The first sync creates a baseline from the current Flipper or selected release.",
+                      systemImage: "scope")
+                Label("Apps with the wrong firmware API are blocked before installation.",
+                      systemImage: "exclamationmark.shield")
+                Label("Protected Tumoflip apps are never replaced automatically.",
+                      systemImage: "lock.shield")
+                Label("A stopped transfer discards only the incomplete app file.",
+                      systemImage: "stop.circle")
+            }
+            .navigationTitle("Community apps help")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Done") { dismiss() }
+                }
+            }
+        }
     }
 }
 

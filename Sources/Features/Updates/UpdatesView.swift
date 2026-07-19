@@ -53,8 +53,12 @@ struct CollapsibleCard<Content: View>: View {
 struct UpdatesView: View {
     @EnvironmentObject var ble: FlipperBLE
     @EnvironmentObject var transfer: TransferChannelStore
-    @StateObject private var updater = PluginUpdater()
-    @StateObject private var firmware = TumoflipUpdater()
+    @EnvironmentObject var updates: UpdatesCoordinator
+    @State private var showHelp = false
+
+    private var updater: PluginUpdater { updates.plugins }
+    private var packages: TumoflipUpdater { updates.packages }
+    private var firmware: FirmwareLibrary { updates.firmware }
 
     var body: some View {
         CardScroll {
@@ -63,17 +67,20 @@ struct UpdatesView: View {
             attentionCard
             moreCard
         }
-        .navigationTitle("App Updates")
+        .navigationTitle("Updates")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button { showHelp = true } label: {
+                    Image(systemName: "questionmark.circle")
+                }
+                .accessibilityLabel("Updates help")
+            }
+        }
         .safeAreaInset(edge: .bottom) { actionBar }
-        .task {
-            if case .idle = updater.phase, updater.updates.isEmpty { await updater.check() }
-        }
-        .task(id: ble.state) {
-            if firmware.manifest == nil { await firmware.reload(recover: hasFileChannel) }
-            if !updater.catalogMeta.isEmpty { await updater.validateCompatibility() }
-            if firmware.manifest != nil { await firmware.validateCompatibility() }
-        }
+        .onAppear { updates.loadIfNeeded(recoverPackages: hasFileChannel) }
+        .onChange(of: ble.state) { _, state in updates.revalidateAfterReady(state) }
+        .sheet(isPresented: $showHelp) { UpdatesHelpView() }
     }
 
     private var hasFileChannel: Bool {
@@ -90,7 +97,7 @@ struct UpdatesView: View {
     }
 
     private var firmwareChecking: Bool {
-        switch firmware.phase {
+        switch packages.phase {
         case .checking, .downloading: return true
         default: return false
         }
@@ -100,7 +107,8 @@ struct UpdatesView: View {
         if updater.phase == .needsBaseline { return true }
         if updater.pendingProtectedReview.count > 0 { return true }
         if let vr = updater.verifyResult, !vr.ok { return true }
-        if let warning = firmware.firmwareRoute.warning, warning != .identityUnavailable { return true }
+        if let warning = packages.firmwareRoute.warning, warning != .identityUnavailable { return true }
+        if case .failed = packages.phase { return true }
         if case .failed = firmware.phase { return true }
         return false
     }
@@ -110,8 +118,8 @@ struct UpdatesView: View {
     /// sentence can never contradict the Sources row (e.g. row says "Not installed" while
     /// the header says "Everything is up to date").
     private var firmwareNeedsAction: Bool {
-        guard firmware.manifest != nil else { return false }
-        switch firmware.overallStatus {
+        guard packages.manifest != nil else { return false }
+        switch packages.overallStatus {
         case .updateAvailable, .notInstalled: return true
         case .upToDate, .empty: return false
         }
@@ -122,10 +130,12 @@ struct UpdatesView: View {
         if hasAttentionItems { return ("Needs your attention", .orange, false) }
         let pluginNeedsAction = !updater.updates.isEmpty
         let firmwareAction = firmwareNeedsAction
-        if pluginNeedsAction && firmwareAction { return ("Updates available for firmware and community apps", .orange, false) }
-        if firmwareAction { return ("Firmware updates available", .orange, false) }
+        if pluginNeedsAction && firmwareAction { return ("FW Package and app updates available", .orange, false) }
+        if firmwareAction { return ("FW Package updates available", .orange, false) }
         if pluginNeedsAction { return ("Community app updates available", .orange, false) }
-        if updater.tag.isEmpty && firmware.manifest == nil { return ("Tap a source to check for updates", .secondary, false) }
+        if updater.tag.isEmpty && packages.manifest == nil && firmware.releases.isEmpty {
+            return ("Choose a source", .secondary, false)
+        }
         return ("Everything is up to date", .green, false)
     }
 
@@ -146,7 +156,7 @@ struct UpdatesView: View {
         .padding(.horizontal, 4)
     }
 
-    // MARK: - Sources (the one unified section — two peer rows)
+    // MARK: - Sources
 
     private var pluginBadge: SourceBadge {
         if updater.phase == .needsBaseline { return .notChecked }
@@ -154,25 +164,39 @@ struct UpdatesView: View {
         return updater.updates.isEmpty ? .upToDate : .updatesAvailable(updater.updates.count)
     }
 
-    private var firmwareBadge: SourceBadge {
-        guard firmware.manifest != nil else { return .notChecked }
-        switch firmware.overallStatus {
+    private var packagesBadge: SourceBadge {
+        guard packages.manifest != nil else { return .notChecked }
+        switch packages.overallStatus {
         case .upToDate: return .upToDate
         case .notInstalled: return .notInstalled
         case .empty: return .notChecked
         case .updateAvailable:
-            let n = firmware.groupStatus.values.filter { $0 == .updateAvailable }.count
+            let n = packages.groupStatus.values.filter { $0 == .updateAvailable }.count
             return .updatesAvailable(n, of: TumoflipManifest.knownGroups.count)
         }
+    }
+
+    private var firmwareLibraryBadge: SourceBadge {
+        if firmware.busy { return .checking }
+        guard !firmware.releases.isEmpty else { return .notChecked }
+        guard let installed = firmware.installedVersion else { return .notInstalled }
+        if firmware.visibleReleases.first?.version == installed { return .upToDate }
+        return .updatesAvailable(firmware.visibleReleases.count)
     }
 
     private var sourcesCard: some View {
         SectionCard(title: "Sources", systemImage: "shippingbox") {
             VStack(spacing: 14) {
-                NavigationLink { TumoflipUpdaterView(updater: firmware) } label: {
-                    SourceRow(icon: "cpu.fill", tint: .orange, title: "Firmware packages",
-                              subtitle: "tumoflip \(firmware.firmwareRoute.channel.packageLabel)",
-                              badge: firmwareBadge, busy: firmwareChecking)
+                NavigationLink { FirmwareLibraryView(library: firmware) } label: {
+                    SourceRow(icon: "memorychip.fill", tint: .orange, title: "Firmware",
+                              subtitle: "Main and Dev releases",
+                              badge: firmwareLibraryBadge, busy: firmware.busy)
+                }
+                Divider()
+                NavigationLink { TumoflipUpdaterView(updater: packages) } label: {
+                    SourceRow(icon: "shippingbox.fill", tint: .blue, title: "FW Packages",
+                              subtitle: packages.firmwareRoute.channel.packageLabel,
+                              badge: packagesBadge, busy: firmwareChecking)
                 }
                 Divider()
                 NavigationLink { PluginUpdatesDetailView(updater: updater) } label: {
@@ -207,15 +231,21 @@ struct UpdatesView: View {
                                          text: "Last verify found \(vr.failed.count) issue\(vr.failed.count == 1 ? "" : "s")", tint: .red)
                         }
                     }
-                    if case .failed(let msg) = firmware.phase {
-                        NavigationLink { TumoflipUpdaterView(updater: firmware) } label: {
-                            AttentionRow(systemImage: "exclamationmark.triangle.fill", text: "Firmware: \(msg)", tint: .red)
+                    if case .failed(let msg) = packages.phase {
+                        NavigationLink { TumoflipUpdaterView(updater: packages) } label: {
+                            AttentionRow(systemImage: "exclamationmark.triangle.fill", text: "FW Packages: \(msg)", tint: .red)
                         }
                     }
-                    if let warning = firmware.firmwareRoute.warning, warning != .identityUnavailable {
-                        NavigationLink { TumoflipUpdaterView(updater: firmware) } label: {
+                    if let warning = packages.firmwareRoute.warning, warning != .identityUnavailable {
+                        NavigationLink { TumoflipUpdaterView(updater: packages) } label: {
                             AttentionRow(systemImage: "point.3.connected.trianglepath.dotted",
                                          text: "Firmware channel: \(warning.message)", tint: .orange)
+                        }
+                    }
+                    if case .failed(let message) = firmware.phase {
+                        NavigationLink { FirmwareLibraryView(library: firmware) } label: {
+                            AttentionRow(systemImage: "exclamationmark.triangle.fill",
+                                         text: "Firmware library: \(message)", tint: .red)
                         }
                     }
                 }
@@ -256,26 +286,26 @@ struct UpdatesView: View {
 
     // MARK: - Bottom action bar (combined — one bar, honest about two distinct transactions)
 
-    private var firmwareSelectedCount: Int { firmware.selectedFileCount }
+    private var firmwareSelectedCount: Int { packages.selectedFileCount }
 
     @ViewBuilder private var actionBar: some View {
         let pluginN = updater.selectedCount
         // No install archive published yet for this release → nothing to install, even
         // though the manifest (and a default group selection) already loaded.
-        let firmwareN = firmware.hasPackageZip ? firmwareSelectedCount : 0
-        if (pluginN > 0 || firmwareN > 0), !pluginChecking, !firmware.busy {
+        let firmwareN = packages.hasPackageZip ? firmwareSelectedCount : 0
+        if (pluginN > 0 || firmwareN > 0), !pluginChecking, !packages.busy {
             VStack(spacing: firmwareN > 0 && pluginN > 0 ? 6 : 0) {
                 if firmwareN > 0 {
-                    let firmwareBlocked = firmware.validating ||
-                        (firmware.selectedRequiresCompatibilityIdentity && !firmware.hasFreshCompatibilityIdentity)
-                    if firmware.selectedRequiresCompatibilityIdentity && !firmware.hasFreshCompatibilityIdentity {
+                    let firmwareBlocked = packages.validating ||
+                        (packages.selectedRequiresCompatibilityIdentity && !packages.hasFreshCompatibilityIdentity)
+                    if packages.selectedRequiresCompatibilityIdentity && !packages.hasFreshCompatibilityIdentity {
                         Label("Connect Flipper over BLE to validate apps before installing via \(transfer.activeChannel.label).",
                               systemImage: "antenna.radiowaves.left.and.right.slash")
                             .font(.caption2).foregroundStyle(.red)
                     }
-                    installButton(title: "Install \(firmwareN) firmware file\(firmwareN == 1 ? "" : "s")",
+                    installButton(title: "Install \(firmwareN) FW Package file\(firmwareN == 1 ? "" : "s")",
                                   blocked: firmwareBlocked) {
-                        Task { await firmware.install() }
+                        Task { await packages.install() }
                     }
                 }
                 if pluginN > 0 {

@@ -332,6 +332,11 @@ final class PluginUpdater: ObservableObject {
     @Published var availableReleases: [PluginReleaseInfo] = []
     @Published var loadingReleases = false
 
+    var shouldLoadCatalog: Bool {
+        if case .idle = phase { return updates.isEmpty && tag.isEmpty }
+        return false
+    }
+
     /// Whether an on-device "Verify on device" pass can run — needs the pack manifest
     /// loaded by a prior check (so we know expected md5s and have data to reinstall).
     var canVerifyOnDevice: Bool { !allManifest.isEmpty }
@@ -591,6 +596,10 @@ final class PluginUpdater: ObservableObject {
             }
             await validateCompatibility()
         } catch {
+            if UpdateTaskCancellation.isCancellation(error) {
+                if tag.isEmpty { phase = .idle }
+                return
+            }
             ulog.error("check failed: \(error.localizedDescription, privacy: .public)")
             phase = .failed(error.localizedDescription)
         }

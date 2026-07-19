@@ -1,0 +1,296 @@
+import SwiftUI
+
+struct FirmwareLibraryView: View {
+    @EnvironmentObject private var ble: FlipperBLE
+    @EnvironmentObject private var transfer: TransferChannelStore
+    @ObservedObject var library: FirmwareLibrary
+    @State private var showHelp = false
+    @State private var pendingRelease: FirmwareRelease?
+    @State private var detailsRelease: FirmwareRelease?
+
+    var body: some View {
+        CardScroll {
+            connectionCard
+            channelPicker
+            if library.visibleReleases.isEmpty {
+                emptyCard
+            } else {
+                ForEach(library.visibleReleases) { release in
+                    releaseCard(release)
+                }
+            }
+        }
+        .navigationTitle("Firmware")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItemGroup(placement: .topBarTrailing) {
+                Button { showHelp = true } label: {
+                    Image(systemName: "questionmark.circle")
+                }
+                .accessibilityLabel("Firmware help")
+                Button { library.refresh() } label: {
+                    Image(systemName: "arrow.clockwise")
+                }
+                .disabled(library.busy)
+                .accessibilityLabel("Refresh firmware releases")
+            }
+        }
+        .safeAreaInset(edge: .bottom) { progressBar }
+        .sheet(isPresented: $showHelp) { FirmwareHelpView() }
+        .sheet(item: $detailsRelease) { FirmwareReleaseDetailsView(release: $0) }
+        .confirmationDialog(
+            "Prepare this firmware?",
+            isPresented: Binding(
+                get: { pendingRelease != nil },
+                set: { if !$0 { pendingRelease = nil } }
+            ),
+            presenting: pendingRelease
+        ) { release in
+            Button("Prepare \(release.version)") {
+                Task { await library.stage(release) }
+            }
+            Button("Cancel", role: .cancel) {}
+        } message: { release in
+            Text("The verified updater will be copied to Archive > update. Installation still starts on the Flipper.")
+        }
+    }
+
+    private var connectionCard: some View {
+        SectionCard(
+            title: "Ready to transfer",
+            systemImage: "arrow.down.to.line.compact",
+            accessory: AnyView(StatusPill(
+                text: transfer.activeChannel.label,
+                color: transfer.activeChannel == .usb ? .blue : .secondary,
+                systemImage: transfer.activeChannel.systemImage
+            ))
+        ) {
+            HStack(spacing: 12) {
+                VStack(alignment: .leading, spacing: 3) {
+                    Text(library.installedVersion ?? "Flipper not identified")
+                        .font(.subheadline).fontWeight(.semibold)
+                    if let api = library.installedAPI {
+                        Text("API \(api)").font(.caption2).foregroundStyle(.secondary)
+                    }
+                }
+                Spacer()
+                phasePill
+            }
+        }
+    }
+
+    private var channelPicker: some View {
+        Picker("Channel", selection: Binding(
+            get: { library.selectedChannel },
+            set: { library.setChannel($0) }
+        )) {
+            Text("Main").tag(TumoflipFirmwareChannel.stable)
+            Text("Dev").tag(TumoflipFirmwareChannel.dev)
+        }
+        .pickerStyle(.segmented)
+        .disabled(library.busy)
+    }
+
+    private var emptyCard: some View {
+        SectionCard(title: "No releases", systemImage: "tray") {
+            HStack(spacing: 10) {
+                if library.busy { ProgressView() }
+                Text(library.busy ? "Loading releases..." : "No firmware releases found for this channel.")
+                    .font(.subheadline).foregroundStyle(.secondary)
+            }
+        }
+    }
+
+    private func releaseCard(_ release: FirmwareRelease) -> some View {
+        SectionCard(
+            title: release.version,
+            systemImage: release.channel == .dev ? "hammer.fill" : "checkmark.seal.fill",
+            accessory: AnyView(releaseBadge(release))
+        ) {
+            HStack(alignment: .firstTextBaseline, spacing: 10) {
+                Label(release.publishedAt.formatted(date: .abbreviated, time: .omitted),
+                      systemImage: "calendar")
+                Label(ByteCountFormatter.string(fromByteCount: release.updaterSize, countStyle: .file),
+                      systemImage: "internaldrive")
+            }
+            .font(.caption2)
+            .foregroundStyle(.secondary)
+
+            HStack(spacing: 10) {
+                Button { detailsRelease = release } label: {
+                    Image(systemName: "info.circle")
+                        .frame(width: 42, height: 42)
+                }
+                .buttonStyle(.bordered)
+                .accessibilityLabel("Release details")
+
+                Button { pendingRelease = release } label: {
+                    Label(library.installedVersion == release.version ? "Prepare again" : "Prepare",
+                          systemImage: "arrow.down.to.line.compact")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(Theme.accent)
+                .disabled(library.busy || !hasTransferChannel)
+            }
+        }
+    }
+
+    private var hasTransferChannel: Bool {
+        transfer.activeChannel == .usb || ble.state == .ready || ble.state == .connected
+    }
+
+    private func releaseBadge(_ release: FirmwareRelease) -> some View {
+        Group {
+            if library.installedVersion == release.version {
+                StatusPill(text: "Installed", color: .green, systemImage: "checkmark.circle.fill")
+            } else if release == library.visibleReleases.first {
+                StatusPill(text: "Latest", color: Theme.accent, systemImage: "sparkles")
+            }
+        }
+    }
+
+    @ViewBuilder private var phasePill: some View {
+        switch library.phase {
+        case .done:
+            StatusPill(text: "Prepared", color: .green, systemImage: "checkmark.circle.fill")
+        case .failed:
+            StatusPill(text: "Error", color: .red, systemImage: "exclamationmark.triangle.fill")
+        case .loading, .downloading, .verifying, .staging:
+            ProgressView().scaleEffect(0.85)
+        case .idle, .ready:
+            StatusPill(text: "Ready", color: .secondary, systemImage: "circle")
+        }
+    }
+
+    @ViewBuilder private var progressBar: some View {
+        switch library.phase {
+        case .downloading(let version, let fraction):
+            transferProgress(title: "Downloading \(version)", fraction: fraction)
+        case .verifying(let version):
+            transferProgress(title: "Verifying \(version)", fraction: nil)
+        case .staging(let version, let file, let done, let total):
+            transferProgress(
+                title: "\(version) · \(file)",
+                fraction: total > 0 ? Double(done) / Double(total) : nil,
+                canStop: true)
+        case .done(let message):
+            resultBar(message, color: .green, icon: "checkmark.circle.fill")
+        case .failed(let message):
+            resultBar(message, color: .red, icon: "exclamationmark.triangle.fill")
+        default:
+            EmptyView()
+        }
+    }
+
+    private func transferProgress(title: String, fraction: Double?, canStop: Bool = false) -> some View {
+        VStack(spacing: 8) {
+            HStack {
+                Text(title).font(.caption).lineLimit(1).truncationMode(.middle)
+                Spacer()
+                if let fraction { Text(fraction, format: .percent.precision(.fractionLength(0))).font(.caption.monospacedDigit()) }
+            }
+            if let fraction { ProgressView(value: fraction) } else { ProgressView() }
+            if canStop {
+                Button(role: .destructive) { library.requestStop() } label: {
+                    Label(library.stopRequested ? "Stopping after this file" : "Stop",
+                          systemImage: "stop.circle.fill")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.bordered)
+                .disabled(library.stopRequested)
+            }
+        }
+        .padding()
+        .background(.bar)
+    }
+
+    private func resultBar(_ message: String, color: Color, icon: String) -> some View {
+        Label(message, systemImage: icon)
+            .font(.caption).foregroundStyle(color)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding()
+            .background(.bar)
+    }
+}
+
+private struct FirmwareReleaseDetailsView: View {
+    @Environment(\.dismiss) private var dismiss
+    let release: FirmwareRelease
+
+    var body: some View {
+        NavigationStack {
+            List {
+                Section("Release") {
+                    LabeledContent("Version", value: release.version)
+                    LabeledContent(
+                        "Channel",
+                        value: release.channel == .stable ? "Main" : "Dev")
+                    LabeledContent(
+                        "Published",
+                        value: release.publishedAt.formatted(date: .long, time: .shortened))
+                    LabeledContent(
+                        "Updater",
+                        value: ByteCountFormatter.string(
+                            fromByteCount: release.updaterSize, countStyle: .file))
+                }
+                if !release.notes.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                    Section("Notes") {
+                        Text(release.notes).textSelection(.enabled)
+                    }
+                }
+            }
+            .navigationTitle(release.title)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Done") { dismiss() }
+                }
+            }
+        }
+    }
+}
+
+private struct FirmwareHelpView: View {
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        NavigationStack {
+            List {
+                Label("Choose Main or Dev, then select a release.", systemImage: "list.bullet")
+                Label("The updater is verified with SHA-256 before transfer.", systemImage: "checkmark.shield")
+                Label("Files are staged atomically; update.fuf is written last.", systemImage: "doc.badge.gearshape")
+                Label("Start installation from Archive > update on the Flipper.", systemImage: "hand.tap")
+            }
+            .navigationTitle("Firmware help")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Done") { dismiss() }
+                }
+            }
+        }
+    }
+}
+
+struct UpdatesHelpView: View {
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        NavigationStack {
+            List {
+                Label("Firmware prepares a full Main or Dev updater.", systemImage: "memorychip")
+                Label("FW Packages refresh Tumoflip apps and resources.", systemImage: "shippingbox")
+                Label("Community apps installs compatible All The Plugins apps.", systemImage: "puzzlepiece.extension")
+                Label("Keep the app open during BLE transfers.", systemImage: "iphone.radiowaves.left.and.right")
+            }
+            .navigationTitle("Updates help")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Done") { dismiss() }
+                }
+            }
+        }
+    }
+}

@@ -148,6 +148,11 @@ final class TumoflipUpdater: ObservableObject {
         switch phase { case .checking, .downloading, .installing: return true; default: return false }
     }
 
+    var shouldLoadManifest: Bool {
+        if case .idle = phase { return manifest == nil }
+        return false
+    }
+
     func status(_ group: String) -> TumoflipInstaller.GroupStatus { groupStatus[group] ?? .empty }
 
     func setManualChannelOverride(_ channel: TumoflipFirmwareChannel) {
@@ -300,6 +305,10 @@ final class TumoflipUpdater: ObservableObject {
             // Packages detail screen (where the user installs) rather than here, so just
             // opening the Updates overview doesn't force a package download.
         } catch {
+            if UpdateTaskCancellation.isCancellation(error) {
+                phase = manifest == nil ? .idle : .ready
+                return
+            }
             phase = .failed(friendly(error))
         }
     }
@@ -535,6 +544,13 @@ final class TumoflipUpdater: ObservableObject {
     /// the UI can flag incompatible files and disable install. Best-effort: no device or
     /// no zip leaves `blocked` empty (the install path still enforces fail-closed).
     func validateCompatibility() async {
+        if validating { return }
+        switch phase {
+        case .checking, .downloading, .installing:
+            return
+        default:
+            break
+        }
         guard manifest != nil, hasPackageZip else {
             blocked = [:]
             compatibilityChecked = false
