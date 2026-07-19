@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/TumoCompanion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/TumoCompanion/main/screenshots/onboarding.png"
       ],
-      "version": "1.7.1",
+      "version": "1.7.2",
       "versionDate": "2026-07-19",
-      "versionDescription": "Firmware Library with Main/Dev downloads, resilient BLE update transfers, and a compact Updates dashboard.",
-      "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.7.1/TumoCompanion-unsigned.ipa",
-      "size": 29196186,
+      "versionDescription": "Compact firmware library grouped by version line, with collapsible beta build lists.",
+      "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.7.2/TumoCompanion-unsigned.ipa",
+      "size": 29206402,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.7.2",
+          "date": "2026-07-19",
+          "localizedDescription": "Compact firmware library grouped by version line, with collapsible beta build lists.",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.7.2/TumoCompanion-unsigned.ipa",
+          "size": 29206402,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.7.1",
           "date": "2026-07-19",
