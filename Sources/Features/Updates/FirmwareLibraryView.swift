@@ -95,10 +95,18 @@ struct FirmwareLibraryView: View {
         SectionCard(title: "No releases", systemImage: "tray") {
             HStack(spacing: 10) {
                 if library.busy { ProgressView() }
-                Text(library.busy ? "Loading releases..." : "No firmware releases found for this channel.")
+                Text(emptyMessage)
                     .font(.subheadline).foregroundStyle(.secondary)
             }
         }
+    }
+
+    private var emptyMessage: String {
+        if library.busy { return "Loading releases..." }
+        if library.selectedChannel == .dev {
+            return "No Dev builds have been published after the latest Main release."
+        }
+        return "No Main firmware releases found."
     }
 
     private func versionGroupCard(
@@ -291,6 +299,7 @@ private struct FirmwareHelpView: View {
         NavigationStack {
             List {
                 Label("Choose Main or Dev, then select a release.", systemImage: "list.bullet")
+                Label("Dev shows only builds published after the latest Main release.", systemImage: "clock.badge.checkmark")
                 Label("The updater is verified with SHA-256 before transfer.", systemImage: "checkmark.shield")
                 Label("Files are staged atomically; update.fuf is written last.", systemImage: "doc.badge.gearshape")
                 Label("Start installation from Archive > update on the Flipper.", systemImage: "hand.tap")

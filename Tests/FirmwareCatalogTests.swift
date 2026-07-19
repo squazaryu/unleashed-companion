@@ -37,6 +37,53 @@ final class FirmwareCatalogTests: XCTestCase {
         XCTAssertEqual(groups[0].releases.map(\.buildLabel), ["Beta 002", "Beta 001"])
     }
 
+    func testDevShowsOnlyReleasesPublishedAfterLatestMain() {
+        let latestMain = release(
+            version: "t-flppr-fw-089-039", channel: .stable,
+            date: "2026-07-17T10:00:00Z")
+        let staleDev = release(
+            version: "t-dev-089-037-058", channel: .dev,
+            date: "2026-07-15T10:00:00Z")
+        let currentDev = release(
+            version: "t-dev-089-040-001", channel: .dev,
+            date: "2026-07-19T10:00:00Z")
+
+        let visible = FirmwareReleasePolicy.visible(
+            [currentDev, latestMain, staleDev], channel: .dev)
+
+        XCTAssertEqual(visible.map(\.version), ["t-dev-089-040-001"])
+    }
+
+    func testDevFallsBackToAvailableBuildsWithoutMainRelease() {
+        let dev = release(
+            version: "t-dev-089-040-001", channel: .dev,
+            date: "2026-07-19T10:00:00Z")
+
+        XCTAssertEqual(
+            FirmwareReleasePolicy.visible([dev], channel: .dev).map(\.version),
+            ["t-dev-089-040-001"])
+    }
+
+    private func release(
+        version: String,
+        channel: TumoflipFirmwareChannel,
+        date: String
+    ) -> FirmwareRelease {
+        FirmwareRelease(
+            id: version,
+            tag: version,
+            title: version,
+            version: version,
+            channel: channel,
+            publishedAt: ISO8601DateFormatter().date(from: date)!,
+            notes: "",
+            updaterURL: URL(string: "https://example.com/\(version).tgz")!,
+            updaterSize: 1,
+            updaterSHA256: String(repeating: "a", count: 64),
+            checksumsURL: nil,
+            manifestURL: nil)
+    }
+
     private func releaseJSON(tag: String, date: String) -> String {
         """
         {

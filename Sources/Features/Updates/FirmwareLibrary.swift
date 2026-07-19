@@ -57,6 +57,29 @@ enum FirmwareReleaseGrouping {
     }
 }
 
+enum FirmwareReleasePolicy {
+    static func visible(
+        _ releases: [FirmwareRelease],
+        channel: TumoflipFirmwareChannel,
+        limit: Int = 20
+    ) -> [FirmwareRelease] {
+        let channelReleases = releases.filter { $0.channel == channel }
+        guard channel == .dev,
+              let latestMainDate = releases.lazy
+                  .filter({ $0.channel == .stable })
+                  .map(\.publishedAt)
+                  .max() else {
+            return Array(channelReleases.prefix(limit))
+        }
+
+        return Array(
+            channelReleases.lazy
+                .filter { $0.publishedAt > latestMainDate }
+                .prefix(limit)
+        )
+    }
+}
+
 struct FirmwareArchiveFile: Equatable {
     let name: String
     let data: Data
@@ -164,7 +187,7 @@ final class FirmwareLibrary: ObservableObject {
     }
 
     var visibleReleases: [FirmwareRelease] {
-        Array(releases.lazy.filter { $0.channel == self.selectedChannel }.prefix(20))
+        FirmwareReleasePolicy.visible(releases, channel: selectedChannel)
     }
 
     var visibleGroups: [FirmwareVersionGroup] {
