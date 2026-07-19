@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/TumoCompanion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/TumoCompanion/main/screenshots/onboarding.png"
       ],
-      "version": "1.7.3",
+      "version": "1.7.4",
       "versionDate": "2026-07-19",
-      "versionDescription": "Dev firmware list now shows only builds published after the latest Main release.",
-      "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.7.3/TumoCompanion-unsigned.ipa",
-      "size": 29204702,
+      "versionDescription": "Firmware release rows are more compact with smaller Info and Prepare controls.",
+      "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.7.4/TumoCompanion-unsigned.ipa",
+      "size": 29210355,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.7.4",
+          "date": "2026-07-19",
+          "localizedDescription": "Firmware release rows are more compact with smaller Info and Prepare controls.",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.7.4/TumoCompanion-unsigned.ipa",
+          "size": 29210355,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.7.3",
           "date": "2026-07-19",
