@@ -12,11 +12,11 @@ struct FirmwareLibraryView: View {
         CardScroll {
             connectionCard
             channelPicker
-            if library.visibleReleases.isEmpty {
+            if library.visibleGroups.isEmpty {
                 emptyCard
             } else {
-                ForEach(library.visibleReleases) { release in
-                    releaseCard(release)
+                ForEach(Array(library.visibleGroups.enumerated()), id: \.element.id) { index, group in
+                    versionGroupCard(group, startExpanded: index == 0)
                 }
             }
         }
@@ -101,53 +101,86 @@ struct FirmwareLibraryView: View {
         }
     }
 
-    private func releaseCard(_ release: FirmwareRelease) -> some View {
-        SectionCard(
-            title: release.version,
-            systemImage: release.channel == .dev ? "hammer.fill" : "checkmark.seal.fill",
-            accessory: AnyView(releaseBadge(release))
+    private func versionGroupCard(
+        _ group: FirmwareVersionGroup,
+        startExpanded: Bool
+    ) -> some View {
+        CollapsibleCard(
+            title: "Version \(group.line)",
+            systemImage: library.selectedChannel == .dev ? "hammer.fill" : "checkmark.seal.fill",
+            accessory: AnyView(
+                Text("\(group.releases.count) \(group.releases.count == 1 ? "build" : "builds")")
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+            ),
+            startExpanded: startExpanded
         ) {
-            HStack(alignment: .firstTextBaseline, spacing: 10) {
-                Label(release.publishedAt.formatted(date: .abbreviated, time: .omitted),
-                      systemImage: "calendar")
-                Label(ByteCountFormatter.string(fromByteCount: release.updaterSize, countStyle: .file),
-                      systemImage: "internaldrive")
-            }
-            .font(.caption2)
-            .foregroundStyle(.secondary)
-
-            HStack(spacing: 10) {
-                Button { detailsRelease = release } label: {
-                    Image(systemName: "info.circle")
-                        .frame(width: 42, height: 42)
+            VStack(spacing: 0) {
+                ForEach(Array(group.releases.enumerated()), id: \.element.id) { index, release in
+                    compactReleaseRow(release, isLatest: index == 0 && group.id == library.visibleGroups.first?.id)
+                    if index < group.releases.count - 1 {
+                        Divider().padding(.leading, 4)
+                    }
                 }
-                .buttonStyle(.bordered)
-                .accessibilityLabel("Release details")
-
-                Button { pendingRelease = release } label: {
-                    Label(library.installedVersion == release.version ? "Prepare again" : "Prepare",
-                          systemImage: "arrow.down.to.line.compact")
-                        .frame(maxWidth: .infinity)
-                }
-                .buttonStyle(.borderedProminent)
-                .tint(Theme.accent)
-                .disabled(library.busy || !hasTransferChannel)
             }
         }
+    }
+
+    private func compactReleaseRow(_ release: FirmwareRelease, isLatest: Bool) -> some View {
+        HStack(spacing: 10) {
+            VStack(alignment: .leading, spacing: 3) {
+                HStack(spacing: 6) {
+                    Text(release.buildLabel)
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                    if library.installedVersion == release.version {
+                        Label("Installed", systemImage: "checkmark.circle.fill")
+                            .font(.caption2)
+                            .foregroundStyle(.green)
+                    } else if isLatest {
+                        Text("Latest")
+                            .font(.caption2)
+                            .foregroundStyle(Theme.accent)
+                    }
+                }
+                Text(releaseMetadata(release))
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+            }
+
+            Spacer(minLength: 6)
+
+            Button { detailsRelease = release } label: {
+                Image(systemName: "info.circle")
+                    .frame(width: 38, height: 38)
+            }
+            .buttonStyle(.bordered)
+            .accessibilityLabel("Details for \(release.version)")
+
+            Button { pendingRelease = release } label: {
+                Image(systemName: "arrow.down.to.line.compact")
+                    .frame(width: 38, height: 38)
+            }
+            .buttonStyle(.borderedProminent)
+            .tint(Theme.accent)
+            .disabled(library.busy || !hasTransferChannel)
+            .accessibilityLabel(
+                library.installedVersion == release.version
+                    ? "Prepare \(release.version) again"
+                    : "Prepare \(release.version)"
+            )
+        }
+        .padding(.vertical, 5)
+    }
+
+    private func releaseMetadata(_ release: FirmwareRelease) -> String {
+        let date = release.publishedAt.formatted(date: .abbreviated, time: .omitted)
+        let size = ByteCountFormatter.string(fromByteCount: release.updaterSize, countStyle: .file)
+        return "\(date) · \(size)"
     }
 
     private var hasTransferChannel: Bool {
         transfer.activeChannel == .usb || ble.state == .ready || ble.state == .connected
-    }
-
-    private func releaseBadge(_ release: FirmwareRelease) -> some View {
-        Group {
-            if library.installedVersion == release.version {
-                StatusPill(text: "Installed", color: .green, systemImage: "checkmark.circle.fill")
-            } else if release == library.visibleReleases.first {
-                StatusPill(text: "Latest", color: Theme.accent, systemImage: "sparkles")
-            }
-        }
     }
 
     @ViewBuilder private var phasePill: some View {

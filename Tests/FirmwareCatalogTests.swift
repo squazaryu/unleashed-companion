@@ -28,6 +28,15 @@ final class FirmwareCatalogTests: XCTestCase {
         XCTAssertEqual(releases.first?.publishedAt, ISO8601DateFormatter().date(from: "2026-07-19T10:00:00Z"))
     }
 
+    func testReleasesAreGroupedByFirmwareVersionLine() throws {
+        let releases = try FirmwareCatalog.decode(Data(groupedJSON.utf8))
+        let groups = FirmwareReleaseGrouping.group(releases)
+
+        XCTAssertEqual(groups.map(\.line), ["089-040", "089-037"])
+        XCTAssertEqual(groups.map { $0.releases.count }, [2, 1])
+        XCTAssertEqual(groups[0].releases.map(\.buildLabel), ["Beta 002", "Beta 001"])
+    }
+
     private func releaseJSON(tag: String, date: String) -> String {
         """
         {
@@ -91,6 +100,26 @@ final class FirmwareCatalogTests: XCTestCase {
         "prerelease": false,
         "draft": true,
         "assets": []
+      }
+    ]
+    """
+
+    private let groupedJSON = """
+    [
+      {
+        "tag_name": "t-dev-089-040-002", "name": "040-002", "body": "",
+        "published_at": "2026-07-20T10:00:00Z", "prerelease": true, "draft": false,
+        "assets": [{"name": "flipper-z-f7-update-t-dev-089-040-002.tgz", "browser_download_url": "https://example.com/002.tgz", "size": 123, "digest": "sha256:\(String(repeating: "a", count: 64))"}]
+      },
+      {
+        "tag_name": "t-dev-089-040-001", "name": "040-001", "body": "",
+        "published_at": "2026-07-19T10:00:00Z", "prerelease": true, "draft": false,
+        "assets": [{"name": "flipper-z-f7-update-t-dev-089-040-001.tgz", "browser_download_url": "https://example.com/001.tgz", "size": 123, "digest": "sha256:\(String(repeating: "a", count: 64))"}]
+      },
+      {
+        "tag_name": "t-dev-089-037-058", "name": "037-058", "body": "",
+        "published_at": "2026-07-15T10:00:00Z", "prerelease": true, "draft": false,
+        "assets": [{"name": "flipper-z-f7-update-t-dev-089-037-058.tgz", "browser_download_url": "https://example.com/058.tgz", "size": 123, "digest": "sha256:\(String(repeating: "a", count: 64))"}]
       }
     ]
     """

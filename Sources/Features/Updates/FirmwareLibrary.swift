@@ -18,6 +18,43 @@ struct FirmwareRelease: Identifiable, Equatable {
 
     var cacheFileName: String { updaterURL.lastPathComponent }
     var updateDirectoryName: String { "f7-update-\(version)" }
+
+    var versionLine: String {
+        let numbers = version.split(whereSeparator: { !$0.isNumber })
+        guard numbers.count >= 2 else { return version }
+        return "\(numbers[0])-\(numbers[1])"
+    }
+
+    var buildLabel: String {
+        let numbers = version.split(whereSeparator: { !$0.isNumber })
+        guard channel == .dev, numbers.count >= 3 else { return "Release" }
+        return "Beta \(numbers[2])"
+    }
+}
+
+struct FirmwareVersionGroup: Identifiable, Equatable {
+    let id: String
+    let line: String
+    let releases: [FirmwareRelease]
+}
+
+enum FirmwareReleaseGrouping {
+    static func group(_ releases: [FirmwareRelease]) -> [FirmwareVersionGroup] {
+        var order: [String] = []
+        var grouped: [String: [FirmwareRelease]] = [:]
+
+        for release in releases {
+            let channel = release.channel == .dev ? "dev" : "main"
+            let key = "\(channel)-\(release.versionLine)"
+            if grouped[key] == nil { order.append(key) }
+            grouped[key, default: []].append(release)
+        }
+
+        return order.compactMap { key in
+            guard let releases = grouped[key], let first = releases.first else { return nil }
+            return FirmwareVersionGroup(id: key, line: first.versionLine, releases: releases)
+        }
+    }
 }
 
 struct FirmwareArchiveFile: Equatable {
@@ -128,6 +165,10 @@ final class FirmwareLibrary: ObservableObject {
 
     var visibleReleases: [FirmwareRelease] {
         Array(releases.lazy.filter { $0.channel == self.selectedChannel }.prefix(20))
+    }
+
+    var visibleGroups: [FirmwareVersionGroup] {
+        FirmwareReleaseGrouping.group(visibleReleases)
     }
 
     func setChannel(_ channel: TumoflipFirmwareChannel) {
