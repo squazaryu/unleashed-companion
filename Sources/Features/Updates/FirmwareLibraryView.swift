@@ -121,6 +121,8 @@ struct FirmwareLibraryView: View {
                     .font(.caption2)
                     .foregroundStyle(.secondary)
             ),
+            contentSpacing: 7,
+            cardPadding: 12,
             startExpanded: startExpanded
         ) {
             VStack(spacing: 0) {
@@ -135,7 +137,7 @@ struct FirmwareLibraryView: View {
     }
 
     private func compactReleaseRow(_ release: FirmwareRelease, isLatest: Bool) -> some View {
-        HStack(spacing: 10) {
+        HStack(spacing: 6) {
             VStack(alignment: .leading, spacing: 3) {
                 HStack(spacing: 6) {
                     Text(release.buildLabel)
@@ -158,27 +160,49 @@ struct FirmwareLibraryView: View {
 
             Spacer(minLength: 6)
 
-            Button { detailsRelease = release } label: {
-                Image(systemName: "info.circle")
-                    .frame(width: 38, height: 38)
-            }
-            .buttonStyle(.bordered)
-            .accessibilityLabel("Details for \(release.version)")
+            HStack(spacing: 0) {
+                Button { detailsRelease = release } label: {
+                    compactActionIcon(
+                        "info.circle",
+                        foreground: Theme.accent,
+                        background: Theme.accent.opacity(0.12))
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel("Details for \(release.version)")
 
-            Button { pendingRelease = release } label: {
-                Image(systemName: "arrow.down.to.line.compact")
-                    .frame(width: 38, height: 38)
+                Button { pendingRelease = release } label: {
+                    compactActionIcon(
+                        "arrow.down.to.line.compact",
+                        foreground: .white,
+                        background: Theme.accent)
+                }
+                .buttonStyle(.plain)
+                .disabled(library.busy || !hasTransferChannel)
+                .accessibilityLabel(
+                    library.installedVersion == release.version
+                        ? "Prepare \(release.version) again"
+                        : "Prepare \(release.version)"
+                )
             }
-            .buttonStyle(.borderedProminent)
-            .tint(Theme.accent)
-            .disabled(library.busy || !hasTransferChannel)
-            .accessibilityLabel(
-                library.installedVersion == release.version
-                    ? "Prepare \(release.version) again"
-                    : "Prepare \(release.version)"
-            )
         }
-        .padding(.vertical, 5)
+        .padding(.vertical, 1)
+    }
+
+    private func compactActionIcon(
+        _ systemName: String,
+        foreground: Color,
+        background: Color
+    ) -> some View {
+        ZStack {
+            Circle()
+                .fill(background)
+                .frame(width: 32, height: 32)
+            Image(systemName: systemName)
+                .font(.system(size: 14, weight: .semibold))
+                .foregroundStyle(foreground)
+        }
+        .frame(width: 40, height: 40)
+        .contentShape(Rectangle())
     }
 
     private func releaseMetadata(_ release: FirmwareRelease) -> String {

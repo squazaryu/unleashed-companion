@@ -7,20 +7,25 @@ struct CollapsibleCard<Content: View>: View {
     let title: String
     var systemImage: String? = nil
     var accessory: AnyView? = nil
+    var contentSpacing: CGFloat
+    var cardPadding: CGFloat
     @State private var expanded: Bool
     @ViewBuilder var content: Content
 
     init(title: String, systemImage: String? = nil, accessory: AnyView? = nil,
+         contentSpacing: CGFloat = 12, cardPadding: CGFloat = 16,
          startExpanded: Bool = false, @ViewBuilder content: () -> Content) {
         self.title = title
         self.systemImage = systemImage
         self.accessory = accessory
+        self.contentSpacing = contentSpacing
+        self.cardPadding = cardPadding
         self._expanded = State(initialValue: startExpanded)
         self.content = content()
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: contentSpacing) {
             Button { withAnimation(.snappy) { expanded.toggle() } } label: {
                 HStack(spacing: 6) {
                     if let systemImage {
@@ -40,7 +45,7 @@ struct CollapsibleCard<Content: View>: View {
             if expanded { content }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .card()
+        .card(padding: cardPadding)
     }
 }
 

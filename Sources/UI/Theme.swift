@@ -12,9 +12,11 @@ enum Theme {
 /// A premium card surface: material fill, hairline stroke, soft shadow.
 struct CardBackground: ViewModifier {
     var tint: Color? = nil
+    var padding: CGFloat = 16
+
     func body(content: Content) -> some View {
         content
-            .padding(16)
+            .padding(padding)
             .background(.regularMaterial, in: RoundedRectangle(cornerRadius: Theme.cardRadius, style: .continuous))
             .overlay(
                 RoundedRectangle(cornerRadius: Theme.cardRadius, style: .continuous)
@@ -25,7 +27,9 @@ struct CardBackground: ViewModifier {
 }
 
 extension View {
-    func card(tint: Color? = nil) -> some View { modifier(CardBackground(tint: tint)) }
+    func card(tint: Color? = nil, padding: CGFloat = 16) -> some View {
+        modifier(CardBackground(tint: tint, padding: padding))
+    }
 }
 
 /// A titled card: small uppercase header + optional icon, content below.
