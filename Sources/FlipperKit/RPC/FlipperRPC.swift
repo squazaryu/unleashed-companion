@@ -11,10 +11,49 @@ enum FlipperRPCError: Error, LocalizedError {
     var errorDescription: String? {
         switch self {
         case .notReady:        return "Flipper is not connected"
+        case .status(.errorContinuousCommandInterrupted):
+            return "Another Flipper command interrupted the transfer. Wait for the connection to settle, then retry."
         case .status(let s):   return "Flipper error: \(s)"
         case .timeout:         return "Command timed out"
         case .decode:          return "Failed to decode response"
         }
+    }
+}
+
+/// Flipper's protobuf server accepts only one response-bearing command at a time.
+/// In particular, starting another command while a multi-frame Storage request is
+/// active aborts that request with `errorContinuousCommandInterrupted`.
+final class RPCCommandGate: @unchecked Sendable {
+    private let lock = NSLock()
+    private var held = false
+    private var waiters: [CheckedContinuation<Void, Never>] = []
+
+    func acquire() async {
+        await withCheckedContinuation { continuation in
+            lock.lock()
+            if held {
+                waiters.append(continuation)
+                lock.unlock()
+            } else {
+                held = true
+                lock.unlock()
+                continuation.resume()
+            }
+        }
+    }
+
+    func release() {
+        lock.lock()
+        let next = waiters.isEmpty ? nil : waiters.removeFirst()
+        if next == nil { held = false }
+        lock.unlock()
+        next?.resume()
+    }
+
+    func withPermit<T>(_ operation: @Sendable () async throws -> T) async rethrows -> T {
+        await acquire()
+        defer { release() }
+        return try await operation()
     }
 }
 
@@ -32,6 +71,7 @@ final class FlipperRPC: ObservableObject {
     private var rxBuffer = Data()
     private var nextCommandID: UInt32 = 1
     private let lock = NSLock()
+    private let commandGate = RPCCommandGate()
     private var cancellable: AnyCancellable?
 
     private struct Pending {
@@ -93,6 +133,15 @@ final class FlipperRPC: ObservableObject {
     func commandStreaming(timeout: TimeInterval = 60,
                           onFrameSent: (@Sendable (Int) -> Void)? = nil,
                           _ configures: [(inout PB_Main) -> Void]) async throws -> [PB_Main] {
+        guard !configures.isEmpty else { return [] }
+
+        // The serial transport can queue bytes, but the Flipper RPC server cannot
+        // execute overlapping response-bearing commands. Hold one FIFO permit for
+        // the complete request, including every write frame and the final response.
+        await commandGate.acquire()
+        defer { commandGate.release() }
+        try Task.checkCancellation()
+
         // Tolerate the connected→ready discovery gap and brief reconnect blips:
         // wait a moment for the link instead of failing the instant it isn't ready.
         if ble.state != .ready {
@@ -100,7 +149,6 @@ final class FlipperRPC: ObservableObject {
         }
         // Refuse RPC while the Buddy app owns the serial channel (see buddyMode).
         guard !ble.buddyMode else { throw FlipperRPCError.notReady }
-        guard !configures.isEmpty else { return [] }
 
         lock.lock()
         let id = nextCommandID

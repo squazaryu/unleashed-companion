@@ -60,6 +60,49 @@ final class ProtocolTests: XCTestCase {
         XCTAssertNil(FlipperRPC.readVarint(Data()))                     // empty
     }
 
+    func testRPCCommandGateSerializesConcurrentWork() async throws {
+        let gate = RPCCommandGate()
+        let probe = RPCConcurrencyProbe()
+
+        async let first: Void = gate.withPermit {
+            await probe.enter()
+            try await Task.sleep(nanoseconds: 80_000_000)
+            await probe.leave()
+        }
+        async let second: Void = gate.withPermit {
+            await probe.enter()
+            try await Task.sleep(nanoseconds: 10_000_000)
+            await probe.leave()
+        }
+
+        _ = try await (first, second)
+        let maxActive = await probe.maxActive
+        XCTAssertEqual(maxActive, 1)
+    }
+
+    func testRPCCommandGateReleasesPermitAfterError() async throws {
+        enum Expected: Error { case failure }
+        let gate = RPCCommandGate()
+
+        do {
+            _ = try await gate.withPermit { throw Expected.failure }
+            XCTFail("Expected the operation to throw")
+        } catch Expected.failure {
+            // Expected. A following command must still be able to acquire the gate.
+        }
+
+        let value = try await gate.withPermit { 42 }
+        XCTAssertEqual(value, 42)
+    }
+
+    func testContinuousCommandInterruptionHasActionableMessage() {
+        let error = FlipperRPCError.status(.errorContinuousCommandInterrupted)
+        XCTAssertEqual(
+            error.errorDescription,
+            "Another Flipper command interrupted the transfer. Wait for the connection to settle, then retry."
+        )
+    }
+
     // MARK: Marauder file-format detection
 
     func testMarauderFormatDetect() {
@@ -141,5 +184,19 @@ final class ProtocolTests: XCTestCase {
         XCTAssertEqual(MarauderLogKind.of("evilportal_0.txt"), .portal)
         XCTAssertEqual(MarauderLogKind.of("info_1.log"), .other)
         XCTAssertEqual(MarauderLogKind.of("help_0.log"), .other)
+    }
+}
+
+private actor RPCConcurrencyProbe {
+    private var active = 0
+    private(set) var maxActive = 0
+
+    func enter() {
+        active += 1
+        maxActive = max(maxActive, active)
+    }
+
+    func leave() {
+        active -= 1
     }
 }
