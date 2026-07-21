@@ -291,6 +291,24 @@ struct TumoflipInstaller {
     /// ledger above; these files are a committed, human-readable projection of it.
     func refreshCompatibilityState(manifest: TumoflipManifest,
                                    plan: TumoflipInstallPlan) async throws {
+        let (stateData, packageData) = try compatibilityPayload(manifest: manifest, plan: plan)
+
+        try await fs.makeDirectory(Self.root)
+        try await fs.write(stateData, to: Self.compatibilityStatePath)
+        guard await fs.deviceMD5(Self.compatibilityStatePath) == TumoflipHash.md5(stateData) else {
+            throw TumoflipInstallError.statePersistenceFailed(Self.compatibilityStatePath)
+        }
+        try await fs.write(packageData, to: Self.packageStatePath)
+        guard await fs.deviceMD5(Self.packageStatePath) == TumoflipHash.md5(packageData) else {
+            throw TumoflipInstallError.statePersistenceFailed(Self.packageStatePath)
+        }
+    }
+
+    private static let compatibilityStatePath = "\(root)/install-state.json"
+    private static let packageStatePath = "\(root)/package-state.txt"
+
+    private func compatibilityPayload(manifest: TumoflipManifest,
+                                      plan: TumoflipInstallPlan) throws -> (Data, Data) {
         let transaction = "\(plan.releaseId.prefix(16))-\(plan.fingerprint.prefix(8))"
         let rollback = "/.tumoflip/rollback/\(transaction)"
         let state = TumoflipCompatibilityState(
@@ -323,18 +341,7 @@ struct TumoflipInstaller {
             "",
         ].joined(separator: "\n")
         let packageData = Data(packageState.utf8)
-
-        let compatibilityStatePath = "\(Self.root)/install-state.json"
-        let packageStatePath = "\(Self.root)/package-state.txt"
-        try await fs.makeDirectory(Self.root)
-        try await fs.write(stateData, to: compatibilityStatePath)
-        guard await fs.deviceMD5(compatibilityStatePath) == TumoflipHash.md5(stateData) else {
-            throw TumoflipInstallError.statePersistenceFailed(compatibilityStatePath)
-        }
-        try await fs.write(packageData, to: packageStatePath)
-        guard await fs.deviceMD5(packageStatePath) == TumoflipHash.md5(packageData) else {
-            throw TumoflipInstallError.statePersistenceFailed(packageStatePath)
-        }
+        return (stateData, packageData)
     }
 
     /// Pure ledger↔manifest comparison for one group, by CONTENT HASH (not the release
@@ -428,16 +435,29 @@ struct TumoflipInstaller {
             currentGroups.insert(group)
         }
 
-        guard state.ledger != originalLedger else { return statuses }
+        let ledgerChanged = state.ledger != originalLedger
+        var currentPlan: TumoflipInstallPlan?
+        var projectionChanged = false
+        if !currentGroups.isEmpty {
+            let plan = try TumoflipInstallPlan.make(manifest: manifest, groups: currentGroups)
+            currentPlan = plan
+            let expected = try compatibilityPayload(manifest: manifest, plan: plan)
+            let currentCompatibility = await fs.read(Self.compatibilityStatePath)
+            let currentPackageState = await fs.read(Self.packageStatePath)
+            projectionChanged = currentCompatibility != expected.0 || currentPackageState != expected.1
+        }
+
+        guard ledgerChanged || projectionChanged else { return statuses }
 
         // Keep the compatibility projection aligned with every complete group, not
         // merely the last group encountered during adoption. Write it before the
         // authoritative ledger so a projection failure leaves adoption retryable.
-        if !currentGroups.isEmpty {
-            let plan = try TumoflipInstallPlan.make(manifest: manifest, groups: currentGroups)
-            try await refreshCompatibilityState(manifest: manifest, plan: plan)
+        if let currentPlan, projectionChanged {
+            try await refreshCompatibilityState(manifest: manifest, plan: currentPlan)
         }
-        try await saveState(&state)
+        if ledgerChanged {
+            try await saveState(&state)
+        }
         return statuses
     }
 

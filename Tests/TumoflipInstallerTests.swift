@@ -790,6 +790,25 @@ final class TumoflipInstallerTests: XCTestCase {
         XCTAssertEqual(fs.writeCount, writes)
     }
 
+    func testReconcileRepairsMissingCompatibilityProjectionWithoutReinstall() async throws {
+        let bytes = Data("firmware".utf8)
+        let file = bundledFile("a", "/ext/a", bytes)
+        let fs = FakeFS()
+        fs.files[file.target] = bytes
+        fs.seedState(.init(ledger: [file.target: entry(file.sha256, bytes)]))
+        let originalState = await fs.readState()
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: [:]))
+
+        let statuses = try await inst.reconcileStatus(manifest: manifest([file]))
+
+        XCTAssertEqual(statuses["base"], .upToDate)
+        XCTAssertNotNil(fs.files["/ext/.tumoflip/install-state.json"])
+        let packageState = try XCTUnwrap(fs.files["/ext/.tumoflip/package-state.txt"])
+        XCTAssertTrue(String(decoding: packageState, as: UTF8.self).contains("Firmware: v"))
+        let reconciledState = await fs.readState()
+        XCTAssertEqual(reconciledState, originalState, "ledger generation must not change")
+    }
+
     func testReconcileRetriesTransientDeviceHashFailure() async throws {
         let bytes = Data("firmware".utf8)
         let file = bundledFile("a", "/ext/a", bytes)
