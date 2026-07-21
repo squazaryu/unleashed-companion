@@ -387,19 +387,17 @@ struct TumoflipInstaller {
 
             let cleanupPending = await hasPendingCleanup(plan)
             let ledgerStatus = Self.groupStatus(for: group, manifest: manifest, ledger: state.ledger)
-            if ledgerStatus == .upToDate, !cleanupPending {
-                statuses[group] = .upToDate
-                currentGroups.insert(group)
-                continue
-            }
-
-            // No presence-only fallback: without a complete expected-MD5 set, keep
-            // the historical conservative ledger result.
+            // Legacy manifests have no device-verifiable expected content. Preserve
+            // their conservative ledger-only policy, including the cleanup guard.
             guard plan.files.allSatisfy({ $0.md5 != nil }) else {
                 statuses[group] = cleanupPending ? .updateAvailable : ledgerStatus
+                if ledgerStatus == .upToDate, !cleanupPending { currentGroups.insert(group) }
                 continue
             }
 
+            // A complete MD5 manifest makes the device authoritative for status even
+            // when the ledger already looks current. Missing or changed targets must
+            // never inherit an Up-to-date badge from ledger metadata alone.
             var allMatch = !cleanupPending
             for file in plan.files {
                 guard let expected = file.md5,

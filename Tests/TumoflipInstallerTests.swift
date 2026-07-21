@@ -688,6 +688,33 @@ final class TumoflipInstallerTests: XCTestCase {
         XCTAssertEqual(try XCTUnwrap(state).ledger[target]?.sha256, file.sha256)
     }
 
+    func testReconcileCurrentLedgerStillFlagsMissingTarget() async throws {
+        let bytes = Data("firmware".utf8), target = "/ext/apps/a.fap"
+        let file = bundledFile("a", target, bytes)
+        let fs = FakeFS()
+        fs.seedState(.init(ledger: [target: entry(file.sha256, bytes)]))
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: [:]))
+
+        let statuses = try await inst.reconcileStatus(manifest: manifest([file]))
+
+        XCTAssertEqual(statuses["base"], .updateAvailable)
+        XCTAssertNil(fs.files["/ext/.tumoflip/install-state.json"])
+    }
+
+    func testReconcileCurrentLedgerStillFlagsChangedTarget() async throws {
+        let bytes = Data("firmware".utf8), target = "/ext/apps/a.fap"
+        let file = bundledFile("a", target, bytes)
+        let fs = FakeFS()
+        fs.files[target] = Data("changed".utf8)
+        fs.seedState(.init(ledger: [target: entry(file.sha256, bytes)]))
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: [:]))
+
+        let statuses = try await inst.reconcileStatus(manifest: manifest([file]))
+
+        XCTAssertEqual(statuses["base"], .updateAvailable)
+        XCTAssertNil(fs.files["/ext/.tumoflip/install-state.json"])
+    }
+
     func testReconcileRejectsMissingChangedAndPartialGroups() async throws {
         let a = Data("a".utf8), b = Data("b".utf8)
         let files = [bundledFile("a", "/ext/a", a), bundledFile("b", "/ext/b", b)]
