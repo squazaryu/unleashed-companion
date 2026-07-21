@@ -18,6 +18,7 @@ final class TumoflipManifestTests: XCTestCase {
             "artifacts": ["firmware.dfu": ["bytes": 872073, "sha256": sha]],
             "packages": [
                 "base": [["bytes": 21892, "sha256": sha,
+                          "md5": String(repeating: "c", count: 32),
                           "source": "apps/Bluetooth/flipper_companion.fap",
                           "target": "/ext/apps/Bluetooth/flipper_companion.fap"]],
                 "arf": [["bytes": 1000, "sha256": sha,
@@ -52,6 +53,7 @@ final class TumoflipManifestTests: XCTestCase {
         XCTAssertNotNil(m.packages["module_one"])
         XCTAssertNotNil(m.packages["protocol_packs"])
         XCTAssertEqual(m.packages["base"]?.first?.target, "/ext/apps/Bluetooth/flipper_companion.fap")
+        XCTAssertEqual(m.packages["base"]?.first?.md5, String(repeating: "c", count: 32))
         XCTAssertEqual(m.safety?.updaterLimitBytes, 131072)
         XCTAssertEqual(m.cleanup.first?.legacy, "/ext/apps/ARF Tools/ARF Car Emulate.fap")
     }
@@ -91,6 +93,30 @@ final class TumoflipManifestTests: XCTestCase {
                          "arf": [], "module_one": [], "protocol_packs": []]
         XCTAssertThrowsError(try decode(d).validate()) {
             guard case .invalidEntry = ($0 as? TumoflipManifestError) else { return XCTFail("\($0)") }
+        }
+    }
+
+    func testAllowsManifestWithoutMD5() throws {
+        var d = base()
+        var packages = d["packages"] as! [String: Any]
+        var baseFiles = packages["base"] as! [[String: Any]]
+        baseFiles[0].removeValue(forKey: "md5")
+        packages["base"] = baseFiles
+        d["packages"] = packages
+        let manifest = try decode(d)
+        XCTAssertNil(manifest.packages["base"]?.first?.md5)
+        XCTAssertNoThrow(try manifest.validate())
+    }
+
+    func testRejectsUppercaseOrMalformedMD5() throws {
+        for bad in [String(repeating: "A", count: 32), "short", String(repeating: "g", count: 32)] {
+            var d = base()
+            d["packages"] = [
+                "base": [["bytes": 1, "sha256": sha, "md5": bad,
+                          "source": "a", "target": "/ext/a"]],
+                "arf": [], "module_one": [], "protocol_packs": [],
+            ]
+            XCTAssertThrowsError(try decode(d).validate(), bad)
         }
     }
 

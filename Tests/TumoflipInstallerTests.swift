@@ -20,6 +20,7 @@ final class TumoflipInstallerTests: XCTestCase {
         var failMove: ((String, String) -> Bool)?
         var failMoveAfterCopy: ((String, String) -> Bool)?
         var failMoveAfterRemove: ((String, String) -> Bool)?
+        var checkedMD5FailuresRemaining = 0
 
         func write(_ data: Data, to path: String) async throws {
             if failWrite?(path) == true { throw Err.injected }
@@ -29,6 +30,13 @@ final class TumoflipInstallerTests: XCTestCase {
         }
         func read(_ path: String) async -> Data? { files[path] }
         func deviceMD5(_ path: String) async -> String? { files[path].map { TumoflipHash.md5($0) } }
+        func checkedDeviceMD5(_ path: String) async throws -> String? {
+            if checkedMD5FailuresRemaining > 0 {
+                checkedMD5FailuresRemaining -= 1
+                throw Err.injected
+            }
+            return await deviceMD5(path)
+        }
         func move(_ from: String, to: String) async throws {
             if failMove?(from, to) == true { throw Err.injected }
             guard let d = files[from] else { throw Err.notFound }
@@ -591,6 +599,19 @@ final class TumoflipInstallerTests: XCTestCase {
                          packages: ["base": files, "arf": [], "module_one": [], "protocol_packs": []],
                          cleanup: [], safety: nil)
     }
+    private func manifest(_ files: [TumoflipManifest.PackageFile],
+                          cleanup: [TumoflipManifest.CleanupEntry] = []) -> TumoflipManifest {
+        TumoflipManifest(schema: 2, releaseId: rid,
+                         firmware: .init(api: "87.14", name: "tumoflip", version: "v", target: 7, radioAddress: nil),
+                         artifacts: [:],
+                         packages: ["base": files, "arf": [], "module_one": [], "protocol_packs": []],
+                         cleanup: cleanup, safety: nil)
+    }
+    private func bundledFile(_ source: String, _ target: String,
+                             _ bytes: Data) -> TumoflipManifest.PackageFile {
+        .init(bytes: bytes.count, sha256: TumoflipHash.sha256(bytes),
+              md5: TumoflipHash.md5(bytes), source: source, target: target)
+    }
     private func entry(_ sha: String, _ bytes: Data) -> TumoflipState.LedgerEntry {
         .init(sha256: sha, md5: TumoflipHash.md5(bytes), releaseId: rid)
     }
@@ -634,6 +655,189 @@ final class TumoflipInstallerTests: XCTestCase {
         let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: [:]))
         let status = await inst.verifyGroupOnDevice("base", manifest: baseManifest([f]), ledger: [:])
         XCTAssertEqual(status, .notInstalled)
+    }
+
+    // MARK: - Firmware-resource adoption (#39)
+
+    func testReconcileAdoptsCompleteFirmwareBundledGroup() async throws {
+        let a = Data("firmware-a".utf8), b = Data("firmware-b".utf8)
+        let files = [bundledFile("a", "/ext/apps/a.fap", a),
+                     bundledFile("b", "/ext/apps/b.fap", b)]
+        let fs = FakeFS()
+        fs.files[files[0].target] = a
+        fs.files[files[1].target] = b
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: [:]))
+
+        let statuses = try await inst.reconcileStatus(manifest: manifest(files))
+
+        XCTAssertEqual(statuses["base"], .upToDate)
+        let loadedState = await fs.readState()
+        let state = try XCTUnwrap(loadedState)
+        XCTAssertEqual(state.ledger[files[0].target]?.md5, files[0].md5)
+        XCTAssertEqual(state.ledger[files[1].target]?.sha256, files[1].sha256)
+        XCTAssertNotNil(fs.files["/ext/.tumoflip/install-state.json"])
+        XCTAssertNotNil(fs.files["/ext/.tumoflip/package-state.txt"])
+    }
+
+    func testReconcileReplacesStaleLedgerAfterFullMatch() async throws {
+        let bytes = Data("firmware".utf8), target = "/ext/apps/a.fap"
+        let file = bundledFile("a", target, bytes)
+        let fs = FakeFS()
+        fs.files[target] = bytes
+        fs.seedState(.init(ledger: [target: .init(
+            sha256: String(repeating: "0", count: 64), md5: String(repeating: "0", count: 32),
+            releaseId: String(repeating: "0", count: 64))]))
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: [:]))
+
+        let statuses = try await inst.reconcileStatus(manifest: manifest([file]))
+
+        XCTAssertEqual(statuses["base"], .upToDate)
+        let state = await fs.readState()
+        XCTAssertEqual(try XCTUnwrap(state).ledger[target]?.sha256, file.sha256)
+    }
+
+    func testReconcileCurrentLedgerStillFlagsMissingTarget() async throws {
+        let bytes = Data("firmware".utf8), target = "/ext/apps/a.fap"
+        let file = bundledFile("a", target, bytes)
+        let fs = FakeFS()
+        fs.seedState(.init(ledger: [target: entry(file.sha256, bytes)]))
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: [:]))
+
+        let statuses = try await inst.reconcileStatus(manifest: manifest([file]))
+
+        XCTAssertEqual(statuses["base"], .updateAvailable)
+        XCTAssertNil(fs.files["/ext/.tumoflip/install-state.json"])
+    }
+
+    func testReconcileCurrentLedgerStillFlagsChangedTarget() async throws {
+        let bytes = Data("firmware".utf8), target = "/ext/apps/a.fap"
+        let file = bundledFile("a", target, bytes)
+        let fs = FakeFS()
+        fs.files[target] = Data("changed".utf8)
+        fs.seedState(.init(ledger: [target: entry(file.sha256, bytes)]))
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: [:]))
+
+        let statuses = try await inst.reconcileStatus(manifest: manifest([file]))
+
+        XCTAssertEqual(statuses["base"], .updateAvailable)
+        XCTAssertNil(fs.files["/ext/.tumoflip/install-state.json"])
+    }
+
+    func testReconcileRejectsMissingChangedAndPartialGroups() async throws {
+        let a = Data("a".utf8), b = Data("b".utf8)
+        let files = [bundledFile("a", "/ext/a", a), bundledFile("b", "/ext/b", b)]
+        for deviceFiles in [[:], ["/ext/a": Data("changed".utf8)], ["/ext/a": a]] {
+            let fs = FakeFS()
+            fs.files = deviceFiles
+            let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: [:]))
+            let statuses = try await inst.reconcileStatus(manifest: manifest(files))
+            XCTAssertEqual(statuses["base"], .updateAvailable)
+            let state = await fs.readState()
+            XCTAssertTrue(state?.ledger.isEmpty ?? true)
+        }
+    }
+
+    func testReconcileOldManifestKeepsLedgerFallback() async throws {
+        let bytes = Data("present".utf8), target = "/ext/apps/a.fap"
+        let legacyFile = file("a", target, bytes) // no manifest MD5
+        let fs = FakeFS()
+        fs.files[target] = bytes
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: [:]))
+
+        let statuses = try await inst.reconcileStatus(manifest: manifest([legacyFile]))
+
+        XCTAssertEqual(statuses["base"], .notInstalled)
+        let oldManifestState = await fs.readState()
+        XCTAssertNil(oldManifestState)
+    }
+
+    func testReconcileCleanupOnlyDeltaStaysPendingUntilLegacyRemoved() async throws {
+        let bytes = Data("canonical".utf8)
+        let canonical = "/ext/apps/new.fap", legacy = "/ext/apps/old.fap"
+        let file = bundledFile("new", canonical, bytes)
+        let cleanup: [TumoflipManifest.CleanupEntry] = [.init(canonical: canonical, legacy: legacy)]
+        let fs = FakeFS()
+        fs.files[canonical] = bytes
+        fs.files[legacy] = Data("legacy".utf8)
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: [:]))
+
+        let pending = try await inst.reconcileStatus(manifest: manifest([file], cleanup: cleanup))
+        XCTAssertEqual(pending["base"], .updateAvailable)
+        let pendingState = await fs.readState()
+        XCTAssertNil(pendingState)
+
+        fs.files[legacy] = nil
+        let reconciled = try await inst.reconcileStatus(manifest: manifest([file], cleanup: cleanup))
+        XCTAssertEqual(reconciled["base"], .upToDate)
+        let reconciledState = await fs.readState()
+        XCTAssertEqual(try XCTUnwrap(reconciledState).ledger[canonical]?.md5, file.md5)
+    }
+
+    func testRepeatedReconcileDoesNotRewriteDurableState() async throws {
+        let bytes = Data("firmware".utf8), file = bundledFile("a", "/ext/a", Data("firmware".utf8))
+        let fs = FakeFS()
+        fs.files[file.target] = bytes
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: [:]))
+
+        _ = try await inst.reconcileStatus(manifest: manifest([file]))
+        let firstState = await fs.readState()
+        let generation = try XCTUnwrap(firstState).generation
+        let writes = fs.writeCount
+        let repeated = try await inst.reconcileStatus(manifest: manifest([file]))
+        XCTAssertEqual(repeated["base"], .upToDate)
+        let repeatedState = await fs.readState()
+        XCTAssertEqual(try XCTUnwrap(repeatedState).generation, generation)
+        XCTAssertEqual(fs.writeCount, writes)
+    }
+
+    func testReconcileRepairsMissingCompatibilityProjectionWithoutReinstall() async throws {
+        let bytes = Data("firmware".utf8)
+        let file = bundledFile("a", "/ext/a", bytes)
+        let fs = FakeFS()
+        fs.files[file.target] = bytes
+        fs.seedState(.init(ledger: [file.target: entry(file.sha256, bytes)]))
+        let originalState = await fs.readState()
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: [:]))
+
+        let statuses = try await inst.reconcileStatus(manifest: manifest([file]))
+
+        XCTAssertEqual(statuses["base"], .upToDate)
+        XCTAssertNotNil(fs.files["/ext/.tumoflip/install-state.json"])
+        let packageState = try XCTUnwrap(fs.files["/ext/.tumoflip/package-state.txt"])
+        XCTAssertTrue(String(decoding: packageState, as: UTF8.self).contains("Firmware: v"))
+        let reconciledState = await fs.readState()
+        XCTAssertEqual(reconciledState, originalState, "ledger generation must not change")
+    }
+
+    func testReconcileRetriesTransientDeviceHashFailure() async throws {
+        let bytes = Data("firmware".utf8)
+        let file = bundledFile("a", "/ext/a", bytes)
+        let fs = FakeFS()
+        fs.files[file.target] = bytes
+        fs.checkedMD5FailuresRemaining = 1
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: [:]))
+
+        let statuses = try await inst.reconcileStatus(manifest: manifest([file]))
+
+        XCTAssertEqual(statuses["base"], .upToDate)
+        let state = await fs.readState()
+        XCTAssertEqual(try XCTUnwrap(state).ledger[file.target]?.md5, file.md5)
+    }
+
+    func testReconcileSurfacesPersistentDeviceHashFailure() async throws {
+        let bytes = Data("firmware".utf8)
+        let file = bundledFile("a", "/ext/a", bytes)
+        let fs = FakeFS()
+        fs.files[file.target] = bytes
+        fs.checkedMD5FailuresRemaining = 2
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: [:]))
+
+        do {
+            _ = try await inst.reconcileStatus(manifest: manifest([file]))
+            XCTFail("expected transport failure")
+        } catch FakeFS.Err.injected {
+            // Expected: the UI can now keep its conservative ledger fallback.
+        }
     }
 
     // MARK: - shared assertions

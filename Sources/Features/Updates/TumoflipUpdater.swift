@@ -9,11 +9,20 @@ protocol TumoflipDeviceFS {
     func write(_ data: Data, to path: String) async throws
     func read(_ path: String) async -> Data?
     func deviceMD5(_ path: String) async -> String?
+    func checkedDeviceMD5(_ path: String) async throws -> String?
     func move(_ from: String, to: String) async throws
     func delete(_ path: String) async throws
     func deleteTree(_ path: String) async throws
     func makeDirectory(_ path: String) async throws
     func exists(_ path: String) async -> Bool
+}
+
+extension TumoflipDeviceFS {
+    /// Compatibility fallback for test doubles and non-RPC stores. Live adapters
+    /// override this so a missing file can be distinguished from a transport error.
+    func checkedDeviceMD5(_ path: String) async throws -> String? {
+        await deviceMD5(path)
+    }
 }
 
 /// Yields the bytes for a manifest `source` path (from the downloaded package zip).
@@ -282,6 +291,24 @@ struct TumoflipInstaller {
     /// ledger above; these files are a committed, human-readable projection of it.
     func refreshCompatibilityState(manifest: TumoflipManifest,
                                    plan: TumoflipInstallPlan) async throws {
+        let (stateData, packageData) = try compatibilityPayload(manifest: manifest, plan: plan)
+
+        try await fs.makeDirectory(Self.root)
+        try await fs.write(stateData, to: Self.compatibilityStatePath)
+        guard await fs.deviceMD5(Self.compatibilityStatePath) == TumoflipHash.md5(stateData) else {
+            throw TumoflipInstallError.statePersistenceFailed(Self.compatibilityStatePath)
+        }
+        try await fs.write(packageData, to: Self.packageStatePath)
+        guard await fs.deviceMD5(Self.packageStatePath) == TumoflipHash.md5(packageData) else {
+            throw TumoflipInstallError.statePersistenceFailed(Self.packageStatePath)
+        }
+    }
+
+    private static let compatibilityStatePath = "\(root)/install-state.json"
+    private static let packageStatePath = "\(root)/package-state.txt"
+
+    private func compatibilityPayload(manifest: TumoflipManifest,
+                                      plan: TumoflipInstallPlan) throws -> (Data, Data) {
         let transaction = "\(plan.releaseId.prefix(16))-\(plan.fingerprint.prefix(8))"
         let rollback = "/.tumoflip/rollback/\(transaction)"
         let state = TumoflipCompatibilityState(
@@ -314,18 +341,7 @@ struct TumoflipInstaller {
             "",
         ].joined(separator: "\n")
         let packageData = Data(packageState.utf8)
-
-        let compatibilityStatePath = "\(Self.root)/install-state.json"
-        let packageStatePath = "\(Self.root)/package-state.txt"
-        try await fs.makeDirectory(Self.root)
-        try await fs.write(stateData, to: compatibilityStatePath)
-        guard await fs.deviceMD5(compatibilityStatePath) == TumoflipHash.md5(stateData) else {
-            throw TumoflipInstallError.statePersistenceFailed(compatibilityStatePath)
-        }
-        try await fs.write(packageData, to: packageStatePath)
-        guard await fs.deviceMD5(packageStatePath) == TumoflipHash.md5(packageData) else {
-            throw TumoflipInstallError.statePersistenceFailed(packageStatePath)
-        }
+        return (stateData, packageData)
     }
 
     /// Pure ledger↔manifest comparison for one group, by CONTENT HASH (not the release
@@ -366,6 +382,99 @@ struct TumoflipInstaller {
         }
         if inLedger == 0 { return .notInstalled }
         return verified == plan.files.count ? .upToDate : .updateAvailable
+    }
+
+    /// Refresh package status and safely adopt files installed by a full firmware
+    /// resource sync. Adoption is allowed only for a complete group whose manifest
+    /// supplies an expected MD5 for every target and whose device hashes all match.
+    /// Legacy manifests remain ledger-only. Pending cleanup always means update.
+    func reconcileStatus(manifest: TumoflipManifest) async throws -> [String: GroupStatus] {
+        var state = try await loadState() ?? TumoflipState()
+        let originalLedger = state.ledger
+        var statuses: [String: GroupStatus] = [:]
+        var currentGroups = Set<String>()
+
+        for group in TumoflipManifest.knownGroups {
+            guard let plan = try? TumoflipInstallPlan.make(manifest: manifest, groups: [group]),
+                  !plan.files.isEmpty else {
+                statuses[group] = .empty
+                continue
+            }
+
+            let cleanupPending = await hasPendingCleanup(plan)
+            let ledgerStatus = Self.groupStatus(for: group, manifest: manifest, ledger: state.ledger)
+            // Legacy manifests have no device-verifiable expected content. Preserve
+            // their conservative ledger-only policy, including the cleanup guard.
+            guard plan.files.allSatisfy({ $0.md5 != nil }) else {
+                statuses[group] = cleanupPending ? .updateAvailable : ledgerStatus
+                if ledgerStatus == .upToDate, !cleanupPending { currentGroups.insert(group) }
+                continue
+            }
+
+            // A complete MD5 manifest makes the device authoritative for status even
+            // when the ledger already looks current. Missing or changed targets must
+            // never inherit an Up-to-date badge from ledger metadata alone.
+            var allMatch = !cleanupPending
+            for file in plan.files {
+                guard let expected = file.md5,
+                      try await checkedDeviceMD5(file.target) == expected else {
+                    allMatch = false
+                    break
+                }
+            }
+            guard allMatch else {
+                statuses[group] = .updateAvailable
+                continue
+            }
+
+            for file in plan.files {
+                state.ledger[file.target] = .init(
+                    sha256: file.sha256, md5: file.md5!, releaseId: manifest.releaseId)
+            }
+            statuses[group] = .upToDate
+            currentGroups.insert(group)
+        }
+
+        let ledgerChanged = state.ledger != originalLedger
+        var currentPlan: TumoflipInstallPlan?
+        var projectionChanged = false
+        if !currentGroups.isEmpty {
+            let plan = try TumoflipInstallPlan.make(manifest: manifest, groups: currentGroups)
+            currentPlan = plan
+            let expected = try compatibilityPayload(manifest: manifest, plan: plan)
+            let currentCompatibility = await fs.read(Self.compatibilityStatePath)
+            let currentPackageState = await fs.read(Self.packageStatePath)
+            projectionChanged = currentCompatibility != expected.0 || currentPackageState != expected.1
+        }
+
+        guard ledgerChanged || projectionChanged else { return statuses }
+
+        // Keep the compatibility projection aligned with every complete group, not
+        // merely the last group encountered during adoption. Write it before the
+        // authoritative ledger so a projection failure leaves adoption retryable.
+        if let currentPlan, projectionChanged {
+            try await refreshCompatibilityState(manifest: manifest, plan: currentPlan)
+        }
+        if ledgerChanged {
+            try await saveState(&state)
+        }
+        return statuses
+    }
+
+    private func hasPendingCleanup(_ plan: TumoflipInstallPlan) async -> Bool {
+        for cleanup in plan.cleanup where await fs.exists(cleanup.legacy) { return true }
+        return false
+    }
+
+    /// A brief BLE reconnect must not be interpreted as a missing package file.
+    /// Retry one transport failure, then let the caller preserve its ledger fallback.
+    private func checkedDeviceMD5(_ path: String) async throws -> String? {
+        do {
+            return try await fs.checkedDeviceMD5(path)
+        } catch {
+            try await Task.sleep(nanoseconds: 250_000_000)
+            return try await fs.checkedDeviceMD5(path)
+        }
     }
 
     @discardableResult

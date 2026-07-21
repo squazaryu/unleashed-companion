@@ -35,8 +35,19 @@ struct TumoflipManifest: Codable, Equatable {
     struct PackageFile: Codable, Equatable {
         let bytes: Int
         let sha256: String
+        /// Optional content hash of the installed target. New manifests publish it so
+        /// firmware-bundled resources can be adopted without trusting file presence.
+        let md5: String?
         let source: String
         let target: String
+
+        init(bytes: Int, sha256: String, md5: String? = nil, source: String, target: String) {
+            self.bytes = bytes
+            self.sha256 = sha256
+            self.md5 = md5
+            self.source = source
+            self.target = target
+        }
     }
     struct CleanupEntry: Codable, Equatable {
         let canonical: String   // the new path that must exist before…
@@ -103,6 +114,9 @@ extension TumoflipManifest {
             for f in files {
                 guard f.bytes >= 0, !f.source.isEmpty,
                       f.sha256.count == 64, f.sha256.allSatisfy(\.isHexDigit),
+                      f.md5.map({ $0.count == 32 && $0.allSatisfy {
+                          "0123456789abcdef".contains($0)
+                      } }) ?? true,
                       !f.target.isEmpty else {
                     throw TumoflipManifestError.invalidEntry(f.source.isEmpty ? f.target : f.source)
                 }
@@ -162,7 +176,7 @@ struct TumoflipInstallPlan: Equatable {
                 guard seen.insert(safe).inserted else {
                     throw TumoflipManifestError.duplicateTarget(safe)
                 }
-                files.append(TumoflipManifest.PackageFile(bytes: f.bytes, sha256: f.sha256,
+                files.append(TumoflipManifest.PackageFile(bytes: f.bytes, sha256: f.sha256, md5: f.md5,
                                                           source: f.source, target: safe))
             }
         }

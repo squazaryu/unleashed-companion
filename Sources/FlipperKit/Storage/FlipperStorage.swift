@@ -64,6 +64,12 @@ final class FlipperStorage {
 
     /// On-device md5 of a file, or nil if it doesn't exist / errors.
     func md5(_ path: String) async -> String? {
+        try? await checkedMD5(path)
+    }
+
+    /// On-device MD5 that keeps transport failures observable to callers which
+    /// must not confuse a disconnected Flipper with a missing file.
+    func checkedMD5(_ path: String) async throws -> String? {
         do {
             let responses = try await rpc.command(timeout: 20) { main in
                 main.content = .storageMd5SumRequest({
@@ -72,11 +78,14 @@ final class FlipperStorage {
             }
             for r in responses {
                 if case .storageMd5SumResponse(let mr) = r.content {
-                    return mr.md5Sum.isEmpty ? nil : mr.md5Sum
+                    guard !mr.md5Sum.isEmpty else { throw FlipperRPCError.decode }
+                    return mr.md5Sum
                 }
             }
-        } catch { /* missing file or RPC error → treat as absent */ }
-        return nil
+            throw FlipperRPCError.decode
+        } catch FlipperRPCError.status(.errorStorageNotExist) {
+            return nil
+        }
     }
 
     /// File modification time (Unix seconds), or nil on error.
