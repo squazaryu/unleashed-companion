@@ -20,6 +20,7 @@ final class TumoflipInstallerTests: XCTestCase {
         var failMove: ((String, String) -> Bool)?
         var failMoveAfterCopy: ((String, String) -> Bool)?
         var failMoveAfterRemove: ((String, String) -> Bool)?
+        var checkedMD5FailuresRemaining = 0
 
         func write(_ data: Data, to path: String) async throws {
             if failWrite?(path) == true { throw Err.injected }
@@ -29,6 +30,13 @@ final class TumoflipInstallerTests: XCTestCase {
         }
         func read(_ path: String) async -> Data? { files[path] }
         func deviceMD5(_ path: String) async -> String? { files[path].map { TumoflipHash.md5($0) } }
+        func checkedDeviceMD5(_ path: String) async throws -> String? {
+            if checkedMD5FailuresRemaining > 0 {
+                checkedMD5FailuresRemaining -= 1
+                throw Err.injected
+            }
+            return await deviceMD5(path)
+        }
         func move(_ from: String, to: String) async throws {
             if failMove?(from, to) == true { throw Err.injected }
             guard let d = files[from] else { throw Err.notFound }
@@ -780,6 +788,37 @@ final class TumoflipInstallerTests: XCTestCase {
         let repeatedState = await fs.readState()
         XCTAssertEqual(try XCTUnwrap(repeatedState).generation, generation)
         XCTAssertEqual(fs.writeCount, writes)
+    }
+
+    func testReconcileRetriesTransientDeviceHashFailure() async throws {
+        let bytes = Data("firmware".utf8)
+        let file = bundledFile("a", "/ext/a", bytes)
+        let fs = FakeFS()
+        fs.files[file.target] = bytes
+        fs.checkedMD5FailuresRemaining = 1
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: [:]))
+
+        let statuses = try await inst.reconcileStatus(manifest: manifest([file]))
+
+        XCTAssertEqual(statuses["base"], .upToDate)
+        let state = await fs.readState()
+        XCTAssertEqual(try XCTUnwrap(state).ledger[file.target]?.md5, file.md5)
+    }
+
+    func testReconcileSurfacesPersistentDeviceHashFailure() async throws {
+        let bytes = Data("firmware".utf8)
+        let file = bundledFile("a", "/ext/a", bytes)
+        let fs = FakeFS()
+        fs.files[file.target] = bytes
+        fs.checkedMD5FailuresRemaining = 2
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: [:]))
+
+        do {
+            _ = try await inst.reconcileStatus(manifest: manifest([file]))
+            XCTFail("expected transport failure")
+        } catch FakeFS.Err.injected {
+            // Expected: the UI can now keep its conservative ledger fallback.
+        }
     }
 
     // MARK: - shared assertions

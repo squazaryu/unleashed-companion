@@ -13,6 +13,9 @@ struct FlipperDeviceFS: TumoflipDeviceFS {
     func write(_ data: Data, to path: String) async throws { try await storage.write(path, data: data) }
     func read(_ path: String) async -> Data? { try? await storage.read(path) }
     func deviceMD5(_ path: String) async -> String? { await storage.md5(path) }
+    func checkedDeviceMD5(_ path: String) async throws -> String? {
+        try await storage.checkedMD5(path)
+    }
     func move(_ from: String, to: String) async throws { try await storage.move(from, to: to) }
     func delete(_ path: String) async throws { try await storage.delete(path, recursive: false) }
     func deleteTree(_ path: String) async throws { try await storage.delete(path, recursive: true) }
@@ -38,6 +41,11 @@ struct USBTumoflipDeviceFS: TumoflipDeviceFS {
     func write(_ data: Data, to path: String) async throws { try await storage.write(path, data: data) }
     func read(_ path: String) async -> Data? { try? await storage.read(path) }
     func deviceMD5(_ path: String) async -> String? { await storage.md5(path) }
+    func checkedDeviceMD5(_ path: String) async throws -> String? {
+        guard await storage.exists(path) else { return nil }
+        let data = try await storage.read(path)
+        return TumoflipHash.md5(data)
+    }
     func move(_ from: String, to: String) async throws { try await storage.move(from, to: to) }
     func delete(_ path: String) async throws { try await storage.delete(path, recursive: false) }
     func deleteTree(_ path: String) async throws { try await storage.delete(path, recursive: true) }

@@ -9,11 +9,20 @@ protocol TumoflipDeviceFS {
     func write(_ data: Data, to path: String) async throws
     func read(_ path: String) async -> Data?
     func deviceMD5(_ path: String) async -> String?
+    func checkedDeviceMD5(_ path: String) async throws -> String?
     func move(_ from: String, to: String) async throws
     func delete(_ path: String) async throws
     func deleteTree(_ path: String) async throws
     func makeDirectory(_ path: String) async throws
     func exists(_ path: String) async -> Bool
+}
+
+extension TumoflipDeviceFS {
+    /// Compatibility fallback for test doubles and non-RPC stores. Live adapters
+    /// override this so a missing file can be distinguished from a transport error.
+    func checkedDeviceMD5(_ path: String) async throws -> String? {
+        await deviceMD5(path)
+    }
 }
 
 /// Yields the bytes for a manifest `source` path (from the downloaded package zip).
@@ -401,7 +410,7 @@ struct TumoflipInstaller {
             var allMatch = !cleanupPending
             for file in plan.files {
                 guard let expected = file.md5,
-                      await fs.deviceMD5(file.target) == expected else {
+                      try await checkedDeviceMD5(file.target) == expected else {
                     allMatch = false
                     break
                 }
@@ -435,6 +444,17 @@ struct TumoflipInstaller {
     private func hasPendingCleanup(_ plan: TumoflipInstallPlan) async -> Bool {
         for cleanup in plan.cleanup where await fs.exists(cleanup.legacy) { return true }
         return false
+    }
+
+    /// A brief BLE reconnect must not be interpreted as a missing package file.
+    /// Retry one transport failure, then let the caller preserve its ledger fallback.
+    private func checkedDeviceMD5(_ path: String) async throws -> String? {
+        do {
+            return try await fs.checkedDeviceMD5(path)
+        } catch {
+            try await Task.sleep(nanoseconds: 250_000_000)
+            return try await fs.checkedDeviceMD5(path)
+        }
     }
 
     @discardableResult
