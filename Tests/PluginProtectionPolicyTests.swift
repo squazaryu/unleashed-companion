@@ -51,7 +51,8 @@ final class PluginProtectionPolicyTests: XCTestCase {
             "subghz_wardriving", "totp",
             "tumo_acceptance_suite", "tumo_ir_lab", "tumo_macro_deck", "tumocard_os",
             "tumofabric_node", "tumoflip_packages", "tumoflip_xremote",
-            "tumokey_phase_a", "tumomodule_runtime", "tumonet_bench", "tumonet_gateway",
+            "tumokey", "tumokey_phase_a", "tumomodule_runtime", "tumonet_bench",
+            "tumonet_gateway",
             "tumoscope", "tumoscript", "tumovgm_bridge", "tumovm_peripherals",
             "tumovm_poc", "usb_sd_mode",
             "wifi_mapper",
@@ -78,5 +79,11 @@ final class PluginProtectionPolicyTests: XCTestCase {
         XCTAssertNotNil(CatalogInstallPolicy.protectionReason(alias: "claude_buddy"))
         XCTAssertNotNil(CatalogInstallPolicy.protectionReason(alias: "claude_buddy.fap"))
         XCTAssertNil(CatalogInstallPolicy.protectionReason(alias: "weather_station"))
+    }
+
+    func testCatalogCannotOverwriteTumoKeyVariants() {
+        XCTAssertNotNil(CatalogInstallPolicy.protectionReason(alias: "tumokey"))
+        XCTAssertNotNil(CatalogInstallPolicy.protectionReason(alias: "tumokey.fap"))
+        XCTAssertNotNil(CatalogInstallPolicy.protectionReason(alias: "tumokey_phase_a"))
     }
 }
