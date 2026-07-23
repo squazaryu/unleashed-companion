@@ -386,6 +386,7 @@ final class PluginUpdater: ObservableObject {
         "tumofabric_node",
         "tumoflip_xremote",
         "tumoflip_packages",
+        "tumokey",
         "tumokey_phase_a",
         "tumomodule_runtime",
         "tumonet_bench",
