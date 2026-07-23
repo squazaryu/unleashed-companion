@@ -240,15 +240,23 @@ struct TumoflipUpdaterView: View {
                     ForEach(updater.files(g.key), id: \.target) { f in
                         VStack(alignment: .leading, spacing: 2) {
                             Toggle(isOn: fileBinding(f.target)) {
-                                HStack {
+                                HStack(spacing: 8) {
                                     Image(systemName: "doc").font(.caption2).foregroundStyle(.secondary)
-                                    Text(fileName(f.target)).font(.caption2).lineLimit(1).truncationMode(.middle)
+                                    VStack(alignment: .leading, spacing: 3) {
+                                        Text(fileName(f.target))
+                                            .font(.caption2)
+                                            .lineLimit(1)
+                                            .truncationMode(.middle)
+                                        fileStatusLabel(updater.status(file: f.target))
+                                    }
                                     Spacer()
                                     Text(byteStr(f.bytes)).font(.caption2).foregroundStyle(.secondary).monospacedDigit()
                                 }
                             }
                             .tint(Theme.accent)
                             .disabled(updater.busy || updater.validating || updater.isFileBlocked(f.target))
+                            .accessibilityLabel(fileName(f.target))
+                            .accessibilityValue(fileStatusInfo(updater.status(file: f.target)).text)
                             if let reason = updater.blocked[f.target] {
                                 Label(reason, systemImage: "exclamationmark.octagon.fill")
                                     .font(.caption2).foregroundStyle(.red)
@@ -399,6 +407,32 @@ struct TumoflipUpdaterView: View {
     }
 
     private func fileName(_ target: String) -> String { (target as NSString).lastPathComponent }
+
+    private func fileStatusLabel(_ status: TumoflipInstaller.FileStatus) -> some View {
+        let info = fileStatusInfo(status)
+        return Label(info.text, systemImage: info.icon)
+            .font(.caption2)
+            .foregroundStyle(info.color)
+            .labelStyle(.titleAndIcon)
+            .lineLimit(1)
+    }
+
+    private func fileStatusInfo(
+        _ status: TumoflipInstaller.FileStatus
+    ) -> (text: String, color: Color, icon: String) {
+        switch status {
+        case .upToDate:
+            return ("Up to date", .green, "checkmark.circle.fill")
+        case .needsUpdate:
+            return ("Needs update", .orange, "arrow.down.circle.fill")
+        case .missing:
+            return ("Missing", .secondary, "questionmark.folder.fill")
+        case .unknown:
+            return ("Unknown", .secondary, "questionmark.circle")
+        case .validationError:
+            return ("Validation error", .red, "exclamationmark.triangle.fill")
+        }
+    }
 
     private func channelColor(_ channel: TumoflipFirmwareChannel) -> Color {
         switch channel {

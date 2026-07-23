@@ -280,6 +280,21 @@ struct TumoflipInstaller {
     /// Per-group installed status, derived from the durable ledger vs the latest manifest.
     enum GroupStatus: String, Equatable { case upToDate, updateAvailable, notInstalled, empty }
 
+    /// Device-backed status for one package target. Transport failures are deliberately
+    /// distinct from a missing file so a brief reconnect never becomes a false reinstall.
+    enum FileStatus: String, Equatable, Hashable {
+        case upToDate
+        case needsUpdate
+        case missing
+        case unknown
+        case validationError
+    }
+
+    struct StatusSnapshot: Equatable {
+        let groups: [String: GroupStatus]
+        let files: [String: FileStatus]
+    }
+
     /// The durable install ledger (target → what is recorded as installed). Empty if
     /// nothing is installed or the device is unreachable.
     func currentLedger() async throws -> [String: TumoflipState.LedgerEntry] {
@@ -389,9 +404,24 @@ struct TumoflipInstaller {
     /// supplies an expected MD5 for every target and whose device hashes all match.
     /// Legacy manifests remain ledger-only. Pending cleanup always means update.
     func reconcileStatus(manifest: TumoflipManifest) async throws -> [String: GroupStatus] {
+        try await reconcileStatus(manifest: manifest, captureValidationErrors: false).groups
+    }
+
+    /// Detailed reconciliation used by FW Packages. It preserves the existing group
+    /// aggregate while exposing the exact file that is current, changed, missing, or
+    /// temporarily unverifiable. Complete-MD5 manifests remain device-authoritative.
+    func reconcilePackageStatus(manifest: TumoflipManifest) async throws -> StatusSnapshot {
+        try await reconcileStatus(manifest: manifest, captureValidationErrors: true)
+    }
+
+    private func reconcileStatus(
+        manifest: TumoflipManifest,
+        captureValidationErrors: Bool
+    ) async throws -> StatusSnapshot {
         var state = try await loadState() ?? TumoflipState()
         let originalLedger = state.ledger
         var statuses: [String: GroupStatus] = [:]
+        var fileStatuses: [String: FileStatus] = [:]
         var currentGroups = Set<String>()
 
         for group in TumoflipManifest.knownGroups {
@@ -406,6 +436,25 @@ struct TumoflipInstaller {
             // Legacy manifests have no device-verifiable expected content. Preserve
             // their conservative ledger-only policy, including the cleanup guard.
             guard plan.files.allSatisfy({ $0.md5 != nil }) else {
+                if captureValidationErrors {
+                    for file in plan.files {
+                        do {
+                            guard let actual = try await checkedDeviceMD5(file.target) else {
+                                fileStatuses[file.target] = .missing
+                                continue
+                            }
+                            guard let entry = state.ledger[file.target] else {
+                                fileStatuses[file.target] = .unknown
+                                continue
+                            }
+                            fileStatuses[file.target] =
+                                entry.sha256 == file.sha256 && entry.md5 == actual
+                                ? .upToDate : .needsUpdate
+                        } catch {
+                            fileStatuses[file.target] = .validationError
+                        }
+                    }
+                }
                 statuses[group] = cleanupPending ? .updateAvailable : ledgerStatus
                 if ledgerStatus == .upToDate, !cleanupPending { currentGroups.insert(group) }
                 continue
@@ -415,15 +464,35 @@ struct TumoflipInstaller {
             // when the ledger already looks current. Missing or changed targets must
             // never inherit an Up-to-date badge from ledger metadata alone.
             var allMatch = !cleanupPending
+            var validationFailed = false
+            var knownDivergence = cleanupPending
             for file in plan.files {
-                guard let expected = file.md5,
-                      try await checkedDeviceMD5(file.target) == expected else {
+                do {
+                    let actual = try await checkedDeviceMD5(file.target)
+                    if actual == nil {
+                        fileStatuses[file.target] = .missing
+                        allMatch = false
+                        knownDivergence = true
+                    } else if actual == file.md5 {
+                        fileStatuses[file.target] = .upToDate
+                    } else {
+                        fileStatuses[file.target] = .needsUpdate
+                        allMatch = false
+                        knownDivergence = true
+                    }
+                } catch {
+                    guard captureValidationErrors else { throw error }
+                    fileStatuses[file.target] = .validationError
+                    validationFailed = true
                     allMatch = false
-                    break
                 }
             }
             guard allMatch else {
-                statuses[group] = .updateAvailable
+                // Keep the prior conservative aggregate during a transport failure.
+                // The affected row still explains that validation, rather than file
+                // presence, failed.
+                statuses[group] = validationFailed && !knownDivergence
+                    ? ledgerStatus : .updateAvailable
                 continue
             }
 
@@ -447,7 +516,9 @@ struct TumoflipInstaller {
             projectionChanged = currentCompatibility != expected.0 || currentPackageState != expected.1
         }
 
-        guard ledgerChanged || projectionChanged else { return statuses }
+        guard ledgerChanged || projectionChanged else {
+            return StatusSnapshot(groups: statuses, files: fileStatuses)
+        }
 
         // Keep the compatibility projection aligned with every complete group, not
         // merely the last group encountered during adoption. Write it before the
@@ -458,7 +529,7 @@ struct TumoflipInstaller {
         if ledgerChanged {
             try await saveState(&state)
         }
-        return statuses
+        return StatusSnapshot(groups: statuses, files: fileStatuses)
     }
 
     private func hasPendingCleanup(_ plan: TumoflipInstallPlan) async -> Bool {

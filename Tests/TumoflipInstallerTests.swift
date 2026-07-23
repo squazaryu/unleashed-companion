@@ -679,6 +679,86 @@ final class TumoflipInstallerTests: XCTestCase {
         XCTAssertNotNil(fs.files["/ext/.tumoflip/package-state.txt"])
     }
 
+    func testDetailedReconcileReportsEveryCompleteMD5FileStatus() async throws {
+        let current = Data("current".utf8)
+        let changed = Data("expected-changed".utf8)
+        let missing = Data("expected-missing".utf8)
+        let files = [
+            bundledFile("current", "/ext/apps/current.fap", current),
+            bundledFile("changed", "/ext/apps/changed.fap", changed),
+            bundledFile("missing", "/ext/apps/missing.fap", missing),
+        ]
+        let fs = FakeFS()
+        fs.files[files[0].target] = current
+        fs.files[files[1].target] = Data("old".utf8)
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: [:]))
+
+        let snapshot = try await inst.reconcilePackageStatus(manifest: manifest(files))
+
+        XCTAssertEqual(snapshot.groups["base"], .updateAvailable)
+        XCTAssertEqual(snapshot.files[files[0].target], .upToDate)
+        XCTAssertEqual(snapshot.files[files[1].target], .needsUpdate)
+        XCTAssertEqual(snapshot.files[files[2].target], .missing)
+    }
+
+    func testDetailedReconcileReportsValidationErrorWithoutClaimingMissing() async throws {
+        let bytes = Data("firmware".utf8)
+        let file = bundledFile("app", "/ext/apps/app.fap", bytes)
+        let fs = FakeFS()
+        fs.files[file.target] = bytes
+        fs.seedState(.init(ledger: [file.target: entry(file.sha256, bytes)]))
+        fs.checkedMD5FailuresRemaining = 2
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: [:]))
+
+        let snapshot = try await inst.reconcilePackageStatus(manifest: manifest([file]))
+
+        XCTAssertEqual(snapshot.groups["base"], .upToDate)
+        XCTAssertEqual(snapshot.files[file.target], .validationError)
+    }
+
+    func testDetailedReconcileKnownMismatchWinsOverAnotherFilesValidationError() async throws {
+        let changedBytes = Data("changed-expected".utf8)
+        let errorBytes = Data("error-expected".utf8)
+        let changed = bundledFile("changed", "/ext/apps/changed.fap", changedBytes)
+        let error = bundledFile("error", "/ext/apps/error.fap", errorBytes)
+        let fs = FakeFS()
+        fs.files[changed.target] = Data("old".utf8)
+        fs.files[error.target] = errorBytes
+        fs.seedState(.init(ledger: [
+            changed.target: entry(changed.sha256, changedBytes),
+            error.target: entry(error.sha256, errorBytes),
+        ]))
+        fs.checkedMD5FailuresRemaining = 2
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: [:]))
+
+        let snapshot = try await inst.reconcilePackageStatus(manifest: manifest([error, changed]))
+
+        XCTAssertEqual(snapshot.groups["base"], .updateAvailable)
+        XCTAssertEqual(snapshot.files[error.target], .validationError)
+        XCTAssertEqual(snapshot.files[changed.target], .needsUpdate)
+    }
+
+    func testDetailedReconcileLegacyManifestUsesConservativeStatuses() async throws {
+        let knownBytes = Data("known".utf8)
+        let unknownBytes = Data("unknown".utf8)
+        let missingBytes = Data("missing".utf8)
+        let known = file("known", "/ext/apps/known.fap", knownBytes)
+        let unknown = file("unknown", "/ext/apps/unknown.fap", unknownBytes)
+        let missing = file("missing", "/ext/apps/missing.fap", missingBytes)
+        let fs = FakeFS()
+        fs.files[known.target] = knownBytes
+        fs.files[unknown.target] = unknownBytes
+        fs.seedState(.init(ledger: [known.target: entry(known.sha256, knownBytes)]))
+        let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: [:]))
+
+        let snapshot = try await inst.reconcilePackageStatus(
+            manifest: manifest([known, unknown, missing]))
+
+        XCTAssertEqual(snapshot.files[known.target], .upToDate)
+        XCTAssertEqual(snapshot.files[unknown.target], .unknown)
+        XCTAssertEqual(snapshot.files[missing.target], .missing)
+    }
+
     func testReconcileReplacesStaleLedgerAfterFullMatch() async throws {
         let bytes = Data("firmware".utf8), target = "/ext/apps/a.fap"
         let file = bundledFile("a", target, bytes)

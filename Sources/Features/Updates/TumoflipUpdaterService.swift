@@ -101,6 +101,7 @@ final class TumoflipUpdater: ObservableObject {
     @Published private(set) var releaseTag = ""
     @Published private(set) var hasPackageZip = false
     @Published private(set) var groupStatus: [String: TumoflipInstaller.GroupStatus] = [:]
+    @Published private(set) var fileStatus: [String: TumoflipInstaller.FileStatus] = [:]
     @Published private(set) var transferChannel: TransferChannel = .ble
     @Published private(set) var deviceIdentity: TumoflipDeviceIdentity?
     @Published private(set) var firmwareRoute = TumoflipFirmwareRouter.route(identity: nil, manualOverride: nil)
@@ -162,6 +163,9 @@ final class TumoflipUpdater: ObservableObject {
     }
 
     func status(_ group: String) -> TumoflipInstaller.GroupStatus { groupStatus[group] ?? .empty }
+    func status(file target: String) -> TumoflipInstaller.FileStatus {
+        fileStatus[target] ?? .unknown
+    }
 
     func setManualChannelOverride(_ channel: TumoflipFirmwareChannel) {
         manualChannelOverride = channel
@@ -189,7 +193,9 @@ final class TumoflipUpdater: ObservableObject {
         transferChannel = activeChannel
         let inst = TumoflipInstaller(fs: activeFS(), source: ZipPackageSource(entries: [:]))
         do {
-            groupStatus = try await inst.reconcileStatus(manifest: manifest)
+            let snapshot = try await inst.reconcilePackageStatus(manifest: manifest)
+            groupStatus = snapshot.groups
+            fileStatus = snapshot.files
         } catch {
             // Preserve the conservative ledger snapshot if device verification or
             // reconciliation persistence is unavailable.
@@ -197,6 +203,9 @@ final class TumoflipUpdater: ObservableObject {
             groupStatus = Dictionary(uniqueKeysWithValues: TumoflipManifest.knownGroups.map {
                 ($0, TumoflipInstaller.groupStatus(for: $0, manifest: manifest, ledger: ledger))
             })
+            fileStatus = Dictionary(uniqueKeysWithValues: TumoflipManifest.knownGroups
+                .flatMap { files($0) }
+                .map { ($0.target, TumoflipInstaller.FileStatus.validationError) })
         }
         lastVerifiedOnDevice = false
     }
@@ -215,13 +224,17 @@ final class TumoflipUpdater: ObservableObject {
         defer { verifying = false }
         transferChannel = activeChannel
         let inst = TumoflipInstaller(fs: activeFS(), source: ZipPackageSource(entries: [:]))
-        let ledger = (try? await inst.currentLedger()) ?? [:]
-        var computed: [String: TumoflipInstaller.GroupStatus] = [:]
-        for group in TumoflipManifest.knownGroups {
-            computed[group] = await inst.verifyGroupOnDevice(group, manifest: manifest, ledger: ledger)
+        do {
+            let snapshot = try await inst.reconcilePackageStatus(manifest: manifest)
+            groupStatus = snapshot.groups
+            fileStatus = snapshot.files
+            lastVerifiedOnDevice = !snapshot.files.values.contains(.validationError)
+        } catch {
+            fileStatus = Dictionary(uniqueKeysWithValues: TumoflipManifest.knownGroups
+                .flatMap { files($0) }
+                .map { ($0.target, TumoflipInstaller.FileStatus.validationError) })
+            lastVerifiedOnDevice = false
         }
-        groupStatus = computed
-        lastVerifiedOnDevice = true
     }
 
     func count(_ group: String) -> Int { manifest?.packages[group]?.count ?? 0 }
