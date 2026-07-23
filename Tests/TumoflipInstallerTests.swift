@@ -436,6 +436,98 @@ final class TumoflipInstallerTests: XCTestCase {
         XCTAssertNil(fs.files[legacy], "legacy moved out of its live path")
     }
 
+    func testCleanupLegacyOnlyVerifiesCanonicalAndRemovesLegacy() async throws {
+        let canonicalBytes = Data("canonical".utf8)
+        let legacyBytes = Data("legacy".utf8)
+        let canonical = "/ext/apps/Module One/Diagnostics/cockpit.fap"
+        let legacy = "/ext/apps/Module One/Diagnostics/module_one_cockpit.fap"
+        let packageFile = bundledFile("cockpit", canonical, canonicalBytes)
+        let cleanup: [TumoflipManifest.CleanupEntry] = [
+            .init(canonical: canonical, legacy: legacy)
+        ]
+        let p = plan([packageFile], cleanup: cleanup, groups: ["module_one"])
+        let fs = FakeFS()
+        fs.files[canonical] = canonicalBytes
+        fs.files[legacy] = legacyBytes
+        let installer = TumoflipInstaller(fs: fs, source: FakeSource(data: [:]))
+
+        let removed = try await installer.cleanupLegacy(p)
+
+        XCTAssertEqual(removed, 1)
+        XCTAssertEqual(fs.files[canonical], canonicalBytes)
+        XCTAssertNil(fs.files[legacy])
+        let loadedState = await fs.readState()
+        let state = try XCTUnwrap(loadedState)
+        XCTAssertNil(state.txn)
+    }
+
+    func testCleanupLegacyOnlyPreservesLegacyWhenCanonicalDoesNotMatch() async throws {
+        let expectedBytes = Data("expected".utf8)
+        let legacyBytes = Data("legacy".utf8)
+        let canonical = "/ext/apps/new.fap"
+        let legacy = "/ext/apps/old.fap"
+        let packageFile = bundledFile("new", canonical, expectedBytes)
+        let p = plan(
+            [packageFile],
+            cleanup: [.init(canonical: canonical, legacy: legacy)]
+        )
+        let fs = FakeFS()
+        fs.files[canonical] = Data("unexpected".utf8)
+        fs.files[legacy] = legacyBytes
+        let installer = TumoflipInstaller(fs: fs, source: FakeSource(data: [:]))
+
+        do {
+            _ = try await installer.cleanupLegacy(p)
+            XCTFail("cleanup must fail closed when the canonical file differs")
+        } catch let error as TumoflipInstallError {
+            XCTAssertEqual(error, .deviceVerifyFailed(canonical))
+        }
+
+        XCTAssertEqual(fs.files[legacy], legacyBytes)
+        let state = await fs.readState()
+        XCTAssertNil(state)
+    }
+
+    func testCleanupLegacyOnlyRollsBackEarlierMovesWhenLaterMoveFails() async throws {
+        let canonicalA = "/ext/apps/new-a.fap"
+        let canonicalB = "/ext/apps/new-b.fap"
+        let legacyA = "/ext/apps/old-a.fap"
+        let legacyB = "/ext/apps/old-b.fap"
+        let canonicalBytesA = Data("canonical-a".utf8)
+        let canonicalBytesB = Data("canonical-b".utf8)
+        let legacyBytesA = Data("legacy-a".utf8)
+        let legacyBytesB = Data("legacy-b".utf8)
+        let p = plan(
+            [
+                bundledFile("new-a", canonicalA, canonicalBytesA),
+                bundledFile("new-b", canonicalB, canonicalBytesB),
+            ],
+            cleanup: [
+                .init(canonical: canonicalA, legacy: legacyA),
+                .init(canonical: canonicalB, legacy: legacyB),
+            ]
+        )
+        let fs = FakeFS()
+        fs.files[canonicalA] = canonicalBytesA
+        fs.files[canonicalB] = canonicalBytesB
+        fs.files[legacyA] = legacyBytesA
+        fs.files[legacyB] = legacyBytesB
+        fs.failMove = { from, _ in from == legacyB }
+        let installer = TumoflipInstaller(fs: fs, source: FakeSource(data: [:]))
+
+        do {
+            _ = try await installer.cleanupLegacy(p)
+            XCTFail("cleanup must roll back when a later move fails")
+        } catch {
+            XCTAssertTrue(error is FakeFS.Err)
+        }
+
+        XCTAssertEqual(fs.files[legacyA], legacyBytesA)
+        XCTAssertEqual(fs.files[legacyB], legacyBytesB)
+        let state = await fs.readState()
+        XCTAssertNil(state?.txn)
+    }
+
     func testMissingLegacyCleanupIsIgnored() async throws {
         let bytes = Data("canonical".utf8)
         let canonical = "/ext/apps/ARF Tools/arf_car_emulate.fap"

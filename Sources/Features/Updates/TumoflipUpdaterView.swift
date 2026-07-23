@@ -11,6 +11,7 @@ struct TumoflipUpdaterView: View {
     @ObservedObject var updater: TumoflipUpdater
     @State private var expanded: Set<String> = []
     @State private var pendingOverride: TumoflipFirmwareChannel?
+    @State private var pendingCleanupGroup: String?
     @State private var showHelp = false
 
     private let groupLabels: [(key: String, title: String, icon: String)] = [
@@ -85,6 +86,26 @@ struct TumoflipUpdaterView: View {
             Button("Cancel", role: .cancel) {}
         } message: { channel in
             Text("This overrides the channel inferred from the installed firmware and will reload \(channel.packageLabel). Install only if the connected Flipper is compatible.")
+        }
+        .confirmationDialog(
+            "Remove legacy package files?",
+            isPresented: Binding(
+                get: { pendingCleanupGroup != nil },
+                set: { if !$0 { pendingCleanupGroup = nil } }
+            ),
+            presenting: pendingCleanupGroup
+        ) { group in
+            let count = updater.cleanupEntries(group).count
+            Button(
+                "Clean up \(count) file\(count == 1 ? "" : "s")",
+                role: .destructive
+            ) {
+                pendingCleanupGroup = nil
+                Task { await updater.cleanUp(group) }
+            }
+            Button("Cancel", role: .cancel) {}
+        } message: { _ in
+            Text("Current apps will be verified first. Only obsolete duplicate paths will be removed.")
         }
     }
 
@@ -297,6 +318,24 @@ struct TumoflipUpdaterView: View {
                         .accessibilityLabel("Cleanup required")
                         .accessibilityValue(entry.legacy)
                     }
+                    if !cleanupEntries.isEmpty {
+                        HStack {
+                            Spacer()
+                            Button {
+                                pendingCleanupGroup = g.key
+                            } label: {
+                                Label(
+                                    "Clean up \(cleanupEntries.count)",
+                                    systemImage: "trash"
+                                )
+                            }
+                            .buttonStyle(.bordered)
+                            .controlSize(.small)
+                            .tint(.orange)
+                            .disabled(updater.busy || !hasFileChannel)
+                        }
+                        .padding(.leading, 28)
+                    }
                 }
             }
             if g.key != groupLabels.last?.key { Divider() }
@@ -379,6 +418,23 @@ struct TumoflipUpdaterView: View {
                 }
                 ProgressView(value: Double(min(done, total)), total: Double(max(total, 1)))
                     .tint(Theme.accent)
+                keepAwakeNote
+            }
+        case .cleaning(let done, let total, let file):
+            VStack(alignment: .leading, spacing: 6) {
+                HStack {
+                    Text("\(file) · \(updater.transferChannel.label)")
+                        .font(.callout)
+                        .lineLimit(1)
+                        .truncationMode(.middle)
+                    Spacer()
+                    Text("\(done)/\(total)")
+                        .font(.caption2)
+                        .foregroundStyle(.secondary)
+                        .monospacedDigit()
+                }
+                ProgressView(value: Double(min(done, total)), total: Double(max(total, 1)))
+                    .tint(.orange)
                 keepAwakeNote
             }
         case .done(let m):
