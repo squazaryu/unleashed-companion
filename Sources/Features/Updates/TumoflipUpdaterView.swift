@@ -198,6 +198,7 @@ struct TumoflipUpdaterView: View {
         let n = updater.count(g.key)
         let sel = updater.selectedCount(g.key)
         let selectable = updater.selectableCount(g.key)
+        let cleanupEntries = updater.cleanupEntries(g.key)
         VStack(alignment: .leading, spacing: 8) {
             HStack(spacing: 8) {
                 // Tri-state category checkbox: selects/deselects every file in the group.
@@ -216,7 +217,16 @@ struct TumoflipUpdaterView: View {
                     Text(g.title).font(.subheadline)
                     Text("\(sel)/\(selectable) compatible · \(byteStr(updater.bytes(g.key)))")
                         .font(.caption2).foregroundStyle(.secondary).lineLimit(1)
-                    if let info = statusInfo(updater.status(g.key)) {
+                    if !cleanupEntries.isEmpty {
+                        Label(
+                            "\(cleanupEntries.count) legacy \(cleanupEntries.count == 1 ? "file" : "files") to remove",
+                            systemImage: "trash.circle.fill"
+                        )
+                        .font(.caption2)
+                        .foregroundStyle(.orange)
+                        .labelStyle(.titleAndIcon)
+                        .lineLimit(1)
+                    } else if let info = statusInfo(updater.status(g.key)) {
                         Label(info.text, systemImage: info.icon)
                             .font(.caption2).foregroundStyle(info.color)
                             .labelStyle(.titleAndIcon).lineLimit(1)
@@ -265,6 +275,27 @@ struct TumoflipUpdaterView: View {
                             }
                         }
                         .padding(.leading, 28)
+                    }
+                    ForEach(cleanupEntries, id: \.legacy) { entry in
+                        HStack(alignment: .top, spacing: 8) {
+                            Image(systemName: "trash.circle.fill")
+                                .font(.caption2)
+                                .foregroundStyle(.orange)
+                            VStack(alignment: .leading, spacing: 3) {
+                                Text("Cleanup required")
+                                    .font(.caption2)
+                                    .foregroundStyle(.orange)
+                                Text(entry.legacy)
+                                    .font(.caption2.monospaced())
+                                    .foregroundStyle(.secondary)
+                                    .fixedSize(horizontal: false, vertical: true)
+                            }
+                            Spacer(minLength: 0)
+                        }
+                        .padding(.leading, 28)
+                        .accessibilityElement(children: .combine)
+                        .accessibilityLabel("Cleanup required")
+                        .accessibilityValue(entry.legacy)
                     }
                 }
             }

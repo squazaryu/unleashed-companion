@@ -102,6 +102,7 @@ final class TumoflipUpdater: ObservableObject {
     @Published private(set) var hasPackageZip = false
     @Published private(set) var groupStatus: [String: TumoflipInstaller.GroupStatus] = [:]
     @Published private(set) var fileStatus: [String: TumoflipInstaller.FileStatus] = [:]
+    @Published private(set) var pendingCleanup: [String: [TumoflipManifest.CleanupEntry]] = [:]
     @Published private(set) var transferChannel: TransferChannel = .ble
     @Published private(set) var deviceIdentity: TumoflipDeviceIdentity?
     @Published private(set) var firmwareRoute = TumoflipFirmwareRouter.route(identity: nil, manualOverride: nil)
@@ -166,6 +167,9 @@ final class TumoflipUpdater: ObservableObject {
     func status(file target: String) -> TumoflipInstaller.FileStatus {
         fileStatus[target] ?? .unknown
     }
+    func cleanupEntries(_ group: String) -> [TumoflipManifest.CleanupEntry] {
+        pendingCleanup[group] ?? []
+    }
 
     func setManualChannelOverride(_ channel: TumoflipFirmwareChannel) {
         manualChannelOverride = channel
@@ -196,6 +200,7 @@ final class TumoflipUpdater: ObservableObject {
             let snapshot = try await inst.reconcilePackageStatus(manifest: manifest)
             groupStatus = snapshot.groups
             fileStatus = snapshot.files
+            pendingCleanup = snapshot.pendingCleanup
         } catch {
             // Preserve the conservative ledger snapshot if device verification or
             // reconciliation persistence is unavailable.
@@ -206,6 +211,7 @@ final class TumoflipUpdater: ObservableObject {
             fileStatus = Dictionary(uniqueKeysWithValues: TumoflipManifest.knownGroups
                 .flatMap { files($0) }
                 .map { ($0.target, TumoflipInstaller.FileStatus.validationError) })
+            pendingCleanup = [:]
         }
         lastVerifiedOnDevice = false
     }
@@ -228,11 +234,13 @@ final class TumoflipUpdater: ObservableObject {
             let snapshot = try await inst.reconcilePackageStatus(manifest: manifest)
             groupStatus = snapshot.groups
             fileStatus = snapshot.files
+            pendingCleanup = snapshot.pendingCleanup
             lastVerifiedOnDevice = !snapshot.files.values.contains(.validationError)
         } catch {
             fileStatus = Dictionary(uniqueKeysWithValues: TumoflipManifest.knownGroups
                 .flatMap { files($0) }
                 .map { ($0.target, TumoflipInstaller.FileStatus.validationError) })
+            pendingCleanup = [:]
             lastVerifiedOnDevice = false
         }
     }

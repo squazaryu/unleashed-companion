@@ -293,6 +293,7 @@ struct TumoflipInstaller {
     struct StatusSnapshot: Equatable {
         let groups: [String: GroupStatus]
         let files: [String: FileStatus]
+        let pendingCleanup: [String: [TumoflipManifest.CleanupEntry]]
     }
 
     /// The durable install ledger (target → what is recorded as installed). Empty if
@@ -422,6 +423,7 @@ struct TumoflipInstaller {
         let originalLedger = state.ledger
         var statuses: [String: GroupStatus] = [:]
         var fileStatuses: [String: FileStatus] = [:]
+        var pendingCleanup: [String: [TumoflipManifest.CleanupEntry]] = [:]
         var currentGroups = Set<String>()
 
         for group in TumoflipManifest.knownGroups {
@@ -431,7 +433,11 @@ struct TumoflipInstaller {
                 continue
             }
 
-            let cleanupPending = await hasPendingCleanup(plan)
+            let groupCleanup = await pendingCleanupEntries(plan)
+            if !groupCleanup.isEmpty {
+                pendingCleanup[group] = groupCleanup
+            }
+            let cleanupPending = !groupCleanup.isEmpty
             let ledgerStatus = Self.groupStatus(for: group, manifest: manifest, ledger: state.ledger)
             // Legacy manifests have no device-verifiable expected content. Preserve
             // their conservative ledger-only policy, including the cleanup guard.
@@ -517,7 +523,11 @@ struct TumoflipInstaller {
         }
 
         guard ledgerChanged || projectionChanged else {
-            return StatusSnapshot(groups: statuses, files: fileStatuses)
+            return StatusSnapshot(
+                groups: statuses,
+                files: fileStatuses,
+                pendingCleanup: pendingCleanup
+            )
         }
 
         // Keep the compatibility projection aligned with every complete group, not
@@ -529,12 +539,21 @@ struct TumoflipInstaller {
         if ledgerChanged {
             try await saveState(&state)
         }
-        return StatusSnapshot(groups: statuses, files: fileStatuses)
+        return StatusSnapshot(
+            groups: statuses,
+            files: fileStatuses,
+            pendingCleanup: pendingCleanup
+        )
     }
 
-    private func hasPendingCleanup(_ plan: TumoflipInstallPlan) async -> Bool {
-        for cleanup in plan.cleanup where await fs.exists(cleanup.legacy) { return true }
-        return false
+    private func pendingCleanupEntries(
+        _ plan: TumoflipInstallPlan
+    ) async -> [TumoflipManifest.CleanupEntry] {
+        var entries: [TumoflipManifest.CleanupEntry] = []
+        for cleanup in plan.cleanup where await fs.exists(cleanup.legacy) {
+            entries.append(cleanup)
+        }
+        return entries
     }
 
     /// A brief BLE reconnect must not be interpreted as a missing package file.

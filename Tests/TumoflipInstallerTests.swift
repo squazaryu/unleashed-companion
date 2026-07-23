@@ -841,14 +841,20 @@ final class TumoflipInstallerTests: XCTestCase {
         fs.files[legacy] = Data("legacy".utf8)
         let inst = TumoflipInstaller(fs: fs, source: FakeSource(data: [:]))
 
-        let pending = try await inst.reconcileStatus(manifest: manifest([file], cleanup: cleanup))
-        XCTAssertEqual(pending["base"], .updateAvailable)
+        let pending = try await inst.reconcilePackageStatus(
+            manifest: manifest([file], cleanup: cleanup))
+        XCTAssertEqual(pending.groups["base"], .updateAvailable)
+        XCTAssertEqual(pending.files[canonical], .upToDate)
+        XCTAssertEqual(pending.pendingCleanup["base"], cleanup)
         let pendingState = await fs.readState()
         XCTAssertNil(pendingState)
 
         fs.files[legacy] = nil
-        let reconciled = try await inst.reconcileStatus(manifest: manifest([file], cleanup: cleanup))
-        XCTAssertEqual(reconciled["base"], .upToDate)
+        let reconciled = try await inst.reconcilePackageStatus(
+            manifest: manifest([file], cleanup: cleanup))
+        XCTAssertEqual(reconciled.groups["base"], .upToDate)
+        XCTAssertEqual(reconciled.files[canonical], .upToDate)
+        XCTAssertNil(reconciled.pendingCleanup["base"])
         let reconciledState = await fs.readState()
         XCTAssertEqual(try XCTUnwrap(reconciledState).ledger[canonical]?.md5, file.md5)
     }
