@@ -93,6 +93,7 @@ final class TumoflipUpdater: ObservableObject {
     enum Phase: Equatable {
         case idle, checking, ready, downloading
         case installing(done: Int, total: Int, file: String)
+        case cleaning(done: Int, total: Int, file: String)
         case done(String), failed(String)
     }
 
@@ -155,7 +156,12 @@ final class TumoflipUpdater: ObservableObject {
 
     var busy: Bool {
         if validating { return true }
-        switch phase { case .checking, .downloading, .installing: return true; default: return false }
+        switch phase {
+        case .checking, .downloading, .installing, .cleaning:
+            return true
+        default:
+            return false
+        }
     }
 
     var shouldLoadManifest: Bool {
@@ -473,6 +479,82 @@ final class TumoflipUpdater: ObservableObject {
         }
     }
 
+    /// Remove legacy duplicates reported by reconciliation without downloading the
+    /// package archive or reinstalling any canonical FAP.
+    func cleanUp(_ group: String) async {
+        guard let manifest else { return }
+        let entries = cleanupEntries(group)
+        guard !entries.isEmpty else {
+            phase = .done("No legacy files remain.")
+            return
+        }
+
+        beginTransactionGuards()
+        defer { endTransactionGuards() }
+        let live = InstallActivityController()
+        let channel = activeChannel
+        let fs = activeFS()
+        transferChannel = channel
+
+        do {
+            guard await FlipperBLE.shared.waitUntilReady(timeout: 8) else {
+                phase = .failed(
+                    "Connect this Flipper over BLE to validate its firmware before cleanup.")
+                return
+            }
+            if FlipperBLE.shared.buddyMode {
+                phase = .failed(
+                    "Claude Buddy passthrough is holding the serial link. Turn Claude Buddy off, then retry.")
+                return
+            }
+            try await checkCompatibility(manifest)
+
+            let plan = try TumoflipInstallPlan.make(manifest: manifest, groups: [group])
+            guard !plan.cleanup.isEmpty else {
+                phase = .done("No legacy files remain.")
+                await refreshStatus()
+                return
+            }
+            if channel == .ble {
+                try await ensureLoaderIdle()
+            }
+
+            phase = .cleaning(done: 0, total: entries.count, file: "Starting…")
+            live.start(total: entries.count, title: "Cleaning firmware packages")
+            let transferReporter = TransferActivityReporter(channel: channel)
+            _ = await transferReporter.prepare()
+            transferReporter.begin("firmware package cleanup")
+            defer { transferReporter.end() }
+
+            let installer = TumoflipInstaller(
+                fs: fs,
+                source: ZipPackageSource(entries: [:])
+            )
+            let removed = try await installer.cleanupLegacy(plan) {
+                [weak self] done, total, file in
+                Task { @MainActor in
+                    self?.phase = .cleaning(done: done, total: total, file: file)
+                    live.update(current: done, total: total, name: file)
+                    transferReporter.progress(file, force: true)
+                }
+            }
+            live.finish(installed: removed, total: entries.count)
+            phase = .done(
+                removed == 0
+                    ? "No legacy files remain."
+                    : "Removed \(removed) legacy file\(removed == 1 ? "" : "s").")
+            await refreshStatus()
+        } catch let error as TumoflipInstallError {
+            phase = .failed(installErrorText(error))
+            live.cancel()
+            await refreshStatus()
+        } catch {
+            phase = .failed(friendly(error))
+            live.cancel()
+            await refreshStatus()
+        }
+    }
+
     /// Roll back any transaction left half-applied by a previous crash/disconnect.
     /// Safe to call on appear; needs a connected Flipper to read its state.
     func recoverIfNeeded() async {
@@ -579,7 +661,7 @@ final class TumoflipUpdater: ObservableObject {
     func validateCompatibility() async {
         if validating { return }
         switch phase {
-        case .checking, .downloading, .installing:
+        case .checking, .downloading, .installing, .cleaning:
             return
         default:
             break

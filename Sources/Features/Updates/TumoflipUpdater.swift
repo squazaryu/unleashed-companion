@@ -556,6 +556,97 @@ struct TumoflipInstaller {
         return entries
     }
 
+    /// Remove only obsolete package paths without downloading or reinstalling current
+    /// files. Every canonical replacement is re-verified against the manifest MD5
+    /// immediately before its legacy counterpart is moved aside. The cleanup uses the
+    /// same durable journal and rollback path as a full install.
+    @discardableResult
+    func cleanupLegacy(
+        _ plan: TumoflipInstallPlan,
+        progress: ((Int, Int, String) -> Void)? = nil
+    ) async throws -> Int {
+        var state = try await loadState() ?? TumoflipState()
+
+        if let txn = state.txn, txn.phase == .staging || txn.phase == .activating {
+            try await rollback(&state, txn)
+        }
+
+        let filesByTarget = Dictionary(uniqueKeysWithValues: plan.files.map { ($0.target, $0) })
+        var candidates: [TumoflipManifest.CleanupEntry] = []
+        for entry in plan.cleanup where await fs.exists(entry.legacy) {
+            guard let canonical = filesByTarget[entry.canonical],
+                  let expectedMD5 = canonical.md5 else {
+                throw TumoflipInstallError.incompatible(
+                    "cleanup cannot verify \(entry.canonical)")
+            }
+            guard try await checkedDeviceMD5(entry.canonical) == expectedMD5 else {
+                throw TumoflipInstallError.deviceVerifyFailed(entry.canonical)
+            }
+            candidates.append(entry)
+        }
+        guard !candidates.isEmpty else { return 0 }
+
+        let cleanupIdentity = candidates
+            .map { "\($0.canonical)<-\($0.legacy)" }
+            .sorted()
+            .joined(separator: ";")
+        let fingerprint = TumoflipHash.sha256(
+            Data("cleanup::\(plan.fingerprint)::\(cleanupIdentity)".utf8))
+        let rollbackPath = rollbackDir(fingerprint)
+        var journal = TumoflipJournal(
+            releaseId: plan.releaseId,
+            fingerprint: fingerprint,
+            groups: plan.groups,
+            phase: .activating,
+            ops: [],
+            cleanups: candidates.map {
+                .init(
+                    legacy: $0.legacy,
+                    backup: "\(rollbackPath)/cleanup__\(flat($0.legacy))")
+            }
+        )
+
+        state.txn = journal
+        try await saveState(&state)
+
+        do {
+            try await fs.makeDirectory(rollbackPath)
+            for index in journal.cleanups.indices {
+                let cleanup = journal.cleanups[index]
+                guard await fs.exists(cleanup.legacy) else { continue }
+                guard let md5 = await fs.deviceMD5(cleanup.legacy) else {
+                    throw TumoflipInstallError.deviceVerifyFailed(cleanup.legacy)
+                }
+                journal.cleanups[index].md5 = md5
+                journal.cleanups[index].state = .movePlanned
+                state.txn = journal
+                try await saveState(&state)
+                try await copyRemoveVerified(cleanup.legacy, to: cleanup.backup, md5: md5)
+                journal.cleanups[index].state = .movedAside
+                state.txn = journal
+                try await saveState(&state)
+                progress?(
+                    index + 1,
+                    journal.cleanups.count,
+                    "Removing " + Self.shortName(cleanup.legacy)
+                )
+            }
+
+            journal.phase = .committed
+            state.txn = nil
+            try await saveState(&state)
+            try? await fs.deleteTree(rollbackPath)
+            return journal.cleanups.filter { $0.state == .movedAside }.count
+        } catch {
+            do {
+                try await rollback(&state, journal)
+            } catch let rollbackError {
+                throw rollbackError
+            }
+            throw error
+        }
+    }
+
     /// A brief BLE reconnect must not be interpreted as a missing package file.
     /// Retry one transport failure, then let the caller preserve its ledger fallback.
     private func checkedDeviceMD5(_ path: String) async throws -> String? {
