@@ -19,13 +19,21 @@
         "https://raw.githubusercontent.com/squazaryu/TumoCompanion/main/screenshots/settings.png",
         "https://raw.githubusercontent.com/squazaryu/TumoCompanion/main/screenshots/onboarding.png"
       ],
-      "version": "1.7.9",
+      "version": "1.7.10",
       "versionDate": "2026-07-23",
-      "versionDescription": "FW Packages now shows the exact status of every app: up to date, needs update, missing, unknown, or validation error.",
-      "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.7.9/TumoCompanion-unsigned.ipa",
-      "size": 29240910,
+      "versionDescription": "FW Packages now explains cleanup-only drift: current apps remain Up to date while obsolete duplicate paths are shown as Cleanup required and removed by the normal group install.",
+      "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.7.10/TumoCompanion-unsigned.ipa",
+      "size": 29241254,
       "minOSVersion": "17.0",
       "versions": [
+        {
+          "version": "1.7.10",
+          "date": "2026-07-23",
+          "localizedDescription": "FW Packages now explains cleanup-only drift: current apps remain Up to date while obsolete duplicate paths are shown as Cleanup required and removed by the normal group install.",
+          "downloadURL": "https://github.com/squazaryu/TumoCompanion/releases/download/v1.7.10/TumoCompanion-unsigned.ipa",
+          "size": 29241254,
+          "minOSVersion": "17.0"
+        },
         {
           "version": "1.7.9",
           "date": "2026-07-23",
